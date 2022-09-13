@@ -10,8 +10,6 @@ public class StartImage : MonoBehaviour
     [SerializeField] private TextMeshProUGUI touchToStartTxt;
 
     [SerializeField] private Image touchToStartBackImage;
-    
-    [SerializeField] private RectTransform settingImage;
 
     [SerializeField] private bool isTrue;
 
@@ -22,18 +20,27 @@ public class StartImage : MonoBehaviour
 
     [SerializeField] private AudioClip startAudio;
     
+    [SerializeField] private AudioClip clickAudio;
+    
     [SerializeField] private GameObject gameExitUI;
 
-    [SerializeField] private SettingUI settingUI;
+    [SerializeField] private FadeIn fadeIn;
+
+    [SerializeField] private GameObject alphaImage;
 
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(BlinkTxt());
 
-        settingUI.bgmAudioSource.clip = startAudio;
+        SettingUI.Instance.SettingBgmSound(startAudio);
         
-        settingUI.bgmAudioSource.Play();
+        Invoke("HideAlphaImage", 1f);
+    }
+
+    private void HideAlphaImage()
+    {
+        alphaImage.SetActive(false);
     }
 
     private IEnumerator BlinkTxt()
@@ -88,17 +95,10 @@ public class StartImage : MonoBehaviour
         }
     }
 
-    public void ClickSettingBtnAnim(RectTransform image)
-    {
-        image.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-    }
-    
     public void ShowSettingUI(RectTransform image)
     {
-        settingUI.clickSound.Play();
+        SettingUI.Instance.SettingSfxSound(clickAudio);
         
-        image.localScale = new Vector3(1.2f, 1.2f, 1.2f);
-
         Time.timeScale = 0;
         
         settingUIGo.SetActive(true);
@@ -106,9 +106,7 @@ public class StartImage : MonoBehaviour
     
     public void HideSettingUI(RectTransform image)
     {
-        settingUI.clickSound.Play();
-        
-        image.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+        SettingUI.Instance.SettingSfxSound(clickAudio);
 
         Time.timeScale = 1;
         
@@ -117,9 +115,7 @@ public class StartImage : MonoBehaviour
     
     public void StartToLobby()
     {
-        Debug.Log("로비 이동");
-        
-        settingUI.clickSound.Play();
+        fadeIn.Fade();
     }
     
     public void ShowGameExitUI(bool isClick)
@@ -128,7 +124,7 @@ public class StartImage : MonoBehaviour
 
         if (isClick.Equals(true))
         {
-            settingUI.clickSound.Play();
+            SettingUI.Instance.SettingSfxSound(clickAudio);
         }
        
         
@@ -139,14 +135,14 @@ public class StartImage : MonoBehaviour
 
     public void GameExit()
     {
-        settingUI.clickSound.Play();
+        SettingUI.Instance.SettingSfxSound(clickAudio);
         
         Application.Quit();
     }
     
     public void HideGameExitUI()
     {
-        settingUI.clickSound.Play();
+        SettingUI.Instance.SettingSfxSound(clickAudio);
         
         gameExitUI.SetActive(false);
     }
@@ -154,7 +150,7 @@ public class StartImage : MonoBehaviour
     public void ShowDataUI()
     {
         Debug.Log("데이터 초기화");
-        
-        settingUI.clickSound.Play();
+
+        SettingUI.Instance.SettingSfxSound(clickAudio);
     }
 }
