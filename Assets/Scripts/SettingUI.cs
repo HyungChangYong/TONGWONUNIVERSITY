@@ -42,7 +42,5 @@ public class SettingUI : MonoBehaviour
         bgmAudioSource.volume = scrollbar.value;
         
         DialogueManager.Instance.typeSound.volume = scrollbar.value;
-        
-        DialogueManager.Instance.enterSound.volume = scrollbar.value;
     }
 }

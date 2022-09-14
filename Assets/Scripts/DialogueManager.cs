@@ -28,7 +28,6 @@ public class DialogueManager : MonoBehaviour
     private bool _clickActivated = false;
 
     public AudioSource typeSound;
-    public AudioSource enterSound;
 
     [SerializeField] private GameObject txtBtnImageGo;
     
@@ -36,8 +35,29 @@ public class DialogueManager : MonoBehaviour
     
     [SerializeField] private bool isTrue;
     
+    [SerializeField] private AudioClip openingSceneChangeAudio;
+    [SerializeField] private AudioClip tutorialBgm;
+    [SerializeField] private AudioClip sceneChangeAudio;
+    
     // 가비지 콜렉터를 생성하지 않기 위한 변수
-    private readonly WaitForSeconds _yieldViewDelay = new WaitForSeconds(2f);
+    private readonly WaitForSeconds _yieldViewDelay = new WaitForSeconds(0.1f);
+    private readonly WaitForSeconds _yieldAnimDelay = new WaitForSeconds(1f);
+
+    [SerializeField] private Animator txtBtnAnimator;
+    
+    // Fade 이미지를 담을 변수
+    [SerializeField] private Image fadeImage;
+
+    // 실제 시간을 담을 변수
+    private float _time;
+    // 몇초 동안 페이드인 또는 페이드 아웃을 시킬지 정하는 변수 (1초로 설정)
+    private float _currentFadeTime = 1f;
+
+    [SerializeField] private GameObject openingUIGo;
+    [SerializeField] private GameObject tutorialUIGo;
+
+    [SerializeField] private Image settingImage;
+    [SerializeField] private Sprite lobbySettingImage;
     
     private void Awake()
     {
@@ -53,7 +73,7 @@ public class DialogueManager : MonoBehaviour
         _listDialogueWindows = new List<Sprite>();
     }
 
-    public void ShowDialogue(Dialogue dialogue, bool isCharter)
+    public void ShowDialogue(Dialogue dialogue, string situationCase)
     {
         isTalk = true;
         
@@ -64,10 +84,10 @@ public class DialogueManager : MonoBehaviour
             _listDialogueWindows.Add(dialogue.dialogueWindows[i]);
         }
 
-        StartCoroutine(StartDialogueCoroutine(isCharter));
+        StartCoroutine(StartDialogueCoroutine(situationCase));
     }
-
-    public void ExitDialogue()
+    
+    public void ExitDialogue(string situationCase)
     {
         _count = 0;
         conversation.text = "";
@@ -77,10 +97,16 @@ public class DialogueManager : MonoBehaviour
         isTalk = false;
         
         // 추후 이부분 삭제
-        conversation.text = "오프닝이 끝났습니다";
+        switch (situationCase)
+        {
+            case "Opening":
+                StartCoroutine(FadeRightFlow());
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                break;
+        }
     }
 
-    private IEnumerator StartDialogueCoroutine(bool isCharter)
+    private IEnumerator StartDialogueCoroutine(string situationCase)
     {
         if (_count > 0)
         {
@@ -92,10 +118,16 @@ public class DialogueManager : MonoBehaviour
             {
                 if (_listCharters[_count] != _listCharters[_count - 1])
                 {
-                    drawAnimator.SetBool("isAlpha", true);
-                    yield return new WaitForSeconds(0.5f);
-                    openingCharterImage.sprite = _listCharters[_count];
-                    drawAnimator.SetBool("isAlpha", false);
+                    switch (situationCase)
+                    {
+                        case "Opening":
+                            drawAnimator.SetBool("isAlpha", true);
+                            SettingUI.Instance.SettingSfxSound(openingSceneChangeAudio);
+                            yield return new WaitForSeconds(0.5f);
+                            openingCharterImage.sprite = _listCharters[_count];
+                            drawAnimator.SetBool("isAlpha", false);
+                            break;
+                    }
                 }
                 else
                 {
@@ -105,9 +137,11 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            if (isCharter.Equals(false))
+            switch (situationCase)
             {
-                openingCharterImage.sprite = _listCharters[_count];
+                case "Opening":
+                    openingCharterImage.sprite = _listCharters[_count];
+                    break;
             }
         }
 
@@ -124,11 +158,10 @@ public class DialogueManager : MonoBehaviour
 
         _clickActivated = true;
         txtBtnImageGo.SetActive(true);
-        txtBtnImage.color = new Color(1, 1, 1, 1);
         StartCoroutine(BlinkTxtBtnImage());
     }
 
-    public void NextBtn(bool isCharter)
+    public void NextBtn(string situationCase)
     {
         if (isTalk.Equals(true) && _clickActivated.Equals(true))
         {
@@ -136,17 +169,19 @@ public class DialogueManager : MonoBehaviour
             txtBtnImageGo.SetActive(false);
             _count++;
             conversation.text = "";
-            enterSound.Play();
-                    
+            StopCoroutine(BlinkTxtBtnImage());
+            txtBtnAnimator.SetBool("IsDown", false);
+            txtBtnImage.rectTransform.localPosition = new Vector3(430, -277, 0);
+
             if (_count == _listSentences.Count)
             {
                 StopAllCoroutines();
-                ExitDialogue();
+                ExitDialogue(situationCase);
             }
             else
             {
                 StopAllCoroutines();
-                StartCoroutine(StartDialogueCoroutine(isCharter));
+                StartCoroutine(StartDialogueCoroutine(situationCase));
             }
         }
     }
@@ -163,43 +198,87 @@ public class DialogueManager : MonoBehaviour
             // 알파 이미지를 조절할 시간을 담을 지역 변수
             float npcAlphaTime = 1f;
 
-           
+            txtBtnAnimator.SetBool("IsDown", true);
 
             // 딜레이 타임 0.1f
             yield return _yieldViewDelay;
-
-            // 알파 값이 0보다 큰 동안에 아래 코드 실행
-            while (alpha.a > 0f)
-            {
-                // Debug.Log(1);
-                // 실제 시간 / 설정한 딜레이 시간을 계산한 값을 변수에 넣음
-                npcAlpha += Time.deltaTime / npcAlphaTime;
-
-                // 알파 값 조절
-                alpha.a = Mathf.Lerp(1, 0, npcAlpha);
-
-                // 조절한 알파 값을 이미지의 컬러 값에 넣음
-                txtBtnImage.color = alpha;
-
-                yield return null;
-            }
             
-            // 변수 초기화
-            npcAlpha = 0f;
+            txtBtnAnimator.SetBool("IsDown", false);
             
-            // 알파 값이 255보다 작을 동안에 아래 코드 실행
-            while (alpha.a < 1f)
-            {
-                // 실제 시간 / 설정한 딜레이 시간을 계산한 값을 변수에 넣음
-                npcAlpha += Time.deltaTime / npcAlphaTime;
-
-                // 알파 값 조절
-                alpha.a = Mathf.Lerp(0, 1, npcAlpha);
-
-                // 조절한 알파 값을 이미지의 컬러 값에 넣음
-                txtBtnImage.color = alpha;
-                yield return null;
-            }
+            yield return _yieldAnimDelay;
         }
+    }
+    
+    private IEnumerator FadeRightFlow()
+    {
+        // fadeImage를 활성화 시킴
+        fadeImage.gameObject.SetActive(true);
+        
+        // 변수에 0이라는 값을 넣어줌 (변수 초기화)
+        _time = 0f;
+        
+        // 임시 변수에 fadeImage의 컬러 값을 넣어줌
+        Color alpha = fadeImage.color;
+        
+        // 임시 변수 값이 1보다 작을 동안 아래 코드 실행 (fadeImage의 알파 값이 255보다 작다면)
+        while (alpha.a < 1f)
+        {
+            // 실제시간 / 설정한 시간을 계산해 변수에 더해줌
+            _time += Time.deltaTime / _currentFadeTime;
+            
+            // 임시 변수에 위에 계산한 값을 넣어줌
+            alpha.a = Mathf.Lerp(0, 1, _time);
+            
+            // 설정한 색을 fadeImage에 넣어줌
+            fadeImage.color = alpha;
+            
+            // 다음 1프레임까지 대기
+            yield return null;
+        }
+        // 변수에 0이라는 값을 넣어줌
+        _time = 0f;
+    
+        // 0.1초 까지 대기 
+        yield return new WaitForSeconds(0.1f);
+    
+        // 임시 변수 값이 0보다 큰 동안 아래 코드 실행 (fadeImage의 알파 값이 255보다 크다면)
+        while (alpha.a > 0f)
+        {
+            // 실제시간 / 설정한 시간을 계산해 변수에 더해줌
+            _time += Time.deltaTime * 0.1f;
+
+            fadeImage.rectTransform.localPosition =
+                Vector3.Lerp(fadeImage.rectTransform.localPosition, new Vector3(-1670, 0, 0), _time);
+            // 임시 변수에 위에 계산한 값을 넣어줌
+            // alpha.a = Mathf.Lerp(1, 0, _time);
+
+            // fadeImage.fillAmount = alpha.a;
+            
+            // 설정한 색을 fadeImage에 넣어줌
+            // fadeImage.color = alpha;
+            
+            openingUIGo.SetActive(false);
+
+            settingImage.rectTransform.localPosition = new Vector3(447, 797, 0);
+            settingImage.rectTransform.sizeDelta = new Vector2(128, 110);
+            settingImage.rectTransform.localScale = new Vector3(1.45f, 1.45f, 1.45f);
+            
+            settingImage.sprite = lobbySettingImage;
+            
+            tutorialUIGo.SetActive(true);
+            
+            SettingUI.Instance.SettingBgmSound(tutorialBgm);
+
+            // 다음 1프레임까지 대기
+            yield return null;
+        }
+        // fadeImage를 비활성화 시킴
+        fadeImage.gameObject.SetActive(false);
+        
+        // 텍스트 출력
+        // DialogueManager.Instance.ShowDialogue(dialogue, "Opening");
+    
+        // 다음 1프레임까지 대기
+        yield return null;
     }
 }

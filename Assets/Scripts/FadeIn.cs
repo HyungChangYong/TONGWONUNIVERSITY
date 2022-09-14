@@ -14,8 +14,8 @@ public class FadeIn : MonoBehaviour
     // 몇초 동안 페이드인 또는 페이드 아웃을 시킬지 정하는 변수 (1초로 설정)
     private float _currentFadeTime = 1f;
 
-    [SerializeField] private GameObject startImage;
-    [SerializeField] private GameObject openingImage;
+    [SerializeField] private GameObject startImageGo;
+    [SerializeField] private GameObject openingImageGo;
     
     [SerializeField] private AudioClip sceneChangeAudio;
 
@@ -81,13 +81,11 @@ public class FadeIn : MonoBehaviour
             // 설정한 색을 fadeImage에 넣어줌
             fadeImage.color = alpha;
             
-            startImage.SetActive(false);
+            startImageGo.SetActive(false);
             
-            openingImage.SetActive(true);
+            openingImageGo.SetActive(true);
             
             SettingUI.Instance.SettingBgmSound(openingAudio);
-
-            // 플래그 설정
             
             // 다음 1프레임까지 대기
             yield return null;
@@ -95,7 +93,7 @@ public class FadeIn : MonoBehaviour
         // fadeImage를 비활성화 시킴
         fadeImage.gameObject.SetActive(false);
         
-        DialogueManager.Instance.ShowDialogue(dialogue, false);
+        DialogueManager.Instance.ShowDialogue(dialogue, "Opening");
 
          // 다음 1프레임까지 대기
         yield return null;
