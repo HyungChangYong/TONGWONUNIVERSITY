@@ -9,56 +9,88 @@ using UnityEngine.UI;
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance;
-
-    [SerializeField] private float textDelay;
-
-    public TextMeshProUGUI conversation;
-    public Image openingCharterImage;
-    // public Image dialogueWindow;
-
-    private List<string> _listSentences;
-    private List<Sprite> _listCharters;
-    private List<Sprite> _listDialogueWindows;
-
-    private int _count; // 대화 진행 상황 카운트
-
-    public Animator drawAnimator;
-
-    public bool isTalk = false;
-    private bool _clickActivated = false;
-
-    public AudioSource typeSound;
-
-    [SerializeField] private GameObject txtBtnImageGo;
     
-    [SerializeField] private Image txtBtnImage;
+    [SerializeField] private GameObject openingUIGo;
+    [SerializeField] private GameObject tutorialUIGo;
+    [SerializeField] private GameObject tutorialTxtBoxLine;
+    [SerializeField] private GameObject inputFiledGo;
+    [SerializeField] private GameObject nameSelectImageGo;
+    [SerializeField] private GameObject nextBtnImageGo;
+    [SerializeField] private GameObject nameSelectUIGo;
+
+    [SerializeField] private Image fadeImage;
+    [SerializeField] private Image settingImage;
     
-    [SerializeField] private bool isTrue;
+    [SerializeField] private Sprite lobbySettingImage;
+
+    [SerializeField] private TextMeshProUGUI nameTxt;
+    [SerializeField] private TextMeshProUGUI nameSelectUITxt;
+    
     
     [SerializeField] private AudioClip openingSceneChangeAudio;
     [SerializeField] private AudioClip tutorialBgm;
     [SerializeField] private AudioClip sceneChangeAudio;
     
-    // 가비지 콜렉터를 생성하지 않기 위한 변수
+    public AudioSource typeSound;
+
+    private List<string> _listSentences;
+    private List<Sprite> _listCharters;
+    private List<Sprite> _listDialogueWindows;
+    
     private readonly WaitForSeconds _yieldViewDelay = new WaitForSeconds(0.1f);
     private readonly WaitForSeconds _yieldAnimDelay = new WaitForSeconds(1f);
-
-    [SerializeField] private Animator txtBtnAnimator;
+    private readonly WaitForSeconds _yieldCharterChangeDelay = new WaitForSeconds(0.5f);
+    private readonly WaitForSeconds _yieldNoCharterChangeDelay = new WaitForSeconds(0.05f);
     
-    // Fade 이미지를 담을 변수
-    [SerializeField] private Image fadeImage;
+    private readonly Vector2 _settingImageChangeSizeDelta = new Vector2(128, 110);
+    
 
-    // 실제 시간을 담을 변수
+    private readonly Vector3 _txtBtnBasePos = new Vector3(430, -277, 0);
+    private readonly Vector3 _fadeImageMovePos = new Vector3(-1570, 0, 0);
+    private readonly Vector3 _settingImageMovePos = new Vector3(447, 797, 0);
+    private readonly Vector3 _settingImageChangeScale = new Vector3(1.45f, 1.45f, 1.45f);
+    
+    
+    private bool _isTalk;
+    private bool _clickActivated;
+    private readonly bool _isTrue = true;
+    
+    private int _count;
+
+    private float textDelay = 0.02f;
     private float _time;
-    // 몇초 동안 페이드인 또는 페이드 아웃을 시킬지 정하는 변수 (1초로 설정)
     private float _currentFadeTime = 1f;
-
-    [SerializeField] private GameObject openingUIGo;
-    [SerializeField] private GameObject tutorialUIGo;
-
-    [SerializeField] private Image settingImage;
-    [SerializeField] private Sprite lobbySettingImage;
     
+    [SerializeField] private TextMeshProUGUI conversation;
+    [SerializeField] private TextMeshProUGUI charterName;
+    [SerializeField] private Image charterImage;
+    [SerializeField] private Image dialogueWindow;
+    [SerializeField] private Animator charterAnimator;
+    [SerializeField] private Animator txtBtnAnimator;
+    [SerializeField] private GameObject txtBtnImageGo;
+    [SerializeField] private Image txtBtnImage;
+
+    [SerializeField] private TextMeshProUGUI tutorialConversation;
+    [SerializeField] private TextMeshProUGUI tutorialCharterName;
+    [SerializeField] private Image tutorialCharterImage;
+    [SerializeField] private Image tutorialWindow;
+    [SerializeField] private Animator tutorialCharterAnimator;
+    [SerializeField] private Animator tutorialTxtBtnAnimator;
+    [SerializeField] private GameObject tutorialTxtBtnImageGo;
+    [SerializeField] private Image tutorialTxtBtnImage;
+
+    [SerializeField] private RuntimeAnimatorController drawController;
+    [SerializeField] private RuntimeAnimatorController charterController;
+    [SerializeField] private Animator charterImageAnimator;
+
+    [SerializeField] private TextMeshProUGUI testtxt;
+    
+    public float m_DoubleClickSecond = 0.25f;
+    private bool m_IsOneClick = false;
+    private double m_Timer = 0;
+
+    private bool _isOpeningSkip;
+
     private void Awake()
     {
         Instance = this;
@@ -73,9 +105,46 @@ public class DialogueManager : MonoBehaviour
         _listDialogueWindows = new List<Sprite>();
     }
 
-    public void ShowDialogue(Dialogue dialogue, string situationCase)
+    private void Update()
     {
-        isTalk = true;
+        // OnDoubleClick();
+
+        if (_isTalk.Equals(true) && _clickActivated.Equals(false))
+        {
+            if (m_IsOneClick && ((Time.time - m_Timer) > m_DoubleClickSecond))
+            {
+                m_IsOneClick = false;
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (!m_IsOneClick)
+                {
+                    m_Timer = Time.time;
+                    m_IsOneClick = true;
+                }
+                else if (m_IsOneClick && ((Time.time - m_Timer) < m_DoubleClickSecond))
+                {
+                    m_IsOneClick = false;
+                    //아래에 더블클릭에서 처리하고싶은 이벤트 작성
+                    textDelay = 0.001f;
+                }
+            }
+        }
+        
+    }
+    //
+    // private void OnDoubleClick()
+    // {
+    //     if (Input.touchCount >= 2)
+    //     {
+    //         testtxt.text = "ㅎㅇ";
+    //     }
+    // }
+
+    public void ShowDialogue(Dialogue dialogue, string situationCase, TextMeshProUGUI conversationTxt, TextMeshProUGUI charterNameTxt, Image charterImageIn, Image dialogueWindowImage, Animator charterAnimatorIn, Animator txtBtnAnimatorIn, GameObject txtBtnImageGoIn, Image txtBtnImageIn)
+    {
+        _isTalk = true;
         
         for (int i = 0; i < dialogue.sentences.Length; i++)
         {
@@ -84,24 +153,48 @@ public class DialogueManager : MonoBehaviour
             _listDialogueWindows.Add(dialogue.dialogueWindows[i]);
         }
 
+        conversation = conversationTxt;
+
+        charterName = charterNameTxt;
+
+        charterImage = charterImageIn;
+
+        dialogueWindow = dialogueWindowImage;
+
+        charterAnimator = charterAnimatorIn;
+
+        txtBtnAnimator = txtBtnAnimatorIn;
+
+        txtBtnImageGo = txtBtnImageGoIn;
+
+        txtBtnImage = txtBtnImageIn;
+
+        if (_isOpeningSkip.Equals(true))
+        {
+            charterImage.sprite = _listCharters[_count];
+        }
+
         StartCoroutine(StartDialogueCoroutine(situationCase));
     }
     
-    public void ExitDialogue(string situationCase)
+    private void ExitDialogue(string situationCase)
     {
         _count = 0;
         conversation.text = "";
         _listSentences.Clear();
         _listCharters.Clear();
         _listDialogueWindows.Clear();
-        isTalk = false;
+        _isTalk = false;
         
-        // 추후 이부분 삭제
+        // 대화 종료
         switch (situationCase)
         {
             case "Opening":
-                StartCoroutine(FadeRightFlow());
                 SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeRightFlow());
+                break;
+            case "Tutorial":
+                conversation.text = "튜토리얼이 끝났습니다";
                 break;
         }
     }
@@ -112,42 +205,69 @@ public class DialogueManager : MonoBehaviour
         {
             if (_listDialogueWindows[_count] != _listDialogueWindows[_count - 1])
             {
+                // 알파 값 실행 움직이는 애니메이션 실행
                 // 대화창 다를 경우 실행  
             }
             else
             {
-                if (_listCharters[_count] != _listCharters[_count - 1])
+                if (_isOpeningSkip.Equals(false))
                 {
-                    switch (situationCase)
+                    // 캐릭터 이미지가 다를 경우
+                    if (_listCharters[_count] != _listCharters[_count - 1])
                     {
-                        case "Opening":
-                            drawAnimator.SetBool("isAlpha", true);
-                            SettingUI.Instance.SettingSfxSound(openingSceneChangeAudio);
-                            yield return new WaitForSeconds(0.5f);
-                            openingCharterImage.sprite = _listCharters[_count];
-                            drawAnimator.SetBool("isAlpha", false);
-                            break;
+                        switch (situationCase)
+                        {
+                            case "Opening":
+                                SettingUI.Instance.SettingSfxSound(openingSceneChangeAudio);
+                                break;
+                        }
+                    
+                        charterAnimator.SetBool("isAlpha", true);
+                        yield return _yieldCharterChangeDelay;
+                        charterImage.sprite = _listCharters[_count];
+                        charterAnimator.SetBool("isAlpha", false);
+                    
+                        // 이미지 이름이 Name_background가 들어가면 아래 코드 실행
+                        if (_listCharters[_count].name.Contains("Name_background").Equals(true))
+                        {
+                            charterImageAnimator.runtimeAnimatorController = drawController;
+                            nextBtnImageGo.SetActive(false);
+                            tutorialTxtBoxLine.SetActive(false);
+                            inputFiledGo.SetActive(true);
+                            nameSelectImageGo.SetActive(true);
+                        }
+                        
+                        // 이름에 Valet가 들어가면 아래 코드 실행
+                        if (_listCharters[_count].name.Contains("Valet").Equals(true))
+                        {
+                            charterImageAnimator.runtimeAnimatorController = charterController;
+                            charterName.text = "집사";
+                        }
+                    }
+                    else
+                    {
+                        yield return _yieldNoCharterChangeDelay;
                     }
                 }
                 else
                 {
-                    yield return new WaitForSeconds(0.05f);
+                    _isOpeningSkip = false;
+                    
+                    yield return _yieldNoCharterChangeDelay;
                 }
+                
+                
             }
         }
         else
         {
-            switch (situationCase)
-            {
-                case "Opening":
-                    openingCharterImage.sprite = _listCharters[_count];
-                    break;
-            }
+            charterImage.sprite = _listCharters[_count];
         }
 
         for (int i = 0; i < _listSentences[_count].Length; i++)
         {
-            conversation.text += _listSentences[_count][i]; // 1글자씩 출력
+            conversation.text += _listSentences[_count][i];
+
             if (i % 7 == 1)
             {
                 typeSound.Play();
@@ -163,17 +283,18 @@ public class DialogueManager : MonoBehaviour
 
     public void NextBtn(string situationCase)
     {
-        if (isTalk.Equals(true) && _clickActivated.Equals(true))
+        if (_isTalk.Equals(true) && _clickActivated.Equals(true))
         {
+            textDelay = 0.02f;
             _clickActivated = false;
             txtBtnImageGo.SetActive(false);
             _count++;
             conversation.text = "";
             StopCoroutine(BlinkTxtBtnImage());
             txtBtnAnimator.SetBool("IsDown", false);
-            txtBtnImage.rectTransform.localPosition = new Vector3(430, -277, 0);
+            txtBtnImage.rectTransform.localPosition = _txtBtnBasePos;
 
-            if (_count == _listSentences.Count)
+            if (_count.Equals(_listSentences.Count))
             {
                 StopAllCoroutines();
                 ExitDialogue(situationCase);
@@ -188,19 +309,10 @@ public class DialogueManager : MonoBehaviour
     
     private IEnumerator BlinkTxtBtnImage()
     {
-        while (isTrue.Equals(true))
+        while (_isTrue.Equals(true))
         {
-            // 변수에 몬스터 이미지 컬러 값을 넣음
-            Color alpha = txtBtnImage.color;
-            
-            // 알파 값을 담을 지역 변수
-            float npcAlpha = 0f;
-            // 알파 이미지를 조절할 시간을 담을 지역 변수
-            float npcAlphaTime = 1f;
-
             txtBtnAnimator.SetBool("IsDown", true);
-
-            // 딜레이 타임 0.1f
+            
             yield return _yieldViewDelay;
             
             txtBtnAnimator.SetBool("IsDown", false);
@@ -211,74 +323,104 @@ public class DialogueManager : MonoBehaviour
     
     private IEnumerator FadeRightFlow()
     {
-        // fadeImage를 활성화 시킴
         fadeImage.gameObject.SetActive(true);
         
-        // 변수에 0이라는 값을 넣어줌 (변수 초기화)
         _time = 0f;
         
-        // 임시 변수에 fadeImage의 컬러 값을 넣어줌
         Color alpha = fadeImage.color;
         
-        // 임시 변수 값이 1보다 작을 동안 아래 코드 실행 (fadeImage의 알파 값이 255보다 작다면)
         while (alpha.a < 1f)
         {
-            // 실제시간 / 설정한 시간을 계산해 변수에 더해줌
             _time += Time.deltaTime / _currentFadeTime;
             
-            // 임시 변수에 위에 계산한 값을 넣어줌
             alpha.a = Mathf.Lerp(0, 1, _time);
             
-            // 설정한 색을 fadeImage에 넣어줌
             fadeImage.color = alpha;
             
-            // 다음 1프레임까지 대기
             yield return null;
         }
-        // 변수에 0이라는 값을 넣어줌
         _time = 0f;
-    
-        // 0.1초 까지 대기 
-        yield return new WaitForSeconds(0.1f);
-    
-        // 임시 변수 값이 0보다 큰 동안 아래 코드 실행 (fadeImage의 알파 값이 255보다 크다면)
-        while (alpha.a > 0f)
+        
+        yield return _yieldViewDelay;
+        
+        while (fadeImage.rectTransform.localPosition.x > -1550f)
         {
-            // 실제시간 / 설정한 시간을 계산해 변수에 더해줌
             _time += Time.deltaTime * 0.1f;
 
-            fadeImage.rectTransform.localPosition =
-                Vector3.Lerp(fadeImage.rectTransform.localPosition, new Vector3(-1670, 0, 0), _time);
-            // 임시 변수에 위에 계산한 값을 넣어줌
-            // alpha.a = Mathf.Lerp(1, 0, _time);
+            fadeImage.rectTransform.localPosition = 
+                Vector3.Lerp(fadeImage.rectTransform.localPosition, _fadeImageMovePos, _time);
 
-            // fadeImage.fillAmount = alpha.a;
-            
-            // 설정한 색을 fadeImage에 넣어줌
-            // fadeImage.color = alpha;
-            
             openingUIGo.SetActive(false);
 
-            settingImage.rectTransform.localPosition = new Vector3(447, 797, 0);
-            settingImage.rectTransform.sizeDelta = new Vector2(128, 110);
-            settingImage.rectTransform.localScale = new Vector3(1.45f, 1.45f, 1.45f);
-            
-            settingImage.sprite = lobbySettingImage;
-            
-            tutorialUIGo.SetActive(true);
-            
-            SettingUI.Instance.SettingBgmSound(tutorialBgm);
+            ChangeSettingImage();
 
-            // 다음 1프레임까지 대기
+            tutorialUIGo.SetActive(true);
+
             yield return null;
         }
-        // fadeImage를 비활성화 시킴
+        
+        SettingUI.Instance.SettingBgmSound(tutorialBgm);
+        
         fadeImage.gameObject.SetActive(false);
+
+        ShowTutorial(0);
+        
+        yield return null;
+    }
+
+    public void ChangeSettingImage()
+    {
+        settingImage.rectTransform.localPosition = _settingImageMovePos;
+        settingImage.rectTransform.sizeDelta = _settingImageChangeSizeDelta;
+        settingImage.rectTransform.localScale = _settingImageChangeScale;
+            
+        settingImage.sprite = lobbySettingImage;
+    }
+
+    public void ShowTutorial(int num)
+    {
+        _count = num;
+
+        if (num != 0)
+        {
+            
+            _isOpeningSkip = true;
+        }
+        
         
         // 텍스트 출력
-        // DialogueManager.Instance.ShowDialogue(dialogue, "Opening");
+        ShowDialogue(DialogueTxt.Instance.tutorialDialogue, "Tutorial", tutorialConversation, tutorialCharterName, tutorialCharterImage, tutorialWindow, tutorialCharterAnimator, tutorialTxtBtnAnimator, tutorialTxtBtnImageGo, tutorialTxtBtnImage);
+
+    }
+
+    public void ShowNameSelectUI()
+    {
+        if (nameTxt.text.Length != 1)
+        {
+            nameSelectUIGo.SetActive(true);
+
+            nameSelectUITxt.text = nameTxt.text; //  + "(으)로 결정 하시겠습니까?";
+        }
+    }
+
+    public void OkName()
+    {
+        UserDataManager.Instance.user.isOpening = true;
+        UserDataManager.Instance.user.userName = nameTxt.text;
+        PlayerPrefs.SetInt("Opening", 1);
+        PlayerPrefs.SetString("PlayerName", nameTxt.text);
+        PlayerPrefs.Save();
+        
+        NextBtn("Tutorial");
+        nextBtnImageGo.SetActive(true);
+        tutorialTxtBoxLine.SetActive(true);
+        inputFiledGo.SetActive(false);
+        nameSelectImageGo.SetActive(false);
+        HideNameSelectUI();
+    }
     
-        // 다음 1프레임까지 대기
-        yield return null;
+    public void HideNameSelectUI()
+    {
+        nameSelectUIGo.SetActive(false);
     }
 }

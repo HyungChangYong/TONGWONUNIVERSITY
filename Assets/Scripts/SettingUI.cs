@@ -12,7 +12,6 @@ public class SettingUI : MonoBehaviour
     [SerializeField] private Scrollbar scrollbar;
     
     [SerializeField] private AudioSource sfxSound;
-
     [SerializeField] private AudioSource bgmAudioSource;
 
     private void Awake()
@@ -34,7 +33,6 @@ public class SettingUI : MonoBehaviour
         bgmAudioSource.Play();
     }
 
-    // Update is called once per frame
     void Update()
     {
         sfxSound.volume = scrollbar.value;

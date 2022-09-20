@@ -21,7 +21,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 38317ffb574016a41b762f185445ffa3, type: 2}
+  m_Motion: {fileID: 7400000, guid: 7facb3054ef605a4895377adbe4aafcf, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -73,7 +73,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 10acf9fbf1fa5bd4babdebee45ca5496, type: 2}
+  m_Motion: {fileID: 7400000, guid: 9c61724e063f9424a8c5ff0b682ec0bd, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -90,10 +90,10 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -8993361502857451597}
-    m_Position: {x: 220, y: 0, z: 0}
+    m_Position: {x: 390, y: 50, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5126157780042920573}
-    m_Position: {x: 350, y: 170, z: 0}
+    m_Position: {x: 440, y: 250, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -110,7 +110,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DrawImage
+  m_Name: CharterImage
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: isAlpha
