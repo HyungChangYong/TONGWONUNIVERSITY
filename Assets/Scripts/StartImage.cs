@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -14,7 +15,7 @@ public class StartImage : MonoBehaviour
     [SerializeField] private GameObject gameExitUI;
     [SerializeField] private GameObject alphaImage;
     [SerializeField] private GameObject dataResetUI;
-    
+
     [SerializeField] private Image touchToStartBackImage;
     
     [SerializeField] private TextMeshProUGUI touchToStartTxt;
@@ -28,8 +29,10 @@ public class StartImage : MonoBehaviour
 
     void Start()
     {
-        SettingUI.Instance.SettingBgmSound(startAudio);
+        Time.timeScale = 1;
         
+        SettingUI.Instance.SettingBgmSound(startAudio);
+      
         StartCoroutine(BlinkTxt());
         
         Invoke(nameof(HideAlphaImage), 1f);
@@ -37,36 +40,9 @@ public class StartImage : MonoBehaviour
         //Load();
     }
 
-    // void OnSceneLoaded(Scene scene, LoadSceneMode level)
-    // {       
-    //     Debug.Log(1);
-    //     SettingUI.Instance.SettingBgmSound(startAudio);
-    //
-    //     Test();
-    //     // alphaImage.SetActive(false);
-    // }
-    //
-    // public void Test()
-    // {
-    //     Debug.Log(2);
-    //     StartCoroutine(BlinkTxt());
-    //     
-    //     Invoke(nameof(HideAlphaImage), 1f);
-    // }
-    //
-    // private void OnEnable()
-    // {
-    //     SceneManager.sceneLoaded += OnSceneLoaded;
-    // }
-    //
-    // private void OnDisable()
-    // {
-    //     SceneManager.sceneLoaded -= OnSceneLoaded;
-    // }
-
-
     private void HideAlphaImage()
     {
+        // Debug.Log("인보크 실행");
         alphaImage.SetActive(false);
     }
 
@@ -163,21 +139,17 @@ public class StartImage : MonoBehaviour
         SettingUI.Instance.SettingSfxSound(clickAudio);
     }
 
-    public void ResetData()
-    {
-        UserDataManager.Instance.user.isOpening = false;
-        UserDataManager.Instance.user.userName = "";
-        PlayerPrefs.DeleteAll();
-        
-        // SceneManager.LoadSceneAsync(0);
-
-        Application.Quit();
-    }
-
     public void HideDataUI()
     {
         dataResetUI.SetActive(false);
 
+        SettingUI.Instance.SettingSfxSound(clickAudio);
+    }
+
+    public void ResetData()
+    {
+        fadeIn.FadeData();
+        
         SettingUI.Instance.SettingSfxSound(clickAudio);
     }
 }

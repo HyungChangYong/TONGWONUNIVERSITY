@@ -30,6 +30,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private AudioClip openingSceneChangeAudio;
     [SerializeField] private AudioClip tutorialBgm;
     [SerializeField] private AudioClip sceneChangeAudio;
+    [SerializeField] private AudioClip clickAudio;
     
     public AudioSource typeSound;
 
@@ -151,6 +152,13 @@ public class DialogueManager : MonoBehaviour
             _listSentences.Add(dialogue.sentences[i]);
             _listCharters.Add(dialogue.charterImages[i]);
             _listDialogueWindows.Add(dialogue.dialogueWindows[i]);
+
+            if (PlayerPrefs.HasKey("PlayerName").Equals(true))
+            {
+                string playerName = PlayerPrefs.GetString("PlayerName");
+                
+                _listSentences[i] = _listSentences[i].Replace("[플레이어]", playerName);
+            }
         }
 
         conversation = conversationTxt;
@@ -383,7 +391,6 @@ public class DialogueManager : MonoBehaviour
 
         if (num != 0)
         {
-            
             _isOpeningSkip = true;
         }
         
@@ -400,6 +407,8 @@ public class DialogueManager : MonoBehaviour
             nameSelectUIGo.SetActive(true);
 
             nameSelectUITxt.text = nameTxt.text; //  + "(으)로 결정 하시겠습니까?";
+            
+            SettingUI.Instance.SettingSfxSound(clickAudio);
         }
     }
 
@@ -411,16 +420,27 @@ public class DialogueManager : MonoBehaviour
         PlayerPrefs.SetString("PlayerName", nameTxt.text);
         PlayerPrefs.Save();
         
+        SettingUI.Instance.SettingSfxSound(clickAudio);
+        
         NextBtn("Tutorial");
         nextBtnImageGo.SetActive(true);
         tutorialTxtBoxLine.SetActive(true);
         inputFiledGo.SetActive(false);
         nameSelectImageGo.SetActive(false);
         HideNameSelectUI();
+        
+        
+        
+        _count = 3;
+        // 텍스트 출력
+        ShowDialogue(DialogueTxt.Instance.tutorialDialogue, "Tutorial", tutorialConversation, tutorialCharterName, tutorialCharterImage, tutorialWindow, tutorialCharterAnimator, tutorialTxtBtnAnimator, tutorialTxtBtnImageGo, tutorialTxtBtnImage);
+
     }
     
     public void HideNameSelectUI()
     {
         nameSelectUIGo.SetActive(false);
+        
+        SettingUI.Instance.SettingSfxSound(clickAudio);
     }
 }

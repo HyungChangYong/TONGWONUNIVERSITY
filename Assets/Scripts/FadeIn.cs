@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class FadeIn : MonoBehaviour
 {
@@ -143,6 +144,44 @@ public class FadeIn : MonoBehaviour
         fadeImage.gameObject.SetActive(false);
 
         DialogueManager.Instance.ShowTutorial(3);
+        
+        yield return null;
+    }
+
+    public void FadeData()
+    {
+        StartCoroutine(FadeDataCoroutine());
+    }
+    
+    private IEnumerator FadeDataCoroutine()
+    {
+        fadeImage.gameObject.SetActive(true);
+        fadeImage.transform.localPosition = new Vector3(540, 0, 0);
+        _time = 0f;
+
+        Time.timeScale = 1;
+        
+        Color alpha = fadeImage.color;
+        
+        while (alpha.a < 1f)
+        {
+            _time += Time.deltaTime / _currentFadeTime;
+            
+            alpha.a = Mathf.Lerp(0, 1, _time);
+            
+            fadeImage.color = alpha;
+            
+            yield return null;
+        }
+        // _time = 0f;
+        
+        yield return _yieldViewDelay;
+        
+        UserDataManager.Instance.user.isOpening = false;
+        UserDataManager.Instance.user.userName = "";
+        PlayerPrefs.DeleteAll();
+        
+        SceneManager.LoadScene(0);
         
         yield return null;
     }
