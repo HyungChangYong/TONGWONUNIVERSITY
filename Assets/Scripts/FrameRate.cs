@@ -20,7 +20,7 @@ public class FrameRate : MonoBehaviour
 
     private void Start()
     {
-        Application.targetFrameRate = 300;
+        Application.targetFrameRate = 60;
     }
 
     private void Update()

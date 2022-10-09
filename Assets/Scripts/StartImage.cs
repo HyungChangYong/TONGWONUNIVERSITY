@@ -134,22 +134,22 @@ public class StartImage : MonoBehaviour
     
     public void ShowDataUI()
     {
-        dataResetUI.SetActive(true);
-
         SettingUI.Instance.SettingSfxSound(clickAudio);
+        
+        dataResetUI.SetActive(true);
     }
 
     public void HideDataUI()
     {
-        dataResetUI.SetActive(false);
-
         SettingUI.Instance.SettingSfxSound(clickAudio);
+        
+        dataResetUI.SetActive(false);        
     }
 
     public void ResetData()
     {
-        fadeIn.FadeData();
-        
         SettingUI.Instance.SettingSfxSound(clickAudio);
+        
+        fadeIn.FadeData();
     }
 }

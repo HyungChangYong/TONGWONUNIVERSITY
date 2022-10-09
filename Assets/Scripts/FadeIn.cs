@@ -14,6 +14,7 @@ public class FadeIn : MonoBehaviour
     [SerializeField] private GameObject tutorialImageGo;
     
     [SerializeField] private Image fadeImage;
+    [SerializeField] private Image dataImage;
     
     [SerializeField] private AudioClip sceneChangeAudio;
     [SerializeField] private AudioClip openingAudio;
@@ -37,7 +38,14 @@ public class FadeIn : MonoBehaviour
     {
         SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
 
-        if (PlayerPrefs.HasKey("Opening"))
+        if (PlayerPrefs.HasKey("Tutorial"))
+        {
+            LobbyManager.Instance.date = PlayerPrefs.GetInt("Date");
+            LobbyManager.Instance.SettingDate();
+            // 날짜 값 불러오기
+            StartCoroutine(FadeLobby());
+        }
+        else if (PlayerPrefs.HasKey("Opening"))
         {
             StartCoroutine(FadeTutorial());
         }
@@ -147,6 +155,53 @@ public class FadeIn : MonoBehaviour
         
         yield return null;
     }
+    
+    private IEnumerator FadeLobby()
+    {
+        fadeImage.gameObject.SetActive(true);
+        
+        _time = 0f;
+        
+        Color alpha = fadeImage.color;
+        
+        while (alpha.a < 1f)
+        {
+            _time += Time.deltaTime / _currentFadeTime;
+            
+            alpha.a = Mathf.Lerp(0, 1, _time);
+            
+            fadeImage.color = alpha;
+            
+            yield return null;
+        }
+        _time = 0f;
+        
+        yield return _yieldViewDelay;
+        
+        while (alpha.a > 0f)
+        {
+            _time += Time.deltaTime / _currentFadeTime;
+            
+            alpha.a = Mathf.Lerp(1, 0, _time);
+            
+            fadeImage.color = alpha;
+            
+            startImageGo.SetActive(false);
+            dataImage.color = new Color(1, 1, 1, 1);
+            dataImage.gameObject.SetActive(true);
+
+            DialogueManager.Instance.ChangeSettingImage();
+
+            yield return null;
+        }
+        
+        SettingUI.Instance.SettingBgmSound(tutorialAudio);
+        DialogueManager.Instance.StartFadeData();
+        fadeImage.gameObject.SetActive(false);
+        
+
+        yield return null;
+    }
 
     public void FadeData()
     {
@@ -177,8 +232,6 @@ public class FadeIn : MonoBehaviour
         
         yield return _yieldViewDelay;
         
-        UserDataManager.Instance.user.isOpening = false;
-        UserDataManager.Instance.user.userName = "";
         PlayerPrefs.DeleteAll();
         
         SceneManager.LoadScene(0);
