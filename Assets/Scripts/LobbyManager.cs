@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,8 +13,15 @@ public class LobbyManager : MonoBehaviour
     public int coin;
     public int date;
     // public string date;
+    
+    [SerializeField] private RectTransform profileSizeUpPlayerInfoTxt;
+    [SerializeField] private RectTransform profileBasePlayerInfoTxt;
+
+    [SerializeField] private ReputationImage reputationImage;
 
     [SerializeField] private TextMeshProUGUI coinTxt;
+    [SerializeField] private TextMeshProUGUI profileSizeUpPlayerNameTxt;
+    [SerializeField] private TextMeshProUGUI profileBasePlayerNameTxt;
     
     [SerializeField] private AudioClip clickAudio;
     
@@ -40,15 +48,38 @@ public class LobbyManager : MonoBehaviour
     public bool[] isAlbum;
 
     public Sprite[] illustration;
-
+    
     [SerializeField] private Image maximImage;
     [SerializeField] private GameObject maximImageGo;
+
+    [SerializeField] private Scrollbar reputationScrollBar;
+    [SerializeField] private Scrollbar albumScrollBar;
+
+    [SerializeField] private Image[] heartBarSizeUp;
+    [SerializeField] private Image[] heartBarBase;
+    
+    [SerializeField] private RectTransform[] heartImageSizeUp;
+    [SerializeField] private RectTransform[] heartImageBase;
+
+    private readonly Vector3 _startPosSizeUp = new Vector3(-290, 0, 0);
+    private readonly Vector3 _endPosSizeUp = new Vector3(280, 0, 0);
+    
+    private readonly Vector3 _startPosBase = new Vector3(-225, 0, 0);
+    private readonly Vector3 _endPosBase = new Vector3(216, 0, 0);
+ 
+    private int _maxHeart = 100;
+
+    public float[] nowHeart;
+
+    public bool[] isShowHeart;
+
+    [SerializeField] private GameObject[] lockImageSizeUp;
+    [SerializeField] private GameObject[] lockImageBase;
 
     public void SettingDate()
     {
         dateTxt.text = "DAY" + date;
     }
-    
     
     private void Awake()
     {
@@ -85,9 +116,51 @@ public class LobbyManager : MonoBehaviour
     {
         SettingUI.Instance.SettingSfxSound(clickAudio);
 
+        SettingHeartBar();
+
+        string playerName = PlayerPrefs.GetString("PlayerName");
+        
+        profileSizeUpPlayerNameTxt.text = playerName;
+        profileBasePlayerNameTxt.text = playerName;
+        
+        profileSizeUpPlayerInfoTxt.localPosition =
+            new Vector3(-152 + 40 * (playerName.Length - 1), -353.5f, 0);
+        profileBasePlayerInfoTxt.localPosition = new Vector3(-75 + 30 * (playerName.Length - 1), -274, 0);
+
         reputationUI.SetActive(true);
         settingUI.SetActive(false);
-           
+
+        reputationImage.ResetImage();
+        reputationScrollBar.value = 0;
+    }
+
+    private void SettingHeartBar()
+    {
+        for (int i = 0; i < heartBarSizeUp.Length; i++)
+        {
+            if (isShowHeart[i].Equals(true))
+            {
+                lockImageSizeUp[i].SetActive(false);
+                lockImageBase[i].SetActive(false);
+                
+                heartBarSizeUp[i].fillAmount = nowHeart[i] / _maxHeart;
+                heartBarBase[i].fillAmount = heartBarSizeUp[i].fillAmount;
+            
+                heartImageSizeUp[i].localPosition = Vector3.Lerp(_startPosSizeUp, _endPosSizeUp, heartBarSizeUp[i].fillAmount);
+                heartImageBase[i].localPosition = Vector3.Lerp(_startPosBase, _endPosBase, heartBarBase[i].fillAmount);
+            }
+            else
+            {
+                lockImageSizeUp[i].SetActive(true);
+                lockImageBase[i].SetActive(true);
+                
+                heartBarSizeUp[i].fillAmount = 0;
+                heartBarBase[i].fillAmount = 0;
+
+                heartImageSizeUp[i].localPosition = _startPosSizeUp;
+                heartImageBase[i].localPosition = _startPosBase;
+            }
+        }
     }
 
     public void HideReputationUI()
@@ -104,12 +177,14 @@ public class LobbyManager : MonoBehaviour
         
         albumUI.SetActive(true);
         settingUI.SetActive(false);
+        
+        albumScrollBar.value = 1;
     }
 
     public void HideAlbumUI()
     {
         SettingUI.Instance.SettingSfxSound(clickAudio);
-        
+
         albumUI.SetActive(false);
         settingUI.SetActive(true);
     }
