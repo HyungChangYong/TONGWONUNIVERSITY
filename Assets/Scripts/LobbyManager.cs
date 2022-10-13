@@ -13,6 +13,12 @@ public class LobbyManager : MonoBehaviour
     public int coin;
     public int date;
     // public string date;
+
+    [SerializeField] private Sprite windowBasic;
+    [SerializeField] private Sprite playerBasic;
+    [SerializeField] private Sprite[] dateSprite;
+    
+    [SerializeField]  private Image dateImage;
     
     [SerializeField] private RectTransform profileSizeUpPlayerInfoTxt;
     [SerializeField] private RectTransform profileBasePlayerInfoTxt;
@@ -79,6 +85,8 @@ public class LobbyManager : MonoBehaviour
     public void SettingDate()
     {
         dateTxt.text = "DAY" + date;
+
+        dateImage.sprite = dateSprite[date - 1];
     }
     
     private void Awake()
@@ -88,7 +96,25 @@ public class LobbyManager : MonoBehaviour
     
     private void Start()
     {
-        coinTxt.text = coin.ToString();
+        SettingCoin();
+    }
+
+    public void SettingCoin()
+    {
+        if (coin > 1000000)
+        {
+            coin = 1000000;
+        }
+        
+        if (coin == 0)
+        {
+            coinTxt.text = "0";
+        }
+        else
+        {
+            coinTxt.text = string.Format("{0:#,###}", coin);
+        }
+        
     }
 
     public void ValetCall()
@@ -109,6 +135,31 @@ public class LobbyManager : MonoBehaviour
             DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.valetCallDialogue, "ValetCall", lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
 
             _isValetCall = true;
+        }
+    }
+    
+    public void ResetLobby()
+    {
+        lobbyTxtBoxLineGo.SetActive(false);
+        lobbyNextBtnGo.SetActive(false);
+        
+        lobbyCharterName.text = "집사";
+        lobbyWindow.sprite = windowBasic;
+
+        lobbyCharterImage.sprite = playerBasic;
+    }
+
+    public void Cultivation()
+    {
+        if (lobbyCharterAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
+        {
+            _situationCaseName = "Cultivation";
+        
+            lobbyTxtBoxLineGo.SetActive(true);
+        
+            DialogueManager.Instance.count = 1;
+        
+            DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.cultivationDialogue, "Cultivation", lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
         }
     }
 
@@ -207,8 +258,10 @@ public class LobbyManager : MonoBehaviour
         maximImageGo.SetActive(false);
     }
 
-    // public void NextLobbyBtn()
-    // {
-    //     DialogueManager.Instance.NextBtn(_situationCaseName);
-    // }
+    public void NextLobbyBtn()
+    {
+        DialogueManager.Instance.NextBtn(_situationCaseName);
+
+        _isValetCall = false;
+    }
 }

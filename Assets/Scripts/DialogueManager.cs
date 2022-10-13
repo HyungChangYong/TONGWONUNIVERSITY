@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Random = System.Random;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -19,8 +20,6 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject nextBtnImageGo;
     [SerializeField] private GameObject nameSelectUIGo;
     [SerializeField] private GameObject iconDescriptionGo;
-    [SerializeField] private GameObject choiceObject;
-    [SerializeField] private GameObject[] choiceCountGo;
 
     [SerializeField] private Transform settingUIParent;
     [SerializeField] private Transform tutorialSettingUIParent;
@@ -28,6 +27,7 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField] private Image fadeImage;
     [SerializeField] private Image dataImage;
+    [SerializeField] private Image infoImage;
     [SerializeField] private Image settingImage;
     
     [SerializeField] private Sprite lobbySettingImage;
@@ -49,11 +49,10 @@ public class DialogueManager : MonoBehaviour
     
     private readonly WaitForSeconds _yieldViewDelay = new WaitForSeconds(0.1f);
     private readonly WaitForSeconds _yieldAnimDelay = new WaitForSeconds(1f);
-    private readonly WaitForSeconds _yieldCharterChangeDelay = new WaitForSeconds(0.75f);
+    private readonly WaitForSeconds _yieldCharterChangeDelay = new WaitForSeconds(1f);
     private readonly WaitForSeconds _yieldNoCharterChangeDelay = new WaitForSeconds(0.05f);
     
     private readonly Vector2 _settingImageChangeSizeDelta = new Vector2(128, 110);
-    
 
     private readonly Vector3 _txtBtnBasePos = new Vector3(430, -277, 0);
     private readonly Vector3 _fadeImageMovePos = new Vector3(-1570, 0, 0);
@@ -109,13 +108,16 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField] private Vector3[] arrowSignTr;
 
-    [SerializeField] private int[] choiceNums;
-    
+    [SerializeField] private int[] addNowHeart;
+    [SerializeField] private int[] addCoin;
+
     public float m_DoubleClickSecond = 0.25f;
     private bool m_IsOneClick = false;
     private double m_Timer = 0;
 
     private bool _isOpeningSkip;
+
+    private int _randomCultivation;
 
     private void Awake()
     {
@@ -235,13 +237,15 @@ public class DialogueManager : MonoBehaviour
             case "ValetCall":
                 choiceTxt.text = "[ " + DialogueTxt.Instance.valetCallDialogue.sentences[1] + " ]";
                 dialogueWindow.gameObject.SetActive(false);
-                choiceObject.SetActive(true);
-                choiceCountGo[1].SetActive(true);
-                    
+                
+                ChoiceManager.Instance.ShowThreeChoice(0);
                 // 선택지 세팅
-                choiceNums[2] = 0;
-                choiceNums[3] = 1;
-                choiceNums[4] = 2;
+                break;
+            case "Cultivation":
+                //conversation.text = "대화 종료";
+                StartCoroutine(FadeInfo(0));
+                // StartFadeData();
+                // 선택지 세팅
                 break;
         }
     }
@@ -364,6 +368,36 @@ public class DialogueManager : MonoBehaviour
                             if (count == 29)
                             {
                                 charterName.text = "";
+                            }
+                            break;
+                        case "Cultivation":
+                            if (count == 2)
+                            {
+                                _randomCultivation = UnityEngine.Random.Range(0, 6);
+
+                                switch (_randomCultivation)
+                                {
+                                    case 0:
+                                        _listSentences[3] = "오늘은 사교계 인물들을 외우며 하루를 보냈다.";
+                                        break;
+                                    case 1:
+                                        _listSentences[3] = "오늘은 집사와 함께 황실 예법을 공부하며 시간을 보냈다.";
+                                        break;
+                                    case 2:
+                                        _listSentences[3] = "이후 해가 질 때까지 도서관에서 다양한 책을 읽으며 시간을 보냈다.";
+                                        break;
+                                    case 3:
+                                        _listSentences[3] = "이후 발이 저릴 때까지 춤을 연습하고 나니 하루가 지나있었다.";
+                                        break;
+                                    case 4:
+                                        _listSentences[3] = "이후 살롱 마담에게 카탈로그를 부탁해 최신 유행하는 드레스를 구경하며 안목을 길렀다.";
+                                        break;
+                                    case 5:
+                                        _listSentences[3] = "사교계 행사에 대비하여 예의 있게 욕하는 방법을 배우며 하루를 보냈다.";
+                                        break;
+                                }
+                                
+                                // charterName.text = "";
                             }
                             break;
                     }
@@ -533,42 +567,46 @@ public class DialogueManager : MonoBehaviour
 
     public void NextBtn(string situationCase)
     {
-        if (_isTalk.Equals(true) && _clickActivated.Equals(true))
+        if (charterAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
         {
-            textDelay = 0.02f;
-            _clickActivated = false;
-            txtBtnImageGo.SetActive(false);
-            count++;
-            conversation.text = "";
-            StopCoroutine(BlinkTxtBtnImage());
-            txtBtnAnimator.SetBool("IsDown", false);
-            txtBtnImage.rectTransform.localPosition = _txtBtnBasePos;
+            if (_isTalk.Equals(true) && _clickActivated.Equals(true))
+            {
+                textDelay = 0.02f;
+                _clickActivated = false;
+                txtBtnImageGo.SetActive(false);
+                count++;
+                conversation.text = "";
+                StopCoroutine(BlinkTxtBtnImage());
+                txtBtnAnimator.SetBool("IsDown", false);
+                txtBtnImage.rectTransform.localPosition = _txtBtnBasePos;
 
-            switch (situationCase)
-            {
-                case "Tutorial":
-                    if (count != 34 && count != 37 && count != 39)
-                    {
-                        StopCoroutine(BlinkArrow());
-                        arrowSign.gameObject.SetActive(false);
-                    }
-                    arrowSign.color = new Color(1, 1, 1, 1);
-                    break;
-            }
+                switch (situationCase)
+                {
+                    case "Tutorial":
+                        if (count != 34 && count != 37 && count != 39)
+                        {
+                            StopCoroutine(BlinkArrow());
+                            arrowSign.gameObject.SetActive(false);
+                        }
+                        arrowSign.color = new Color(1, 1, 1, 1);
+                        break;
+                }
 
-            if (count.Equals(_listSentences.Count))
-            {
-                //StopCoroutine(StartDialogueCoroutine(situationCase));
-                StopAllCoroutines();
-                ExitDialogue(situationCase);
-            }
-            else
-            {
-                // StopCoroutine(StartDialogueCoroutine(situationCase));
-                StopAllCoroutines();
-                StartCoroutine(StartDialogueCoroutine(situationCase));
+                if (count.Equals(_listSentences.Count))
+                {
+                    //StopCoroutine(StartDialogueCoroutine(situationCase));
+                    StopAllCoroutines();
+                    ExitDialogue(situationCase);
+                }
+                else
+                {
+                    // StopCoroutine(StartDialogueCoroutine(situationCase));
+                    StopAllCoroutines();
+                    StartCoroutine(StartDialogueCoroutine(situationCase));
+                }
             }
         }
+        
     }
     
     private IEnumerator BlinkTxtBtnImage()
@@ -632,6 +670,64 @@ public class DialogueManager : MonoBehaviour
         yield return null;
     }
     
+    private IEnumerator FadeInfo(int num)
+    {
+        // 이미지 파일 변경 코드 추가
+        
+        SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+        
+        infoImage.gameObject.SetActive(true);
+        
+        _time = 0f;
+        
+        Color alpha = infoImage.color;
+        
+        while (alpha.a < 1f)
+        {
+            _time += Time.deltaTime / _currentFadeTime;
+            
+            alpha.a = Mathf.Lerp(0, 1, _time);
+            
+            infoImage.color = alpha;
+            
+            yield return null;
+        }
+        _time = 0f;
+        
+        yield return _yieldAnimDelay;
+
+        StartFadeData();
+        AddDate();
+        
+        switch (num)
+        {
+            case 0:
+                LobbyManager.Instance.nowHeart[0] += addNowHeart[_randomCultivation];
+                LobbyManager.Instance.coin += addCoin[_randomCultivation];
+                LobbyManager.Instance.SettingCoin();
+                break;
+        }
+        
+        
+        LobbyManager.Instance.ResetLobby();
+        
+        // while (alpha.a > 0)
+        // {
+        //     _time += Time.deltaTime / _currentFadeTime;
+        //     
+        //     alpha.a = Mathf.Lerp(1, 0, _time);
+        //     
+        //     infoImage.color = alpha;
+        //
+        //     lobbyUIGo.SetActive(true);
+        //     
+        //     yield return null;
+        // }
+        
+        yield return null;
+    }
+    
+    
     private IEnumerator FadeDate(GameObject go)
     {
         dataImage.gameObject.SetActive(true);
@@ -665,13 +761,21 @@ public class DialogueManager : MonoBehaviour
             go.SetActive(false);
             
             lobbyUIGo.SetActive(true);
-            
+            infoImage.gameObject.SetActive(false);
+            infoImage.color = new Color(1, 1, 1, 0);
+
             yield return null;
         }
-
+        
         dataImage.gameObject.SetActive(false);
-
+        
         yield return null;
+    }
+
+    private void AddDate()
+    {
+        LobbyManager.Instance.date += 1;
+        LobbyManager.Instance.SettingDate();
     }
 
     public void ChangeSettingImage()
