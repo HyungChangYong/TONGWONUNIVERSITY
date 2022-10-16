@@ -45,6 +45,9 @@ public class ChoiceManager : MonoBehaviour
                 break;
             // 행상인 부르기
             case 2:
+                choiceObjectUI.SetActive(false);
+
+                LobbyManager.Instance.CallPeddler();
                 break;
         }
     }

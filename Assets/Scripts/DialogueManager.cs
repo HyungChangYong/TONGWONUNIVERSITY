@@ -119,6 +119,10 @@ public class DialogueManager : MonoBehaviour
 
     private int _randomCultivation;
 
+    private bool _isBuyDialogueEnd;
+
+    public GameObject shopUI;
+
     private void Awake()
     {
         Instance = this;
@@ -235,7 +239,7 @@ public class DialogueManager : MonoBehaviour
                 StartFadeData();
                 break;
             case "ValetCall":
-                choiceTxt.text = "[ " + DialogueTxt.Instance.valetCallDialogue.sentences[1] + " ]";
+                choiceTxt.text = "[ " + DialogueTxt.Instance.valetCallDialogue.sentences[2] + " ]";
                 dialogueWindow.gameObject.SetActive(false);
                 
                 ChoiceManager.Instance.ShowThreeChoice(0);
@@ -245,9 +249,29 @@ public class DialogueManager : MonoBehaviour
                 //conversation.text = "대화 종료";
                 StartCoroutine(FadeInfo(0));
                 // StartFadeData();
-                // 선택지 세팅
+                break;
+            case "CallPeddler":
+                charterAnimator.SetBool("IsAlpha", true);
+                Invoke("ShowSHopUIDelay", 1);
+                // charterImage.gameObject.SetActive(false);
+                
+                break;
+            case "BuyPaddlerDialogue":
+                _isBuyDialogueEnd = true;
+                
+                LobbyManager.Instance.ValetCall(false);
+                break;
+            case "CancelShowUI":
+                conversation.text = "대화 종료";
                 break;
         }
+    }
+
+    private void ShowSHopUIDelay()
+    {
+        dialogueWindow.gameObject.SetActive(false);
+        shopUI.SetActive(true);
+        LobbyManager.Instance.lobbyNextBtnGo.SetActive(false);
     }
 
     private void ChangeWindowImage()
@@ -278,37 +302,89 @@ public class DialogueManager : MonoBehaviour
 
                 if (_isOpeningSkip.Equals(false))
                 {
-                    switch (situationCase)
+                    if (situationCase.Equals("Tutorial"))
                     {
-                        case "Tutorial":
-                            if (count == 29)
-                            {
-                                yield return _yieldCharterChangeDelay;
-                                dialogueWindow.sprite = _listDialogueWindows[count];
-                                charterImage.sprite = _listCharters[count];
-                            }
-                            else
-                            {
-                                charterAnimator.SetBool("IsAlpha", true); 
-                                yield return _yieldCharterChangeDelay;
-                                ChangeWindowImage();
-                            }
-                            break;
-                        case "ValetCall":
+                        if (count == 29)
+                        {
+                            yield return _yieldCharterChangeDelay;
+                            dialogueWindow.sprite = _listDialogueWindows[count];
+                            charterImage.sprite = _listCharters[count];
+                        }
+                        else
                         {
                             charterAnimator.SetBool("IsAlpha", true); 
                             yield return _yieldCharterChangeDelay;
                             ChangeWindowImage();
                         }
-                            break;
-                        case "Cultivation":
-                            {
-                                charterAnimator.SetBool("IsAlpha", true); 
-                                yield return _yieldCharterChangeDelay;
-                                ChangeWindowImage();
-                            }
-                            break;
                     }
+                    else if (situationCase.Equals("ValetCall"))
+                    {
+                        if (count == 2)
+                        {
+                            yield return _yieldCharterChangeDelay;
+                            charterImage.sprite = _listCharters[count];
+                        }
+                        else
+                        {
+                            charterAnimator.SetBool("IsAlpha", true);
+                            yield return _yieldCharterChangeDelay;
+                            ChangeWindowImage();
+                        }
+                    }
+                    else
+                    {
+                        if (_isBuyDialogueEnd.Equals(true))
+                        {
+                            yield return _yieldCharterChangeDelay;
+                            charterImage.sprite = _listCharters[count];
+                            _isBuyDialogueEnd = false;
+                        }
+                        else
+                        {
+                            charterAnimator.SetBool("IsAlpha", true); 
+                            yield return _yieldCharterChangeDelay;
+                            ChangeWindowImage();
+                        }
+                    }
+                    
+                    // switch (situationCase)
+                    // {
+                    //     case "Tutorial":
+                    //         if (count == 29)
+                    //         {
+                    //             yield return _yieldCharterChangeDelay;
+                    //             dialogueWindow.sprite = _listDialogueWindows[count];
+                    //             charterImage.sprite = _listCharters[count];
+                    //         }
+                    //         else
+                    //         {
+                    //             charterAnimator.SetBool("IsAlpha", true); 
+                    //             yield return _yieldCharterChangeDelay;
+                    //             ChangeWindowImage();
+                    //         }
+                    //         break;
+                    //     case "ValetCall":
+                    //     {
+                    //         charterAnimator.SetBool("IsAlpha", true); 
+                    //         yield return _yieldCharterChangeDelay;
+                    //         ChangeWindowImage();
+                    //     }
+                    //         break;
+                    //     case "Cultivation":
+                    //         {
+                    //             charterAnimator.SetBool("IsAlpha", true); 
+                    //             yield return _yieldCharterChangeDelay;
+                    //             ChangeWindowImage();
+                    //         }
+                    //         break;
+                    //     case "CallPeddler":
+                    //     {
+                    //         charterAnimator.SetBool("IsAlpha", true); 
+                    //         yield return _yieldCharterChangeDelay;
+                    //         ChangeWindowImage();
+                    //     }
+                    //         break;
+                    // }
                     
                     switch (situationCase)
                     {
@@ -356,6 +432,10 @@ public class DialogueManager : MonoBehaviour
                 else if (_listCharters[count].name.Contains("Girl").Equals(true))
                 {
                     charterName.text = PlayerPrefs.GetString("PlayerName");
+                }
+                else if (_listCharters[count].name.Contains("Dealer").Equals(true))
+                {
+                    charterName.text = "행상인";
                 }
                 else
                 {
@@ -698,7 +778,8 @@ public class DialogueManager : MonoBehaviour
 
         StartFadeData();
         AddDate();
-        
+        LobbyManager.Instance.ResetLobbyUI();
+
         switch (num)
         {
             case 0:
@@ -707,8 +788,7 @@ public class DialogueManager : MonoBehaviour
                 LobbyManager.Instance.SettingCoin();
                 break;
         }
-        
-        
+
         LobbyManager.Instance.ResetLobby();
         
         // while (alpha.a > 0)
@@ -846,10 +926,5 @@ public class DialogueManager : MonoBehaviour
         nameSelectUIGo.SetActive(false);
         
         SettingUI.Instance.SettingSfxSound(clickAudio);
-    }
-
-    public void SettingChoiceNum(int num)
-    {
-        
     }
 }

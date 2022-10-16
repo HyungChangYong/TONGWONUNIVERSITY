@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -26,6 +27,7 @@ public class LobbyManager : MonoBehaviour
     [SerializeField] private ReputationImage reputationImage;
 
     [SerializeField] private TextMeshProUGUI coinTxt;
+    [SerializeField] private TextMeshProUGUI shopCoinTxt;
     [SerializeField] private TextMeshProUGUI profileSizeUpPlayerNameTxt;
     [SerializeField] private TextMeshProUGUI profileBasePlayerNameTxt;
     
@@ -42,7 +44,7 @@ public class LobbyManager : MonoBehaviour
     [SerializeField] private Image lobbyTxtBtnImage;
 
     [SerializeField] private GameObject lobbyTxtBoxLineGo;
-    [SerializeField] private GameObject lobbyNextBtnGo;
+    public GameObject lobbyNextBtnGo;
     [SerializeField] private GameObject reputationUI;
     [SerializeField] private GameObject settingUI;
     [SerializeField] private GameObject albumUI;
@@ -82,6 +84,10 @@ public class LobbyManager : MonoBehaviour
     [SerializeField] private GameObject[] lockImageSizeUp;
     [SerializeField] private GameObject[] lockImageBase;
 
+    [SerializeField] private GameObject[] lobbyUI;
+
+    public bool isBuy;
+
     public void SettingDate()
     {
         dateTxt.text = "DAY" + date;
@@ -109,28 +115,57 @@ public class LobbyManager : MonoBehaviour
         if (coin == 0)
         {
             coinTxt.text = "0";
+            shopCoinTxt.text = "0";
         }
         else
         {
             coinTxt.text = string.Format("{0:#,###}", coin);
+            shopCoinTxt.text = string.Format("{0:#,###}", coin);
         }
-        
     }
 
-    public void ValetCall()
+    public void ValetCallSound()
     {
         SettingUI.Instance.SettingSfxSound(clickAudio);
 
+        ValetCall(true);
+    }
+
+    public void ResetLobbyUI()
+    {
+        for (int i = 0; i < lobbyUI.Length; i++)
+        {
+            lobbyUI[i].SetActive(true);
+        }
+    }
+
+    public void ValetCall(bool ClickUI)
+    {
         if (_isValetCall.Equals(false))
         {
             _situationCaseName = "ValetCall";
+
+            for (int i = 0; i < lobbyUI.Length; i++)
+            {
+                lobbyUI[i].SetActive(false);
+            }
             
             lobbyTxtBoxLineGo.SetActive(true);
             lobbyNextBtnGo.SetActive(true);
             
             lobbyCharterName.text = "집사";
-
-            DialogueManager.Instance.count = 1;
+            
+            // 다른 거 호출 하는 방싟으로 변경
+            DialogueManager.Instance.count = 2;
+            
+            if (ClickUI.Equals(true))
+            {
+                if (date % 6 == 0)
+                {
+                    DialogueManager.Instance.count = 1;
+                }
+            }
+            
             
             DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.valetCallDialogue, "ValetCall", lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
 
@@ -151,7 +186,7 @@ public class LobbyManager : MonoBehaviour
 
     public void Cultivation()
     {
-        if (lobbyCharterAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
+        // if (lobbyCharterAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
         {
             _situationCaseName = "Cultivation";
         
@@ -163,6 +198,47 @@ public class LobbyManager : MonoBehaviour
         }
     }
 
+    public void CallPeddler()
+    {
+        if (isBuy.Equals(false))
+        {
+            _situationCaseName = "CallPeddler";
+        
+            lobbyTxtBoxLineGo.SetActive(true);
+            
+            DialogueManager.Instance.count = 1;
+
+            DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.callPeddlerDialogue, "CallPeddler", lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+
+            isBuy = true;
+        }
+        else
+        {
+            _situationCaseName = "BuyPaddlerDialogue";
+        
+            lobbyTxtBoxLineGo.SetActive(true);
+            
+            DialogueManager.Instance.count = 1;
+            
+            DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.buyPaddlerDialogue, "BuyPaddlerDialogue", lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+        }
+    }
+
+    public void CancelShowUI(int num)
+    {
+        SettingUI.Instance.SettingSfxSound(clickAudio);
+
+        _situationCaseName = "CancelShowUI";
+        
+        DialogueManager.Instance.shopUI.SetActive(false);
+        lobbyTxtBoxLineGo.SetActive(true);
+        lobbyNextBtnGo.SetActive(true);
+            
+        DialogueManager.Instance.count = num;
+            
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.cancelShopDialogue, "CancelShowUI", lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
     public void ShowReputationUI()
     {
         SettingUI.Instance.SettingSfxSound(clickAudio);

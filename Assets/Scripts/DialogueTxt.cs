@@ -10,6 +10,9 @@ public class DialogueTxt : MonoBehaviour
     public Dialogue tutorialDialogue;
     public Dialogue valetCallDialogue;
     public Dialogue cultivationDialogue;
+    public Dialogue callPeddlerDialogue;
+    public Dialogue buyPaddlerDialogue;
+    public Dialogue cancelShopDialogue;
 
     private void Awake()
     {
