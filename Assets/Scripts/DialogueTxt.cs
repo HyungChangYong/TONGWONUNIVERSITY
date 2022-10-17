@@ -9,8 +9,13 @@ public class DialogueTxt : MonoBehaviour
     public Dialogue openingDialogue;
     public Dialogue tutorialDialogue;
     public Dialogue valetCallDialogue;
+    public Dialogue saturdayValetCallDialogue;
     public Dialogue cultivationDialogue;
     public Dialogue callPeddlerDialogue;
+    public Dialogue buyPotionDialogue;
+    public Dialogue usePotionDialogue;
+    public Dialogue overlapUsePotionDialogue;
+    public Dialogue buyChocoDialogue;
     public Dialogue buyPaddlerDialogue;
     public Dialogue cancelShopDialogue;
 

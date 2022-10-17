@@ -36,6 +36,7 @@ public class ChoiceManager : MonoBehaviour
         {
             // 외출하기
             case 0:
+                // choiceObjectUI.SetActive(false);
                 break;
             // 교양 쌓기
             case 1:
@@ -48,6 +49,42 @@ public class ChoiceManager : MonoBehaviour
                 choiceObjectUI.SetActive(false);
 
                 LobbyManager.Instance.CallPeddler();
+                break;
+            // 물약 구매 후 이안 칼릭스
+            case 3:
+                choiceObjectUI.SetActive(false);
+                
+                LobbyManager.Instance.UsePotion(1);
+                break;
+            // 물약 구매 후 아스틴
+            case 4:
+                choiceObjectUI.SetActive(false);
+                
+                LobbyManager.Instance.UsePotion(2);
+                break;
+            // 물약 구매 후 노아 셀베스틴
+            case 5:
+                choiceObjectUI.SetActive(false);
+                
+                LobbyManager.Instance.UsePotion(3);
+                break;
+            // 초코 구매 후 이안 칼릭스
+            case 6:
+                choiceObjectUI.SetActive(false);
+                
+                LobbyManager.Instance.UseChoco(1);
+                break;
+            // 초코 구매 후 아스틴
+            case 7:
+                choiceObjectUI.SetActive(false);
+                
+                LobbyManager.Instance.UseChoco(2);
+                break;
+            // 초코 구매 후 노아 셀베스틴
+            case 8:
+                choiceObjectUI.SetActive(false);
+
+                LobbyManager.Instance.UseChoco(3);
                 break;
         }
     }

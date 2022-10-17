@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.Win32.SafeHandles;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -18,8 +18,10 @@ public class LobbyManager : MonoBehaviour
     [SerializeField] private Sprite windowBasic;
     [SerializeField] private Sprite playerBasic;
     [SerializeField] private Sprite[] dateSprite;
+    [SerializeField] private Sprite[] showBuyPopUpUISprite;
     
-    [SerializeField]  private Image dateImage;
+    [SerializeField] private Image dateImage;
+    [SerializeField] private Image showBuyPopUpImage;
     
     [SerializeField] private RectTransform profileSizeUpPlayerInfoTxt;
     [SerializeField] private RectTransform profileBasePlayerInfoTxt;
@@ -48,6 +50,8 @@ public class LobbyManager : MonoBehaviour
     [SerializeField] private GameObject reputationUI;
     [SerializeField] private GameObject settingUI;
     [SerializeField] private GameObject albumUI;
+    [SerializeField] private GameObject showBuyPopUpUIGo;
+    [SerializeField] private GameObject warningUIGo;
 
     private bool _isValetCall;
 
@@ -87,6 +91,8 @@ public class LobbyManager : MonoBehaviour
     [SerializeField] private GameObject[] lobbyUI;
 
     public bool isBuy;
+
+    private int _whatItem;
 
     public void SettingDate()
     {
@@ -128,7 +134,14 @@ public class LobbyManager : MonoBehaviour
     {
         SettingUI.Instance.SettingSfxSound(clickAudio);
 
-        ValetCall(true);
+        if (date % 6 == 0)
+        {
+            SaturdayValetCall();
+        }
+        else
+        {
+            ValetCall();
+        }
     }
 
     public void ResetLobbyUI()
@@ -139,7 +152,32 @@ public class LobbyManager : MonoBehaviour
         }
     }
 
-    public void ValetCall(bool ClickUI)
+    public void SaturdayValetCall()
+    {
+        if (_isValetCall.Equals(false))
+        {
+            _situationCaseName = "SaturdayValetCall";
+
+            for (int i = 0; i < lobbyUI.Length; i++)
+            {
+                lobbyUI[i].SetActive(false);
+            }
+            
+            lobbyTxtBoxLineGo.SetActive(true);
+            lobbyNextBtnGo.SetActive(true);
+            
+            lobbyCharterName.text = "집사";
+            
+            // 다른 거 호출 하는 방싟으로 변경
+            DialogueManager.Instance.count = 1;
+
+            DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.saturdayValetCallDialogue, "SaturdayValetCall", lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+
+            _isValetCall = true;
+        }
+    }
+
+    public void ValetCall()
     {
         if (_isValetCall.Equals(false))
         {
@@ -153,20 +191,9 @@ public class LobbyManager : MonoBehaviour
             lobbyTxtBoxLineGo.SetActive(true);
             lobbyNextBtnGo.SetActive(true);
             
-            lobbyCharterName.text = "집사";
-            
             // 다른 거 호출 하는 방싟으로 변경
-            DialogueManager.Instance.count = 2;
-            
-            if (ClickUI.Equals(true))
-            {
-                if (date % 6 == 0)
-                {
-                    DialogueManager.Instance.count = 1;
-                }
-            }
-            
-            
+            DialogueManager.Instance.count = 1;
+
             DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.valetCallDialogue, "ValetCall", lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
 
             _isValetCall = true;
@@ -209,8 +236,6 @@ public class LobbyManager : MonoBehaviour
             DialogueManager.Instance.count = 1;
 
             DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.callPeddlerDialogue, "CallPeddler", lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
-
-            isBuy = true;
         }
         else
         {
@@ -222,6 +247,83 @@ public class LobbyManager : MonoBehaviour
             
             DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.buyPaddlerDialogue, "BuyPaddlerDialogue", lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
         }
+    }
+
+    public void ShowBuyPopUp(int num)
+    {
+        SettingUI.Instance.SettingSfxSound(clickAudio);
+        
+        _whatItem = num;
+        
+        showBuyPopUpImage.sprite = showBuyPopUpUISprite[_whatItem];
+        
+        showBuyPopUpUIGo.SetActive(true);
+    }
+    
+    public void CheckBuyItem()
+    {
+        SettingUI.Instance.SettingSfxSound(clickAudio);
+        
+        if (_whatItem == 0)
+        {
+            if (coin < 100000)
+            {
+                showBuyPopUpUIGo.SetActive(false);
+                warningUIGo.SetActive(true);
+            }
+            else
+            {
+                // 물약 구매
+                isBuy = true;
+
+                coin -= 100000;
+                BuyItem("BuyPotionDialogue", DialogueTxt.Instance.buyPotionDialogue);
+            }
+        }
+        else
+        {
+            if (coin < 400000)
+            {
+                showBuyPopUpUIGo.SetActive(false);
+                warningUIGo.SetActive(true);
+            }
+            else
+            {
+                isBuy = true;
+                
+                coin -= 400000;
+                
+                BuyItem("BuyChocoDialogue", DialogueTxt.Instance.buyChocoDialogue);
+            }
+        }
+    }
+
+    public void OkWarningUIBtn()
+    {
+        SettingUI.Instance.SettingSfxSound(clickAudio);
+        
+        warningUIGo.SetActive(false);
+    }
+
+    public void HideBuyPopUp()
+    {
+        SettingUI.Instance.SettingSfxSound(clickAudio);
+        
+        showBuyPopUpUIGo.SetActive(false);
+    }
+
+    private void BuyItem(string situationCaseName, Dialogue dialogue)
+    {
+        _situationCaseName = situationCaseName;
+        
+        DialogueManager.Instance.shopUI.SetActive(false);
+        lobbyTxtBoxLineGo.SetActive(true);
+        lobbyNextBtnGo.SetActive(true);
+        showBuyPopUpUIGo.SetActive(false);
+            
+        DialogueManager.Instance.count = 1;
+            
+        DialogueManager.Instance.ShowDialogue(dialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
     }
 
     public void CancelShowUI(int num)
@@ -339,5 +441,46 @@ public class LobbyManager : MonoBehaviour
         DialogueManager.Instance.NextBtn(_situationCaseName);
 
         _isValetCall = false;
+    }
+
+    public void UsePotion(int num)
+    {
+        if (isShowHeart[num].Equals(true))
+        {
+            _situationCaseName = "OverlapUsePotionDialogue";
+            
+            lobbyTxtBoxLineGo.SetActive(true);
+            
+            DialogueManager.Instance.count = 1;
+
+            DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.overlapUsePotionDialogue, "OverlapUsePotionDialogue", lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+        }
+        // 물약 사용
+        else
+        {
+            isShowHeart[num] = true;
+            
+            _situationCaseName = "UsePotionDialogue";
+        
+            lobbyTxtBoxLineGo.SetActive(true);
+            
+            DialogueManager.Instance.count = 1;
+
+            DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.usePotionDialogue, "UsePotionDialogue", lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+        }
+    }
+
+    public void UseChoco(int num)
+    {
+        lobbyWindow.sprite = windowBasic;
+        
+        nowHeart[num] += 10;
+
+        if (nowHeart[num] > 100)
+        {
+            nowHeart[num] = 100;
+        }
+
+        ValetCall();
     }
 }

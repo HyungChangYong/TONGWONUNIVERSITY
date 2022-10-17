@@ -239,11 +239,17 @@ public class DialogueManager : MonoBehaviour
                 StartFadeData();
                 break;
             case "ValetCall":
-                choiceTxt.text = "[ " + DialogueTxt.Instance.valetCallDialogue.sentences[2] + " ]";
+                choiceTxt.text = "[ " + DialogueTxt.Instance.valetCallDialogue.sentences[1] + " ]";
                 dialogueWindow.gameObject.SetActive(false);
                 
                 ChoiceManager.Instance.ShowThreeChoice(0);
                 // 선택지 세팅
+                break;
+            case "SaturdayValetCall":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.valetCallDialogue.sentences[1] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowThreeChoice(0);
                 break;
             case "Cultivation":
                 //conversation.text = "대화 종료";
@@ -259,10 +265,31 @@ public class DialogueManager : MonoBehaviour
             case "BuyPaddlerDialogue":
                 _isBuyDialogueEnd = true;
                 
-                LobbyManager.Instance.ValetCall(false);
+                LobbyManager.Instance.ValetCall();
                 break;
             case "CancelShowUI":
-                conversation.text = "대화 종료";
+                LobbyManager.Instance.ValetCall();
+                break;
+            case "BuyPotionDialogue":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.buyPotionDialogue.sentences[4] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowThreeChoice(1);
+                break;
+            case "UsePotionDialogue":
+                LobbyManager.Instance.ValetCall();
+                break;
+            case "OverlapUsePotionDialogue":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.buyPotionDialogue.sentences[4] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowThreeChoice(1);
+                break;
+            case "BuyChocoDialogue":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.buyChocoDialogue.sentences[4] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowThreeChoice(2);
                 break;
         }
     }
@@ -319,10 +346,20 @@ public class DialogueManager : MonoBehaviour
                     }
                     else if (situationCase.Equals("ValetCall"))
                     {
-                        if (count == 2)
+                        if (count == 1)
                         {
-                            yield return _yieldCharterChangeDelay;
-                            charterImage.sprite = _listCharters[count];
+                            if (_isBuyDialogueEnd.Equals(true))
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                _isBuyDialogueEnd = false;
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true); 
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
                         }
                         else
                         {
@@ -333,18 +370,9 @@ public class DialogueManager : MonoBehaviour
                     }
                     else
                     {
-                        if (_isBuyDialogueEnd.Equals(true))
-                        {
-                            yield return _yieldCharterChangeDelay;
-                            charterImage.sprite = _listCharters[count];
-                            _isBuyDialogueEnd = false;
-                        }
-                        else
-                        {
-                            charterAnimator.SetBool("IsAlpha", true); 
-                            yield return _yieldCharterChangeDelay;
-                            ChangeWindowImage();
-                        }
+                        charterAnimator.SetBool("IsAlpha", true); 
+                        yield return _yieldCharterChangeDelay;
+                        ChangeWindowImage();
                     }
                     
                     // switch (situationCase)
@@ -478,6 +506,12 @@ public class DialogueManager : MonoBehaviour
                                 }
                                 
                                 // charterName.text = "";
+                            }
+                            break;
+                        case "BuyPotionDialogue":
+                            if (count == 4)
+                            {
+                                charterName.text = "";
                             }
                             break;
                     }
