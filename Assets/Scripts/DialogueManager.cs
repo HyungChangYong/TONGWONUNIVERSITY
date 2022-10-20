@@ -31,6 +31,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Image settingImage;
     
     [SerializeField] private Sprite lobbySettingImage;
+    [SerializeField] private Sprite[] infoSprite;
 
     [SerializeField] private TextMeshProUGUI nameTxt;
     [SerializeField] private TextMeshProUGUI nameSelectUITxt;
@@ -251,6 +252,9 @@ public class DialogueManager : MonoBehaviour
                 
                 ChoiceManager.Instance.ShowThreeChoice(0);
                 break;
+            case "GoingOut":
+                WorldManager.Instance.ShowWorldUI();
+                break;
             case "Cultivation":
                 //conversation.text = "대화 종료";
                 StartCoroutine(FadeInfo(0));
@@ -260,9 +264,8 @@ public class DialogueManager : MonoBehaviour
                 charterAnimator.SetBool("IsAlpha", true);
                 Invoke("ShowSHopUIDelay", 1);
                 // charterImage.gameObject.SetActive(false);
-                
                 break;
-            case "BuyPaddlerDialogue":
+            case "BuyPaddler":
                 _isBuyDialogueEnd = true;
                 
                 LobbyManager.Instance.ValetCall();
@@ -270,26 +273,44 @@ public class DialogueManager : MonoBehaviour
             case "CancelShowUI":
                 LobbyManager.Instance.ValetCall();
                 break;
-            case "BuyPotionDialogue":
+            case "BuyPotion":
                 choiceTxt.text = "[ " + DialogueTxt.Instance.buyPotionDialogue.sentences[4] + " ]";
                 dialogueWindow.gameObject.SetActive(false);
                 
                 ChoiceManager.Instance.ShowThreeChoice(1);
                 break;
-            case "UsePotionDialogue":
+            case "UsePotion":
                 LobbyManager.Instance.ValetCall();
                 break;
-            case "OverlapUsePotionDialogue":
+            case "OverlapUsePotion":
                 choiceTxt.text = "[ " + DialogueTxt.Instance.buyPotionDialogue.sentences[4] + " ]";
                 dialogueWindow.gameObject.SetActive(false);
                 
                 ChoiceManager.Instance.ShowThreeChoice(1);
                 break;
-            case "BuyChocoDialogue":
+            case "BuyChoco":
                 choiceTxt.text = "[ " + DialogueTxt.Instance.buyChocoDialogue.sentences[4] + " ]";
                 dialogueWindow.gameObject.SetActive(false);
                 
                 ChoiceManager.Instance.ShowThreeChoice(2);
+                break;
+            case "PlaceSelect":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.placeSelectDialogue.sentences[0] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowTwoChoice(3);
+                break;
+            case "HomeLock":
+                WorldManager.Instance.ResetTxtBox();
+                break;
+            case "FirstIan":
+                conversation.text = "이안 대화 종료";
+                break;
+            case "FirstNoa":
+                conversation.text = "노아 대화 종료";
+                break;
+            case "FirstAustin":
+                conversation.text = "아스틴 대화 종료";
                 break;
         }
     }
@@ -360,6 +381,21 @@ public class DialogueManager : MonoBehaviour
                                 yield return _yieldCharterChangeDelay;
                                 ChangeWindowImage();
                             }
+                        }
+                        else
+                        {
+                            charterAnimator.SetBool("IsAlpha", true);
+                            yield return _yieldCharterChangeDelay;
+                            ChangeWindowImage();
+                        }
+                    }
+                    else if (situationCase.Equals("FirstIan"))
+                    {
+                        if (count == 5 || count == 17)
+                        {
+                            yield return _yieldCharterChangeDelay;
+                            dialogueWindow.sprite = _listDialogueWindows[count];
+                            charterImage.sprite = _listCharters[count];
                         }
                         else
                         {
@@ -465,6 +501,14 @@ public class DialogueManager : MonoBehaviour
                 {
                     charterName.text = "행상인";
                 }
+                else if (_listCharters[count].name.Contains("Aide").Equals(true))
+                {
+                    charterName.text = "보좌관";
+                }
+                else if (_listCharters[count].name.Contains("IAN").Equals(true))
+                {
+                    charterName.text = "이안 칼릭스";
+                }
                 else
                 {
                     charterName.text = "";
@@ -504,14 +548,38 @@ public class DialogueManager : MonoBehaviour
                                         _listSentences[3] = "사교계 행사에 대비하여 예의 있게 욕하는 방법을 배우며 하루를 보냈다.";
                                         break;
                                 }
-                                
-                                // charterName.text = "";
                             }
                             break;
                         case "BuyPotionDialogue":
                             if (count == 4)
                             {
                                 charterName.text = "";
+                            }
+                            break;
+                        case "FirstIan":
+                            switch (count)
+                            {
+                                case 4:
+                                    Handheld.Vibrate();
+                                    break;
+                                case 5:
+                                    charterName.text = "";
+                                    break;
+                                case 8:
+                                    charterName.text = "";
+                                    break;
+                                case 13:
+                                    charterName.text = "";
+                                    break;
+                                case 28:
+                                    charterName.text = "";
+                                    break;
+                                case 35:
+                                    charterName.text = "";
+                                    break;
+                                case 38:
+                                    charterName.text = "";
+                                    break;
                             }
                             break;
                     }
@@ -626,6 +694,20 @@ public class DialogueManager : MonoBehaviour
         Invoke("DelayNext", 0.2f);
         txtBtnImageGo.SetActive(true);
         StartCoroutine(BlinkTxtBtnImage());
+    }
+
+    public void SettingTxtBox()
+    {
+        if (_listDialogueWindows[count].name.Contains("Think_Box").Equals(true))
+        {
+            conversation.font = blackOutline;
+            txtBtnImage.sprite = blackNextBtn;
+        }
+        else
+        {
+            conversation.font = whiteOutline;
+            txtBtnImage.sprite = whiteNextBtn;
+        }
     }
     
     private void StartArrowSignAnim(int num)
@@ -789,6 +871,8 @@ public class DialogueManager : MonoBehaviour
         // 이미지 파일 변경 코드 추가
         
         SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+
+        infoImage.sprite = infoSprite[num];
         
         infoImage.gameObject.SetActive(true);
         

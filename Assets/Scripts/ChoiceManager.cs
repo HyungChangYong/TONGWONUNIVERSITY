@@ -31,60 +31,54 @@ public class ChoiceManager : MonoBehaviour
         SettingUI.Instance.SettingSfxSound(clickAudio);
         
         choiceNum = choiceTxtNums[num];
+        
+        choiceObjectUI.SetActive(false);
 
         switch (choiceNum)
         {
             // 외출하기
             case 0:
-                // choiceObjectUI.SetActive(false);
+                LobbyManager.Instance.GoingOut();
                 break;
             // 교양 쌓기
             case 1:
-                choiceObjectUI.SetActive(false);
-
                 LobbyManager.Instance.Cultivation();
                 break;
             // 행상인 부르기
             case 2:
-                choiceObjectUI.SetActive(false);
-
                 LobbyManager.Instance.CallPeddler();
                 break;
             // 물약 구매 후 이안 칼릭스
             case 3:
-                choiceObjectUI.SetActive(false);
-                
                 LobbyManager.Instance.UsePotion(1);
                 break;
-            // 물약 구매 후 아스틴
+            // 물약 구매 후 노아 셀베스틴
             case 4:
-                choiceObjectUI.SetActive(false);
-                
                 LobbyManager.Instance.UsePotion(2);
                 break;
-            // 물약 구매 후 노아 셀베스틴
+            // 물약 구매 후 아스틴
             case 5:
-                choiceObjectUI.SetActive(false);
-                
                 LobbyManager.Instance.UsePotion(3);
                 break;
             // 초코 구매 후 이안 칼릭스
             case 6:
-                choiceObjectUI.SetActive(false);
-                
                 LobbyManager.Instance.UseChoco(1);
                 break;
-            // 초코 구매 후 아스틴
+            // 초코 구매 후 노아 셀베스틴
             case 7:
-                choiceObjectUI.SetActive(false);
-                
                 LobbyManager.Instance.UseChoco(2);
                 break;
-            // 초코 구매 후 노아 셀베스틴
+            // 초코 구매 후 아스틴
             case 8:
-                choiceObjectUI.SetActive(false);
-
                 LobbyManager.Instance.UseChoco(3);
+                break;
+            // 이동한다 선택
+            case 9:
+                DailyRoutine.Instance.StartFadePlace(WorldManager.Instance.selectPlaceNum);
+                break;
+            // 다시 선택한다 선택
+            case 10:
+                WorldManager.Instance.ResetTxtBox();
                 break;
         }
     }

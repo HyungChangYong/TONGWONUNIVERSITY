@@ -44,8 +44,8 @@ public class LobbyManager : MonoBehaviour
     [SerializeField] private Animator lobbyTxtBtnAnimator;
     [SerializeField] private GameObject lobbyTxtBtnImageGo;
     [SerializeField] private Image lobbyTxtBtnImage;
-
     [SerializeField] private GameObject lobbyTxtBoxLineGo;
+    
     public GameObject lobbyNextBtnGo;
     [SerializeField] private GameObject reputationUI;
     [SerializeField] private GameObject settingUI;
@@ -239,13 +239,13 @@ public class LobbyManager : MonoBehaviour
         }
         else
         {
-            _situationCaseName = "BuyPaddlerDialogue";
+            _situationCaseName = "BuyPaddler";
         
             lobbyTxtBoxLineGo.SetActive(true);
             
             DialogueManager.Instance.count = 1;
             
-            DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.buyPaddlerDialogue, "BuyPaddlerDialogue", lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+            DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.buyPaddlerDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
         }
     }
 
@@ -277,7 +277,7 @@ public class LobbyManager : MonoBehaviour
                 isBuy = true;
 
                 coin -= 100000;
-                BuyItem("BuyPotionDialogue", DialogueTxt.Instance.buyPotionDialogue);
+                BuyItem("BuyPotion", DialogueTxt.Instance.buyPotionDialogue);
             }
         }
         else
@@ -293,7 +293,7 @@ public class LobbyManager : MonoBehaviour
                 
                 coin -= 400000;
                 
-                BuyItem("BuyChocoDialogue", DialogueTxt.Instance.buyChocoDialogue);
+                BuyItem("BuyChoco", DialogueTxt.Instance.buyChocoDialogue);
             }
         }
     }
@@ -338,7 +338,7 @@ public class LobbyManager : MonoBehaviour
             
         DialogueManager.Instance.count = num;
             
-        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.cancelShopDialogue, "CancelShowUI", lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.cancelShopDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
     }
     
     public void ShowReputationUI()
@@ -443,30 +443,41 @@ public class LobbyManager : MonoBehaviour
         _isValetCall = false;
     }
 
+    public void GoingOut()
+    {
+        _situationCaseName = "GoingOut";
+            
+        lobbyTxtBoxLineGo.SetActive(true);
+            
+        DialogueManager.Instance.count = 1;
+
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.goingOutDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+
     public void UsePotion(int num)
     {
         if (isShowHeart[num].Equals(true))
         {
-            _situationCaseName = "OverlapUsePotionDialogue";
+            _situationCaseName = "OverlapUsePotion";
             
             lobbyTxtBoxLineGo.SetActive(true);
             
             DialogueManager.Instance.count = 1;
 
-            DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.overlapUsePotionDialogue, "OverlapUsePotionDialogue", lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+            DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.overlapUsePotionDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
         }
         // 물약 사용
         else
         {
             isShowHeart[num] = true;
             
-            _situationCaseName = "UsePotionDialogue";
+            _situationCaseName = "UsePotion";
         
             lobbyTxtBoxLineGo.SetActive(true);
             
             DialogueManager.Instance.count = 1;
 
-            DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.usePotionDialogue, "UsePotionDialogue", lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+            DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.usePotionDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
         }
     }
 
@@ -475,6 +486,8 @@ public class LobbyManager : MonoBehaviour
         lobbyWindow.sprite = windowBasic;
         
         nowHeart[num] += 10;
+        
+        WorldManager.Instance.ShowHome(num - 1);
 
         if (nowHeart[num] > 100)
         {
