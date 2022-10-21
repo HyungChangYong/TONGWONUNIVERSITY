@@ -41,6 +41,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private AudioClip tutorialBgm;
     [SerializeField] private AudioClip sceneChangeAudio;
     [SerializeField] private AudioClip clickAudio;
+    [SerializeField] private AudioClip surpriseAudio;
     
     public AudioSource typeSound;
 
@@ -124,6 +125,8 @@ public class DialogueManager : MonoBehaviour
 
     public GameObject shopUI;
 
+    [SerializeField] private GameObject placeUIGo;
+    
     private void Awake()
     {
         Instance = this;
@@ -304,7 +307,7 @@ public class DialogueManager : MonoBehaviour
                 WorldManager.Instance.ResetTxtBox();
                 break;
             case "FirstIan":
-                conversation.text = "이안 대화 종료";
+                StartCoroutine(FadeInfo(1));
                 break;
             case "FirstNoa":
                 conversation.text = "노아 대화 종료";
@@ -389,67 +392,13 @@ public class DialogueManager : MonoBehaviour
                             ChangeWindowImage();
                         }
                     }
-                    else if (situationCase.Equals("FirstIan"))
-                    {
-                        if (count == 5 || count == 17)
-                        {
-                            yield return _yieldCharterChangeDelay;
-                            dialogueWindow.sprite = _listDialogueWindows[count];
-                            charterImage.sprite = _listCharters[count];
-                        }
-                        else
-                        {
-                            charterAnimator.SetBool("IsAlpha", true);
-                            yield return _yieldCharterChangeDelay;
-                            ChangeWindowImage();
-                        }
-                    }
                     else
                     {
                         charterAnimator.SetBool("IsAlpha", true); 
                         yield return _yieldCharterChangeDelay;
                         ChangeWindowImage();
                     }
-                    
-                    // switch (situationCase)
-                    // {
-                    //     case "Tutorial":
-                    //         if (count == 29)
-                    //         {
-                    //             yield return _yieldCharterChangeDelay;
-                    //             dialogueWindow.sprite = _listDialogueWindows[count];
-                    //             charterImage.sprite = _listCharters[count];
-                    //         }
-                    //         else
-                    //         {
-                    //             charterAnimator.SetBool("IsAlpha", true); 
-                    //             yield return _yieldCharterChangeDelay;
-                    //             ChangeWindowImage();
-                    //         }
-                    //         break;
-                    //     case "ValetCall":
-                    //     {
-                    //         charterAnimator.SetBool("IsAlpha", true); 
-                    //         yield return _yieldCharterChangeDelay;
-                    //         ChangeWindowImage();
-                    //     }
-                    //         break;
-                    //     case "Cultivation":
-                    //         {
-                    //             charterAnimator.SetBool("IsAlpha", true); 
-                    //             yield return _yieldCharterChangeDelay;
-                    //             ChangeWindowImage();
-                    //         }
-                    //         break;
-                    //     case "CallPeddler":
-                    //     {
-                    //         charterAnimator.SetBool("IsAlpha", true); 
-                    //         yield return _yieldCharterChangeDelay;
-                    //         ChangeWindowImage();
-                    //     }
-                    //         break;
-                    // }
-                    
+
                     switch (situationCase)
                     {
                         case "Tutorial":
@@ -509,6 +458,10 @@ public class DialogueManager : MonoBehaviour
                 {
                     charterName.text = "이안 칼릭스";
                 }
+                else if (_listCharters[count].name.Contains("NOA").Equals(true))
+                {
+                    charterName.text = "노아 셀베스틴";
+                }
                 else
                 {
                     charterName.text = "";
@@ -550,7 +503,7 @@ public class DialogueManager : MonoBehaviour
                                 }
                             }
                             break;
-                        case "BuyPotionDialogue":
+                        case "BuyPotion":
                             if (count == 4)
                             {
                                 charterName.text = "";
@@ -578,6 +531,30 @@ public class DialogueManager : MonoBehaviour
                                     charterName.text = "";
                                     break;
                                 case 38:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "FirstNoa":
+                            switch (count)
+                            {
+                                case 2:
+                                    charterName.text = "";
+                                    break;
+                                case 7:
+                                    charterName.text = "";
+                                    break;
+                                case 10:
+                                    charterName.text = "";
+                                    break;
+                                case 21:
+                                    charterName.text = "";
+                                    SettingUI.Instance.SettingSfxSound(surpriseAudio);
+                                    break;
+                                case 23:
+                                    charterName.text = "";
+                                    break;
+                                case 35:
                                     charterName.text = "";
                                     break;
                             }
@@ -655,6 +632,14 @@ public class DialogueManager : MonoBehaviour
                                         settingUIParent.SetParent(settingUIParentTr);
                                         break;
                                 }
+                                break;
+                            case "FirstIan":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "FirstNoa":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
                                 break;
                         }
                     }
@@ -868,8 +853,6 @@ public class DialogueManager : MonoBehaviour
     
     private IEnumerator FadeInfo(int num)
     {
-        // 이미지 파일 변경 코드 추가
-        
         SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
 
         infoImage.sprite = infoSprite[num];
@@ -894,8 +877,9 @@ public class DialogueManager : MonoBehaviour
         
         yield return _yieldAnimDelay;
 
-        StartFadeData();
         AddDate();
+        StartFadeData();
+        
         LobbyManager.Instance.ResetLobbyUI();
 
         switch (num)
@@ -904,6 +888,9 @@ public class DialogueManager : MonoBehaviour
                 LobbyManager.Instance.nowHeart[0] += addNowHeart[_randomCultivation];
                 LobbyManager.Instance.coin += addCoin[_randomCultivation];
                 LobbyManager.Instance.SettingCoin();
+                break;
+            case 1:
+                LobbyManager.Instance.nowHeart[1] += 5;
                 break;
         }
 
@@ -957,6 +944,7 @@ public class DialogueManager : MonoBehaviour
             dataImage.color = alpha;
             
             go.SetActive(false);
+            placeUIGo.SetActive(false);
             
             lobbyUIGo.SetActive(true);
             infoImage.gameObject.SetActive(false);
@@ -964,6 +952,8 @@ public class DialogueManager : MonoBehaviour
 
             yield return null;
         }
+        
+        SettingUI.Instance.SettingBgmSound(tutorialBgm);
         
         dataImage.gameObject.SetActive(false);
         

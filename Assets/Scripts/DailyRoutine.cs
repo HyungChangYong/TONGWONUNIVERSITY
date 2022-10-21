@@ -70,8 +70,6 @@ public class DailyRoutine : MonoBehaviour
 
     public void StartFadePlace(int num)
     {
-        
-        
         _placeNum = num;
 
         placeInfoImage.sprite = placeInfoSprite[num];
@@ -146,10 +144,8 @@ public class DailyRoutine : MonoBehaviour
             // 첫 만남을 가지지 못한 캐릭터가 3명
             else if (_maxRanFirst == 3)
             {
-                // 강제 이안 이벤트 실행
-                ranCharacter = 0;
-                
-                
+                // 강제 노아 이벤트 실행
+                ranCharacter = 1;
                 
                 _whoCharacterNum = ranCharacter;
                 isFirst[ranCharacter] = true;

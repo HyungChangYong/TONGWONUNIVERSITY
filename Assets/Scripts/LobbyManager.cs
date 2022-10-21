@@ -57,9 +57,13 @@ public class LobbyManager : MonoBehaviour
 
     private string _situationCaseName;
 
-    public bool[] isAlbum;
+    [SerializeField] private bool[] isAlbum;
 
-    public Sprite[] illustration;
+    [SerializeField] private Image[] illustrationImage;
+
+    [SerializeField] private Sprite[] illustrationImageSprite;
+    
+    [SerializeField] private Sprite[] illustration;
     
     [SerializeField] private Image maximImage;
     [SerializeField] private GameObject maximImageGo;
@@ -277,6 +281,9 @@ public class LobbyManager : MonoBehaviour
                 isBuy = true;
 
                 coin -= 100000;
+
+                SettingCoin();
+                
                 BuyItem("BuyPotion", DialogueTxt.Instance.buyPotionDialogue);
             }
         }
@@ -292,6 +299,8 @@ public class LobbyManager : MonoBehaviour
                 isBuy = true;
                 
                 coin -= 400000;
+                
+                SettingCoin();
                 
                 BuyItem("BuyChoco", DialogueTxt.Instance.buyChocoDialogue);
             }
@@ -416,6 +425,13 @@ public class LobbyManager : MonoBehaviour
 
         albumUI.SetActive(false);
         settingUI.SetActive(true);
+    }
+
+    public void ClearAlbum(int num)
+    {
+        isAlbum[num] = true;
+
+        illustrationImage[num].sprite = illustrationImageSprite[num];
     }
 
     public void ShowMaximAlbum(int num)
