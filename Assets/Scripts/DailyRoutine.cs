@@ -85,7 +85,7 @@ public class DailyRoutine : MonoBehaviour
     private void CheckSpawnCharacter()
     {
         // 특정 캐릭과 첫 만남을 가지지 않았다면
-        if (isFirst[0].Equals(false) && isFirst[1].Equals(false) && isFirst[2].Equals(false))
+        if (isFirst[0].Equals(false) || isFirst[1].Equals(false) || isFirst[2].Equals(false))
         {
             _isFirst = true;
             
@@ -124,29 +124,27 @@ public class DailyRoutine : MonoBehaviour
                         {
                             _whoCharacterNum = i;
                             isFirst[i] = true;
+                            break;
                         }
                     }
                     else if (ranCharacter == 1)
                     {
-                        if (_secondCharacter.Equals(true))
+                        if (isFirst[i].Equals(false))
                         {
-                            if (isFirst[i].Equals(false))
+                            if (_secondCharacter.Equals(true))
                             {
                                 _whoCharacterNum = i;
                                 isFirst[i] = true;
                             }
+                            
+                            _secondCharacter = true;
                         }
-
-                        _secondCharacter = true;
                     }
                 }
             }
             // 첫 만남을 가지지 못한 캐릭터가 3명
             else if (_maxRanFirst == 3)
             {
-                // 강제 노아 이벤트 실행
-                ranCharacter = 1;
-                
                 _whoCharacterNum = ranCharacter;
                 isFirst[ranCharacter] = true;
             }

@@ -42,6 +42,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private AudioClip sceneChangeAudio;
     [SerializeField] private AudioClip clickAudio;
     [SerializeField] private AudioClip surpriseAudio;
+    [SerializeField] private AudioClip dropAudio;
     
     public AudioSource typeSound;
 
@@ -310,10 +311,10 @@ public class DialogueManager : MonoBehaviour
                 StartCoroutine(FadeInfo(1));
                 break;
             case "FirstNoa":
-                conversation.text = "노아 대화 종료";
+                StartCoroutine(FadeInfo(2));
                 break;
             case "FirstAustin":
-                conversation.text = "아스틴 대화 종료";
+                StartCoroutine(FadeInfo(3));
                 break;
         }
     }
@@ -392,6 +393,36 @@ public class DialogueManager : MonoBehaviour
                             ChangeWindowImage();
                         }
                     }
+                    else if (situationCase.Equals("FirstNoa"))
+                    {
+                        if (count == 36)
+                        {
+                            yield return _yieldCharterChangeDelay;
+                            dialogueWindow.sprite = _listDialogueWindows[count];
+                            charterImage.sprite = _listCharters[count];
+                        }
+                        else
+                        {
+                            charterAnimator.SetBool("IsAlpha", true);
+                            yield return _yieldCharterChangeDelay;
+                            ChangeWindowImage();
+                        }
+                    }
+                    else if (situationCase.Equals("FirstAustin"))
+                    {
+                        if (count == 18)
+                        {
+                            yield return _yieldCharterChangeDelay;
+                            dialogueWindow.sprite = _listDialogueWindows[count];
+                            charterImage.sprite = _listCharters[count];
+                        }
+                        else
+                        {
+                            charterAnimator.SetBool("IsAlpha", true);
+                            yield return _yieldCharterChangeDelay;
+                            ChangeWindowImage();
+                        }
+                    }
                     else
                     {
                         charterAnimator.SetBool("IsAlpha", true); 
@@ -462,6 +493,14 @@ public class DialogueManager : MonoBehaviour
                 {
                     charterName.text = "노아 셀베스틴";
                 }
+                else if (_listCharters[count].name.Contains("ASUTIN_Dark").Equals(true))
+                {
+                    charterName.text = "???";
+                }
+                else if (_listCharters[count].name.Contains("ASUTIN").Equals(true))
+                {
+                    charterName.text = "아스틴";
+                }
                 else
                 {
                     charterName.text = "";
@@ -521,8 +560,17 @@ public class DialogueManager : MonoBehaviour
                                 case 8:
                                     charterName.text = "";
                                     break;
+                                case 12:
+                                    charterName.text = "???";
+                                    break;
                                 case 13:
                                     charterName.text = "";
+                                    break;
+                                case 21:
+                                    charterName.text = "???";
+                                    break;
+                                case 25:
+                                    charterName.text = "???";
                                     break;
                                 case 28:
                                     charterName.text = "";
@@ -541,8 +589,14 @@ public class DialogueManager : MonoBehaviour
                                 case 2:
                                     charterName.text = "";
                                     break;
+                                case 4:
+                                    charterName.text = "???";
+                                    break;
                                 case 7:
                                     charterName.text = "";
+                                    break;
+                                case 9:
+                                    charterName.text = "???";
                                     break;
                                 case 10:
                                     charterName.text = "";
@@ -558,6 +612,29 @@ public class DialogueManager : MonoBehaviour
                                     charterName.text = "";
                                     break;
                             }
+                            break;
+                        case "FirstAustin":
+                            switch (count)
+                            {
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(dropAudio);
+                                    break;
+                                case 5:
+                                    charterName.text = "";
+                                    break;
+                                case 17:
+                                    charterName.text = "";
+                                    break;
+                                case 25:
+                                    charterName.text = "";
+                                    break;
+                                case 28:
+                                    charterName.text = "";
+                                    break;
+                                case 30:
+                                    charterName.text = "";
+                                    break;
+                            }   
                             break;
                     }
 
@@ -634,12 +711,21 @@ public class DialogueManager : MonoBehaviour
                                 }
                                 break;
                             case "FirstIan":
-                                yield return _yieldCharterChangeDelay;
-                                charterImage.sprite = _listCharters[count];
+                                if (count != 26)
+                                {
+                                    yield return _yieldCharterChangeDelay;
+                                    charterImage.sprite = _listCharters[count];
+                                }
+                                else
+                                {
+                                    charterName.text = "이안 칼릭스";
+                                }
                                 break;
                             case "FirstNoa":
                                 yield return _yieldCharterChangeDelay;
                                 charterImage.sprite = _listCharters[count];
+                                break;
+                            case "FirstAustin":
                                 break;
                         }
                     }
@@ -892,6 +978,12 @@ public class DialogueManager : MonoBehaviour
             case 1:
                 LobbyManager.Instance.nowHeart[1] += 5;
                 break;
+            case 2:
+                LobbyManager.Instance.nowHeart[2] += 5;
+                break;
+            case 3:
+                LobbyManager.Instance.nowHeart[3] += 5;
+                break;
         }
 
         LobbyManager.Instance.ResetLobby();
@@ -952,6 +1044,8 @@ public class DialogueManager : MonoBehaviour
 
             yield return null;
         }
+        
+        WorldManager.Instance.ResetTxtBox();
         
         SettingUI.Instance.SettingBgmSound(tutorialBgm);
         
