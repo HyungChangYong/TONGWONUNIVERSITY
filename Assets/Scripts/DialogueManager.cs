@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -31,6 +32,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Image settingImage;
     
     [SerializeField] private Sprite lobbySettingImage;
+    // 0 교양 증가, 1 이안 호감도 증가, 2 노아 호감도 증가, 3 아스틴 호감도 증가, 4 변화 없음
     [SerializeField] private Sprite[] infoSprite;
 
     [SerializeField] private TextMeshProUGUI nameTxt;
@@ -43,6 +45,14 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private AudioClip clickAudio;
     [SerializeField] private AudioClip surpriseAudio;
     [SerializeField] private AudioClip dropAudio;
+    [SerializeField] private AudioClip breakAudio;
+    [SerializeField] private AudioClip rainAudio;
+    [SerializeField] private AudioClip rattleAudio;
+    [SerializeField] private AudioClip dangerousAudio;
+    [SerializeField] private AudioClip doorAudio;
+    [SerializeField] private AudioClip wristAudio;
+    [SerializeField] private AudioClip shopBellAudio;
+    [SerializeField] private AudioClip musicBox2Audio;
     
     public AudioSource typeSound;
 
@@ -61,7 +71,6 @@ public class DialogueManager : MonoBehaviour
     private readonly Vector3 _fadeImageMovePos = new Vector3(-1570, 0, 0);
     private readonly Vector3 _settingImageMovePos = new Vector3(447, 797, 0);
     private readonly Vector3 _settingImageChangeScale = new Vector3(1.45f, 1.45f, 1.45f);
-    
     
     private bool _isTalk;
     private bool _clickActivated;
@@ -229,7 +238,7 @@ public class DialogueManager : MonoBehaviour
         _listCharters.Clear();
         _listDialogueWindows.Clear();
         _isTalk = false;
-
+        
         // 대화 종료
         switch (situationCase)
         {
@@ -316,6 +325,147 @@ public class DialogueManager : MonoBehaviour
             case "FirstAustin":
                 StartCoroutine(FadeInfo(3));
                 break;
+            case "NobodyElse":
+                StartCoroutine(FadeInfo(4));
+                break;
+            case "TownIan1":
+                StartCoroutine(FadeInfo(1));
+                break;
+            case "TownIan2":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.townIan2Dialogue.sentences[9] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowTwoChoice(4);
+                break;
+            case "TownIan2Fun":
+                DailyRoutine.Instance.TownIan2Select();
+                break;
+            case "TownIan2Tiresome":
+                DailyRoutine.Instance.TownIan2Select();
+                break;
+            case "TownIan2Select":
+                CheckIsAddIanHeart();
+                break;
+            case "TownIan3":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.townIan3Dialogue.sentences[9] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowTwoChoice(5);
+                break;
+            case "TownIan3Hi":
+                CheckIsAddIanHeart();
+                break;
+            case "TownIan3Ignore":
+                CheckIsAddIanHeart();
+                break;
+            case "TownIan4":
+                StartCoroutine(FadeInfo(1));
+                break;
+            case "TownNoa1":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.townNoa1Dialogue.sentences[12] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowTwoChoice(6);
+                break;
+            case "TownNoa1Mistake":
+                DailyRoutine.Instance.TownNoa1Select();
+                break;
+            case "TownNoa1Stand":
+                DailyRoutine.Instance.TownNoa1Select();
+                break;
+            case "TownNoa1Select":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeRightTown(4, 7, DialogueTxt.Instance.townNoa1SelectNextDialogue, "TownNoa1SelectNext", 1));
+                break;
+            case "TownNoa1SelectNext":
+                CheckIsAddNoaHeart();
+                break;
+            case "TownNoa2":
+                SettingUI.Instance.SettingSfxSound(doorAudio);
+                StartCoroutine(FadeRightTown(12, 8, DialogueTxt.Instance.townNoa2NextDialogue, "TownNoa2Next", 1));
+                break;
+            case "TownNoa2Next":
+                StartCoroutine(FadeInfo(2));
+                break;
+            case "TownNoa3":
+                StartCoroutine(FadeInfo(2));
+                break;
+            case "TownNoa4":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.townNoa4Dialogue.sentences[20] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowTwoChoice(7);
+                break;
+            case "TownNoa4Cheer":
+                DailyRoutine.Instance.TownNoa4Select();
+                break;
+            case "TownNoa4Question":
+                DailyRoutine.Instance.TownNoa4Select();
+                break;
+            case "TownNoa4Select":
+                CheckIsAddNoaHeart();
+                break;
+            case "TownAustin1":
+                StartCoroutine(FadeInfo(3));
+                break;
+            case "TownAustin2":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.townAustin2Dialogue.sentences[15] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowTwoChoice(8);
+                break;
+            case "TownAustin2FireFestival":
+                CheckIsAddAustinHeart();
+                break;
+            case "TownAustin2Around":
+                CheckIsAddAustinHeart();
+                break;
+            case "TownAustin3":
+                StartCoroutine(FadeInfo(3));
+                break;
+            case "TownAustin4":
+                SettingUI.Instance.SettingSfxSound(shopBellAudio);
+                StartCoroutine(FadeRightTown(12, 14, DialogueTxt.Instance.townAustin4NextDialogue, "TownAustin4Next", 0));
+                break;
+            case "TownAustin4Next":
+                StartCoroutine(FadeInfo(3));
+                break;
+        }
+    }
+
+    private void CheckIsAddIanHeart()
+    {
+        if (ChoiceManager.Instance.isAddIanHeart.Equals(false))
+        {
+            StartCoroutine(FadeInfo(4));
+        }
+        else
+        {
+            StartCoroutine(FadeInfo(1));
+        }
+    }
+
+    private void CheckIsAddNoaHeart()
+    {
+        if (ChoiceManager.Instance.isAddIanHeart.Equals(false))
+        {
+            StartCoroutine(FadeInfo(4));
+        }
+        else
+        {
+            StartCoroutine(FadeInfo(2));
+        }
+    }
+    
+    private void CheckIsAddAustinHeart()
+    {
+        if (ChoiceManager.Instance.isAddIanHeart.Equals(false))
+        {
+            StartCoroutine(FadeInfo(4));
+        }
+        else
+        {
+            StartCoroutine(FadeInfo(3));
         }
     }
 
@@ -423,6 +573,51 @@ public class DialogueManager : MonoBehaviour
                             ChangeWindowImage();
                         }
                     }
+                    else if (situationCase.Equals("TownIan4"))
+                    {
+                        if (count == 5)
+                        {
+                            yield return _yieldCharterChangeDelay;
+                            dialogueWindow.sprite = _listDialogueWindows[count];
+                            charterImage.sprite = _listCharters[count];
+                        }
+                        else
+                        {
+                            charterAnimator.SetBool("IsAlpha", true);
+                            yield return _yieldCharterChangeDelay;
+                            ChangeWindowImage();
+                        }
+                    }
+                    else if (situationCase.Equals("TownNoa3"))
+                    {
+                        if (count == 6)
+                        {
+                            yield return _yieldCharterChangeDelay;
+                            dialogueWindow.sprite = _listDialogueWindows[count];
+                            charterImage.sprite = _listCharters[count];
+                        }
+                        else
+                        {
+                            charterAnimator.SetBool("IsAlpha", true);
+                            yield return _yieldCharterChangeDelay;
+                            ChangeWindowImage();
+                        }
+                    }
+                    else if (situationCase.Equals("TownAustin2"))
+                    {
+                        if (count == 4)
+                        {
+                            yield return _yieldCharterChangeDelay;
+                            dialogueWindow.sprite = _listDialogueWindows[count];
+                            charterImage.sprite = _listCharters[count];
+                        }
+                        else
+                        {
+                            charterAnimator.SetBool("IsAlpha", true);
+                            yield return _yieldCharterChangeDelay;
+                            ChangeWindowImage();
+                        }
+                    }
                     else
                     {
                         charterAnimator.SetBool("IsAlpha", true); 
@@ -485,17 +680,29 @@ public class DialogueManager : MonoBehaviour
                 {
                     charterName.text = "보좌관";
                 }
+                else if (_listCharters[count].name.Contains("Clerk").Equals(true))
+                {
+                    charterName.text = "점원";
+                }
+                else if (_listCharters[count].name.Contains("Man1").Equals(true))
+                {
+                    charterName.text = "덩치 큰 남자";
+                }
+                else if (_listCharters[count].name.Contains("HorseMan").Equals(true))
+                {
+                    charterName.text = "마부";
+                }
                 else if (_listCharters[count].name.Contains("IAN").Equals(true))
                 {
                     charterName.text = "이안 칼릭스";
                 }
+                else if (_listCharters[count].name.Contains("NOA_Dark").Equals(true) || _listCharters[count].name.Contains("ASUTIN_Dark").Equals(true))
+                {
+                    charterName.text = "???";
+                }
                 else if (_listCharters[count].name.Contains("NOA").Equals(true))
                 {
                     charterName.text = "노아 셀베스틴";
-                }
-                else if (_listCharters[count].name.Contains("ASUTIN_Dark").Equals(true))
-                {
-                    charterName.text = "???";
                 }
                 else if (_listCharters[count].name.Contains("ASUTIN").Equals(true))
                 {
@@ -636,6 +843,103 @@ public class DialogueManager : MonoBehaviour
                                     break;
                             }   
                             break;
+                        case "TownIan2":
+                            switch (count)
+                            {
+                                case 2:
+                                    charterName.text = "";
+                                    break;
+                            }   
+                            break;
+                        case "TownIan2Select":
+                            switch (count)
+                            {
+                                case 5:
+                                    charterName.text = "";
+                                    break;
+                            }   
+                            break;
+                        case "TownIan3":
+                            switch (count)
+                            {
+                                case 5:
+                                    SettingUI.Instance.SettingSfxSound(breakAudio);
+                                    Handheld.Vibrate();
+                                    break;
+                            }   
+                            break;
+                        case "TownIan4":
+                            switch (count)
+                            {
+                                case 1:
+                                    DailyRoutine.Instance.SettingPlaceImage(10);
+                                    SettingUI.Instance.SettingSfxLoopSound(rainAudio);
+                                    break;
+                                case 4:
+                                    charterName.text = "";
+                                    break;
+                                case 5:
+                                    SettingUI.Instance.StopSfxLoopSound();
+                                    break;
+                                case 13:
+                                    SettingUI.Instance.SettingSfxSound(rattleAudio);
+                                    break;
+                            }   
+                            break;
+                        case "TownNoa1":
+                            switch (count)
+                            {
+                                case 11:
+                                    SettingUI.Instance.SettingBgmSound(dangerousAudio);
+                                    break;
+                            }   
+                            break;
+                        case "TownNoa2":
+                            switch (count)
+                            {
+                                case 2:
+                                    charterName.text = "";
+                                    break;
+                            }   
+                            break;
+                        case "TownNoa3":
+                            switch (count)
+                            {
+                                case 2:
+                                    SettingUI.Instance.SettingSfxSound(breakAudio);
+                                    break;
+                                case 6:
+                                    charterName.text = "";
+                                    break;
+                            }   
+                            break;
+                        case "TownAustin2":
+                            switch (count)
+                            {
+                                case 3:
+                                    charterName.text = "";
+                                    break;
+                                case 7:
+                                    SettingUI.Instance.SettingSfxSound(wristAudio);
+                                    break;
+                            }
+                            break;
+                        case "TownAustin4":
+                            switch (count)
+                            {
+                                case 1:
+                                    charterName.text = "";
+                                    break;
+                            }   
+                            break;
+                        case "TownAustin4Next":
+                            switch (count)
+                            {
+                                case 7:
+                                    SettingUI.Instance.SettingBgmSound(musicBox2Audio);
+                                    break;
+                            }   
+                            break;
                     }
 
                 if (_listDialogueWindows[count].name.Contains("Think_Box").Equals(true))
@@ -725,7 +1029,33 @@ public class DialogueManager : MonoBehaviour
                                 yield return _yieldCharterChangeDelay;
                                 charterImage.sprite = _listCharters[count];
                                 break;
-                            case "FirstAustin":
+                            case "TownIan2":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "TownIan2Fun":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "TownIan2Select":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "TownIan4":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "TownNoa4Select":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "TownAustin1":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "TownAustin4Next":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
                                 break;
                         }
                     }
@@ -893,7 +1223,7 @@ public class DialogueManager : MonoBehaviour
     private IEnumerator FadeRightFlow()
     {
         fadeImage.gameObject.SetActive(true);
-        
+        fadeImage.transform.localPosition = new Vector3(540, 0, 0);
         _time = 0f;
         
         Color alpha = fadeImage.color;
@@ -933,6 +1263,61 @@ public class DialogueManager : MonoBehaviour
         fadeImage.gameObject.SetActive(false);
 
         ShowTutorial(0);
+        
+        yield return null;
+    }
+    
+    private IEnumerator FadeRightTown(int placeNum, int placeBgmNum, Dialogue dialogue, string situationCaseName, int countNum)
+    {
+        fadeImage.gameObject.SetActive(true);
+        fadeImage.transform.localPosition = new Vector3(540, 0, 0);
+        _time = 0f;
+        
+        Color alpha = fadeImage.color;
+        
+        while (alpha.a < 1f)
+        {
+            _time += Time.deltaTime / _currentFadeTime;
+            
+            alpha.a = Mathf.Lerp(0, 1, _time);
+            
+            fadeImage.color = alpha;
+            
+            yield return null;
+        }
+        _time = 0f;
+        
+        yield return _yieldViewDelay;
+
+        DailyRoutine.Instance.SettingPlaceImage(placeNum);
+        DailyRoutine.Instance.SettingSituationCaseDialogue(placeBgmNum, dialogue,
+            situationCaseName, countNum);
+
+        while (fadeImage.rectTransform.localPosition.x > -1550f)
+        {
+            _time += Time.deltaTime * 0.1f;
+
+            fadeImage.rectTransform.localPosition = 
+                Vector3.Lerp(fadeImage.rectTransform.localPosition, _fadeImageMovePos, _time);
+
+            // openingUIGo.SetActive(false);
+
+            // ChangeSettingImage();
+            
+            // tutorialUIGo.SetActive(true);
+
+            yield return null;
+        }
+        
+        DailyRoutine.Instance.SettingPlaceBgmSound();
+        // SettingUI.Instance.SettingBgmSound(DailyRoutine.Instance.placeBgmClips[7]);
+        DailyRoutine.Instance.SettingPlaceDialogue();
+        
+        // 다이얼 로그 호출
+        
+        fadeImage.gameObject.SetActive(false);
+
+        // ShowTutorial(0);
         
         yield return null;
     }

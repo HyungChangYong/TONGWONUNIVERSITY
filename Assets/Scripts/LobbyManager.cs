@@ -98,6 +98,8 @@ public class LobbyManager : MonoBehaviour
 
     private int _whatItem;
 
+    public bool isSaturday;
+
     public void SettingDate()
     {
         dateTxt.text = "DAY" + date;
@@ -140,10 +142,12 @@ public class LobbyManager : MonoBehaviour
 
         if (date % 6 == 0)
         {
+            isSaturday = true;
             SaturdayValetCall();
         }
         else
         {
+            isSaturday = false;
             ValetCall();
         }
     }
@@ -172,7 +176,7 @@ public class LobbyManager : MonoBehaviour
             
             lobbyCharterName.text = "집사";
             
-            // 다른 거 호출 하는 방싟으로 변경
+            // 다른 거 호출 하는 방식으로 변경
             DialogueManager.Instance.count = 1;
 
             DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.saturdayValetCallDialogue, "SaturdayValetCall", lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
@@ -502,8 +506,6 @@ public class LobbyManager : MonoBehaviour
         lobbyWindow.sprite = windowBasic;
         
         nowHeart[num] += 10;
-        
-        WorldManager.Instance.ShowHome(num - 1);
 
         if (nowHeart[num] > 100)
         {

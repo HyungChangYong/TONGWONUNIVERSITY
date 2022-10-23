@@ -20,6 +20,8 @@ public class ChoiceManager : MonoBehaviour
     [SerializeField] private int[] choiceTxtNums;
     
     public int choiceNum;
+    
+    public bool isAddIanHeart;
 
     private void Awake()
     {
@@ -80,6 +82,58 @@ public class ChoiceManager : MonoBehaviour
             case 10:
                 WorldManager.Instance.ResetTxtBox();
                 break;
+            # region 타운
+            // 이안 즐겁다 선택
+            case 12:
+                isAddIanHeart = false;
+                DailyRoutine.Instance.TownIan2Fun();
+                break;
+            // 이안 귀찮다 선택
+            case 13:
+                isAddIanHeart = true;
+                DailyRoutine.Instance.TownIan2Tiresome();
+                break;
+            // 이안 아는 척한다
+            case 15:
+                isAddIanHeart = true;
+                DailyRoutine.Instance.TownIan3Hi();
+                break;
+            // 이안 모르는 척한다
+            case 16:
+                isAddIanHeart = false;
+                DailyRoutine.Instance.TownIan3Ignore();
+                break;
+            // 노아 실수로 왔다고 한다
+            case 18:
+                isAddIanHeart = false;
+                DailyRoutine.Instance.TownNoa1Mistake();
+                break;
+            // 노아 가만히 있는다
+            case 19:
+                isAddIanHeart = true;
+                DailyRoutine.Instance.TownNoa1Stand();
+                break;
+            // 노아 위로하기
+            case 21:
+                isAddIanHeart = false;
+                DailyRoutine.Instance.TownNoa4Cheer();
+                break;
+            // 노아 질문하기
+            case 22:
+                isAddIanHeart = true;
+                DailyRoutine.Instance.TownNoa4Question();
+                break;
+            // 아스틴 불꽃놀이 보러 가기
+            case 24:
+                isAddIanHeart = false;
+                DailyRoutine.Instance.TownAustin2FireFestival();
+                break;
+            // 아스틴 다른 곳 둘러보기
+            case 25:
+                isAddIanHeart = true;
+                DailyRoutine.Instance.TownAustin2Around();
+                break;
+            #endregion
         }
     }
 

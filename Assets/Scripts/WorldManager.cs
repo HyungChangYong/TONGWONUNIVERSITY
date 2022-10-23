@@ -46,6 +46,19 @@ public class WorldManager : MonoBehaviour
 
     public void ShowWorldUI()
     {
+        if (LobbyManager.Instance.nowHeart[1] >= 25)
+        {
+            Instance.ShowHome(0);
+        }
+        else if (LobbyManager.Instance.nowHeart[2] >= 25)
+        {
+            Instance.ShowHome(1);
+        }
+        else if (LobbyManager.Instance.nowHeart[3] >= 25)
+        {
+            Instance.ShowHome(2);
+        }
+        
         worldUIGo.SetActive(true);
     }
 
