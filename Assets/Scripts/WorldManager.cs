@@ -46,15 +46,17 @@ public class WorldManager : MonoBehaviour
 
     public void ShowWorldUI()
     {
-        if (LobbyManager.Instance.nowHeart[1] >= 25)
+        if (LobbyManager.Instance.nowHeart[1] >= 15)
         {
             Instance.ShowHome(0);
         }
-        else if (LobbyManager.Instance.nowHeart[2] >= 25)
+        
+        if (LobbyManager.Instance.nowHeart[2] >= 15)
         {
             Instance.ShowHome(1);
         }
-        else if (LobbyManager.Instance.nowHeart[3] >= 25)
+        
+        if (LobbyManager.Instance.nowHeart[3] >= 15)
         {
             Instance.ShowHome(2);
         }

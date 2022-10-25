@@ -134,6 +134,110 @@ public class ChoiceManager : MonoBehaviour
                 DailyRoutine.Instance.TownAustin2Around();
                 break;
             #endregion
+            #region 레스토랑
+            // 이안 레몬 셔벗 잘 드시나봐요?
+            case 27:
+                isAddIanHeart = false;
+                DailyRoutine.Instance.RestaurantIan1EatWell();
+                break;
+            // 이안 그거 레몬 셔벗 아닌가요?
+            case 28:
+                isAddIanHeart = true;
+                DailyRoutine.Instance.RestaurantIan1QuestionEat();
+                break;
+            // 노아 생각보다 괜찮아요!
+            case 30:
+                isAddIanHeart = true;
+                DailyRoutine.Instance.RestaurantNoa2Good();
+                break;
+            // 노아 제 입맛에 딱 맞아요!
+            case 31:
+                isAddIanHeart = false;
+                DailyRoutine.Instance.RestaurantNoa2Perfect();
+                break;
+            // 아스틴 따라한다
+            case 33:
+                isAddIanHeart = true;
+                DailyRoutine.Instance.RestaurantAustin2Copy();
+                break;
+            // 아스틴 기다린다
+            case 34:
+                isAddIanHeart = false;
+                DailyRoutine.Instance.RestaurantAustin2Wait();
+                break;
+            #endregion
+            #region 공원
+            // 이안 식물은 마음이 편해져요
+            case 36:
+                isAddIanHeart = true;
+                DailyRoutine.Instance.ParkIan1Plants();
+                break;
+            // 이안 식물도 좋지만 예쁜 밤하늘도 좋아해요
+            case 37:
+                isAddIanHeart = false;
+                DailyRoutine.Instance.ParkIan1NightSky();
+                break;
+            // 이안 운동을 하고 있었어요
+            case 39:
+                isAddIanHeart = false;
+                DailyRoutine.Instance.ParkIan3Exercise();
+                break;
+            // 이안 산책을 하고 있었어요
+            case 40:
+                isAddIanHeart = true;
+                DailyRoutine.Instance.ParkIan3Walk();
+                break;
+            // 이안 꽃을 보러 간다
+            case 42:
+                isAddIanHeart = true;
+                DailyRoutine.Instance.ParkIan5LookFlower();
+                break;
+            // 이안 공원에서 쉰다
+            case 43:
+                isAddIanHeart = false;
+                DailyRoutine.Instance.ParkIan5Rest();
+                break;   
+            // 노아 강아지
+            case 45:
+                isAddIanHeart = false;
+                DailyRoutine.Instance.ParkNoa1Dog();
+                break;   
+            // 노아 새
+            case 46:
+                isAddIanHeart = true;
+                DailyRoutine.Instance.ParkNoa1Bird();
+                break;
+            // 노아 궁금한 사람
+            case 48:
+                isAddIanHeart = false;
+                DailyRoutine.Instance.ParkNoa3CuriosityPeople();
+                break;
+            // 노아 바보 같은 사람
+            case 49:
+                isAddIanHeart = true;
+                DailyRoutine.Instance.ParkNoa3StupidPeople();
+                break;
+            // 아스틴 같이 찾는다
+            case 51:
+                isAddIanHeart = true;
+                DailyRoutine.Instance.ParkAustin2TogetherFind();
+                break;
+            // 아스틴 어미새를 쫓는다
+            case 52:
+                isAddIanHeart = false;
+                DailyRoutine.Instance.ParkAustin2Chasing();
+                break;
+            // 아스틴 친구라고 한다
+            case 54:
+                isAddIanHeart = false;
+                DailyRoutine.Instance.ParkAustin3Friend();
+                break;
+            // 아스틴 대답하지 않는다
+            case 55:
+                isAddIanHeart = true;
+                DailyRoutine.Instance.ParkAustin3Stay();
+                break;
+            #endregion
         }
     }
 

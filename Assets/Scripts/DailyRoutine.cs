@@ -54,6 +54,8 @@ public class DailyRoutine : MonoBehaviour
     // 0 이안, 1 노아, 2 아스틴
     private int _whoCharacterNum;
 
+    private int _ranDialogueNum;
+
     // 0 공작가, 1 후작가, 2 신전, 3 공원, 4 번화가, 5 해변, 6 레스토랑, 7 미술관
     private int _placeNum;
     
@@ -295,9 +297,98 @@ public class DailyRoutine : MonoBehaviour
         // 장소에 땨른 상황 세팅
         switch (_placeNum)
         {
+            #region 공원
+            case 3:
+                // 호감도 낮음 경우
+                if (_isFriendliness.Equals(false))
+                {
+                    _ranDialogueNum = UnityEngine.Random.Range(0, 2);
+
+                    // 이안 
+                    if (_whoCharacterNum == 0)
+                    {
+                        // 랜덤 첫번째 대사 출력
+                        if (_ranDialogueNum == 0)
+                        {
+                            // parkIan1Dialogue
+                            SettingSituationCaseDialogue(20, DialogueTxt.Instance.parkIan1Dialogue, "ParkIan1", 1);
+                        }
+                        // 랜덤 두번쨰 대사 출력
+                        else if (_ranDialogueNum == 1)
+                        {
+                            SettingSituationCaseDialogue(9, DialogueTxt.Instance.parkIan2Dialogue, "ParkIan2", 0);
+                        }
+                    }
+                    // 노아
+                    else if (_whoCharacterNum == 1)
+                    {
+                        // 랜덤 첫번째 대사 출력
+                        if (_ranDialogueNum == 0)
+                        {
+                            SettingSituationCaseDialogue(9, DialogueTxt.Instance.parkNoa1Dialogue, "ParkNoa1", 0);
+                        }
+                        // 랜덤 두번쨰 대사 출력
+                        else if (_ranDialogueNum == 1)
+                        {
+                            SettingSituationCaseDialogue(6, DialogueTxt.Instance.parkNoa2Dialogue, "ParkNoa2", 0);
+                        }
+                    }
+                    // 아스틴 
+                    else if (_whoCharacterNum == 2)
+                    {
+                        // 랜덤 첫번째 대사 출력
+                        if (_ranDialogueNum == 0)
+                        {
+                            SettingSituationCaseDialogue(25, DialogueTxt.Instance.parkAustin1Dialogue, "ParkAustin1", 1);
+                        }
+                        // 랜덤 두번쨰 대사 출력
+                        else if (_ranDialogueNum == 1)
+                        {
+                            SettingSituationCaseDialogue(26, DialogueTxt.Instance.parkAustin2Dialogue, "ParkAustin2", 0);
+                        }
+                    }
+                }
+                else
+                {
+                    // 이안 
+                    if (_whoCharacterNum == 0)
+                    {
+                        _ranDialogueNum = UnityEngine.Random.Range(0, 3);
+                        
+                        // 랜덤 첫번째 대사 출력
+                        if (_ranDialogueNum == 0)
+                        {
+                            SettingSituationCaseDialogue(21, DialogueTxt.Instance.parkIan3Dialogue, "ParkIan3", 0);
+                        }
+                        // 랜덤 두번쨰 대사 출력
+                        else if (_ranDialogueNum == 1)
+                        {
+                            _placeUISprite = placeUISprite[15];
+                                 
+                            SettingSituationCaseDialogue(22, DialogueTxt.Instance.parkIan4Dialogue, "ParkIan4", 0);
+                        }
+                        // 랜점 세번째 대사 출력
+                        else if (_ranDialogueNum == 2)
+                        {
+                            SettingSituationCaseDialogue(23, DialogueTxt.Instance.parkIan5Dialogue, "ParkIan5", 1);
+                        }
+                    }
+                    // 노아
+                    else if (_whoCharacterNum == 1)
+                    {
+                        SettingSituationCaseDialogue(24, DialogueTxt.Instance.parkNoa3Dialogue, "ParkNoa3", 0);
+                    }
+                    // 아스틴
+                    else if (_whoCharacterNum == 2)
+                    {
+                        SettingSituationCaseDialogue(22, DialogueTxt.Instance.parkAustin3Dialogue, "ParkAustin3", 0);
+                    }
+                }
+                break;
+            #endregion
             # region 번화가
             case 4:
-                int ranDialogueNum = UnityEngine.Random.Range(0, 2);
+                _ranDialogueNum = UnityEngine.Random.Range(0, 2);
                 
                 // 호감도 낮음 경우
                 if (_isFriendliness.Equals(false))
@@ -306,12 +397,12 @@ public class DailyRoutine : MonoBehaviour
                     if (_whoCharacterNum == 0)
                     {
                         // 랜덤 첫번째 대사 출력
-                        if (ranDialogueNum == 0)
+                        if (_ranDialogueNum == 0)
                         {
                             SettingSituationCaseDialogue(4, DialogueTxt.Instance.townIan1Dialogue, "TownIan1", 0);
                         }
                         // 랜덤 두번쨰 대사 출력
-                        else if (ranDialogueNum == 1)
+                        else if (_ranDialogueNum == 1)
                         {
                             SettingSituationCaseDialogue(5, DialogueTxt.Instance.townIan2Dialogue, "TownIan2", 0);
                         }
@@ -320,14 +411,14 @@ public class DailyRoutine : MonoBehaviour
                     else if (_whoCharacterNum == 1)
                     {
                         // 랜덤 첫번째 대사 출력
-                        if (ranDialogueNum == 0)
+                        if (_ranDialogueNum == 0)
                         {
                             _placeUISprite = placeUISprite[11];
                             
                             SettingSituationCaseDialogue(1, DialogueTxt.Instance.townNoa1Dialogue, "TownNoa1", 0);
                         }
                         // 랜덤 두번쨰 대사 출력
-                        else if (ranDialogueNum == 1)
+                        else if (_ranDialogueNum == 1)
                         {
                             SettingSituationCaseDialogue(8, DialogueTxt.Instance.townNoa2Dialogue, "TownNoa2", 0);
                         }
@@ -336,14 +427,14 @@ public class DailyRoutine : MonoBehaviour
                     else if (_whoCharacterNum == 2)
                     {
                         // 랜덤 첫번째 대사 출력
-                        if (ranDialogueNum == 0)
+                        if (_ranDialogueNum == 0)
                         {
                             _placeUISprite = placeUISprite[13];
 
                             SettingSituationCaseDialogue(10, DialogueTxt.Instance.townAustin1Dialogue, "TownAustin1", 1);
                         }
                         // 랜덤 두번쨰 대사 출력
-                        else if (ranDialogueNum == 1)
+                        else if (_ranDialogueNum == 1)
                         {
                             SettingSituationCaseDialogue(12, DialogueTxt.Instance.townAustin3Dialogue, "TownAustin3", 0);
                         }
@@ -356,14 +447,14 @@ public class DailyRoutine : MonoBehaviour
                     if (_whoCharacterNum == 0)
                     {
                         // 랜덤 첫번째 대사 출력
-                        if (ranDialogueNum == 0)
+                        if (_ranDialogueNum == 0)
                         {
                             _placeUISprite = placeUISprite[8];
                             
                             SettingSituationCaseDialogue(5, DialogueTxt.Instance.townIan3Dialogue, "TownIan3", 0);
                         }
                         // 랜덤 두번쨰 대사 출력
-                        else if (ranDialogueNum == 1)
+                        else if (_ranDialogueNum == 1)
                         {
                             _placeUISprite = placeUISprite[9];
                             
@@ -374,12 +465,12 @@ public class DailyRoutine : MonoBehaviour
                     else if (_whoCharacterNum == 1)
                     {
                         // 랜덤 첫번째 대사 출력
-                        if (ranDialogueNum == 0)
+                        if (_ranDialogueNum == 0)
                         {
                             SettingSituationCaseDialogue(9, DialogueTxt.Instance.townNoa3Dialogue, "TownNoa3", 0);
                         }
                         // 랜덤 두번쨰 대사 출력
-                        else if (ranDialogueNum == 1)
+                        else if (_ranDialogueNum == 1)
                         {
                             SettingSituationCaseDialogue(6, DialogueTxt.Instance.townNoa4Dialogue, "TownNoa4", 0);
                         }
@@ -388,17 +479,72 @@ public class DailyRoutine : MonoBehaviour
                     else if (_whoCharacterNum == 2)
                     {
                         // 랜덤 첫번째 대사 출력
-                        if (ranDialogueNum == 0)
+                        if (_ranDialogueNum == 0)
                         {
                             _placeUISprite = placeUISprite[14];
                             
                             SettingSituationCaseDialogue(11, DialogueTxt.Instance.townAustin2Dialogue, "TownAustin2", 0);
                         }
                         // 랜덤 두번쨰 대사 출력
-                        else if (ranDialogueNum == 1)
+                        else if (_ranDialogueNum == 1)
                         {
                             SettingSituationCaseDialogue(13, DialogueTxt.Instance.townAustin4Dialogue, "TownAustin4", 0);
                         }
+                    }
+                }
+                break;
+            # endregion
+            # region 레스토랑
+            case 6:
+                // 호감도 낮음 경우
+                if (_isFriendliness.Equals(false))
+                {
+                    // 이안 
+                    if (_whoCharacterNum == 0)
+                    {
+                        SettingSituationCaseDialogue(17, DialogueTxt.Instance.restaurantIan1Dialogue, "RestaurantIan1", 0);
+                    }
+                    // 노아
+                    else if (_whoCharacterNum == 1)
+                    { 
+                        _ranDialogueNum = UnityEngine.Random.Range(0, 2);
+                        
+                        // 랜덤 첫번째 대사 출력
+                        if (_ranDialogueNum == 0)
+                        {
+                            SettingSituationCaseDialogue(18, DialogueTxt.Instance.restaurantNoa1Dialogue, "RestaurantNoa1", 0);
+                        }
+                        // 랜덤 두번쨰 대사 출력
+                        else if (_ranDialogueNum == 1)
+                        {
+                            SettingSituationCaseDialogue(5, DialogueTxt.Instance.restaurantNoa2Dialogue, "RestaurantNoa2", 0);
+                        }
+                    }
+                    // 아스틴 
+                    else if (_whoCharacterNum == 2)
+                    {
+                        SettingSituationCaseDialogue(5, DialogueTxt.Instance.restaurantAustin1Dialogue, "RestaurantAustin1", 0);
+                    }
+                }
+                // 호감도 높을 경우
+                else
+                {
+                    // 이안 
+                    if (_whoCharacterNum == 0)
+                    {
+                        SettingSituationCaseDialogue(16, DialogueTxt.Instance.restaurantIan2Dialogue, "RestaurantIan2", 0);
+                    }
+                    // 노아
+                    else if (_whoCharacterNum == 1)
+                    {
+                        SettingSituationCaseDialogue(6, DialogueTxt.Instance.restaurantNoa3Dialogue, "RestaurantNoa3", 0);
+                    }
+                    // 아스틴 
+                    else if (_whoCharacterNum == 2)
+                    {
+                        _placeUISprite = placeUISprite[4];
+                        
+                        SettingSituationCaseDialogue(19, DialogueTxt.Instance.restaurantAustin2Dialogue, "RestaurantAustin2", 0);
                     }
                 }
                 break;
@@ -601,5 +747,255 @@ public class DailyRoutine : MonoBehaviour
         
         DialogueManager.Instance.count = 1;
         DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.townAustin2AroundDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void RestaurantIan1EatWell()
+    {
+        _situationCaseName = "RestaurantIan1EatWell";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.restaurantIan1EatWellDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void RestaurantIan1QuestionEat()
+    {
+        _situationCaseName = "RestaurantIan1QuestionEat";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.restaurantIan1QuestionEatDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void RestaurantNoa2Good()
+    {
+        _situationCaseName = "RestaurantNoa2Good";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.restaurantNoa2GoodDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void RestaurantNoa2Perfect()
+    {
+        _situationCaseName = "RestaurantNoa2Perfect";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.restaurantNoa2PerfectDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void RestaurantNoa2Select()
+    {
+        _situationCaseName = "RestaurantNoa2Select";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.restaurantNoa2SelectDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void RestaurantAustin2Copy()
+    {
+        _situationCaseName = "RestaurantAustin2Copy";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.restaurantAustin2CopyDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void RestaurantAustin2Wait()
+    {
+        _situationCaseName = "RestaurantAustin2Wait";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.restaurantAustin2WaitDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void RestaurantAustin2Select()
+    {
+        _situationCaseName = "RestaurantAustin2Select";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 0;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.restaurantAustin2SelectDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void ParkIan1Plants()
+    {
+        _situationCaseName = "ParkIan1Plants";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.parkIan1PlantsDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void ParkIan1NightSky()
+    {
+        _situationCaseName = "ParkIan1NightSky";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.parkIan1NightSkyDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void ParkIan3Exercise()
+    {
+        _situationCaseName = "ParkIan3Exercise";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.parkIan3ExerciseDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void ParkIan3Walk()
+    {
+        _situationCaseName = "ParkIan3Walk";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.parkIan3WalkDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void ParkIan5LookFlower()
+    {
+        _situationCaseName = "ParkIan5LookFlower";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.parkIan5LookFlowerDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void ParkIan5Rest()
+    {
+        _situationCaseName = "ParkIan5Rest";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.parkIan5RestDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void ParkNoa1Dog()
+    {
+        _situationCaseName = "ParkNoa1Dog";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.parkNoa1DogDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void ParkNoa1Bird()
+    {
+        _situationCaseName = "ParkNoa1Bird";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.parkNoa1BirdDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void ParkNoa1Select()
+    {
+        _situationCaseName = "ParkNoa1Select";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 0;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.parkNoa1SelectDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void ParkNoa3CuriosityPeople()
+    {
+        _situationCaseName = "ParkNoa3CuriosityPeople";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.parkNoa3CuriosityPeopleDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void ParkNoa3StupidPeople()
+    {
+        _situationCaseName = "ParkNoa3StupidPeople";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.parkNoa3StupidPeopleDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void ParkNoa3Select()
+    {
+        _situationCaseName = "ParkNoa3Select";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.parkNoa3SelectDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void ParkAustin2TogetherFind()
+    {
+        _situationCaseName = "ParkAustin2TogetherFind";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 0;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.parkAustin2TogetherFindDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void ParkAustin2Chasing()
+    {
+        _situationCaseName = "ParkAustin2Chasing";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.parkAustin2ChasingDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void ParkAustin3Friend()
+    {
+        _situationCaseName = "ParkAustin3Friend";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 0;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.parkAustin3FriendDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void ParkAustin3Stay()
+    {
+        _situationCaseName = "ParkAustin3Stay";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.parkAustin3StayDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void ParkAustin3Select()
+    {
+        _situationCaseName = "ParkAustin3Select";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 0;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.parkAustin3SelectDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
     }
 }

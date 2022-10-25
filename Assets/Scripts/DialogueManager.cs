@@ -53,6 +53,9 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private AudioClip wristAudio;
     [SerializeField] private AudioClip shopBellAudio;
     [SerializeField] private AudioClip musicBox2Audio;
+    [SerializeField] private AudioClip horseAudio;
+    [SerializeField] private AudioClip catAudio;
+    [SerializeField] private AudioClip littleBirdAudio;
     
     public AudioSource typeSound;
 
@@ -78,7 +81,7 @@ public class DialogueManager : MonoBehaviour
     
     public int count;
 
-    private float textDelay = 0.02f;
+    private float textDelay = 0.015f;
     private float _time;
     private float _currentFadeTime = 1f;
     
@@ -428,7 +431,184 @@ public class DialogueManager : MonoBehaviour
                 StartCoroutine(FadeRightTown(12, 14, DialogueTxt.Instance.townAustin4NextDialogue, "TownAustin4Next", 0));
                 break;
             case "TownAustin4Next":
+                SettingUI.Instance.SettingSfxSound(shopBellAudio);
+                StartCoroutine(FadeRightTown(4, 13, DialogueTxt.Instance.townAustin4OutStoreDialogue, "TownAustin4OutStore", 0));
+                break;
+            case "TownAustin4OutStore":
                 StartCoroutine(FadeInfo(3));
+                break;
+            case "RestaurantIan1":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.restaurantIan1Dialogue.sentences[7] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowTwoChoice(9);
+                break;
+            case "RestaurantIan1EatWell":
+                CheckIsAddIanHeart();
+                break;
+            case "RestaurantIan1QuestionEat":
+                CheckIsAddIanHeart();
+                break;
+            case "RestaurantIan2":
+                StartCoroutine(FadeInfo(1));
+                break;
+            case "RestaurantNoa1":
+                StartCoroutine(FadeInfo(2));
+                break;
+            case "RestaurantNoa2":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.restaurantNoa2Dialogue.sentences[15] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowTwoChoice(10);
+                break;
+            case "RestaurantNoa2Good":
+                DailyRoutine.Instance.RestaurantNoa2Select();
+                break;
+            case "RestaurantNoa2Perfect":
+                DailyRoutine.Instance.RestaurantNoa2Select();
+                break;
+            case "RestaurantNoa2Select":
+                CheckIsAddNoaHeart();
+                break;
+            case "RestaurantNoa3":
+                SettingUI.Instance.SettingSfxSound(doorAudio);
+                StartCoroutine(FadeRightTown(14, 7, DialogueTxt.Instance.restaurantNoa3NextDialogue, "RestaurantNoa3Next", 0));
+                break;
+            case "RestaurantNoa3Next":
+                StartCoroutine(FadeInfo(2));
+                break;
+            case "RestaurantAustin1":
+                StartCoroutine(FadeInfo(3));
+                break;
+            case "RestaurantAustin2":
+                SettingUI.Instance.SettingSfxSound(doorAudio);
+                StartCoroutine(FadeRightTown(6, 16, DialogueTxt.Instance.restaurantAustin2NextDialogue, "RestaurantAustin2Next", 0));
+                break;
+            case "RestaurantAustin2Next":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.restaurantAustin2NextDialogue.sentences[11] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowTwoChoice(11);
+                break;
+            case "RestaurantAustin2Copy":
+                DailyRoutine.Instance.RestaurantAustin2Select();
+                break;
+            case "RestaurantAustin2Wait":
+                DailyRoutine.Instance.RestaurantAustin2Select();
+                break;
+            case "RestaurantAustin2Select":
+                CheckIsAddAustinHeart();
+                break;
+            case "ParkIan1":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.parkIan1Dialogue.sentences[9] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowTwoChoice(12);
+                break;
+            case "ParkIan1Plants":
+                CheckIsAddIanHeart();
+                break;
+            case "ParkIan1NightSky":
+                CheckIsAddIanHeart();
+                break;
+            case "ParkIan2":
+                StartCoroutine(FadeInfo(1));
+                break;
+            case "ParkIan3":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.parkIan3Dialogue.sentences[14] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowTwoChoice(13);
+                break;
+            case "ParkIan3Exercise":
+                CheckIsAddIanHeart();
+                break;
+            case "ParkIan3Walk":
+                DailyRoutine.Instance.ParkIan3Exercise();
+                break;
+            case "ParkIan4":
+                StartCoroutine(FadeInfo(1));
+                break;
+            case "ParkIan5":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.parkIan5Dialogue.sentences[5] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowTwoChoice(14);
+                break;
+            case "ParkIan5LookFlower":
+                CheckIsAddIanHeart();
+                break;
+            case "ParkIan5Rest":
+                CheckIsAddIanHeart();
+                break;
+            case "ParkNoa1":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.parkNoa1Dialogue.sentences[12] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowTwoChoice(15);
+                break;
+            case "ParkNoa1Dog":
+                DailyRoutine.Instance.ParkNoa1Select();
+                break;
+            case "ParkNoa1Bird":
+                DailyRoutine.Instance.ParkNoa1Select();
+                break;
+            case "ParkNoa1Select":
+                CheckIsAddNoaHeart();
+                break;
+            case "ParkNoa2":
+                StartCoroutine(FadeInfo(2));
+                break;
+            case "ParkNoa3":
+                if (PlayerPrefs.HasKey("PlayerName").Equals(true))
+                {
+                    string playerName = PlayerPrefs.GetString("PlayerName");
+                
+                    DialogueTxt.Instance.parkNoa3Dialogue.sentences[5] = DialogueTxt.Instance.parkNoa3Dialogue.sentences[5].Replace("[플레이어]", playerName);
+                }
+                choiceTxt.text = "[ " + DialogueTxt.Instance.parkNoa3Dialogue.sentences[5] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowTwoChoice(16);
+                break;
+            case "ParkNoa3CuriosityPeople":
+                DailyRoutine.Instance.ParkNoa3Select();
+                break;
+            case "ParkNoa3StupidPeople":
+                DailyRoutine.Instance.ParkNoa3Select();
+                break;
+            case "ParkNoa3Select":
+                CheckIsAddNoaHeart();
+                break;
+            case "ParkAustin1":
+                StartCoroutine(FadeInfo(3));
+                break;
+            case "ParkAustin2":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.parkAustin2Dialogue.sentences[4] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowTwoChoice(17);
+                break;
+            case "ParkAustin2TogetherFind":
+                DailyRoutine.Instance.ParkAustin2Chasing();
+                break;
+            case "ParkAustin2Chasing":
+                CheckIsAddAustinHeart();
+                break;
+            case "ParkAustin3":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.parkAustin3Dialogue.sentences[6] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowTwoChoice(18);
+                break;
+            case "ParkAustin3Friend":
+                DailyRoutine.Instance.ParkAustin3Select();
+                break;
+            case "ParkAustin3Stay":
+                DailyRoutine.Instance.ParkAustin3Select();
+                break;
+            case "ParkAustin3Select":
+                CheckIsAddAustinHeart();
                 break;
         }
     }
@@ -488,6 +668,8 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(FadeDate(tutorialUIGo));
     }
 
+    private bool _isPlayAnim;
+
     private IEnumerator StartDialogueCoroutine(string situationCase)
     {
         if (count > 0)
@@ -504,30 +686,18 @@ public class DialogueManager : MonoBehaviour
 
                 if (_isOpeningSkip.Equals(false))
                 {
-                    if (situationCase.Equals("Tutorial"))
+                    _isPlayAnim = false;
+                    
+                    switch (situationCase)
                     {
-                        if (count == 29)
-                        {
-                            yield return _yieldCharterChangeDelay;
-                            dialogueWindow.sprite = _listDialogueWindows[count];
-                            charterImage.sprite = _listCharters[count];
-                        }
-                        else
-                        {
-                            charterAnimator.SetBool("IsAlpha", true); 
-                            yield return _yieldCharterChangeDelay;
-                            ChangeWindowImage();
-                        }
-                    }
-                    else if (situationCase.Equals("ValetCall"))
-                    {
-                        if (count == 1)
-                        {
-                            if (_isBuyDialogueEnd.Equals(true))
+                        case "Tutorial":
+                            _isPlayAnim = true;
+                            
+                            if (count == 29)
                             {
                                 yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
                                 charterImage.sprite = _listCharters[count];
-                                _isBuyDialogueEnd = false;
                             }
                             else
                             {
@@ -535,90 +705,179 @@ public class DialogueManager : MonoBehaviour
                                 yield return _yieldCharterChangeDelay;
                                 ChangeWindowImage();
                             }
-                        }
-                        else
-                        {
-                            charterAnimator.SetBool("IsAlpha", true);
-                            yield return _yieldCharterChangeDelay;
-                            ChangeWindowImage();
-                        }
+                            break;
+                        case "ValetCall":
+                            _isPlayAnim = true;
+                            
+                            if (count == 1)
+                            {
+                                if (_isBuyDialogueEnd.Equals(true))
+                                {
+                                    yield return _yieldCharterChangeDelay;
+                                    charterImage.sprite = _listCharters[count];
+                                    _isBuyDialogueEnd = false;
+                                }
+                                else
+                                {
+                                    charterAnimator.SetBool("IsAlpha", true); 
+                                    yield return _yieldCharterChangeDelay;
+                                    ChangeWindowImage();
+                                }
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "FirstNoa":
+                            _isPlayAnim = true;
+                            
+                            if (count == 36)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "FirstAustin":
+                            _isPlayAnim = true;
+                            
+                            if (count == 18)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "TownIan4":
+                            _isPlayAnim = true;
+                            
+                            if (count == 5)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "TownNoa3":
+                            _isPlayAnim = true;
+                            
+                            if (count == 6)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "TownAustin2":
+                            _isPlayAnim = true;
+                            
+                            if (count == 4)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "RestaurantNoa2":
+                            _isPlayAnim = true;
+                            
+                            if (count == 2)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "RestaurantNoa3":
+                            _isPlayAnim = true;
+                            
+                            if (count == 13)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "ParkIan4":
+                            _isPlayAnim = true;
+                            
+                            if (count == 24)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "ParkNoa2":
+                            _isPlayAnim = true;
+                            
+                            if (count == 16)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
                     }
-                    else if (situationCase.Equals("FirstNoa"))
-                    {
-                        if (count == 36)
-                        {
-                            yield return _yieldCharterChangeDelay;
-                            dialogueWindow.sprite = _listDialogueWindows[count];
-                            charterImage.sprite = _listCharters[count];
-                        }
-                        else
-                        {
-                            charterAnimator.SetBool("IsAlpha", true);
-                            yield return _yieldCharterChangeDelay;
-                            ChangeWindowImage();
-                        }
-                    }
-                    else if (situationCase.Equals("FirstAustin"))
-                    {
-                        if (count == 18)
-                        {
-                            yield return _yieldCharterChangeDelay;
-                            dialogueWindow.sprite = _listDialogueWindows[count];
-                            charterImage.sprite = _listCharters[count];
-                        }
-                        else
-                        {
-                            charterAnimator.SetBool("IsAlpha", true);
-                            yield return _yieldCharterChangeDelay;
-                            ChangeWindowImage();
-                        }
-                    }
-                    else if (situationCase.Equals("TownIan4"))
-                    {
-                        if (count == 5)
-                        {
-                            yield return _yieldCharterChangeDelay;
-                            dialogueWindow.sprite = _listDialogueWindows[count];
-                            charterImage.sprite = _listCharters[count];
-                        }
-                        else
-                        {
-                            charterAnimator.SetBool("IsAlpha", true);
-                            yield return _yieldCharterChangeDelay;
-                            ChangeWindowImage();
-                        }
-                    }
-                    else if (situationCase.Equals("TownNoa3"))
-                    {
-                        if (count == 6)
-                        {
-                            yield return _yieldCharterChangeDelay;
-                            dialogueWindow.sprite = _listDialogueWindows[count];
-                            charterImage.sprite = _listCharters[count];
-                        }
-                        else
-                        {
-                            charterAnimator.SetBool("IsAlpha", true);
-                            yield return _yieldCharterChangeDelay;
-                            ChangeWindowImage();
-                        }
-                    }
-                    else if (situationCase.Equals("TownAustin2"))
-                    {
-                        if (count == 4)
-                        {
-                            yield return _yieldCharterChangeDelay;
-                            dialogueWindow.sprite = _listDialogueWindows[count];
-                            charterImage.sprite = _listCharters[count];
-                        }
-                        else
-                        {
-                            charterAnimator.SetBool("IsAlpha", true);
-                            yield return _yieldCharterChangeDelay;
-                            ChangeWindowImage();
-                        }
-                    }
-                    else
+                   
+                    if (_isPlayAnim.Equals(false))
                     {
                         charterAnimator.SetBool("IsAlpha", true); 
                         yield return _yieldCharterChangeDelay;
@@ -661,7 +920,7 @@ public class DialogueManager : MonoBehaviour
                     inputFiledGo.SetActive(true);
                     nameSelectImageGo.SetActive(true);
                 }
-
+                
                 // 이름에 Valet가 들어가면 아래 코드 실행
                 if (_listCharters[count].name.Contains("Valet").Equals(true))
                 {
@@ -671,26 +930,6 @@ public class DialogueManager : MonoBehaviour
                 else if (_listCharters[count].name.Contains("Girl").Equals(true))
                 {
                     charterName.text = PlayerPrefs.GetString("PlayerName");
-                }
-                else if (_listCharters[count].name.Contains("Dealer").Equals(true))
-                {
-                    charterName.text = "행상인";
-                }
-                else if (_listCharters[count].name.Contains("Aide").Equals(true))
-                {
-                    charterName.text = "보좌관";
-                }
-                else if (_listCharters[count].name.Contains("Clerk").Equals(true))
-                {
-                    charterName.text = "점원";
-                }
-                else if (_listCharters[count].name.Contains("Man1").Equals(true))
-                {
-                    charterName.text = "덩치 큰 남자";
-                }
-                else if (_listCharters[count].name.Contains("HorseMan").Equals(true))
-                {
-                    charterName.text = "마부";
                 }
                 else if (_listCharters[count].name.Contains("IAN").Equals(true))
                 {
@@ -713,6 +952,77 @@ public class DialogueManager : MonoBehaviour
                     charterName.text = "";
                 }
 
+                // string 
+                switch (situationCase)
+                {
+                    case "CallPeddler":
+                        if (_listCharters[count].name.Contains("Dealer").Equals(true))
+                        {
+                            charterName.text = "행상인";
+                        }
+                        break;
+                    case "BuyPotion":
+                        if (_listCharters[count].name.Contains("Dealer").Equals(true))
+                        {
+                            charterName.text = "행상인";
+                        }
+                        break;
+                    case "BuyChoco":
+                        if (_listCharters[count].name.Contains("Dealer").Equals(true))
+                        {
+                            charterName.text = "행상인";
+                        }
+                        break;
+                    case "CancelShowUI":
+                        if (_listCharters[count].name.Contains("Dealer").Equals(true))
+                        {
+                            charterName.text = "행상인";
+                        }
+                        break;
+                    case "FirstIan":
+                        if (_listCharters[count].name.Contains("Aide").Equals(true))
+                        {
+                            charterName.text = "보좌관";
+                        }
+                        break;
+                    case "TownNoa1":
+                        if (_listCharters[count].name.Contains("Man1").Equals(true))
+                        {
+                            charterName.text = "덩치 큰 남자";
+                        }
+                        break;  
+                    case "TownNoa2Next":
+                        if (_listCharters[count].name.Contains("Clerk").Equals(true))
+                        {
+                            charterName.text = "점원";
+                        }
+                        break;
+                    case "TownNoa3":
+                        if (_listCharters[count].name.Contains("HorseMan").Equals(true))
+                        {
+                            charterName.text = "마부";
+                        }
+                        break;
+                    case "ParkIan2":
+                        if (_listCharters[count].name.Contains("Child1").Equals(true))
+                        {
+                            charterName.text = "꼬마아이";
+                        }
+                        break;
+                    case "ParkNoa2":
+                        if (_listCharters[count].name.Contains("Man4").Equals(true))
+                        {
+                            charterName.text = "지한";
+                        }
+                        break;
+                    case "ParkAustin3":
+                        if (_listCharters[count].name.Contains("Child2").Equals(true))
+                        {
+                            charterName.text = "아이";
+                        }
+                        break;
+                }
+
                 switch (situationCase)
                     {
                         case "Tutorial":
@@ -724,7 +1034,7 @@ public class DialogueManager : MonoBehaviour
                         case "Cultivation":
                             if (count == 2)
                             {
-                                _randomCultivation = UnityEngine.Random.Range(0, 6);
+                                _randomCultivation = UnityEngine.Random.Range(0, 12);
 
                                 switch (_randomCultivation)
                                 {
@@ -735,16 +1045,34 @@ public class DialogueManager : MonoBehaviour
                                         _listSentences[3] = "오늘은 집사와 함께 황실 예법을 공부하며 시간을 보냈다.";
                                         break;
                                     case 2:
-                                        _listSentences[3] = "이후 해가 질 때까지 도서관에서 다양한 책을 읽으며 시간을 보냈다.";
+                                        _listSentences[3] = "집사가 돌아간 뒤 수도에서 유명하다고 소문이 난 연극들을 밤 새 찾아보았다.";
                                         break;
                                     case 3:
-                                        _listSentences[3] = "이후 발이 저릴 때까지 춤을 연습하고 나니 하루가 지나있었다.";
+                                        _listSentences[3] = "이후 피아노 실력을 기르기 위해 연습을 하다보니 하루가 지나있었다.";
                                         break;
                                     case 4:
-                                        _listSentences[3] = "이후 살롱 마담에게 카탈로그를 부탁해 최신 유행하는 드레스를 구경하며 안목을 길렀다.";
+                                        _listSentences[3] = "이후 해가 질 때까지 도서관에서 다양한 책을 읽으며 시간을 보냈다.";
                                         break;
                                     case 5:
+                                        _listSentences[3] = "이후 발이 저릴 때까지 춤을 연습하고 나니 하루가 지나있었다.";
+                                        break;
+                                    case 6:
+                                        _listSentences[3] = "이후 요즘 사교계에서 유행중인 노래와 작곡에 대해 공부하며 하루를 보냈다.";
+                                        break;
+                                    case 7:
+                                        _listSentences[3] = "최근 사교계에서 유행하는 화풍에 대하여 공부하며 하루를 보냈다.";
+                                        break;
+                                    case 8:
+                                        _listSentences[3] = "이후 살롱 마담에게 카탈로그를 부탁해 최신 유행하는 드레스를 구경하며 안목을 길렀다.";
+                                        break;
+                                    case 9:
                                         _listSentences[3] = "사교계 행사에 대비하여 예의 있게 욕하는 방법을 배우며 하루를 보냈다.";
+                                        break;
+                                    case 10:
+                                        _listSentences[3] = "오늘은 집사와 함께 다도 예절을 익히며 시간을 보냈다.";
+                                        break;
+                                    case 11:
+                                        _listSentences[3] = "오늘은 성공적인 백작가 운영을 위해 귀족들의 사업 수단을 분석하며 시간을 보냈다.";
                                         break;
                                 }
                             }
@@ -940,6 +1268,95 @@ public class DialogueManager : MonoBehaviour
                                     break;
                             }   
                             break;
+                        case "RestaurantIan2":
+                            switch (count)
+                            {
+                                case 3:
+                                    charterName.text = "";
+                                    break;
+                            }   
+                            break;
+                        case "RestaurantNoa1":
+                            switch (count)
+                            {
+                                case 9:
+                                    charterName.text = "";
+                                    break;
+                            }   
+                            break;
+                        case "RestaurantNoa2":
+                            switch (count)
+                            {
+                                case 1:
+                                    charterName.text = "";
+                                    break;
+                            }   
+                            break;
+                        case "RestaurantNoa3":
+                            switch (count)
+                            {
+                                case 12:
+                                    charterName.text = "";
+                                    break;
+                                case 15:
+                                    charterName.text = "";
+                                    break;
+                            }   
+                            break;
+                        case "ParkIan3":
+                            switch (count)
+                            {
+                                case 3:
+                                    SettingUI.Instance.SettingSfxSound(horseAudio);
+                                    break;
+                            }   
+                            break;
+                        case "ParkIan3Exercise":
+                            switch (count)
+                            {
+                                case 6:
+                                    charterName.text = "";
+                                    break;
+                            }   
+                            break;
+                        case "ParkIan4":
+                            switch (count)
+                            {
+                                case 1:
+                                    charterName.text = "";
+                                    break;
+                                case 24:
+                                    charterName.text = "";
+                                    break;
+                            }   
+                            break;
+                        case "ParkNoa1Select":
+                            switch (count)
+                            {
+                                case 4:
+                                    SettingUI.Instance.SettingSfxSound(catAudio);
+                                    break;
+                            }   
+                            break;
+                        case "ParkNoa2":
+                            switch (count)
+                            {
+                                case 6:
+                                    Handheld.Vibrate();
+                                    break;
+                                case 15:
+                                    charterName.text = "";
+                                    break;
+                            }   
+                            break;
+                        case "ParkAustin2Chasing":
+                            switch (count)
+                            {
+                                case 7:
+                                    charterName.text = "";
+                                    break;
+                            }   
+                            break;
                     }
 
                 if (_listDialogueWindows[count].name.Contains("Think_Box").Equals(true))
@@ -1057,6 +1474,54 @@ public class DialogueManager : MonoBehaviour
                                 yield return _yieldCharterChangeDelay;
                                 charterImage.sprite = _listCharters[count];
                                 break;
+                            case "RestaurantIan2":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "RestaurantNoa3Next":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "RestaurantAustin1":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "ParkIan1":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "ParkIan1Plants":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "ParkIan3":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "ParkIan3Exercise":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "ParkIan3Walk":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "ParkIan4":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "ParkNoa1Select":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "ParkAustin1":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "ParkAustin2Chasing":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
                         }
                     }
                     else
@@ -1077,6 +1542,13 @@ public class DialogueManager : MonoBehaviour
         else
         {
             charterImage.sprite = _listCharters[count];
+
+            switch (situationCase)
+            {
+                case "ParkAustin2":
+                    SettingUI.Instance.SettingSfxSound(littleBirdAudio);
+                    break;
+            }
         }
 
         for (int i = 0; i < _listSentences[count].Length; i++)
@@ -1168,7 +1640,7 @@ public class DialogueManager : MonoBehaviour
         {
             if (_isTalk.Equals(true) && _clickActivated.Equals(true))
             {
-                textDelay = 0.02f;
+                textDelay = 0.015f;
                 _clickActivated = false;
                 txtBtnImageGo.SetActive(false);
                 count++;
@@ -1349,6 +1821,7 @@ public class DialogueManager : MonoBehaviour
         yield return _yieldAnimDelay;
 
         AddDate();
+        SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
         StartFadeData();
         
         LobbyManager.Instance.ResetLobbyUI();
@@ -1394,6 +1867,8 @@ public class DialogueManager : MonoBehaviour
     {
         dataImage.gameObject.SetActive(true);
         
+        SettingUI.Instance.SettingBgmSound(tutorialBgm);
+        
         _time = 0f;
         
         Color alpha = dataImage.color;
@@ -1431,9 +1906,7 @@ public class DialogueManager : MonoBehaviour
         }
         
         WorldManager.Instance.ResetTxtBox();
-        
-        SettingUI.Instance.SettingBgmSound(tutorialBgm);
-        
+
         dataImage.gameObject.SetActive(false);
         
         yield return null;
