@@ -238,6 +238,58 @@ public class ChoiceManager : MonoBehaviour
                 DailyRoutine.Instance.ParkAustin3Stay();
                 break;
             #endregion
+            #region 해변
+            // 이안 별을 보러 이동한다
+            case 57:
+                isAddIanHeart = true;
+                DailyRoutine.Instance.BeachIan2LookStar();
+                break;
+            // 이안 별이 잘 보이는 장소로 안내한다
+            case 58:
+                isAddIanHeart = false;
+                DailyRoutine.Instance.BeachIan2GuideStar();
+                break;
+            // 노아 내일부터 보낸다고 한다
+            case 60:
+                isAddIanHeart = false;
+                DailyRoutine.Instance.BeachNoa2TomorrowSend();
+                break;
+            // 노아 생각날 때 보낸다고 한다
+            case 61:
+                isAddIanHeart = true;
+                DailyRoutine.Instance.BeachNoa2ThinkSend();
+                break;
+            // 아스틴 자는 척한다
+            case 63:
+                isAddIanHeart = false;
+                DailyRoutine.Instance.BeachAustin2Sleep();
+                break;
+            // 아스틴 눈을 뜬다
+            case 64:
+                isAddIanHeart = true;
+                DailyRoutine.Instance.BeachAustin2OpenEye();
+                break;
+            // 노아 화낸다
+            case 66:
+                isAddIanHeart = true;
+                DailyRoutine.Instance.GalleryNoa2Anger();
+                break;
+            // 노아 봐준다
+            case 67:
+                isAddIanHeart = false;
+                DailyRoutine.Instance.GalleryNoa2Ignore();
+                break;
+            // 아스틴 슬쩍 빠져나온다
+            case 69:
+                isAddIanHeart = true;
+                DailyRoutine.Instance.GalleryAustin1ComingOut();
+                break;
+            // 아스틴 놓아줄 때까지 즐긴다
+            case 70:
+                isAddIanHeart = false;
+                DailyRoutine.Instance.GalleryAustin1Enjoy();
+                break;
+            #endregion
         }
     }
 

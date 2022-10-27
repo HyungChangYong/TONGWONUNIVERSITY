@@ -282,7 +282,7 @@ public class DailyRoutine : MonoBehaviour
     private void SettingSituationCase()
     {
         _whoCharacterNum = UnityEngine.Random.Range(0, 3);
-        
+
         // 특정 캐릭터 호감도 높음
         if (LobbyManager.Instance.nowHeart[_whoCharacterNum + 1] >= 25)
         {
@@ -494,6 +494,55 @@ public class DailyRoutine : MonoBehaviour
                 }
                 break;
             # endregion
+            #region 해변
+            case 5:
+                // 호감도 낮음 경우
+                if (_isFriendliness.Equals(false))
+                {
+                    // 이안 
+                    if (_whoCharacterNum == 0)
+                    {
+                        SettingSituationCaseDialogue(27, DialogueTxt.Instance.beachIan1Dialogue, "BeachIan1", 0);
+                    }
+                    // 노아
+                    else if (_whoCharacterNum == 1)
+                    {
+                        _placeUISprite = placeUISprite[17];
+                        
+                        SettingSituationCaseDialogue(6, DialogueTxt.Instance.beachNoa1Dialogue, "BeachNoa1", 0);
+                    }
+                    // 아스틴 
+                    else if (_whoCharacterNum == 2)
+                    {
+                        SettingSituationCaseDialogue(29, DialogueTxt.Instance.beachAustin1Dialogue, "BeachAustin1", 0);
+                    }
+                }
+                else
+                {
+                    // 이안 
+                    if (_whoCharacterNum == 0)
+                    {
+                        _placeUISprite = placeUISprite[16];
+                        
+                        SettingSituationCaseDialogue(28, DialogueTxt.Instance.beachIan2Dialogue, "BeachIan2", 0);
+                    }
+                    // 노아
+                    else if (_whoCharacterNum == 1)
+                    {
+                        _placeUISprite = placeUISprite[19];
+                        
+                        SettingSituationCaseDialogue(28, DialogueTxt.Instance.beachNoa2Dialogue, "BeachNoa2", 0);
+                    }
+                    // 아스틴
+                    else if (_whoCharacterNum == 2)
+                    {
+                        _placeUISprite = placeUISprite[19];
+                        
+                        SettingSituationCaseDialogue(30, DialogueTxt.Instance.beachAustin2Dialogue, "BeachAustin2", 0);
+                    }
+                }
+                break;
+            #endregion
             # region 레스토랑
             case 6:
                 // 호감도 낮음 경우
@@ -549,6 +598,49 @@ public class DailyRoutine : MonoBehaviour
                 }
                 break;
             # endregion
+            #region 미술관
+            case 7:
+                // 호감도 낮음 경우
+                if (_isFriendliness.Equals(false))
+                {
+                    // 이안 
+                    if (_whoCharacterNum == 0)
+                    {
+                        SettingSituationCaseDialogue(31, DialogueTxt.Instance.galleryIan1Dialogue, "GalleryIan1", 0);
+                    }
+                    // 노아
+                    else if (_whoCharacterNum == 1)
+                    {
+                        SettingSituationCaseDialogue(35, DialogueTxt.Instance.galleryNoa1Dialogue, "GalleryNoa1", 0);
+                    }
+                    // 아스틴 
+                    else if (_whoCharacterNum == 2)
+                    {
+                        _placeUISprite = placeUISprite[20];
+                      
+                        SettingSituationCaseDialogue(32, DialogueTxt.Instance.galleryAustin1Dialogue, "GalleryAustin1", 0);
+                    }
+                }
+                else
+                {
+                    // 이안 
+                    if (_whoCharacterNum == 0)
+                    {
+                        SettingSituationCaseDialogue(31, DialogueTxt.Instance.galleryIan1Dialogue, "GalleryIan1", 0);
+                    }
+                    // 노아
+                    else if (_whoCharacterNum == 1)
+                    {
+                        SettingSituationCaseDialogue(33, DialogueTxt.Instance.galleryNoa2Dialogue, "GalleryNoa2", 1);
+                    }
+                    // 아스틴
+                    else if (_whoCharacterNum == 2)
+                    {
+                        SettingSituationCaseDialogue(34, DialogueTxt.Instance.galleryAustin2Dialogue, "GalleryAustin2", 0);
+                    }
+                }
+                break;
+            #endregion
         }
     }
 
@@ -997,5 +1089,155 @@ public class DailyRoutine : MonoBehaviour
         
         DialogueManager.Instance.count = 0;
         DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.parkAustin3SelectDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void BeachIan2LookStar()
+    {
+        _situationCaseName = "BeachIan2LookStar";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.beachIan2LookStarDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void BeachIan2GuideStar()
+    {
+        _situationCaseName = "BeachIan2GuideStar";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 0;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.beachIan2GuideStarDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void BeachIan2Select()
+    {
+        _situationCaseName = "BeachIan2Select";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.beachIan2SelectDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void BeachNoa2TomorrowSend()
+    {
+        _situationCaseName = "BeachNoa2TomorrowSend";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 0;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.beachNoa2TomorrowSendDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void BeachNoa2ThinkSend()
+    {
+        _situationCaseName = "BeachNoa2ThinkSend";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 0;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.beachNoa2ThinkSendDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+
+    public void BeachNoa2Select()
+    {
+        _situationCaseName = "BeachNoa2Select";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.beachNoa2SelectDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void BeachAustin2Sleep()
+    {
+        _situationCaseName = "BeachAustin2Sleep";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.beachAustin2SleepDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+   
+    public void BeachAustin2OpenEye()
+    {
+        _situationCaseName = "BeachAustin2OpenEye";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.beachAustin2OpenEyeDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void BeachAustin2Select()
+    {
+        _situationCaseName = "BeachAustin2Select";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.beachAustin2SelectDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void GalleryNoa2Anger()
+    {
+        _situationCaseName = "GalleryNoa2Anger";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.galleryNoa2AngerDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void GalleryNoa2Ignore()
+    {
+        _situationCaseName = "GalleryNoa2Ignore";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.galleryNoa2IgnoreDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+
+    public void GalleryNoa2Select()
+    {
+        _situationCaseName = "GalleryNoa2Select";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.galleryNoa2SelectDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void GalleryAustin1ComingOut()
+    {
+        _situationCaseName = "GalleryAustin1ComingOut";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.galleryAustin1ComingOutDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void GalleryAustin1Enjoy()
+    {
+        _situationCaseName = "GalleryAustin1Enjoy";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.galleryAustin1EnjoyDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+
+    public void GalleryAustin1Select()
+    {
+        _situationCaseName = "GalleryAustin1Select";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 0;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.galleryAustin1SelectDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
     }
 }

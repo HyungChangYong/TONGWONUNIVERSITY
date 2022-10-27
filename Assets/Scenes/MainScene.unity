@@ -809,6 +809,81 @@ MonoBehaviour:
   touchToStartTxt: {fileID: 1676137819}
   startAudio: {fileID: 8300000, guid: e350738e4ecf94241969545a90ef37d2, type: 3}
   clickAudio: {fileID: 8300000, guid: 1775fd4d351529f42bb887c761ad3b5e, type: 3}
+--- !u!1 &47068364
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 47068365}
+  - component: {fileID: 47068367}
+  - component: {fileID: 47068366}
+  m_Layer: 5
+  m_Name: DarkImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &47068365
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47068364}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 419767730}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -1565, y: 0}
+  m_SizeDelta: {x: 2048, y: 1920}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &47068366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47068364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 18dcb273443f898438d307181b71caea, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 0
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &47068367
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47068364}
+  m_CullTransparentMesh: 1
 --- !u!1 &58640474
 GameObject:
   m_ObjectHideFlags: 0
@@ -1298,6 +1373,21 @@ MonoBehaviour:
   - "\uAC1C\uC218\uB97C \uB9DE\uCD94\uAE30 \uC790\uB9AC"
   - "\uCE5C\uAD6C\uB77C\uACE0 \uD55C\uB2E4"
   - "\uB300\uB2F5\uD558\uC9C0 \uC54A\uB294\uB2E4"
+  - "\uAC1C\uC218\uB97C \uB9DE\uCD94\uAE30 \uC790\uB9AC"
+  - "\uBCC4\uC744 \uBCF4\uB7EC \uC774\uB3D9\uD55C\uB2E4"
+  - "\uBCC4\uC774 \uC798 \uBCF4\uC774\uB294 \uC7A5\uC18C\uB85C \uC548\uB0B4\uD55C\uB2E4"
+  - "\uAC1C\uC218\uB97C \uB9DE\uCD94\uAE30 \uC790\uB9AC"
+  - "\uB0B4\uC77C\uBD80\uD130 \uBCF4\uB0B8\uB2E4\uACE0 \uD55C\uB2E4"
+  - "\uC0DD\uAC01\uB0A0 \uB54C \uBCF4\uB0B8\uB2E4\uACE0 \uD55C\uB2E4"
+  - "\uAC1C\uC218\uB97C \uB9DE\uCD94\uAE30 \uC790\uB9AC"
+  - "\uC790\uB294 \uCC99\uD55C\uB2E4"
+  - "\uB208\uC744 \uB72C\uB2E4"
+  - "\uAC1C\uC218\uB97C \uB9DE\uCD94\uAE30 \uC790\uB9AC"
+  - "\uD654\uB0B8\uB2E4"
+  - "\uBD10\uC900\uB2E4"
+  - "\uAC1C\uC218\uB97C \uB9DE\uCD94\uAE30 \uC790\uB9AC"
+  - "\uC2AC\uCA4D \uBE60\uC838\uB098\uC628\uB2E4"
+  - "\uB193\uC544\uC904 \uB54C\uAE4C\uC9C0 \uC990\uAE34\uB2E4"
   choiceTxt:
   - {fileID: 291881296}
   - {fileID: 1370954868}
@@ -4288,6 +4378,81 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 322700430}
+  m_CullTransparentMesh: 1
+--- !u!1 &328186820
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 328186821}
+  - component: {fileID: 328186823}
+  - component: {fileID: 328186822}
+  m_Layer: 5
+  m_Name: DarkImage (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &328186821
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328186820}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 419767730}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -57, y: 1498}
+  m_SizeDelta: {x: 1080, y: 1920}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &328186822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328186820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 18dcb273443f898438d307181b71caea, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 0
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &328186823
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328186820}
   m_CullTransparentMesh: 1
 --- !u!1 &331284802
 GameObject:
@@ -9788,6 +9953,45 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1 &419767729
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 419767730}
+  m_Layer: 5
+  m_Name: DarkImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &419767730
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419767729}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1145218474}
+  - {fileID: 47068365}
+  - {fileID: 328186821}
+  - {fileID: 437945542}
+  m_Father: {fileID: 1264488160}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &424828736
 GameObject:
   m_ObjectHideFlags: 0
@@ -9996,6 +10200,81 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 427989152}
+  m_CullTransparentMesh: 1
+--- !u!1 &437945541
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 437945542}
+  - component: {fileID: 437945544}
+  - component: {fileID: 437945543}
+  m_Layer: 5
+  m_Name: DarkImage (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &437945542
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437945541}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 419767730}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -57, y: -1500}
+  m_SizeDelta: {x: 1080, y: 1920}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &437945543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437945541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 18dcb273443f898438d307181b71caea, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 0
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &437945544
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437945541}
   m_CullTransparentMesh: 1
 --- !u!1 &445575692
 GameObject:
@@ -13052,7 +13331,7 @@ MonoBehaviour:
       \uC624\uB974\uACE8\uC5D0 \uC9D1\uC911\uD588\uB2E4."
     - "\uC544, \uC774\uCABD \uC606\uC5D0 \uB2EC\uB9B0 \uC190\uC7A1\uC774\uB3C4 \uD55C
       \uBC88 \uB3CC\uB824\uBCF4\uC2DC\uACA0\uC5B4\uC694?"
-    - "..? \uC190\uC7A1\uC774 \uB9D0\uC785\uB2C8\uAE4C?"
+    - "...? \uC190\uC7A1\uC774 \uB9D0\uC785\uB2C8\uAE4C?"
     - "\uC544\uC2A4\uD2F4\uC740 \uAD81\uAE08\uD55C \uD45C\uC815\uC744 \uC9C0\uC5B4
       \uBCF4\uC774\uBA70 \uC870\uC2EC\uC2A4\uB808 \uC624\uB974\uACE8\uC758 \uC190\uC7A1\uC774\uB97C
       \uC7A1\uC544 \uB3CC\uB9AC\uAE30 \uC2DC\uC791\uD588\uB2E4."
@@ -13156,7 +13435,7 @@ MonoBehaviour:
     sentences:
     - "\uBE48 \uD14D\uC2A4\uD2B8 \uBC15\uC2A4 2\uBC88\uC9F8 \uD14D\uC2A4\uD2B8 \uBD80\uD130
       \uC2DC\uC791"
-    - "\uC9C0\uAE08 \uB4DC\uC2DC\uACE0 \uACC4\uC2E0\uAC74 \uB808\uBABB \uC154\uBC97
+    - "\uC9C0\uAE08 \uB4DC\uC2DC\uACE0 \uACC4\uC2E0 \uAC74 \uB808\uBAAC \uC154\uBC97
       \uC544\uB2CC\uAC00\uC694?"
     - "\uC18C\uACF5\uC791\uB2D8\uC740 \uC2E0 \uAC78 \uC798 \uB4DC\uC2DC\uB098 \uBD10\uC694...!"
     - "\uCD5C\uADFC\uC5D0 \uC990\uACA8\uBA39\uB294 \uC74C\uC2DD\uC774\uB784\uAE4C,
@@ -14399,8 +14678,8 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 7471e1673e586bd4e9270d05ad41c844, type: 3}
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
-    - {fileID: 21300000, guid: eebc4dddd8a65f345a42f982ff9d5c85, type: 3}
-    - {fileID: 21300000, guid: eebc4dddd8a65f345a42f982ff9d5c85, type: 3}
+    - {fileID: 21300000, guid: 42fde94c87e395d4b99040072197d480, type: 3}
+    - {fileID: 21300000, guid: 42fde94c87e395d4b99040072197d480, type: 3}
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     dialogueWindows:
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
@@ -14935,7 +15214,7 @@ MonoBehaviour:
       \uB465\uC9C0\uC640 \uD568\uAED8 \uB5A8\uC5B4\uC838 \uC788\uC5C8\uB2E4."
     - "\uC544\uAE30\uC0C8\uB294 \uC6B8\uC9C0\uB3C4 \uC54A\uACE0 \uCD95 \uB298\uC5B4\uC838
       \uC9C0\uCCD0 \uBCF4\uC600\uB2E4."
-    - "\uB2E4\uD589\uC774 \uC544\uC9C1 \uC0B4\uC544\uC788\uB124\uC694."
+    - "\uB2E4\uD589\uD788 \uC544\uC9C1 \uC0B4\uC544\uC788\uB124\uC694."
     - "\uADF8\uC758 \uAC00\uB290\uB2E4\uB780 \uC190\uAC00\uB77D\uC774 \uC0C8 \uBA38\uB9AC\uC5D0
       \uB2FF\uC790 \uC5BC\uB9C8 \uC9C0\uB098\uC9C0 \uC54A\uC544 \uC544\uAE30 \uC0C8\uAC00
       \uAE30\uB825\uC744 \uD68C\uBCF5\uD588\uB2E4."
@@ -15064,6 +15343,1241 @@ MonoBehaviour:
     charterImages:
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     dialogueWindows:
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+  beachIan1Dialogue:
+    sentences:
+    - "\uC2DC\uC6D0\uD55C \uBC14\uB78C\uACFC \uD568\uAED8 \uD30C\uB3C4\uAC00 \uC77C\uB801\uC778\uB2E4."
+    - "\uBC14\uB2E4 \uD2B9\uC720\uC758 \uD5A5\uAE30\uB97C \uB290\uB07C\uBA70 \uD30C\uB3C4
+      \uC18C\uB9AC\uB97C \uAC10\uC0C1\uD558\uB358 \uC911 \uC775\uC219\uD55C \uBAA9\uC18C\uB9AC\uAC00
+      \uB4E4\uB824\uC654\uB2E4."
+    - "[\uD50C\uB808\uC774\uC5B4] \uC601\uC560, \uC5EC\uAE30\uC11C \uBCF4\uB294 \uAD70."
+    - "\uC544, \uC548\uB155\uD558\uC138\uC694...! \uC18C\uACF5\uC791\uB2D8."
+    - "\uD30C\uB3C4\uAC00 \uBC00\uB824 \uB4E4\uB7EC\uC634\uACFC \uB3D9\uC2DC\uC5D0
+      \uAC15\uD55C \uBC14\uB78C\uC774 \uBD88\uC5B4 \uB098\uC758 \uAE34 \uBA38\uB9AC\uCE74\uB77D\uC774
+      \uD769\uB0A0\uB838\uB2E4."
+    - ...?
+    - "\uB0B4 \uCC29\uAC01\uC77C\uC9C0\uB3C4 \uBAA8\uB974\uC9C0\uB9CC, \uBD88\uC5B4\uC624\uB294
+      \uBC14\uB78C \uD0D3\uC778\uC9C0 \uADF8\uC758 \uD45C\uC815\uC740 \uC870\uAE08
+      \uB180\uB780 \uB4EF \uBCF4\uC600\uB2E4."
+    - "\uC800, \uBB34\uC2A8 \uBB38\uC81C\uB77C\uB3C4 \uC788\uC73C\uC2E0\uAC00\uC694?"
+    - "\uC751?"
+    - "\uC544... \uBCC4\uAC74 \uC544\uB2CC\uB370, [\uD50C\uB808\uC774\uC5B4] \uC601\uC560
+      \uACC1\uC5D0\uC11C\uB294 \uAD49\uC7A5\uD788 \uC88B\uC740 \uD5A5\uAE30\uAC00
+      \uB098\uB294 \uAC83 \uAC19\uC544."
+    - "\uADF8\uB7F0...\uAC00\uC694?"
+    - "\uC751. \uADF8\uAC83\uB3C4 \uAF64 \uB2E8 \uD5A5\uAE30."
+    - "\uBC14\uB78C\uC5D0 \uD5DD\uD074\uC5B4\uC9C4 \uBA38\uB9AC\uB97C \uC815\uB9AC\uD558\uBA70
+      \uBB34\uC2A8 \uD5A5\uC774 \uB098\uB294\uAC00 \uC2F6\uC5B4 \uB9E1\uC544\uBCF4\uC558\uC9C0\uB9CC
+      \uBCC4 \uB2E4\uB978 \uD5A5\uAE30\uB294 \uB098\uC9C0 \uC54A\uC558\uB2E4."
+    - "' \uBB34\uC2A8 \uD5A5\uAE30 \uB9D0\uC500\uD558\uC2DC\uB294 \uAC70\uC9C0...?
+      '"
+    - "\uC5B4... \uC544\uB9C8 \uD5A5\uC720\uB97C \uC0AC\uC6A9\uD574\uC11C \uADF8\uB7F0
+      \uB4EF\uD574\uC694!"
+    - "\uADF8\uB7F0 \uAC74\uAC00...?"
+    - "\uBB34\uB364\uB364\uD558\uAC8C \uB9D0\uD558\uB294 \uADF8\uC758 \uD0DC\uB3C4\uC5D0
+      \uB098\uB294 \uC0B4\uC9DD \uBBFC\uB9DD\uD574\uC9C0\uAE30 \uC2DC\uC791\uD588\uB2E4."
+    - "\uC11C\uB458\uB7EC \uB300\uD654\uB97C \uB9C8\uBB34\uB9AC \uC9D3\uACE0\uB294
+      \uC790\uB9AC\uB97C \uB5A0\uB0AC\uB2E4."
+    charterImages:
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: 72259771501f59546a3f9b26ce5fee54, type: 3}
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: 72259771501f59546a3f9b26ce5fee54, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    - {fileID: 21300000, guid: 62310c4fec9cc904c825d203915713e4, type: 3}
+    - {fileID: 21300000, guid: 72259771501f59546a3f9b26ce5fee54, type: 3}
+    - {fileID: 21300000, guid: ac0fb1fe1f831f6449a20d01b79840fe, type: 3}
+    - {fileID: 21300000, guid: 7471e1673e586bd4e9270d05ad41c844, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: ac0fb1fe1f831f6449a20d01b79840fe, type: 3}
+    - {fileID: 21300000, guid: 93a6491a537e2714da9104ac174a9f28, type: 3}
+    - {fileID: 21300000, guid: 72259771501f59546a3f9b26ce5fee54, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    dialogueWindows:
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+  beachIan2Dialogue:
+    sentences:
+    - "\uD574\uAC00 \uC9C0\uACE0 \uC5B4\uB450\uC6CC\uC9C8 \uC2DC\uAC04, \uD3C9\uC18C\uB77C\uBA74
+      \uD63C\uC790 \uC678\uCD9C\uD558\uAE30\uC5D4 \uB2A6\uC5C8\uAE30 \uB54C\uBB38\uC5D0
+      \uC9D1\uC5D0 \uC788\uC5C8\uACA0\uC9C0\uB9CC \uC624\uB298\uC740 \uC880 \uB2EC\uB790\uB2E4."
+    - "\uC9D1\uC5D0\uC11C\uB9CC \uC788\uB2E4 \uBCF4\uBA74 \uB54C\uB54C\uB85C \uAE30\uBD84\uC774
+      \uB2F5\uB2F5\uD574\uC9C0\uB294\uB370, \uC9C0\uAE08\uC758 \uB0B4\uAC00 \uB531
+      \uADF8\uB7AC\uAE30 \uB54C\uBB38\uC5D0 \uD574\uC548\uAC00\uC5D0\uC11C \uC0B0\uCC45\uD558\uBA70
+      \uAE30\uBD84 \uC804\uD658\uC774\uB77C\uB3C4 \uD560 \uACB8 \uBC16\uC73C\uB85C
+      \uB098\uC654\uB2E4."
+    - "\uBC14\uB2E4 \uD5A5\uAE30 \uC88B\uB2E4..."
+    - "\uC77C\uB801\uC774\uB294 \uD30C\uB3C4\uB97C \uAD6C\uACBD\uD558\uBA70 \uD63C\uC790
+      \uAC10\uC0C1\uC5D0 \uBE60\uC9C0\uB824\uB358 \uCC30\uB098 \uB4A4\uC5D0\uC11C
+      \uBAA9\uC18C\uB9AC\uAC00 \uB4E4\uB824\uC654\uB2E4."
+    - "[\uD50C\uB808\uC774\uC5B4] \uC601\uC560..? \uC774 \uC2DC\uAC04\uC5D4 \uBB34\uC2A8
+      \uC77C\uC774\uC9C0?"
+    - "\uC544, \uC774\uC548 \uC18C\uACF5\uC791\uB2D8! "
+    - "\uADF8\uB0E5 \uC774\uB7F0\uC800\uB7F0 \uC0DD\uAC01 \uC815\uB9AC\uB3C4 \uD560
+      \uACB8 \uC0B0\uCC45\uD558\uBA74\uC11C \uBC14\uB2F7\uAC00 \uAD6C\uACBD\uC744
+      \uD558\uACE0 \uC788\uC5C8\uC5B4\uC694."
+    - "\uD30C\uB3C4\uC18C\uB9AC\uB3C4 \uC88B\uC9C0\uB9CC \uBC18\uC9DD\uAC70\uB824\uC11C
+      \uC774\uC058\uAE30\uB3C4 \uD558\uC796\uC544\uC694."
+    - "\uC774\uC548\uACFC \uC774 \uC2DC\uAC04\uC5D0 \uB9C8\uC8FC\uCE58\uB2E4\uB2C8,
+      \uC660\uC9C0 \uBAA8\uB97C \uBC18\uAC00\uC6B4 \uB9C8\uC74C\uC5D0 \uBBF8\uC18C
+      \uC9C0\uC5B4 \uBCF4\uC600\uB2E4."
+    - "\uC774\uC5D0 \uADF8\uB294 \uB098\uB97C \uBE64\uD788 \uBC14\uB77C\uBCF4\uBA70
+      \uB9D0\uD588\uB2E4."
+    - "...\uC751."
+    - "\uC608\uC05C \uAC83 \uAC19\uC544."
+    - ...
+    - "\uC2DC\uC120\uC744 \uB098\uC5D0\uAC8C \uACE0\uC815\uD558\uACE0 \uC608\uC058\uB2E4\uACE0
+      \uB9D0\uD558\uB294 \uADF8\uC758 \uD654\uBC95\uC740 \uC0AC\uB78C\uC744 \uD5F7\uAC08\uB9AC\uAC8C
+      \uB9CC\uB4E4\uAE30 \uC27D\uACA0\uB2E4\uB294 \uC0DD\uAC01\uC774 \uB4E4\uC5C8\uB2E4."
+    - "\uC601\uC560 \uBC18\uC9DD\uAC70\uB9AC\uB294 \uAC83\uC744 \uC88B\uC544\uD558\uB098?"
+    - "\uBC18\uC9DD... \uAC70\uB9AC\uB294 \uAC70\uC694?"
+    - "\uC774\uB97C\uD14C\uBA74 \uBCC4 \uAC19\uC740 \uAC70 \uB9D0\uC774\uC57C."
+    - "...\uC544! \uBCC4\uB3C4 \uAD49\uC7A5\uD788 \uC88B\uC544\uD574\uC694. \uBCF4\uACE0
+      \uC788\uC73C\uBA74 \uBB54\uAC00 \uD790\uB9C1\uB418\uB294 \uAC83 \uAC19\uAE30\uB3C4
+      \uD558\uACE0\uC694."
+    - "\uB0B4\uAC00 \uB208\uC744 \uBC18\uC9DD\uC774\uBA70 \uB9D0\uD558\uC790 \uC774\uC548\uB3C4
+      \uAC19\uC774 \uBBF8\uC18C\uC9C0\uC5B4\uBCF4\uC774\uBA70 \uB9D0\uD588\uB2E4."
+    - "\uADF8\uB7FC \uC9C0\uAE08 \uAC19\uC774 \uBCC4\uAD6C\uACBD\uD558\uB7EC \uAC00\uC9C0
+      \uC54A\uACA0\uC5B4? \uB098\uB3C4 \uB9C8\uCE68 \uBCC4\uC744 \uBCF4\uB7EC \uAC00\uB294
+      \uAE38\uC774\uC5C8\uAC70\uB4E0."
+    - "\uBCC4\uC774\uB77C\uB2C8... \uB108\uBB34 \uB2A6\uAC8C\uB9CC \uB4E4\uC5B4\uAC00\uC9C0
+      \uC54A\uB294\uB2E4\uBA74 \uC800\uB3C4 \uC88B\uC544\uC694."
+    charterImages:
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: 69c6ac3984336d54099bc4aee01cef43, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: 72259771501f59546a3f9b26ce5fee54, type: 3}
+    - {fileID: 21300000, guid: c6464c622f5b8ab43bcacca9f6b7f9d6, type: 3}
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    - {fileID: 21300000, guid: 69c6ac3984336d54099bc4aee01cef43, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: 72259771501f59546a3f9b26ce5fee54, type: 3}
+    - {fileID: 21300000, guid: 7471e1673e586bd4e9270d05ad41c844, type: 3}
+    - {fileID: 21300000, guid: edee358f4945c0d46aa4dc697db51bce, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: 72259771501f59546a3f9b26ce5fee54, type: 3}
+    - {fileID: 21300000, guid: f7020962f1a5c52478d5784f62559064, type: 3}
+    - {fileID: 21300000, guid: 72259771501f59546a3f9b26ce5fee54, type: 3}
+    - {fileID: 21300000, guid: 69c6ac3984336d54099bc4aee01cef43, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: 7471e1673e586bd4e9270d05ad41c844, type: 3}
+    - {fileID: 21300000, guid: 69c6ac3984336d54099bc4aee01cef43, type: 3}
+    dialogueWindows:
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+  beachIan2LookStarDialogue:
+    sentences:
+    - "\uBE48 \uD14D\uC2A4\uD2B8 \uBC15\uC2A4 2\uBC88\uC9F8 \uD14D\uC2A4\uD2B8 \uBD80\uD130
+      \uC2DC\uC791"
+    - "\uC990\uAC70\uC6B4 \uB4EF \uC6C3\uACE0 \uC788\uB294 \uADF8\uB97C \uB530\uB77C
+      \uBCC4\uC774 \uC798 \uBCF4\uC774\uB294 \uC7A5\uC18C\uB85C \uC774\uB3D9\uD588\uB2E4."
+    - "\uC774\uC548\uC744 \uB530\uB77C \uADFC\uCC98 \uB0AE\uC740 \uC5B8\uB355\uC5D0
+      \uC62C\uB77C\uAC00\uB2C8 \uD558\uB298\uC5D0 \uB9CE\uC740 \uBCC4\uB4E4\uC774
+      \uC218\uB193\uC544\uC838 \uBC18\uC9DD\uBC18\uC9DD \uBE5B\uB098\uACE0 \uC788\uC5C8\uB2E4."
+    charterImages:
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    dialogueWindows:
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
+  beachIan2GuideStarDialogue:
+    sentences:
+    - "\uB108\uBB34 \uBA40\uB9AC \uB098\uAC00\uB294 \uAC74 \uC870\uAE08 \uC5B4\uB824\uC6B8
+      \uAC83 \uAC19\uC73C\uB2C8 \uC774 \uADFC\uCC98\uC5D0\uC11C \uBCF4\uB294 \uAC74
+      \uC5B4\uB5A0\uC138\uC694?"
+    - "\uC81C\uAC00 \uBCC4\uC774 \uC798 \uBCF4\uC774\uB294 \uC7A5\uC18C\uB97C \uC54C\uACE0
+      \uC788\uAC70\uB4E0\uC694."
+    - "...\uADF8\uAC83\uB3C4 \uC88B\uACA0\uAD70."
+    - "\uADF8\uC640 \uD568\uAED8 \uAC78\uC74C\uC744 \uB9DE\uCD94\uBA70 \uBCC4\uC774
+      \uC798 \uBCF4\uC774\uB294 \uC7A5\uC18C\uB85C \uC774\uB3D9\uD558\uB2C8 \uD558\uB298\uC5D0
+      \uB9CE\uC740 \uBCC4\uB4E4\uC774 \uC218\uB193\uC544\uC838 \uBC18\uC9DD\uBC18\uC9DD
+      \uBE5B\uB098\uACE0 \uC788\uC5C8\uB2E4."
+    charterImages:
+    - {fileID: 21300000, guid: 69c6ac3984336d54099bc4aee01cef43, type: 3}
+    - {fileID: 21300000, guid: 69c6ac3984336d54099bc4aee01cef43, type: 3}
+    - {fileID: 21300000, guid: eccae4172845d444d818af01afb63503, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    dialogueWindows:
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+  beachIan2SelectDialogue:
+    sentences:
+    - "\uBE48 \uD14D\uC2A4\uD2B8 \uBC15\uC2A4 2\uBC88\uC9F8 \uD14D\uC2A4\uD2B8 \uBD80\uD130
+      \uC2DC\uC791"
+    - "\uBCC4\uC774 \uB108\uBB34 \uC608\uBED0\uC694..."
+    - "...\uC815\uB9D0."
+    - "\uC7A0\uAE50\uC774\uC9C0\uB9CC \uC774\uB807\uAC8C [\uD50C\uB808\uC774\uC5B4]
+      \uC601\uC560\uC640 \uAC19\uC774 \uC2DC\uAC04\uC744 \uBCF4\uB0BC \uC218 \uC788\uB2E4\uB294
+      \uC0AC\uC2E4\uC774 \uBB34\uCC99 \uAE30\uBED0."
+    - "\uBC24\uD558\uB298\uC744 \uC62C\uB824\uB2E4\uBCF4\uB358 \uC2DC\uC120\uC744
+      \uB3CC\uB824 \uADF8\uAC00 \uC11C\uC788\uB294 \uACF3\uC744 \uBC14\uB77C\uBCF4\uC790
+      \uB098\uB97C \uBC14\uB77C\uBCF4\uBA70 \uBBF8\uC18C \uC9D3\uACE0 \uC788\uB294
+      \uC774\uC548\uACFC \uB208\uC774 \uB9C8\uC8FC\uCCE4\uB2E4."
+    - "\uC774\uD6C4 \uB108\uBB34 \uB2A6\uC5C8\uB2E4\uBA70 \uADF8\uAC00 \uB9C8\uCC28\uB97C
+      \uD0C0\uACE0 \uC9D1\uAE4C\uC9C0 \uBC14\uB798\uB2E4\uC8FC\uC5C8\uB2E4."
+    - "\uC774\uC548\uACFC \uC2DC\uAC04\uC744 \uBCF4\uB0B4\uB2E4 \uBCF4\uB2C8 \uC5B4\uB290\uC0C8
+      \uC6B0\uC6B8\uD55C \uAE30\uBD84\uC740 \uC0AC\uB77C\uC838 \uC788\uC5C8\uB2E4."
+    charterImages:
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: 69c6ac3984336d54099bc4aee01cef43, type: 3}
+    - {fileID: 21300000, guid: 7471e1673e586bd4e9270d05ad41c844, type: 3}
+    - {fileID: 21300000, guid: 7471e1673e586bd4e9270d05ad41c844, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    dialogueWindows:
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+  beachNoa1Dialogue:
+    sentences:
+    - "\uB9C8\uB978\uD558\uB298\uC5D0 \uAD6C\uB984\uC774 \uB07C\uAE30 \uC2DC\uC791\uD558\uB354\uB2C8
+      \uC774\uB0B4 \uAC15\uD55C \uBC14\uB78C\uC774 \uBD88\uC5B4\uC628\uB2E4."
+    - "\uC870\uAE08 \uB0AE\uC544\uC9C4 \uC628\uB3C4\uC640 \uD568\uAED8 \uBA38\uB9AC\uCE74\uB77D\uC774
+      \uD718\uB0A0\uB9B0\uB2E4."
+    - "\uC7A6\uC740 \uD30C\uB3C4\uC5D0 \uBC1C\uC744 \uB2F4\uADF8\uACE0 \uC788\uB294
+      \uB204\uAD70\uAC00\uAC00 \uBA40\uB9AC\uC11C \uBCF4\uC600\uB2E4. \uC790\uC138\uD788
+      \uBCF4\uB2C8 \uC2E0\uBC1C\uC5D0 \uBB3B\uC740 \uC774\uBB3C\uC9C8\uC744 \uD5F9\uAD6C\uB294
+      \uB4EF\uD588\uB2E4."
+    - "\uC548\uB155\uD558\uC138\uC694, \uD6C4\uC791\uB2D8...!"
+    - "\uC544, [\uD50C\uB808\uC774\uC5B4] \uC601\uC560\uC2DC\uAD70\uC694."
+    - "\uAD6C\uB450\uC5D0 \uBB50\uAC00 \uBB3B\uC73C\uC168\uB098 \uBD10\uC694...?"
+    - "\uC544\uAE4C\uBD80\uD130 \uD5F9\uAD6C\uC2DC\uB294 \uAC83 \uAC19\uAE38\uB798..."
+    - "...\uB124, \uC798 \uC548 \uC9C0\uC6CC\uC9C0\uB124\uC694."
+    - "\uADF8\uB7F0\uB370 \uC601\uC560\uAED8\uC11C\uB294 \uBB34\uC2A8 \uC77C\uB85C
+      \uB098\uC624\uC168\uB098\uC694?"
+    - "\uC624\uB298\uC740 \uB0A0\uC528\uAC00 \uC88B\uC9C0 \uC54A\uC544 \uBE44\uAC00
+      \uC62C \uAC83 \uAC19\uC740\uB370\uC694."
+    - "\uADF8\uB0E5 \uC7A0\uAE50 \uB458\uB7EC\uBCF4\uB7EC \uB098\uC654\uB294\uB370
+      \uD6C4\uC791\uB2D8 \uB9D0\uC500\uB300\uB85C \uC6B0\uC911\uCDA9\uD558\uB124\uC694..."
+    - "\uB9D0\uC774 \uB05D\uB098\uC790\uB9C8\uC790 \uB9C8\uCE58 \uAE30\uB2E4\uB9AC\uAE30\uB77C\uB3C4
+      \uD55C \uB4EF, \uCC9C\uCC9C\uD788 \uBE44\uAC00 \uB0B4\uB9AC\uAE30 \uC2DC\uC791\uD588\uB2E4."
+    - "\uC5B4\uB450\uC6CC\uC9C0\uB294 \uD558\uB298\uC5D0 \uC624\uB798 \uC788\uAE30\uB294
+      \uD798\uB4E4 \uAC83 \uAC19\uC558\uB2E4."
+    - "\uC774\uB7F0, \uB098\uC628 \uC9C0 \uC5BC\uB9C8 \uB418\uC9C0 \uC54A\uC558\uB294\uB370
+      \uBE68\uB9AC \uB4E4\uC5B4\uAC00 \uBD10\uC57C\uACA0\uAD70\uC694."
+    - "\uADF8\uB7EC\uAC8C\uC694..."
+    - "[\uD50C\uB808\uC774\uC5B4] \uC601\uC560\uAED8\uC11C \uAD1C\uCC2E\uC73C\uC2DC\uB2E4\uBA74
+      \uC81C\uAC00 \uBC31\uC791\uC800 \uC55E\uAE4C\uC9C0 \uBC14\uB798\uB2E4 \uB4DC\uB9AC\uACA0\uC2B5\uB2C8\uB2E4."
+    - "\uC9C0\uAE08 \uADF8\uB300\uB85C \uAC00\uC2DC\uBA74 \uB3C4\uCC29\uD560 \uB54C
+      \uC988\uC74C\uC5D4 \uC774\uBBF8 \uB4DC\uB808\uC2A4\uAC00 \uC816\uC5B4 \uACC4\uC2E4
+      \uAC83 \uAC19\uC544\uC11C\uC694."
+    - "...\uC544."
+    - "\uAC19\uC774 \uAC00\uC2DC\uC8E0."
+    - "\uC2E4\uB840\uAC00 \uB420 \uAC83 \uAC19\uC558\uC9C0\uB9CC \uADF8\uAC00 \uAF64\uB098
+      \uAC15\uACBD\uD55C \uD0DC\uB3C4\uB97C \uBCF4\uC600\uAE30\uC5D0 \uCC28\uB9C8
+      \uAC70\uC808\uD560 \uC218 \uC5C6\uC5C8\uB2E4."
+    charterImages:
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    - {fileID: 21300000, guid: dac892ec0be6811438185671e723d412, type: 3}
+    - {fileID: 21300000, guid: f7020962f1a5c52478d5784f62559064, type: 3}
+    - {fileID: 21300000, guid: f7020962f1a5c52478d5784f62559064, type: 3}
+    - {fileID: 21300000, guid: 009e275d49c2714429c0ff934a81f601, type: 3}
+    - {fileID: 21300000, guid: dac892ec0be6811438185671e723d412, type: 3}
+    - {fileID: 21300000, guid: dac892ec0be6811438185671e723d412, type: 3}
+    - {fileID: 21300000, guid: ac0fb1fe1f831f6449a20d01b79840fe, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: 54df8f52a67cf714db9bccf6473a2d65, type: 3}
+    - {fileID: 21300000, guid: 1adb741f18b6f9a499c2186b69250072, type: 3}
+    - {fileID: 21300000, guid: dac892ec0be6811438185671e723d412, type: 3}
+    - {fileID: 21300000, guid: dac892ec0be6811438185671e723d412, type: 3}
+    - {fileID: 21300000, guid: fbea562520c398e408f8859bfe1cfc5b, type: 3}
+    - {fileID: 21300000, guid: dac892ec0be6811438185671e723d412, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    dialogueWindows:
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+  beachNoa2Dialogue:
+    sentences:
+    - "\uC801\uB2F9\uD788 \uB178\uC744 \uC9C0\uB294 \uD558\uB298, \uADF8 \uBE5B\uC744
+      \uBC1B\uC544 \uBD89\uAC8C \uBCC0\uD55C \uD30C\uB3C4\uAC00 \uC794\uC794\uD558\uAC8C
+      \uB4E3\uAE30 \uC88B\uC740 \uC18C\uB9AC\uB97C \uB0B4\uBC49\uC5C8\uB2E4."
+    - "[\uD50C\uB808\uC774\uC5B4] \uC601\uC560."
+    - "\uB178\uC544 \uD6C4\uC791\uB2D8...!"
+    - "\uC605\uC740 \uBBF8\uC18C\uB97C \uC9C0\uC73C\uBA70 \uB2E4\uAC00\uC624\uB294
+      \uADF8\uC640 \uB208\uC774 \uB9C8\uC8FC\uCCE4\uB2E4."
+    - "...\uC601\uC560\uAED8\uC11C\uB294 \uD3C9\uC18C\uC5D0 \uC81C \uC0DD\uAC01\uC744
+      \uC790\uC8FC \uC548 \uD558\uC2DC\uB098 \uBD05\uB2C8\uB2E4."
+    - "...\uB124?"
+    - "\uD3B8\uC9C0\uB77C\uB3C4 \uD55C \uD1B5 \uBCF4\uB0B4\uC8FC\uC2E4 \uC904 \uC54C\uC558\uB294\uB370
+      \uC544\uBB34 \uC18C\uC2DD\uB3C4 \uC5C6\uC5B4 \uC870\uAE08 \uBB34\uB8CC\uD588\uC2B5\uB2C8\uB2E4."
+    - "\uC544..."
+    charterImages:
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: dac892ec0be6811438185671e723d412, type: 3}
+    - {fileID: 21300000, guid: c6464c622f5b8ab43bcacca9f6b7f9d6, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: 961df2a6e115eb147ae5ec057869cd4a, type: 3}
+    - {fileID: 21300000, guid: f7020962f1a5c52478d5784f62559064, type: 3}
+    - {fileID: 21300000, guid: 961df2a6e115eb147ae5ec057869cd4a, type: 3}
+    - {fileID: 21300000, guid: 054dd5ef101db544e971142aa9f819a4, type: 3}
+    dialogueWindows:
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+  beachNoa2TomorrowSendDialogue:
+    sentences:
+    - "...\uB0B4\uC77C\uBD80\uD130 \uAF2D \uBCF4\uB0BC\uAC8C\uC694.!"
+    charterImages:
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    dialogueWindows:
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+  beachNoa2ThinkSendDialogue:
+    sentences:
+    - "\uC774\uC81C\uBD80\uD134 \uC0DD\uAC01\uB0A0 \uB54C\uB9C8\uB2E4 \uBCF4\uB0BC\uAC8C\uC694!"
+    - "...\uC9C0\uAE08 \uC368\uC11C \uB4DC\uB9B4\uAE4C\uC694?"
+    - "\uD558\uD56B."
+    - "\uB9C8\uC74C\uC5D0 \uB4DC\uB294 \uB300\uB2F5\uC774\uC5C8\uB294\uC9C0 \uADF8\uB294
+      \uD55C \uC190\uC73C\uB85C \uC6C3\uC74C\uC744 \uAC00\uB824 \uBCF4\uC600\uB2E4."
+    charterImages:
+    - {fileID: 21300000, guid: 69c6ac3984336d54099bc4aee01cef43, type: 3}
+    - {fileID: 21300000, guid: 69c6ac3984336d54099bc4aee01cef43, type: 3}
+    - {fileID: 21300000, guid: 009e275d49c2714429c0ff934a81f601, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    dialogueWindows:
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+  beachNoa2SelectDialogue:
+    sentences:
+    - "\uBE48 \uD14D\uC2A4\uD2B8 \uBC15\uC2A4 2\uBC88\uC9F8 \uD14D\uC2A4\uD2B8 \uBD80\uD130
+      \uC2DC\uC791"
+    - "\uAF64 \uB4E3\uAE30 \uC88B\uC740 \uB9D0\uC774\uC5C8\uC5B4\uC694."
+    - "\uC9C4\uC2EC\uC73C\uB85C \uD55C \uB9D0\uC774\uC2E0\uC9C0\uB294 \uBAA8\uB974\uACA0\uC9C0\uB9CC."
+    - "...\uC9C4\uC2EC\uC774\uC5D0\uC694!"
+    - "\uADF8\uB7AC\uC73C\uBA74 \uC88B\uACA0\uB124\uC694."
+    - "\uD560 \uB9D0\uC740 \uB2E4 \uD588\uB2E4\uB294 \uB4EF\uC774 \uADF8\uB294 \uBBF8\uC18C\uB97C
+      \uC9C0\uC73C\uBA70 \uB9D0\uC744 \uB9C8\uBB34\uB9AC \uC9C0\uC5C8\uB2E4."
+    - "\uBC14\uB85C \uC5B4\uB514 \uAC00\uC2DC\uAC8C\uC694?"
+    - "[\uD50C\uB808\uC774\uC5B4] \uC601\uC560 \uC5BC\uAD74\uB9CC \uC7A0\uAE50 \uBCF4\uB7EC
+      \uB098\uC628 \uAC70\uB77C, \uC544\uC27D\uAC8C\uB3C4 \uC9C0\uAE08 \uB3CC\uC544\uAC00
+      \uBD10\uC57C\uACA0\uB124\uC694."
+    - "\uADF8\uB7FC, \uD3B8\uC9C0 \uAE30\uB300\uD558\uACA0\uC2B5\uB2C8\uB2E4."
+    - "\uC544, \uB4E4\uC5B4\uAC00\uC138\uC694...!"
+    - "' \uB9CE\uC774 \uBC14\uC058\uC2E0\uAC00 \uBCF4\uB124... '"
+    - "\uC774\uD6C4 \uBC14\uB2E4\uB97C \uB9C8\uC800 \uAD6C\uACBD\uD558\uBA70 \uC2DC\uAC04\uC744
+      \uBCF4\uB0B4\uB2E4 \uC9D1\uC73C\uB85C \uB3CC\uC544\uAC14\uB2E4."
+    charterImages:
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: dac892ec0be6811438185671e723d412, type: 3}
+    - {fileID: 21300000, guid: dac892ec0be6811438185671e723d412, type: 3}
+    - {fileID: 21300000, guid: 4d404696709bb124ab63e2130ff4eeb1, type: 3}
+    - {fileID: 21300000, guid: 009e275d49c2714429c0ff934a81f601, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    - {fileID: 21300000, guid: dac892ec0be6811438185671e723d412, type: 3}
+    - {fileID: 21300000, guid: dac892ec0be6811438185671e723d412, type: 3}
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    dialogueWindows:
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
+  beachAustin1Dialogue:
+    sentences:
+    - "\uB530\uC0AC\uB85C\uC6B4 \uD587\uC0B4\uC5D0 \uBE44\uCCD0 \uBC14\uB2E4\uAC00
+      \uD22C\uBA85\uD558\uAC8C \uBE5B\uB098\uACE0 \uC788\uC5C8\uB2E4."
+    - "\uADFC\uCC98\uC5D0 \uC0AC\uB78C\uC774 \uC5C6\uB294 \uAC83 \uAC19\uC544 \uAD6C\uB450\uB97C
+      \uBC97\uC5B4, \uBD80\uB4DC\uB7FD\uAC8C \uAC04\uC9C0\uB7FD\uD788\uB294 \uBAA8\uB798\uC5D0
+      \uBC1C\uC744 \uB0B4\uC8FC\uC5C8\uB2E4."
+    - "\uB4DC\uB808\uC2A4 \uC790\uB77D\uC774 \uBB3C\uC5D0 \uB2FF\uC9C0 \uC54A\uC744
+      \uC815\uB3C4\uB85C \uB4E4\uC5B4 \uC62C\uB824 \uBC14\uB2E4\uC5D0 \uAC00\uAE4C\uC774
+      \uB2E4\uAC00\uAC14\uB2E4."
+    - "\uC2E0\uAD00\uB2D8?"
+    - "[\uD50C\uB808\uC774\uC5B4] \uC601\uC560?"
+    - "\uADF8\uC758 \uACE0\uC6B4 \uBA38\uB9AC\uCE74\uB77D\uC774 \uBC14\uB2F7\uBC14\uB78C\uC5D0
+      \uB0A0\uB824 \uBC1D\uAC8C \uBE5B\uC744 \uB0B4\uBFDC\uACE0 \uC788\uC5C8\uB2E4."
+    - "\uC9C0\uB098\uAC00\uB294 \uAE38\uC5D0 \uD574\uBCC0\uC774 \uB108\uBB34 \uC544\uB984\uB2E4\uC6CC
+      \uBCF4\uC5EC \uC7A0\uAE50 \uB4E4\uB838\uB294\uB370,"
+    - "\uC601\uC560\uAED8\uC11C\uB3C4 \uBC14\uB2F7\uAC00\uB97C \uAD6C\uACBD\uD558\uB7EC
+      \uB098\uC624\uC2E0 \uAC74\uAC00\uC694?"
+    - "\uC21C\uAC04 \uC950\uACE0 \uC788\uB358 \uB4DC\uB808\uC2A4\uAC00 \uC0DD\uAC01\uB098
+      \uD669\uAE09\uD788 \uC190\uC744 \uB193\uC544 \uC544\uBB34\uAC83\uB3C4 \uC2E0\uC9C0
+      \uC54A\uC740 \uBC1C\uC744 \uC228\uACBC\uB2E4."
+    - "...\uC800\uB3C4 \uC624\uB298 \uB0A0\uC774 \uC88B\uC544\uC11C \uC7A0\uAE50
+      \uB098\uC654\uC2B5\uB2C8\uB2E4."
+    - "\uBC14\uB2E4\uB97C \uC88B\uC544\uD558\uC2ED\uB2C8\uAE4C?"
+    - "\uC5B4\uB9B4 \uB54C\uB294 \uC8FC\uBCC0\uC5D0 \uBC14\uB2E4\uAC00 \uC5C6\uC5C8\uC5B4\uC11C\uC694."
+    - "\uC9C0\uAE08\uC774\uC57C \uB9C8\uC74C\uB9CC \uBA39\uC73C\uBA74 \uBCF4\uB7EC
+      \uC62C \uC218 \uC788\uC9C0\uB9CC \uADF8\uB54C\uB294 \uCC45\uC73C\uB85C\uB9CC
+      \uBD24\uC5B4\uC11C,"
+    - "\uBC14\uB2E4\uB294 \uC5B8\uC81C \uBD10\uB3C4 \uC0C8\uB85C\uC6B4 \uAC83 \uAC19\uC544\uC694."
+    - "\uC601\uC560 \uB9D0\uC500\uC774 \uB9DE\uC2B5\uB2C8\uB2E4. \uC790\uC5F0\uC740
+      \uD56D\uC0C1 \uAC19\uC740 \uBAA8\uC2B5\uC744 \uC720\uC9C0\uD558\uC9C0 \uC54A\uC8E0."
+    - "\uC5B4, \uC2E0\uAD00\uB2D8...!"
+    - ...!
+    - "\uB0AE\uC9C0 \uC54A\uC740 \uD30C\uB3C4\uAC00 \uAC11\uC791\uC2A4\uB7FD\uAC8C
+      \uBC00\uB824 \uB4E4\uC5B4\uC640 \uAC00\uAE4C\uC774 \uC788\uB358 \uADF8\uB97C
+      \uB36E\uCCE4\uB2E4. "
+    - "\uB2E4\uD589\uD788 \uC790\uB9AC\uB97C \uD53C\uD574 \uD30C\uB3C4\uB97C \uB9DE\uC9C4
+      \uC54A\uC558\uC9C0\uB9CC \uBB3C\uBC29\uC6B8\uC774 \uD280\uC5B4 \uADF8\uC758
+      \uC637\uC744 \uBB3C\uB4E4\uC600\uB2E4."
+    - "\uC774\uB7F0..."
+    - "\uAD18, \uAD1C\uCC2E\uC73C\uC138\uC694...?"
+    - "\uB354 \uBE68\uB9AC \uB9D0\uC500\uB4DC\uB838\uC5B4\uC57C \uD588\uB294\uB370..."
+    - "\uC544\uB1E8, [\uD50C\uB808\uC774\uC5B4] \uC601\uC560 \uB355\uBD84\uC5D0 \uC5BC\uB9C8
+      \uC816\uC9C0 \uC54A\uC558\uC2B5\uB2C8\uB2E4."
+    - "\uC637\uC740 \uC5B4\uB5A1\uD558\uC8E0..."
+    - "\uC8C4\uC1A1\uD558\uC9C0\uB9CC \uBA3C\uC800 \uC790\uB9AC\uB97C \uB5A0\uC57C
+      \uD560 \uAC83 \uAC19\uB124\uC694."
+    - "\uC601\uC560\uAED8\uC11C\uB3C4 \uAD6C\uB450 \uC78A\uC9C0 \uB9C8\uC2DC\uACE0
+      \uC870\uC2EC\uD788 \uB3CC\uC544\uAC00\uC2ED\uC2DC\uC624."
+    - ...!
+    - "\uC544\uAE4C\uC758 \uC7A5\uBA74\uC744 \uB2E4 \uBCF4\uACE0 \uC788\uC5C8\uB358
+      \uAC83\uC778\uC9C0 \uADF8\uB294 \uC78A\uACE0 \uC788\uB358 \uAD6C\uB450\uB97C
+      \uC0C1\uAE30\uC2DC\uCF30\uB2E4."
+    - "\uBBFC\uB9DD\uD55C \uB9C8\uC74C\uC5D0 \uADF8\uAC00 \uB3CC\uC544\uAC04 \uD6C4
+      \uAD6C\uB450\uB97C \uCC3E\uC544 \uC9D1\uC73C\uB85C \uB3CC\uC544\uAC14\uB2E4."
+    charterImages:
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c6464c622f5b8ab43bcacca9f6b7f9d6, type: 3}
+    - {fileID: 21300000, guid: 05927a444293308479ef933c831d3804, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: e17b5deebc782e64c948fe861eb0adca, type: 3}
+    - {fileID: 21300000, guid: e17b5deebc782e64c948fe861eb0adca, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: ac0fb1fe1f831f6449a20d01b79840fe, type: 3}
+    - {fileID: 21300000, guid: e17b5deebc782e64c948fe861eb0adca, type: 3}
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    - {fileID: 21300000, guid: e17b5deebc782e64c948fe861eb0adca, type: 3}
+    - {fileID: 21300000, guid: 13c44329e46ff2943a1bd3e0c2037297, type: 3}
+    - {fileID: 21300000, guid: 3a55e952228e54a4a8330aa4a3f9da14, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: 779cd1a27f612054eba05124b4d057ef, type: 3}
+    - {fileID: 21300000, guid: e6c6ac0c5b4c088479eaaf3a41edf929, type: 3}
+    - {fileID: 21300000, guid: e6c6ac0c5b4c088479eaaf3a41edf929, type: 3}
+    - {fileID: 21300000, guid: ed83df459ec0a2f40b29b6e6ad4c63cf, type: 3}
+    - {fileID: 21300000, guid: e6c6ac0c5b4c088479eaaf3a41edf929, type: 3}
+    - {fileID: 21300000, guid: e17b5deebc782e64c948fe861eb0adca, type: 3}
+    - {fileID: 21300000, guid: e17b5deebc782e64c948fe861eb0adca, type: 3}
+    - {fileID: 21300000, guid: fbea562520c398e408f8859bfe1cfc5b, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    dialogueWindows:
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+  beachAustin2Dialogue:
+    sentences:
+    - "\uB108\uBB34 \uB2A6\uAC8C \uB3C4\uCC29\uD55C \uAC83\uC778\uC9C0 \uD574\uAC00
+      \uB258\uC5FF\uB258\uC5FF \uC9C0\uAE30 \uC2DC\uC791\uD588\uB2E4."
+    - "\uBC18\uB300\uD3B8\uC5D0\uC11C \uAE34 \uB85C\uBE0C\uB97C \uC785\uC740 \uADF8\uAC00
+      \uCC9C\uCC9C\uD788 \uAC78\uC5B4\uC624\uB294 \uAC83\uC774 \uBCF4\uC600\uB2E4."
+    - "\uC544\uC2A4\uD2F4 \uC2E0\uAD00\uB2D8!"
+    - "...\uC544, [\uD50C\uB808\uC774\uC5B4] \uC601\uC560\uC168\uAD70\uC694."
+    - "\uB2A6\uC740 \uC2DC\uAC04\uC5D4 \uBB34\uC2A8 \uC77C\uB85C \uB4E4\uB9AC\uC168\uB098\uC694?"
+    - "\uAC00\uAE4C\uC774\uC11C \uB9C8\uC8FC\uD55C \uADF8\uB294 \uC624\uB298 \uACE0\uB2E8\uD55C
+      \uC77C\uC774\uB77C\uB3C4 \uC788\uC5C8\uB294\uC9C0 \uAF64\uB098 \uD53C\uACE4\uD55C
+      \uB208\uCE58\uC600\uB2E4."
+    - "\uC77C\uBD80\uB85C \uB2A6\uAC8C \uC624\uB824\uACE0 \uD55C \uAC74 \uC544\uB2CC\uB370..."
+    - "\uB3C4\uCC29\uD558\uB2C8 \uC880 \uC5B4\uB450\uC6CC\uC84C\uB124\uC694."
+    - "\uC544\uC2A4\uD2F4 \uC2E0\uAD00\uB2D8\uAED8\uC11C\uB294 \uC624\uB298 \uC5B4\uB514
+      \uB4E4\uB800\uB2E4 \uC624\uB294 \uAE38\uC774\uC138\uC694?"
+    - "\uC870\uAE08 \uC9C0\uCCD0 \uBCF4\uC774\uC154\uC11C\uC694..."
+    - "\uC544, \uBC29\uAE08\uAE4C\uC9C0 \uBE48\uBBFC\uAC00 \uC21C\uD68C\uB97C \uD558\uB2E4
+      \uC640\uC11C \uADF8\uB7F0\uAC00 \uBD05\uB2C8\uB2E4."
+    - "\uBFCC\uB4EF\uD558\uAE34 \uD558\uC9C0\uB9CC \uBAB8\uC740 \uC870\uAE08 \uACE0\uB2E8\uD558\uB124\uC694..."
+    - "\uD53C\uACE4\uD558\uC2DC\uBA74 \uC7A0\uC2DC \uC26C\uC5C8\uB2E4 \uAC00\uC2DC\uB294\uAC74
+      \uC5B4\uB5A0\uC138\uC694...?"
+    - "[\uD50C\uB808\uC774\uC5B4] \uC601\uC560\uAED8\uC11C \uACC1\uC744 \uC9C0\uCF1C\uC8FC\uC2E0\uB2E4\uBA74\uC694."
+    - "...\uB124."
+    - "\uADF8\uAC00 \uC190\uC218\uAC74\uC744 \uAEBC\uB0B4, \uACE0\uC6B4 \uBAA8\uB798
+      \uC704\uB85C \uD3BC\uCCD0\uB193\uC558\uB2E4."
+    - "\uBA3C\uC800 \uC549\uC73C\uC2DC\uC8E0."
+    - "\uB4DC\uB808\uC2A4\uB97C \uB450 \uC190\uC73C\uB85C \uAC10\uC2F8 \uC548\uC73C\uBA70
+      \uC0B4\uD3EC\uC2DC \uB0B4\uB824\uC549\uC790, \uC544\uC2A4\uD2F4\uB3C4 \uC606\uC73C\uB85C
+      \uB2E4\uAC00\uC640 \uC549\uC558\uB2E4."
+    - "\uC774\uB807\uAC8C \uC870\uC6A9\uD788 \uC549\uC544 \uC788\uC73C\uB2C8, \uC794\uC794\uD558\uAC8C
+      \uB4E4\uB824\uC624\uB294 \uB4E4\uB824\uC624\uB294 \uBD80\uB4DC\uB7EC\uC6B4
+      \uD30C\uB3C4 \uC18C\uB9AC\uC5D0 \uB179\uC544\uB4E4\uC5B4 \uAE08\uBC29\uC774\uB77C\uB3C4
+      \uC7A0\uB4E4\uC5B4\uBC84\uB9B4 \uAC83 \uAC19\uC558\uB2E4."
+    - "' \uB0B4\uAC00 \uC7A0\uB4E4\uC5B4 \uBC84\uB9AC\uBA74 \uC548 \uB418\uB294\uB370...
+      '"
+    - "\uBB34\uAC70\uC6CC\uC9C0\uB294 \uB208\uAEBC\uD480\uC744 \uC774\uACA8\uB0B4\uB824
+      \uC815\uC2E0\uC744 \uBC14\uC9DD \uCC28\uB838\uC9C0\uB9CC \uC3DF\uC544\uC9C0\uB294
+      \uC7A0\uC744 \uAC10\uB2F9\uD560 \uC218 \uC5C6\uC5C8\uB2E4."
+    - "\uBAA8\uB798\uC0AC\uC7A5\uC5D0 \uB4DC\uB9AC\uC6B4 \uADF8\uB9BC\uC790\uAC00
+      \uBC24\uC5D0 \uBB3B\uD600 \uC874\uC7AC\uB97C \uAC10\uCD9C \uB54C\uAE4C\uC9C0
+      \uADF8\uC758 \uC5B4\uAE68\uC5D0 \uAE30\uB300 \uAFC8\uC744 \uAFB8\uC5C8\uB2E4."
+    - "\uC5B4\uB460 \uC18D\uC5D0 \uC791\uC740 \uBE5B \uD55C \uC904\uAE30\uAC00 \uBC1C\uBC11\uC744
+      \uBE44\uCD94\uACE0 \uC788\uC744 \uB54C, \uB4E4\uB9AC\uB358 \uC775\uC219\uD55C
+      \uBAA9\uC18C\uB9AC\uC5D0 \uAFC8\uC5D0\uC11C \uAE68\uC5B4\uB0AC\uB2E4."
+    - "\uBC24\uBC14\uB2E4\uB294 \uBC14\uB2E4\uBCF4\uB2E4 \uC2EC\uC5F0\uC774\uB77C\uB294
+      \uB9D0\uC774 \uC5B4\uC6B8\uB9AC\uB294\uAD6C\uB098..."
+    - "\uBD84\uBA85 \uC4F8\uC4F8\uD558\uAE34 \uD558\uC9C0\uB9CC, \uADF8\uB798\uB3C4
+      \uACC1\uC5D0 \uB2F9\uC2E0\uC774 \uC788\uC5B4\uC11C \uADF8\uB7F0\uAC00..."
+    - "\uB098\uC058\uC9C0\uB9CC\uC740 \uC54A\uC2B5\uB2C8\uB2E4."
+    charterImages:
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    - {fileID: 21300000, guid: 05927a444293308479ef933c831d3804, type: 3}
+    - {fileID: 21300000, guid: e17b5deebc782e64c948fe861eb0adca, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    - {fileID: 21300000, guid: ca71d60921212fa409283c1291d39f07, type: 3}
+    - {fileID: 21300000, guid: ac0fb1fe1f831f6449a20d01b79840fe, type: 3}
+    - {fileID: 21300000, guid: e17b5deebc782e64c948fe861eb0adca, type: 3}
+    - {fileID: 21300000, guid: e17b5deebc782e64c948fe861eb0adca, type: 3}
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    - {fileID: 21300000, guid: ed83df459ec0a2f40b29b6e6ad4c63cf, type: 3}
+    - {fileID: 21300000, guid: a3cb3384f1f24204da97254c30e3d006, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: e17b5deebc782e64c948fe861eb0adca, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: a447ea2322d3efe49b7586de7ca3f90c, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: 3d26c7c4f92fa7040bb66e5529559c1d, type: 3}
+    - {fileID: 21300000, guid: 3d26c7c4f92fa7040bb66e5529559c1d, type: 3}
+    - {fileID: 21300000, guid: e17b5deebc782e64c948fe861eb0adca, type: 3}
+    dialogueWindows:
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+  beachAustin2SleepDialogue:
+    sentences:
+    - "\uBE48 \uD14D\uC2A4\uD2B8 \uBC15\uC2A4 2\uBC88\uC9F8 \uD14D\uC2A4\uD2B8 \uBD80\uD130
+      \uC2DC\uC791"
+    - "\uAC00\uB9CC\uD788 \uADF8\uAC00 \uD558\uB294 \uB9D0\uC744 \uB4E3\uACE0 \uC788\uC5C8\uB2E4.
+      \uC6B8\uB9AC\uB294 \uBBF8\uC131\uC5D0 \uADC0\uAC00 \uAC04\uC9C0\uB7EC\uC6CC
+      \uC624\uB294 \uAC83\uC744 \uCC38\uC73C\uBA74\uC11C."
+    - "\uACB0\uAD6D\uC5D0\uB294 \uB9D0\uC774 \uB2E4 \uB05D\uB098\uC11C\uC57C \uCC9C\uCC9C\uD788
+      \uB208\uC744 \uB5B4\uB2E4."
+    - "\uADF8\uB294 \uBB34\uC2A8 \uC758\uBBF8\uB85C \uADF8\uB7F0 \uB9D0\uC744 \uD55C
+      \uAC78\uAE4C."
+    charterImages:
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    dialogueWindows:
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+  beachAustin2OpenEyeDialogue:
+    sentences:
+    - "\uBE48 \uD14D\uC2A4\uD2B8 \uBC15\uC2A4 2\uBC88\uC9F8 \uD14D\uC2A4\uD2B8 \uBD80\uD130
+      \uC2DC\uC791"
+    - "...\uAC19\uC740 \uC0DD\uAC01\uC744 \uD558\uACE0 \uC788\uC5C8\uB124\uC694,
+      \uC6B0\uB9AC."
+    - "\uC8FC\uBB34\uC2DC\uB294 \uC904 \uC54C\uC558\uC2B5\uB2C8\uB2E4... \uC5B8\uC81C\uBD80\uD130...?"
+    - "...\uC544, \uBC24\uC774 \uAE4A\uC5C8\uC73C\uB2C8 \uC774\uC81C \uC77C\uC5B4\uB098\uC2E4\uAE4C\uC694?"
+    - "\uBC29\uAE08 \uAE68\uC5B4\uB0AC\uB294\uB370... \uC5B4\uAE68\uB294 \uAD1C\uCC2E\uC73C\uC2E0\uAC00\uC694?"
+    - "\uC624\uD788\uB824 \uC81C\uAC00 \uC544\uC2A4\uD2F4 \uC2E0\uAD00\uB2D8 \uACC1\uC5D0\uC11C
+      \uC7A0\uB4E4\uC5B4 \uBC84\uB838\uB124\uC694..."
+    - "\uAD1C\uCC2E\uC2B5\uB2C8\uB2E4. \uAC10\uAE30\uB77C\uB3C4 \uAC78\uB9AC\uC2DC\uBA74
+      \uC548 \uB418\uB2C8 \uC5BC\uB978 \uB4E4\uC5B4\uAC00\uC8E0."
+    charterImages:
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: 69c6ac3984336d54099bc4aee01cef43, type: 3}
+    - {fileID: 21300000, guid: 0ec034a2dab57e24e85fe5e7b5816959, type: 3}
+    - {fileID: 21300000, guid: e17b5deebc782e64c948fe861eb0adca, type: 3}
+    - {fileID: 21300000, guid: 054dd5ef101db544e971142aa9f819a4, type: 3}
+    - {fileID: 21300000, guid: 054dd5ef101db544e971142aa9f819a4, type: 3}
+    - {fileID: 21300000, guid: e17b5deebc782e64c948fe861eb0adca, type: 3}
+    dialogueWindows:
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+  beachAustin2SelectDialogue:
+    sentences:
+    - "\uBE48 \uD14D\uC2A4\uD2B8 \uBC15\uC2A4 2\uBC88\uC9F8 \uD14D\uC2A4\uD2B8 \uBD80\uD130
+      \uC2DC\uC791"
+    - "\uC790\uB9AC\uB97C \uB5A0\uB098 \uC9D1\uC73C\uB85C \uAC78\uC5B4\uAC00\uB294
+      \uB3D9\uC548, \uB450 \uC0AC\uB78C\uC740 \uD55C\uCC38 \uB3D9\uC548 \uB9D0\uC774
+      \uC5C6\uC5C8\uB2E4. "
+    - "\uB9C8\uC911 \uB098\uC628 \uC9D1\uC0AC\uB97C \uB530\uB77C \uBC31\uC791\uAC00
+      \uC548\uC73C\uB85C \uB3CC\uC544\uAC00\uB294\uB370 \uADF8\uC81C\uC57C \uADF8\uAC00
+      \uC785\uC744 \uC5F4\uC5C8\uB2E4."
+    - "...\uC601\uC560\uAC00 \uAC00\uB294 \uACF3\uB9C8\uB2E4 \uD56D\uC0C1 \uBE5B\uC774
+      \uD568\uAED8 \uD558\uAE30\uB97C."
+    charterImages:
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: ed83df459ec0a2f40b29b6e6ad4c63cf, type: 3}
+    dialogueWindows:
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+  galleryIan1Dialogue:
+    sentences:
+    - "\uC0C8\uB85C\uC6B4 \uADF8\uB9BC\uB4E4\uC774 \uB4E4\uC5B4\uC654\uB2E4\uACE0
+      \uD574 \uAC00\uBCCD\uAC8C \uAD6C\uACBD\uD558\uB7EC \uBBF8\uC220\uAD00\uC5D0
+      \uB4E4\uB800\uB2E4."
+    - "\uC5B4... \uC5EC\uAE34\uAC00?"
+    - "...\uD2B9\uC774\uD55C \uD654\uD48D\uC774\uB85C\uAD70, \uB098\uC058\uC9C0 \uC54A\uC740
+      \uAC78."
+    - '  ?'
+    - "\uBA3C\uC800 \uB3C4\uCC29\uD574 \uADF8\uB9BC\uB4E4\uC744 \uAD6C\uACBD\uD558\uACE0
+      \uC788\uB294 \uCE7C\uB9AD\uC2A4 \uACF5\uC791\uAC00\uC758 \uBCF4\uC88C\uAD00\uACFC
+      \uB208\uC774 \uB9C8\uC8FC\uCCE4\uB2E4."
+    - "[\uD50C\uB808\uC774\uC5B4] \uBC31\uC791\uB2D8 \uC544\uB2C8\uC2ED\uB2C8\uAE4C."
+    - "\uBC31\uC791\uB2D8\uAED8\uC11C\uB3C4 \uC0C8 \uC791\uD488\uB4E4\uC744 \uBCF4\uB7EC
+      \uC624\uC2E0 \uAC74\uC9C0\uC694?"
+    - "\uC544, \uB124...!"
+    - "\uD3C9\uC18C \uADF8\uB9BC\uC5D0 \uAD00\uC2EC\uC774 \uB9CE\uC558\uC5B4\uC11C\uC694!"
+    - "...\uC5B4."
+    - "\uB098\uB3C4 \uBAA8\uB974\uAC8C \uBCF4\uC88C\uAD00 \uC8FC\uBCC0\uC744 \uB450\uB9AC\uBC88\uAC70\uB9AC\uBA70
+      \uC774\uC548\uC744 \uCC3E\uC544\uBCF4\uC558\uC9C0\uB9CC \uC544\uC27D\uAC8C\uB3C4
+      \uADF8\uB294 \uBBF8\uC220\uAD00\uC5D0 \uC624\uC9C0 \uC54A\uC740 \uAC83 \uAC19\uC558\uB2E4."
+    - "\uC774\uC548\uC758 \uBCF4\uC88C\uAD00\uC740 \uC774\uB7F0 \uB098\uC758 \uD589\uB3D9\uC744
+      \uB208\uCE58\uCC48 \uAC83\uC778\uC9C0 \uC2AC\uCA4D \uB9D0\uD574\uC8FC\uC5C8\uB2E4."
+    - "\uC624\uB298\uC740 \uC77C\uC815\uC774 \uC5C6\uC5B4 \uC800 \uD63C\uC790 \uC654\uC2B5\uB2C8\uB2E4."
+    - "\uC774\uC548 \uC18C\uACF5\uC791\uB2D8\uAED8\uC11C\uB294 \uC608\uC220\uD488\uC5D0
+      \uAD00\uC2EC\uC774 \uC5C6\uC73C\uC154\uC11C \uBBF8\uC220\uAD00\uC5D0\uB294
+      \uAC70\uC758 \uC548 \uC624\uC2ED\uB2C8\uB2E4."
+    - "\uC544... \uADF8\uB807\uAD70\uC694..."
+    - "\uAD1C\uD788 \uC18D\uB9C8\uC74C\uC744 \uC77D\uD78C \uAC83 \uAC19\uC544 \uC870\uAE08
+      \uBBFC\uB9DD\uD55C \uB9C8\uC74C\uC5D0, \uC790\uB9AC\uB97C \uB5A0\uB098 \uADF8\uB9BC\uB4E4\uC744
+      \uC870\uAE08 \uAD6C\uACBD\uD558\uB2E4 \uC9D1\uC73C\uB85C \uB3CC\uC544\uAC14\uB2E4."
+    charterImages:
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    - {fileID: 21300000, guid: 44e1bd51e9109924185f86fac1754c88, type: 3}
+    - {fileID: 21300000, guid: 44e1bd51e9109924185f86fac1754c88, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: 44e1bd51e9109924185f86fac1754c88, type: 3}
+    - {fileID: 21300000, guid: 44e1bd51e9109924185f86fac1754c88, type: 3}
+    - {fileID: 21300000, guid: c6464c622f5b8ab43bcacca9f6b7f9d6, type: 3}
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    - {fileID: 21300000, guid: ac0fb1fe1f831f6449a20d01b79840fe, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: 44e1bd51e9109924185f86fac1754c88, type: 3}
+    - {fileID: 21300000, guid: 44e1bd51e9109924185f86fac1754c88, type: 3}
+    - {fileID: 21300000, guid: edee358f4945c0d46aa4dc697db51bce, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    dialogueWindows:
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+  galleryNoa1Dialogue:
+    sentences:
+    - "\uD654\uB824\uD55C \uB0B4\uBD80 \uC7A5\uC2DD\uC5D0 \uC2DC\uC120\uC744 \uBE8F\uACA8
+      \uB098\uB3C4 \uBAA8\uB974\uAC8C \uC785\uC744 \uBC8C\uB9B0 \uCC44 \uAD6C\uACBD\uD558\uACE0
+      \uC788\uC5C8\uB2E4."
+    - "\uC0AC\uB78C\uC774 \uB9CE\uC774 \uC5C6\uC5B4 \uC801\uB9C9\uD568\uC774 \uB9F4\uB3CC\uB358
+      \uAC00\uC6B4\uB370 \uC775\uC219\uD55C \uC778\uC601\uC774 \uBCF4\uC600\uB2E4."
+    - "\uD6C4\uC791\uB2D8, \uC5EC\uAE30\uC11C \uBD59\uB124\uC694...!"
+    - "[\uD50C\uB808\uC774\uC5B4] \uC601\uC560\uAD70\uC694."
+    - "\uD3C9\uC18C\uC5D0 \uADF8\uB9BC\uC744 \uC88B\uC544\uD558\uC2DC\uB098 \uBD10\uC694...?"
+    - "\uC0C8\uB85C\uC6B4 \uC791\uD488\uB4E4\uC774 \uB4E4\uC5B4\uC654\uB098 \uC2F6\uC5B4
+      \uD55C \uBC88 \uB4E4\uB838\uC2B5\uB2C8\uB2E4."
+    - "\uADF8\uB9BC\uB3C4 \uADF8\uB9BC\uC774\uC9C0\uB9CC \uC624\uB298 \uAC19\uC774
+      \uC794\uC794\uD55C \uBD84\uC704\uAE30\uB97C \uC990\uAE30\uB294 \uAC83\uB3C4
+      \uAF64 \uC88B\uC544\uD55C\uB2F5\uB2C8\uB2E4."
+    - "\uC544... \uC870\uC6A9\uD55C \uC7A5\uC18C..."
+    - "\uC2DC\uB044\uB7EC\uC6B4 \uACF3\uC5D0 \uC790\uC8FC \uC788\uB2E4 \uBCF4\uBA74
+      \uC790\uC5F0\uC2A4\uB7FD\uAC8C \uC790\uB9AC\uB97C \uD53C\uD558\uAC8C \uB418\uB354\uAD70\uC694."
+    - "\uC2DC\uB044\uB7EC\uC6B4 \uACF3\uC774\uB77C \uD558\uC2DC\uBA74... \uBB34\uB3C4\uD68C
+      \uAC19\uC740 \uAC78 \uB9D0\uC500\uD558\uC2DC\uB294 \uAC78\uAE4C\uC694?"
+    - ...
+    - "\uADF8\uB807\uAE30\uB3C4 \uD558\uC8E0."
+    - "\uC0AC\uAD50\uACC4\uC5D0\uC11C \uD65C\uBC1C\uD558\uAC8C \uD65C\uB3D9\uD558\uB294
+      \uADF8\uAC00 \uC2DC\uB044\uB7FD\uB2E4\uACE0 \uC0DD\uAC01\uD560 \uC904\uC740
+      \uBAB0\uB790\uC9C0\uB9CC \uC815\uD655\uD788 \uBB34\uB3C4\uD68C\uC7A5\uC744
+      \uC9C0\uCE6D\uD55C \uAC83\uC740 \uC544\uB2CC \uB4EF\uD588\uB2E4."
+    - "\uC774\uD6C4 \uAC01\uC790 \uC791\uD488 \uAC10\uC0C1\uC744 \uD558\uB2E4 \uC9D1\uC73C\uB85C
+      \uB3CC\uC544\uAC14\uB2E4."
+    charterImages:
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    - {fileID: 21300000, guid: dac892ec0be6811438185671e723d412, type: 3}
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    - {fileID: 21300000, guid: dac892ec0be6811438185671e723d412, type: 3}
+    - {fileID: 21300000, guid: dac892ec0be6811438185671e723d412, type: 3}
+    - {fileID: 21300000, guid: 268d4cde3ed1f2645b1c8a90d3c11bcc, type: 3}
+    - {fileID: 21300000, guid: dac892ec0be6811438185671e723d412, type: 3}
+    - {fileID: 21300000, guid: 268d4cde3ed1f2645b1c8a90d3c11bcc, type: 3}
+    - {fileID: 21300000, guid: dac892ec0be6811438185671e723d412, type: 3}
+    - {fileID: 21300000, guid: 009e275d49c2714429c0ff934a81f601, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    dialogueWindows:
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+  galleryNoa2Dialogue:
+    sentences:
+    - "\uBE48 \uD14D\uC2A4\uD2B8 \uBC15\uC2A4 2\uBC88\uC9F8 \uD14D\uC2A4\uD2B8 \uBD80\uD130
+      \uC2DC\uC791"
+    - "\uB178\uC544 \uD6C4\uC791\uB2D8...!"
+    - "[\uD50C\uB808\uC774\uC5B4] \uC601\uC560."
+    - "\uC791\uD488\uC5D0 \uBAB0\uC785\uD574 \uC788\uB358 \uADF8\uAC00 \uBAA9\uC18C\uB9AC\uB97C
+      \uB4E3\uACE0 \uBAB8\uC744 \uB3CC\uB824 \uBBF8\uC18C\uB97C \uC9C0\uC740 \uCC44
+      \uCC9C\uCC9C\uD788 \uB2E4\uAC00\uC654\uB2E4."
+    - "\uBB34\uC2A8 \uC791\uD488\uC744 \uBCF4\uACE0 \uACC4\uC168\uC5B4\uC694?"
+    - "\uC544, \uC5B4\uB9BF\uAD11\uB300\uC758 \uAC70\uC6B8\uC774\uB77C\uB294 \uC791\uD488\uC744
+      \uBCF4\uACE0 \uC788\uC5C8\uC2B5\uB2C8\uB2E4."
+    - "\uAF64 \uD765\uBBF8\uB85C\uC6B4 \uB0B4\uC6A9\uC744 \uB2F4\uACE0 \uC788\uB354\uAD70\uC694."
+    - "\uC81C\uBAA9\uB9CC \uB4E4\uC5C8\uC744 \uB54C\uB294 \uC5B4\uB450\uC6B4 \uB290\uB08C\uC758
+      \uADF8\uB9BC\uC778 \uC904 \uC54C\uC558\uB294\uB370 \uC0C9\uAC10 \uC790\uCCB4\uB294
+      \uD654\uC0AC\uD558\uB124\uC694..."
+    - "...\uD658\uC0C1\uC801\uC778 \uAC70\uC9D3\uB9D0\uB85C \uBAA8\uB450\uB97C \uD640\uB9AC\uAC8C
+      \uB9CC\uB4DC\uB294 \uC5B4\uB9BF\uAD11\uB300."
+    - "\uC791\uD488 \uC124\uBA85\uC774 \uC870\uAE08... \uC2AC\uD508 \uAC83 \uAC19\uC544\uC694."
+    - "\uB9CC\uC57D \uBBFF\uC5C8\uB358 \uC5B4\uB9BF\uAD11\uB300\uAC00 \uC5EC\uD0DC
+      \uC790\uC2E0\uC744 \uC18D\uC5EC\uC654\uB2E4\uB294 \uC0AC\uC2E4\uC744 \uC54C\uAC8C
+      \uB41C\uB2E4\uBA74..."
+    - "\uC601\uC560\uB294 \uC5B4\uB5BB\uAC8C \uD558\uC2E4 \uAC74\uAC00\uC694?"
+    charterImages:
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: 69c6ac3984336d54099bc4aee01cef43, type: 3}
+    - {fileID: 21300000, guid: dac892ec0be6811438185671e723d412, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    - {fileID: 21300000, guid: dac892ec0be6811438185671e723d412, type: 3}
+    - {fileID: 21300000, guid: dac892ec0be6811438185671e723d412, type: 3}
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    - {fileID: 21300000, guid: b983bb3d5ac7e5141a115a279111e2d6, type: 3}
+    - {fileID: 21300000, guid: b983bb3d5ac7e5141a115a279111e2d6, type: 3}
+    - {fileID: 21300000, guid: 54df8f52a67cf714db9bccf6473a2d65, type: 3}
+    - {fileID: 21300000, guid: 54df8f52a67cf714db9bccf6473a2d65, type: 3}
+    dialogueWindows:
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+  galleryNoa2AngerDialogue:
+    sentences:
+    - "\uBE48 \uD14D\uC2A4\uD2B8 \uBC15\uC2A4 2\uBC88\uC9F8 \uD14D\uC2A4\uD2B8 \uBD80\uD130
+      \uC2DC\uC791"
+    - "...\uADF8\uB798\uB3C4 \uC77C\uB2E8 \uD654\uAC00 \uB0A0 \uAC83 \uAC19\uC544\uC694,"
+    - "\uC800\uB97C \uC18D\uC778 \uAC70\uB2C8\uAE4C\uC694."
+    - ...
+    - "\uADF8\uB9AC\uACE0 \uC774\uC720\uB97C \uBB3B\uACA0\uC8E0...?"
+    - "\uB0B4\uAC00 \uBBFF\uC74C\uC744 \uC8FC\uC9C0 \uBABB\uD55C \uAC74 \uC544\uB2D0\uC9C0,
+      \uADF8\uAC00 \uB2E4\uB978 \uC18D\uC0AC\uC815\uC774 \uC788\uC5C8\uC744\uC9C0\uB294
+      \uBAA8\uB974\uC796\uC544\uC694."
+    charterImages:
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: 268d4cde3ed1f2645b1c8a90d3c11bcc, type: 3}
+    - {fileID: 21300000, guid: 268d4cde3ed1f2645b1c8a90d3c11bcc, type: 3}
+    - {fileID: 21300000, guid: 009e275d49c2714429c0ff934a81f601, type: 3}
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    dialogueWindows:
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+  galleryNoa2IgnoreDialogue:
+    sentences:
+    - "\uBE48 \uD14D\uC2A4\uD2B8 \uBC15\uC2A4 2\uBC88\uC9F8 \uD14D\uC2A4\uD2B8 \uBD80\uD130
+      \uC2DC\uC791"
+    - "...\uC0AC\uC2E4\uB300\uB85C \uB9D0 \uBABB \uD560 \uC774\uC720\uAC00 \uC788\uC5C8\uC744
+      \uAC70\uB77C \uC0DD\uAC01\uD574\uC694."
+    - "\uADF8\uB807\uB2E4\uACE0 \uBB34\uC791\uC815 \uC6A9\uC11C\uD574\uC904 \uC218\uB294
+      \uC5C6\uACA0\uC9C0\uB9CC \uC77C\uB2E8 \uB208\uC744 \uAC10\uC544\uC8FC\uACA0\uC8E0..."
+    charterImages:
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    dialogueWindows:
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+  galleryNoa2SelectDialogue:
+    sentences:
+    - "\uBE48 \uD14D\uC2A4\uD2B8 \uBC15\uC2A4 2\uBC88\uC9F8 \uD14D\uC2A4\uD2B8 \uBD80\uD130
+      \uC2DC\uC791"
+    - "\uC601\uC560\uB294 \uCC38... \uBB34\uB974\uC2ED\uB2C8\uB2E4."
+    - "\uC774\uD6C4\uC5D0\uB3C4 \uADF8\uC758 \uC785\uC5D0\uC11C \uB098\uC624\uB294
+      \uAC83\uC740 \uAC70\uC9D3\uC77C \uC218 \uC788\uB294\uB370 \uB9D0\uC774\uC5D0\uC694."
+    - "\uADF8\uB294 \uC501\uC4F8\uD55C \uBBF8\uC18C\uB97C \uC7A0\uAE50 \uC9C0\uC5B4
+      \uBCF4\uC774\uB354\uB2C8 \uAC00\uBCCD\uAC8C \uC8FC\uC81C\uB97C \uBC14\uAFD4
+      \uB300\uD654\uB97C \uC774\uC5B4\uAC14\uB2E4."
+    - "\uC774\uB7F0 \uC9C8\uBB38\uC744 \uD560 \uC774\uC720\uAC00 \uC788\uB098 \uC2F6\uC5B4
+      \uACF0\uACF0\uC774 \uC0DD\uAC01\uD574 \uBCF4\uC558\uC9C0\uB9CC \uB2F5\uC740
+      \uB098\uC624\uC9C0 \uC54A\uC558\uB2E4."
+    charterImages:
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: dac892ec0be6811438185671e723d412, type: 3}
+    - {fileID: 21300000, guid: dac892ec0be6811438185671e723d412, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    dialogueWindows:
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+  galleryAustin1Dialogue:
+    sentences:
+    - "\uBBF8\uC220\uAD00\uC5D0 \uB4E4\uC5B4\uC11C\uB824 \uACC4\uB2E8\uC744 \uC62C\uB77C\uB294
+      \uC911, \uB204\uAD70\uAC00 \uB85C\uBE0C\uC790\uB77D\uC744 \uD384\uB7ED\uC774\uBA70
+      \uC55E\uC5D0\uC11C \uC18C\uB9AC\uCE58\uB294 \uAC83\uC774 \uB4E4\uB824\uC654\uB2E4."
+    - "\uB098\uC640\uB77C, \uC544\uC2A4\uD2F4!"
+    - "\uC624\uB298\uC774\uC57C\uB9D0\uB85C \uB124 \uBC84\uB974\uC7A5\uBA38\uB9AC\uB97C
+      \uACE0\uCCD0\uC8FC\uB9C8!"
+    - ???
+    - "\uBA40\uB9AC\uC11C\uB3C4 \uC18C\uB9AC\uCE58\uB294 \uC2E0\uAD00\uC758 \uBAA9\uC18C\uB9AC\uAC00
+      \uBB34\uCC99 \uD070 \uAC83\uC744 \uBCF4\uC544, \uC544\uC2A4\uD2F4\uC5D0\uAC8C 
+      \uD654\uAC00 \uB9CE\uC774 \uB09C \uB4EF \uBCF4\uC600\uB2E4."
+    - "\uADF8\uB7EC\uB358 \uC911 \uADFC\uCC98\uC5D0\uC11C \uC2E0\uAD00\uC5D0\uAC8C
+      \uCAD3\uAE30\uACE0 \uC788\uB294 \uB4EF\uD55C \uC544\uC2A4\uD2F4\uACFC \uB9C8\uC8FC\uCCE4\uB2E4."
+    - "\uADF8\uB294 \uC8FC\uBCC0\uC744 \uB458\uB7EC\uBCF4\uB2E4 \uC228\uC744 \uACF3\uC774
+      \uC5C6\uC5C8\uB294\uC9C0, \uB2E4\uAE09\uD55C \uB208\uBE5B\uC744 \uD55C \uCC44
+      \uB0B4\uAC00 \uC788\uB294 \uACF3\uC73C\uB85C \uB2E4\uAC00\uC654\uB2E4."
+    - "' \uBB50, \uBB50\uC9C0...? \uC9C0\uAE08 \uB0B4\uCABD\uC73C\uB85C \uC624\uB294\uAC74\uAC00?
+      '"
+    - "\uC601\uC560, \uC8C4\uC1A1\uD569\uB2C8\uB2E4."
+    - "\uAC00\uAE4C\uC774 \uB2E4\uAC00\uC628 \uC544\uC2A4\uD2F4\uC740 \uC5B4\uC124\uD508
+      \uC5F0\uC778 \uD749\uB0B4\uB77C\uB3C4 \uB0B4\uB824\uB294 \uB4EF, \uB450 \uD314\uB85C
+      \uB098\uC758 \uB4F1\uC744 \uBD80\uB4DC\uB7FD\uAC8C \uAC10\uC2F8 \uC548\uC558\uB2E4."
+    - "...\uC5B4?"
+    charterImages:
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: 0406df995fc80ec44833e08c17255079, type: 3}
+    - {fileID: 21300000, guid: 0406df995fc80ec44833e08c17255079, type: 3}
+    - {fileID: 21300000, guid: 13c44329e46ff2943a1bd3e0c2037297, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: 13c44329e46ff2943a1bd3e0c2037297, type: 3}
+    - {fileID: 21300000, guid: 779cd1a27f612054eba05124b4d057ef, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: 13c44329e46ff2943a1bd3e0c2037297, type: 3}
+    dialogueWindows:
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+  galleryAustin1ComingOutDialogue:
+    sentences:
+    - "\uBE48 \uD14D\uC2A4\uD2B8 \uBC15\uC2A4 2\uBC88\uC9F8 \uD14D\uC2A4\uD2B8 \uBD80\uD130
+      \uC2DC\uC791"
+    - "\uADF8 \uC0AC\uC774 \uC544\uC2A4\uD2F4\uC744 \uCAD3\uB358 \uC2E0\uAD00\uC774
+      \uC6B0\uB9AC\uB97C \uBCF4\uACE0 \uBA38\uC4F1\uD574\uD558\uBA70 \uC790\uB9AC\uB97C
+      \uD53C\uD588\uB2E4. "
+    - "\uC18C\uB9AC\uCE58\uB358 \uC2E0\uAD00\uC774 \uBA40\uC5B4\uC9C4 \uB4A4 \uC0C1\uD669\uC774
+      \uC815\uB9AC \uB41C \uAC83 \uAC19\uC544 \uADF8\uC5D0\uAC8C\uC11C \uBC97\uC5B4\uB098\uACE0\uC790
+      \uBAB8\uC744 \uC870\uAE08 \uC6C0\uC9C1\uC600\uB2E4."
+    charterImages:
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    dialogueWindows:
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
+  galleryAustin1EnjoyDialogue:
+    sentences:
+    - "\uBE48 \uD14D\uC2A4\uD2B8 \uBC15\uC2A4 2\uBC88\uC9F8 \uD14D\uC2A4\uD2B8 \uBD80\uD130
+      \uC2DC\uC791"
+    - "\uBB34\uC2A8 \uC0C1\uD669\uC778\uC9C0 \uBAA8\uB974\uACA0\uC9C0\uB9CC \uC77C\uB2E8
+      \uC544\uC2A4\uD2F4\uC774 \uB2E4\uAE09\uD574 \uBCF4\uC774\uB2C8 \uC7A0\uC2DC
+      \uADF8\uC5D0\uAC8C \uC548\uAE34 \uC0C1\uD0DC\uB85C \uAE30\uB2E4\uB838\uB2E4."
+    - "\uADF8 \uC0AC\uC774 \uC544\uC2A4\uD2F4\uC744 \uCAD3\uB358 \uC2E0\uAD00\uC774
+      \uC6B0\uB9AC\uB97C \uBCF4\uACE0 \uBA38\uC4F1\uD574\uD558\uBA70 \uC790\uB9AC\uB97C
+      \uD53C\uD588\uB2E4."
+    charterImages:
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    dialogueWindows:
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
+  galleryAustin1SelectDialogue:
+    sentences:
+    - "\uADF8\uC81C\uC57C \uADF8\uB294 \uC595\uC740 \uD55C\uC228\uC744 \uB0B4\uC26C\uB354\uB2C8
+      \uD488\uC5D0\uC11C \uB098\uB97C \uB193\uC544\uC8FC\uC5C8\uB2E4."
+    - "...\uC815\uB9D0 \uC8C4\uC1A1\uD569\uB2C8\uB2E4, [\uD50C\uB808\uC774\uC5B4]
+      \uC601\uC560."
+    - "\uC544. \uB124, \uB124..."
+    - "\uC21C\uC2DD\uAC04\uC5D0 \uBC8C\uC5B4\uC9C4 \uC77C\uB4E4\uB85C \uB10B\uC774
+      \uB098\uAC00 \uBA38\uB9BF\uC18D\uC774 \uD145 \uBE44\uC5B4\uBC84\uB838\uB2E4."
+    - "...\uC601\uC560?"
+    - "\uAD1C\uCC2E\uC73C\uC2ED\uB2C8\uAE4C...?"
+    - "\uB124...! \uAD1C\uCC2E\uC544\uC694..."
+    - "\uB2E4\uC74C\uC5D0 \uAF2D \uC0AC\uB840\uB97C \uD558\uACA0\uC2B5\uB2C8\uB2E4."
+    - "\uC544\uC2A4\uD2F4\uC740 \uACE0\uAC1C\uB97C \uC219\uC5EC \uC0AC\uACFC\uB97C
+      \uD55C \uB4A4 \uC7AC\uBE68\uB9AC \uC790\uB9AC\uC5D0\uC11C \uB5A0\uB098\uAC14\uB2E4."
+    - "\uADF8\uAC00 \uC0AC\uB77C\uC9C4 \uB4A4 \uB4A4\uB2A6\uAC8C \uC5BC\uAD74\uC774
+      \uBD89\uC5B4\uC9C4 \uAC83\uC774 \uB290\uAEF4\uC84C\uB2E4."
+    - "' ...\uC624\uB298\uC740 \uADF8\uB0E5 \uC9D1\uC73C\uB85C \uB3CC\uC544\uAC00\uC57C\uACA0\uB2E4.
+      '"
+    - "\uC774\uD6C4 \uBCF5\uC7A1\uD55C \uB9C8\uC74C\uC744 \uC9C4\uC815\uC2DC\uD0A4\uBA70
+      \uC9D1\uC73C\uB85C \uB3CC\uC544\uAC14\uB2E4."
+    charterImages:
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: a8f05ec79414c764eb458960d7ab8977, type: 3}
+    - {fileID: 21300000, guid: fbea562520c398e408f8859bfe1cfc5b, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: a8f05ec79414c764eb458960d7ab8977, type: 3}
+    - {fileID: 21300000, guid: a8f05ec79414c764eb458960d7ab8977, type: 3}
+    - {fileID: 21300000, guid: ad8f1aabb640c024e8f9b44ff402d5c9, type: 3}
+    - {fileID: 21300000, guid: a8f05ec79414c764eb458960d7ab8977, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: a3cb3384f1f24204da97254c30e3d006, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    dialogueWindows:
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+  galleryAustin2Dialogue:
+    sentences:
+    - "\uC0C8\uD558\uC580 \uBBF8\uC220\uAD00\uC5D0 \uB4E4\uC5B4\uC11C\uB2C8 \uB2E4\uC591\uD55C
+      \uD06C\uAE30\uC758 \uADF8\uB9BC\uB4E4\uC774 \uB208\uC5D0 \uB4E4\uC5B4\uC628\uB2E4."
+    - "\uB9E4\uC77C \uAD00\uB9AC\uB97C \uC18C\uD640\uD788 \uD558\uC9C0 \uC54A\uB294\uB2E4\uB294
+      \uAC83\uC744 \uC99D\uBA85\uD558\uB4EF, \uC791\uD488\uB4E4\uC5D0\uB294 \uBA3C\uC9C0
+      \uD558\uB098 \uC5C6\uC5C8\uB2E4."
+    - "\uADF8\uB9BC\uC744 \uB458\uB7EC\uBCF4\uB358 \uC911 \uB9D0\uC5C6\uC774 \uD55C
+      \uADF8\uB9BC\uC5D0 \uC9D1\uC911\uD55C \uC544\uC2A4\uD2F4\uC744 \uBC1C\uACAC\uD574
+      \uC870\uC6A9\uD788 \uB2E4\uAC00\uAC14\uB2E4."
+    - "\uBB34\uC2A8 \uC791\uD488\uC744 \uBCF4\uACE0 \uACC4\uC138\uC694?"
+    - "[\uD50C\uB808\uC774\uC5B4] \uC601\uC560."
+    - "\uC2E0\uC758 \uD0C4\uC0DD\uC774\uB77C\uB294 \uC81C\uBAA9\uC774\uB124\uC694."
+    - "\uADF8\uB798\uC11C \uC624\uB798 \uB4E4\uC5EC\uB2E4\uBCF4\uACE0 \uACC4\uC168\uB358
+      \uAC70\uAD70\uC694?"
+    - "\uADF8\uB807\uC2B5\uB2C8\uB2E4."
+    - "...\uADF8\uB7F0\uB370 \uB9C8\uB0E5 \uC544\uB984\uB2F5\uAE30\uB9CC \uD55C \uADF8\uB9BC\uC740
+      \uC544\uB2CC \uAC83 \uAC19\uC544\uC694."
+    - "\uD0C4\uC0DD\uC5D0\uB294 \uC22D\uACE0\uD55C \uD76C\uC0DD\uC774 \uD544\uC694\uD55C
+      \uBC95\uC774\uC8E0."
+    - "[\uD50C\uB808\uC774\uC5B4] \uC601\uC560\uAED8\uC11C \uC798 \uBCF4\uC2E0 \uAC83
+      \uAC19\uC2B5\uB2C8\uB2E4."
+    - "\uADF8\uC758 \uB9D0\uC5D0 \uB3CC\uC544\uAC00\uC2E0 \uC5B4\uBA38\uB2C8\uAC00
+      \uBA38\uB9BF\uC18D\uC5D0 \uB5A0\uC62C\uB790\uB2E4."
+    - "\uC5B4\uBA38\uB2C8\uAC00 \uB3CC\uC544\uAC00\uC2E0 \uD6C4 \uC774\uB807\uB2E4
+      \uD560 \uAE30\uB150\uC77C\uC740 \uCC59\uAE30\uC9C0 \uBABB\uD588\uB2E4\uB294
+      \uC0AC\uC2E4\uC774 \uB5A0\uC62C\uB77C \uC870\uAE08 \uC4F8\uC4F8\uD574\uC9C0\uB824\uB358
+      \uCC30\uB098, \uBB38\uB4DD \uC544\uC2A4\uD2F4\uC758 \uC0DD\uC77C\uC740 \uC5B8\uC81C\uC778\uC9C0
+      \uAD81\uAE08\uD574\uC84C\uB2E4."
+    - "\uC544\uC2A4\uD2F4 \uC2E0\uAD00\uB2D8\uC740... \uC0DD\uC77C\uC774 \uC5B8\uC81C\uC138\uC694?"
+    - "\uC0DD\uC77C\uC774\uB77C..."
+    - "\uC800\uB294 \uC815\uD655\uD55C \uC0DD\uC77C\uC740 \uBAA8\uB974\uACE0 \uC138\uB840\uC77C\uC740
+      1\uC6D4 1\uC77C\uC785\uB2C8\uB2E4."
+    - "\uC0DD\uC77C\uC744 \uBAA8\uB974\uC138\uC694...?"
+    - "\uC5B4\uB9B4 \uC801 \uBE48\uBBFC\uAC00\uC5D0\uC11C \uC0DD\uD65C\uD558\uB2E4
+      \uC218\uC2B5 \uC0AC\uC81C\uB85C \uBC1C\uD0C1\uB418\uC5B4\uC11C\uC694. \uBB50,
+      \uC5B4\uCC28\uD53C \uC800\uC5D0\uAC90 \uBCC4 \uC758\uBBF8\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4."
+    - "...\uC74C. \uADF8\uB7FC \uC6B0\uB9AC, \uC0DD\uC77C\uC744 \uC815\uD574 \uBCF4\uB294
+      \uAC74 \uC5B4\uB54C\uC694?"
+    - "\uC544\uC9C1 \uC55E\uC73C\uB85C \uC0B4\uC544\uAC08 \uB0A0\uC774 \uC5BC\uB9C8\uB098
+      \uB9CE\uC740\uB370, \uAE30\uB150\uC77C \uD558\uB098 \uC815\uB3C4\uB294 \uB9CC\uB4E4\uC5B4\uB3C4
+      \uC88B\uC9C0 \uC54A\uACA0\uC5B4\uC694?"
+    - ...
+    - "\uADF8\uB7FC, [\uD50C\uB808\uC774\uC5B4] \uC601\uC560\uAED8\uC11C \uC815\uD574\uC8FC\uC2DC\uC8E0."
+    - "\uC81C\uAC00\uC694? \uAC19\uC774 \uC815\uD574\uC694!"
+    - "\uC0DD\uC77C\uC740 \uC6D0\uB798 \uBCF8\uC778\uC774 \uB0A0\uC9DC\uB97C \uC815\uD574\uC11C
+      \uD0DC\uC5B4\uB098\uB294 \uAC8C \uC544\uB2C8\uC796\uC544\uC694?"
+    - ...
+    - "\uD760... \uADF8\uB7FC \uC774\uB807\uAC8C \uC774\uC57C\uAE30\uD558\uAC8C \uB41C
+      \uAC83\uB3C4 \uC778\uC5F0\uC778\uB370, \uC624\uB298... \uC5B4\uB5A0\uC138\uC694?"
+    - "\uC88B\uC2B5\uB2C8\uB2E4."
+    - "\uC190 \uB0B4\uBC00\uC5B4\uBCF4\uC138\uC694!"
+    - '?'
+    - "\uB4DC\uB808\uC2A4 \uC606 \uC791\uC740 \uC8FC\uBA38\uB2C8\uC5D0\uC11C \uB3D9\uADF8\uB780
+      \uC0AC\uD0D5\uC744 \uAEBC\uB0B4 \uADF8\uC758 \uC190\uC5D0 \uC62C\uB824\uB193\uC558\uB2E4."
+    - "\uC0DD\uC77C \uCD95\uD558\uB4DC\uB824\uC694...!"
+    - ...
+    - "\uB2EC\uCF64\uD55C \uC120\uBB3C\uC774\uB124\uC694, \uAC10\uC0AC\uD569\uB2C8\uB2E4."
+    - "\uC774\uBC88\uC5D0\uB294 \uBE44\uB85D \uC0AC\uD0D5\uC744 \uB4DC\uB838\uC9C0\uB9CC,
+      \uB2E4\uC74C\uBC88\uC5D0\uB294 \uC81C\uB300\uB85C \uC0DD\uC77C \uCD95\uD558\uD574
+      \uB4DC\uB9B4\uAC8C\uC694."
+    - "\uB0B4\uB144 \uC0DD\uC77C\uC5D0\uB3C4 \uD568\uAED8 \uD574\uC8FC\uC2DC\uB294
+      \uAC74\uAC00\uC694?"
+    - "...\uC0AC\uB78C\uB4E4\uC774 \uC65C \uC0DD\uC77C\uC744 \uAE30\uB2E4\uB9AC\uB294\uC9C0
+      \uBAB0\uB790\uC5C8\uB294\uB370, \uC774\uB7F0 \uB290\uB08C\uC774\uC5C8\uAD70\uC694."
+    - "\uC774\uB807\uAC8C \uC88B\uC544\uD574\uC8FC\uC2DC\uB2C8... \uC544\uC2A4\uD2F4
+      \uC2E0\uAD00\uB2D8\uC758 \uC0DD\uC77C\uC744 \uCCAB \uBC88\uC9F8\uB85C \uCD95\uD558\uD574
+      \uB4DC\uB838\uB2E4\uB294 \uC0AC\uC2E4\uC774 \uBB34\uCC99 \uAE30\uC058\uB124\uC694."
+    - "\uD639\uC2DC \uB2E4\uC74C\uC5D0 \uC6D0\uD558\uB294 \uC120\uBB3C \uC788\uC73C\uC2DC\uBA74
+      \uB9D0\uC500\uD574\uC8FC\uC138\uC694!"
+    - ...
+    - "\uB098\uC911\uC5D0 \uAF2D \uB9D0\uC500\uB4DC\uB9AC\uC8E0."
+    - "\uADF8\uB294 \uC7A0\uC2DC \uD754\uB4E4\uB9BC \uC5C6\uB294 \uB208\uBE5B\uC73C\uB85C
+      \uC751\uC2DC\uD558\uB354\uB2C8 \uB9C8\uC74C\uC744 \uC815\uD588\uB2E4\uB294
+      \uB4EF \uBBF8\uC18C \uC9C0\uC5B4 \uBCF4\uC600\uB2E4."
+    charterImages:
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    - {fileID: 21300000, guid: e17b5deebc782e64c948fe861eb0adca, type: 3}
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    - {fileID: 21300000, guid: e17b5deebc782e64c948fe861eb0adca, type: 3}
+    - {fileID: 21300000, guid: 054dd5ef101db544e971142aa9f819a4, type: 3}
+    - {fileID: 21300000, guid: ed83df459ec0a2f40b29b6e6ad4c63cf, type: 3}
+    - {fileID: 21300000, guid: ed83df459ec0a2f40b29b6e6ad4c63cf, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    - {fileID: 21300000, guid: e17b5deebc782e64c948fe861eb0adca, type: 3}
+    - {fileID: 21300000, guid: e17b5deebc782e64c948fe861eb0adca, type: 3}
+    - {fileID: 21300000, guid: c6464c622f5b8ab43bcacca9f6b7f9d6, type: 3}
+    - {fileID: 21300000, guid: e17b5deebc782e64c948fe861eb0adca, type: 3}
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    - {fileID: 21300000, guid: e17b5deebc782e64c948fe861eb0adca, type: 3}
+    - {fileID: 21300000, guid: ed83df459ec0a2f40b29b6e6ad4c63cf, type: 3}
+    - {fileID: 21300000, guid: c6464c622f5b8ab43bcacca9f6b7f9d6, type: 3}
+    - {fileID: 21300000, guid: e17b5deebc782e64c948fe861eb0adca, type: 3}
+    - {fileID: 21300000, guid: 268d4cde3ed1f2645b1c8a90d3c11bcc, type: 3}
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    - {fileID: 21300000, guid: ed83df459ec0a2f40b29b6e6ad4c63cf, type: 3}
+    - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
+    - {fileID: 21300000, guid: 05927a444293308479ef933c831d3804, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: 69c6ac3984336d54099bc4aee01cef43, type: 3}
+    - {fileID: 21300000, guid: 05927a444293308479ef933c831d3804, type: 3}
+    - {fileID: 21300000, guid: ed83df459ec0a2f40b29b6e6ad4c63cf, type: 3}
+    - {fileID: 21300000, guid: 69c6ac3984336d54099bc4aee01cef43, type: 3}
+    - {fileID: 21300000, guid: ed83df459ec0a2f40b29b6e6ad4c63cf, type: 3}
+    - {fileID: 21300000, guid: ed83df459ec0a2f40b29b6e6ad4c63cf, type: 3}
+    - {fileID: 21300000, guid: 69c6ac3984336d54099bc4aee01cef43, type: 3}
+    - {fileID: 21300000, guid: 69c6ac3984336d54099bc4aee01cef43, type: 3}
+    - {fileID: 21300000, guid: e17b5deebc782e64c948fe861eb0adca, type: 3}
+    - {fileID: 21300000, guid: e17b5deebc782e64c948fe861eb0adca, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    dialogueWindows:
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
 --- !u!1 &484729213
 GameObject:
@@ -20517,7 +22031,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -23106,6 +24620,81 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1145218473
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1145218474}
+  - component: {fileID: 1145218476}
+  - component: {fileID: 1145218475}
+  m_Layer: 5
+  m_Name: DarkImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1145218474
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145218473}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 419767730}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 1564, y: 0}
+  m_SizeDelta: {x: 2048, y: 1920}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1145218475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145218473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 18dcb273443f898438d307181b71caea, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 0
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1145218476
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145218473}
+  m_CullTransparentMesh: 1
 --- !u!1 &1169908583
 GameObject:
   m_ObjectHideFlags: 0
@@ -24360,6 +25949,7 @@ RectTransform:
   - {fileID: 1985795458}
   - {fileID: 563724576}
   - {fileID: 75340018}
+  - {fileID: 419767730}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -25194,6 +26784,7 @@ MonoBehaviour:
   horseAudio: {fileID: 8300000, guid: a4ce58a1840dbe44b825d6bc514d3fbe, type: 3}
   catAudio: {fileID: 8300000, guid: 28851555f74b69d419ce7588fff688fc, type: 3}
   littleBirdAudio: {fileID: 8300000, guid: db27fc68d7081464a85572288eaf1d6f, type: 3}
+  wave2Audio: {fileID: 8300000, guid: 948f12876fa02c14d870cf4e704c1d19, type: 3}
   typeSound: {fileID: 1340684492}
   count: 0
   conversation: {fileID: 1182994084}
@@ -28289,6 +29880,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 247e501725626834b9a1c6a618c17c7c, type: 3}
   - {fileID: 21300000, guid: 75bad00a385d7e0418636e8c0292726e, type: 3}
   - {fileID: 21300000, guid: c8fecfc8bb8476049b41dff24f7ff88b, type: 3}
+  - {fileID: 21300000, guid: 989bad0cec386d54690f32466f703f75, type: 3}
+  - {fileID: 21300000, guid: 0b469478d329db24aa17b191a5752e49, type: 3}
+  - {fileID: 21300000, guid: 4de14176942f5a248bfde69fd43db806, type: 3}
+  - {fileID: 21300000, guid: e573530c62ef43c49a5512bb947d25a6, type: 3}
+  - {fileID: 21300000, guid: 6c8300da15c521b4989a65b768bf7f2d, type: 3}
   placeInfoSprite:
   - {fileID: 21300000, guid: 8bc6483b7a0ec74438a71e7ad262c639, type: 3}
   - {fileID: 21300000, guid: baf682a731c008f468b906f709755021, type: 3}
@@ -28329,6 +29925,15 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d25b9422771cb954ba1b3ee391a43fc5, type: 3}
   - {fileID: 8300000, guid: 840ac2f2823403644924120caac6c4c5, type: 3}
   - {fileID: 8300000, guid: c29cae831553e904fb578fbffbebefd9, type: 3}
+  - {fileID: 8300000, guid: 58b928c6669f1304f9155a582fc76c71, type: 3}
+  - {fileID: 8300000, guid: 57e19b42dd70ee54983afd4173392171, type: 3}
+  - {fileID: 8300000, guid: f92ea8946cc81244e975a09de2f7b4c0, type: 3}
+  - {fileID: 8300000, guid: 9718f6b6a8f7fe0438cb79f7cd47e8e9, type: 3}
+  - {fileID: 8300000, guid: 8751a80dd7ee1d04cb5d6234b0d51bbd, type: 3}
+  - {fileID: 8300000, guid: 5c6371b7d14da7e4faa650f7aaf633bd, type: 3}
+  - {fileID: 8300000, guid: 93374832f3d623a4ba20aebb92934341, type: 3}
+  - {fileID: 8300000, guid: 7456d4cb7e78c724c8f6408f06b59037, type: 3}
+  - {fileID: 8300000, guid: 90f242d04a3ac9241b2496b24dca3e6f, type: 3}
   sceneChangeAudio: {fileID: 8300000, guid: 4b6b492a12c1e12469a1e837631fcf25, type: 3}
   placeConversation: {fileID: 673843947}
   placeCharterName: {fileID: 1592989994}

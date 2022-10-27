@@ -100,6 +100,32 @@ public class DialogueTxt : MonoBehaviour
     public Dialogue parkAustin3FriendDialogue;
     public Dialogue parkAustin3StayDialogue;
     public Dialogue parkAustin3SelectDialogue;
+    public Dialogue beachIan1Dialogue;
+    public Dialogue beachIan2Dialogue;
+    public Dialogue beachIan2LookStarDialogue;
+    public Dialogue beachIan2GuideStarDialogue;
+    public Dialogue beachIan2SelectDialogue;
+    public Dialogue beachNoa1Dialogue;
+    public Dialogue beachNoa2Dialogue;
+    public Dialogue beachNoa2TomorrowSendDialogue;
+    public Dialogue beachNoa2ThinkSendDialogue;
+    public Dialogue beachNoa2SelectDialogue;
+    public Dialogue beachAustin1Dialogue;
+    public Dialogue beachAustin2Dialogue;
+    public Dialogue beachAustin2SleepDialogue;
+    public Dialogue beachAustin2OpenEyeDialogue;
+    public Dialogue beachAustin2SelectDialogue;
+    public Dialogue galleryIan1Dialogue;
+    public Dialogue galleryNoa1Dialogue;
+    public Dialogue galleryNoa2Dialogue;
+    public Dialogue galleryNoa2AngerDialogue;
+    public Dialogue galleryNoa2IgnoreDialogue;
+    public Dialogue galleryNoa2SelectDialogue;
+    public Dialogue galleryAustin1Dialogue;
+    public Dialogue galleryAustin1ComingOutDialogue;
+    public Dialogue galleryAustin1EnjoyDialogue;
+    public Dialogue galleryAustin1SelectDialogue;
+    public Dialogue galleryAustin2Dialogue;
 
     private void Awake()
     {

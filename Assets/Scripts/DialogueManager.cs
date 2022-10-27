@@ -56,6 +56,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private AudioClip horseAudio;
     [SerializeField] private AudioClip catAudio;
     [SerializeField] private AudioClip littleBirdAudio;
+    [SerializeField] private AudioClip wave2Audio;
     
     public AudioSource typeSound;
 
@@ -610,6 +611,99 @@ public class DialogueManager : MonoBehaviour
             case "ParkAustin3Select":
                 CheckIsAddAustinHeart();
                 break;
+            case "BeachIan1":
+                StartCoroutine(FadeInfo(1));
+                break;
+            case "BeachIan2":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.beachIan2Dialogue.sentences[20] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowTwoChoice(19);
+                break;
+            case "BeachIan2LookStar":
+                DailyRoutine.Instance.BeachIan2Select();
+                break;
+            case "BeachIan2GuideStar":
+                DailyRoutine.Instance.BeachIan2Select();
+                break;
+            case "BeachIan2Select":
+                CheckIsAddIanHeart();
+                break;
+            case "BeachNoa1":
+                StartCoroutine(FadeInfo(2));
+                break;
+            case "BeachNoa2":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.beachNoa2Dialogue.sentences[7] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowTwoChoice(20);
+                break;
+            case "BeachNoa2TomorrowSend":
+                DailyRoutine.Instance.BeachNoa2Select();
+                break;
+            case "BeachNoa2ThinkSend":
+                DailyRoutine.Instance.BeachNoa2Select();
+                break;
+            case "BeachNoa2Select":
+                CheckIsAddNoaHeart();
+                break;
+            case "BeachAustin1":
+                StartCoroutine(FadeInfo(3));
+                break;
+            case "BeachAustin2":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.beachAustin2Dialogue.sentences[25] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowTwoChoice(21);
+                break;
+            case "BeachAustin2Sleep":
+                DailyRoutine.Instance.BeachAustin2Select();
+                break;
+            case "BeachAustin2OpenEye":
+                DailyRoutine.Instance.BeachAustin2Select();
+                break;
+            case "BeachAustin2Select":
+                CheckIsAddAustinHeart();
+                break;
+            case "GalleryIan1":
+                StartCoroutine(FadeInfo(4));
+                break;
+            case "GalleryNoa1":
+                StartCoroutine(FadeInfo(2));
+                break;
+            case "GalleryNoa2":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.galleryNoa2Dialogue.sentences[11] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowTwoChoice(22);
+                break;
+            case "GalleryNoa2Anger":
+                DailyRoutine.Instance.GalleryNoa2Select();
+                break;
+            case "GalleryNoa2Ignore":
+                DailyRoutine.Instance.GalleryNoa2Select();
+                break;
+            case "GalleryNoa2Select":
+                CheckIsAddNoaHeart();
+                break;
+            case "GalleryAustin1":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.galleryAustin1Dialogue.sentences[10] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowTwoChoice(23);
+                break;
+            case "GalleryAustin1ComingOut":
+                DailyRoutine.Instance.GalleryAustin1Select();
+                break;
+            case "GalleryAustin1Enjoy":
+                DailyRoutine.Instance.GalleryAustin1Select();
+                break;
+            case "GalleryAustin1Select":
+                CheckIsAddAustinHeart();
+                break;
+            case "GalleryAustin2":
+                StartCoroutine(FadeInfo(3));
+                break;
         }
     }
 
@@ -875,6 +969,38 @@ public class DialogueManager : MonoBehaviour
                                 ChangeWindowImage();
                             }
                             break;
+                        case "BeachIan1":
+                            _isPlayAnim = true;
+                            
+                            if (count == 14)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "BeachNoa2Select":
+                            _isPlayAnim = true;
+                            
+                            if (count == 10)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
                     }
                    
                     if (_isPlayAnim.Equals(false))
@@ -1012,13 +1138,25 @@ public class DialogueManager : MonoBehaviour
                     case "ParkNoa2":
                         if (_listCharters[count].name.Contains("Man4").Equals(true))
                         {
-                            charterName.text = "지한";
+                            charterName.text = "치한";
                         }
                         break;
                     case "ParkAustin3":
                         if (_listCharters[count].name.Contains("Child2").Equals(true))
                         {
                             charterName.text = "아이";
+                        }
+                        break;
+                    case "GalleryIan1":
+                        if (_listCharters[count].name.Contains("Aide").Equals(true))
+                        {
+                            charterName.text = "보좌관";
+                        }
+                        break;
+                    case "GalleryAustin1":
+                        if (_listCharters[count].name.Contains("Man5").Equals(true))
+                        {
+                            charterName.text = "신관";
                         }
                         break;
                 }
@@ -1357,6 +1495,69 @@ public class DialogueManager : MonoBehaviour
                                     break;
                             }   
                             break;
+                        case "BeachIan1":
+                            switch (count)
+                            {
+                                case 2:
+                                    SettingUI.Instance.StopSfxLoopSound();
+                                    break;
+                                case 13:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "BeachNoa1":
+                            switch (count)
+                            {
+                               case 11:
+                                   DailyRoutine.Instance.SettingPlaceImage(18);
+                                   SettingUI.Instance.SettingSfxLoopSound(rainAudio);
+                                   break;
+                               case 13:
+                                   SettingUI.Instance.StopSfxLoopSound();
+                                   break;
+                            }
+                            break;
+                        case "BeachNoa2Select":
+                            switch (count)
+                            {
+                                case 10:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "BeachAustin1":
+                            switch (count)
+                            {
+                                case 16:
+                                    Handheld.Vibrate();
+                                    break;
+                            }
+                            break;
+                        case "BeachAustin2":
+                            switch (count)
+                            {
+                                case 19:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "GalleryAustin1":
+                            switch (count)
+                            {
+                                case 7:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "GalleryAustin1Select":
+                            switch (count)
+                            {
+                                case 10:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
                     }
 
                 if (_listDialogueWindows[count].name.Contains("Think_Box").Equals(true))
@@ -1522,6 +1723,42 @@ public class DialogueManager : MonoBehaviour
                                 yield return _yieldCharterChangeDelay;
                                 charterImage.sprite = _listCharters[count];
                                 break;
+                            case "BeachIan1":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "BeachIan2":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "BeachNoa1":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "BeachAustin2":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "BeachAustin2OpenEye":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "GalleryIan1":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "GalleryNoa1":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "GalleryNoa2":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "GalleryAustin2":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
                         }
                     }
                     else
@@ -1534,8 +1771,6 @@ public class DialogueManager : MonoBehaviour
                     _isOpeningSkip = false;
                     yield return _yieldNoCharterChangeDelay;
                 }
-                
-                
             }
         }
         // 대화 시작 부분
@@ -1547,6 +1782,9 @@ public class DialogueManager : MonoBehaviour
             {
                 case "ParkAustin2":
                     SettingUI.Instance.SettingSfxSound(littleBirdAudio);
+                    break;
+                case "BeachIan1":
+                    SettingUI.Instance.SettingSfxLoopSound(wave2Audio);
                     break;
             }
         }
