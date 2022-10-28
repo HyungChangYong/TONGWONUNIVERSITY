@@ -39,9 +39,6 @@ public class DailyRoutine : MonoBehaviour
     [SerializeField] private GameObject placeTxtBoxLineGo;
     [SerializeField] private Image placeTxtBtnImage;
     
-    
-    
-
     private float _time;
     private float _currentFadeTime = 1;
     private readonly WaitForSeconds _yieldViewDelay = new WaitForSeconds(0.1f);
@@ -178,17 +175,17 @@ public class DailyRoutine : MonoBehaviour
             // 이안 
             if (_whoCharacterNum == 0)
             {
-                SettingSituationCaseDialogue(0, DialogueTxt.Instance.firstIanDialogue, "FirstIan", 0);
+                SettingSituationCaseDialogue(0, DialogueTxt.Instance.firstIanDialogue, "FirstIan", 0, true);
             }
             // 노아
             else if (_whoCharacterNum == 1)
             {
-                SettingSituationCaseDialogue(1, DialogueTxt.Instance.firstNoaDialogue, "FirstNoa", 0);
+                SettingSituationCaseDialogue(1, DialogueTxt.Instance.firstNoaDialogue, "FirstNoa", 0, true);
             }
             // 아스틴
             else if (_whoCharacterNum == 2)
             {
-                SettingSituationCaseDialogue(2, DialogueTxt.Instance.firstAustinDialogue, "FirstAustin", 0);
+                SettingSituationCaseDialogue(2, DialogueTxt.Instance.firstAustinDialogue, "FirstAustin", 0, true);
             }
         }
         // 첫 만남을 모두 가졌다면
@@ -200,7 +197,18 @@ public class DailyRoutine : MonoBehaviour
                 // 남자 주인공 집일 경우
                 if (_placeNum == 0 || _placeNum == 1 || _placeNum == 2)
                 {
-                    
+                    int characterAppearanceRate = UnityEngine.Random.Range(1, 101);
+
+                    // 20% 확률로 아무도 없음
+                    if (characterAppearanceRate <= 20)
+                    {
+                        SettingSituationCaseDialogue(3, DialogueTxt.Instance.nobodyElseDialogue, "NobodyElse", 1, true);
+                    }
+                    // 80% 확률로 캐릭터 등장
+                    else
+                    {
+                        SettingSituationCase();
+                    }
                 }
                 // 남자 주인공 집이 아닐 경우
                 else
@@ -214,7 +222,18 @@ public class DailyRoutine : MonoBehaviour
                 // 남자 주인공 집일 경우
                 if (_placeNum == 0 || _placeNum == 1 || _placeNum == 2)
                 {
-                    
+                    int characterAppearanceRate = UnityEngine.Random.Range(1, 101);
+
+                    // 50% 확률로 아무도 없음
+                    if (characterAppearanceRate <= 50)
+                    {
+                        SettingSituationCaseDialogue(3, DialogueTxt.Instance.nobodyElseDialogue, "NobodyElse", 1, true);
+                    }
+                    // 50% 확률로 캐릭터 등장
+                    else
+                    {
+                        SettingSituationCase();
+                    }
                 }
                 // 남자 주인공 집이 아닐 경우
                 else
@@ -224,7 +243,7 @@ public class DailyRoutine : MonoBehaviour
                     // 20% 확률로 아무도 없음
                     if (characterAppearanceRate <= 20)
                     {
-                        SettingSituationCaseDialogue(3, DialogueTxt.Instance.nobodyElseDialogue, "NobodyElse", 1);
+                        SettingSituationCaseDialogue(3, DialogueTxt.Instance.nobodyElseDialogue, "NobodyElse", 1, true);
                     }
                     // 80% 확률로 캐릭터 등장
                     else
@@ -233,14 +252,16 @@ public class DailyRoutine : MonoBehaviour
                     }
                 }
             }
-            
         }
     }
 
-    public void SettingSituationCaseDialogue(int placeBgmNum, Dialogue dialogue, string situationCaseName, int countNum)
+    public void SettingSituationCaseDialogue(int placeBgmNum, Dialogue dialogue, string situationCaseName, int countNum, bool changeAudio)
     {
-        // 전용 bgm
-        _placeBgm = placeBgmClips[placeBgmNum];
+        if (changeAudio.Equals(true))
+        {
+            // 전용 bgm
+            _placeBgm = placeBgmClips[placeBgmNum];
+        }
         
         _dialogue = dialogue;
                         
@@ -281,7 +302,26 @@ public class DailyRoutine : MonoBehaviour
 
     private void SettingSituationCase()
     {
-        _whoCharacterNum = UnityEngine.Random.Range(0, 3);
+        // 강제 이안 호출 (이안 집 클릭)
+        if (_placeNum == 0)
+        {
+            _whoCharacterNum = 0;
+        }
+        // 강제 노아 호출 (노아 집 클릭)
+        else if (_placeNum == 1)
+        {
+            _whoCharacterNum = 1;
+        }
+        // 강제 아스틴 호출 (아스틴 집 클릭)
+        else if (_placeNum == 2)
+        {
+            _whoCharacterNum = 2;
+        }
+        // 랜덤 캐릭터 호출
+        else
+        {
+            _whoCharacterNum = UnityEngine.Random.Range(0, 3);
+        }
 
         // 특정 캐릭터 호감도 높음
         if (LobbyManager.Instance.nowHeart[_whoCharacterNum + 1] >= 25)
@@ -297,6 +337,56 @@ public class DailyRoutine : MonoBehaviour
         // 장소에 땨른 상황 세팅
         switch (_placeNum)
         {
+            #region 공작가
+            case 0:
+                // 호감도 낮음 경우
+                if (_isFriendliness.Equals(false))
+                {
+                    SettingSituationCaseDialogue(36, DialogueTxt.Instance.homeIan1Dialogue, "HomeIan1", 1, true);
+                }
+                else
+                {
+                    SettingSituationCaseDialogue(36, DialogueTxt.Instance.homeIan2Dialogue, "HomeIan2", 0, true);
+                }
+                break;
+            #endregion
+            #region 후작가
+            case 1:
+                // 호감도 낮음 경우
+                if (_isFriendliness.Equals(false))
+                {
+                    SettingSituationCaseDialogue(37, DialogueTxt.Instance.homeNoa1Dialogue, "HomeNoa1", 0, true);
+                }
+                else
+                {
+                    SettingSituationCaseDialogue(38, DialogueTxt.Instance.homeNoa2Dialogue, "HomeNoa2", 1, true);
+                }
+                break;
+            #endregion
+            #region 신전
+            case 2:
+                // 호감도 낮음 경우
+                if (_isFriendliness.Equals(false))
+                {
+                    _ranDialogueNum = UnityEngine.Random.Range(0, 2);
+
+                    // 랜덤 첫번째 대사 출력
+                    if (_ranDialogueNum == 0)
+                    {
+                        SettingSituationCaseDialogue(39, DialogueTxt.Instance.homeAustin1Dialogue, "HomeAustin1", 0, true);
+                    }
+                    // 랜덤 두번쨰 대사 출력
+                    else if (_ranDialogueNum == 1)
+                    { 
+                        SettingSituationCaseDialogue(40, DialogueTxt.Instance.homeAustin2Dialogue, "HomeAustin2", 0, true);
+                    }
+                }
+                else
+                {
+                    SettingSituationCaseDialogue(39, DialogueTxt.Instance.homeAustin3Dialogue, "HomeAustin3", 1, true);
+                }
+                break;
+            #endregion
             #region 공원
             case 3:
                 // 호감도 낮음 경우
@@ -311,12 +401,12 @@ public class DailyRoutine : MonoBehaviour
                         if (_ranDialogueNum == 0)
                         {
                             // parkIan1Dialogue
-                            SettingSituationCaseDialogue(20, DialogueTxt.Instance.parkIan1Dialogue, "ParkIan1", 1);
+                            SettingSituationCaseDialogue(20, DialogueTxt.Instance.parkIan1Dialogue, "ParkIan1", 1, true);
                         }
                         // 랜덤 두번쨰 대사 출력
                         else if (_ranDialogueNum == 1)
                         {
-                            SettingSituationCaseDialogue(9, DialogueTxt.Instance.parkIan2Dialogue, "ParkIan2", 0);
+                            SettingSituationCaseDialogue(9, DialogueTxt.Instance.parkIan2Dialogue, "ParkIan2", 0, true);
                         }
                     }
                     // 노아
@@ -325,12 +415,12 @@ public class DailyRoutine : MonoBehaviour
                         // 랜덤 첫번째 대사 출력
                         if (_ranDialogueNum == 0)
                         {
-                            SettingSituationCaseDialogue(9, DialogueTxt.Instance.parkNoa1Dialogue, "ParkNoa1", 0);
+                            SettingSituationCaseDialogue(9, DialogueTxt.Instance.parkNoa1Dialogue, "ParkNoa1", 0, true);
                         }
                         // 랜덤 두번쨰 대사 출력
                         else if (_ranDialogueNum == 1)
                         {
-                            SettingSituationCaseDialogue(6, DialogueTxt.Instance.parkNoa2Dialogue, "ParkNoa2", 0);
+                            SettingSituationCaseDialogue(6, DialogueTxt.Instance.parkNoa2Dialogue, "ParkNoa2", 0, true);
                         }
                     }
                     // 아스틴 
@@ -339,12 +429,12 @@ public class DailyRoutine : MonoBehaviour
                         // 랜덤 첫번째 대사 출력
                         if (_ranDialogueNum == 0)
                         {
-                            SettingSituationCaseDialogue(25, DialogueTxt.Instance.parkAustin1Dialogue, "ParkAustin1", 1);
+                            SettingSituationCaseDialogue(25, DialogueTxt.Instance.parkAustin1Dialogue, "ParkAustin1", 1, true);
                         }
                         // 랜덤 두번쨰 대사 출력
                         else if (_ranDialogueNum == 1)
                         {
-                            SettingSituationCaseDialogue(26, DialogueTxt.Instance.parkAustin2Dialogue, "ParkAustin2", 0);
+                            SettingSituationCaseDialogue(26, DialogueTxt.Instance.parkAustin2Dialogue, "ParkAustin2", 0, true);
                         }
                     }
                 }
@@ -358,30 +448,30 @@ public class DailyRoutine : MonoBehaviour
                         // 랜덤 첫번째 대사 출력
                         if (_ranDialogueNum == 0)
                         {
-                            SettingSituationCaseDialogue(21, DialogueTxt.Instance.parkIan3Dialogue, "ParkIan3", 0);
+                            SettingSituationCaseDialogue(21, DialogueTxt.Instance.parkIan3Dialogue, "ParkIan3", 0, true);
                         }
                         // 랜덤 두번쨰 대사 출력
                         else if (_ranDialogueNum == 1)
                         {
                             _placeUISprite = placeUISprite[15];
                                  
-                            SettingSituationCaseDialogue(22, DialogueTxt.Instance.parkIan4Dialogue, "ParkIan4", 0);
+                            SettingSituationCaseDialogue(22, DialogueTxt.Instance.parkIan4Dialogue, "ParkIan4", 0, true);
                         }
                         // 랜점 세번째 대사 출력
                         else if (_ranDialogueNum == 2)
                         {
-                            SettingSituationCaseDialogue(23, DialogueTxt.Instance.parkIan5Dialogue, "ParkIan5", 1);
+                            SettingSituationCaseDialogue(23, DialogueTxt.Instance.parkIan5Dialogue, "ParkIan5", 1, true);
                         }
                     }
                     // 노아
                     else if (_whoCharacterNum == 1)
                     {
-                        SettingSituationCaseDialogue(24, DialogueTxt.Instance.parkNoa3Dialogue, "ParkNoa3", 0);
+                        SettingSituationCaseDialogue(24, DialogueTxt.Instance.parkNoa3Dialogue, "ParkNoa3", 0, true);
                     }
                     // 아스틴
                     else if (_whoCharacterNum == 2)
                     {
-                        SettingSituationCaseDialogue(22, DialogueTxt.Instance.parkAustin3Dialogue, "ParkAustin3", 0);
+                        SettingSituationCaseDialogue(22, DialogueTxt.Instance.parkAustin3Dialogue, "ParkAustin3", 0, true);
                     }
                 }
                 break;
@@ -399,12 +489,12 @@ public class DailyRoutine : MonoBehaviour
                         // 랜덤 첫번째 대사 출력
                         if (_ranDialogueNum == 0)
                         {
-                            SettingSituationCaseDialogue(4, DialogueTxt.Instance.townIan1Dialogue, "TownIan1", 0);
+                            SettingSituationCaseDialogue(4, DialogueTxt.Instance.townIan1Dialogue, "TownIan1", 0, true);
                         }
                         // 랜덤 두번쨰 대사 출력
                         else if (_ranDialogueNum == 1)
                         {
-                            SettingSituationCaseDialogue(5, DialogueTxt.Instance.townIan2Dialogue, "TownIan2", 0);
+                            SettingSituationCaseDialogue(5, DialogueTxt.Instance.townIan2Dialogue, "TownIan2", 0, true);
                         }
                     }
                     // 노아
@@ -415,12 +505,12 @@ public class DailyRoutine : MonoBehaviour
                         {
                             _placeUISprite = placeUISprite[11];
                             
-                            SettingSituationCaseDialogue(1, DialogueTxt.Instance.townNoa1Dialogue, "TownNoa1", 0);
+                            SettingSituationCaseDialogue(1, DialogueTxt.Instance.townNoa1Dialogue, "TownNoa1", 0, true);
                         }
                         // 랜덤 두번쨰 대사 출력
                         else if (_ranDialogueNum == 1)
                         {
-                            SettingSituationCaseDialogue(8, DialogueTxt.Instance.townNoa2Dialogue, "TownNoa2", 0);
+                            SettingSituationCaseDialogue(8, DialogueTxt.Instance.townNoa2Dialogue, "TownNoa2", 0, true);
                         }
                     }
                     // 아스틴 
@@ -431,12 +521,12 @@ public class DailyRoutine : MonoBehaviour
                         {
                             _placeUISprite = placeUISprite[13];
 
-                            SettingSituationCaseDialogue(10, DialogueTxt.Instance.townAustin1Dialogue, "TownAustin1", 1);
+                            SettingSituationCaseDialogue(10, DialogueTxt.Instance.townAustin1Dialogue, "TownAustin1", 1, true);
                         }
                         // 랜덤 두번쨰 대사 출력
                         else if (_ranDialogueNum == 1)
                         {
-                            SettingSituationCaseDialogue(12, DialogueTxt.Instance.townAustin3Dialogue, "TownAustin3", 0);
+                            SettingSituationCaseDialogue(12, DialogueTxt.Instance.townAustin3Dialogue, "TownAustin3", 0, true);
                         }
                     }
                 }
@@ -451,14 +541,14 @@ public class DailyRoutine : MonoBehaviour
                         {
                             _placeUISprite = placeUISprite[8];
                             
-                            SettingSituationCaseDialogue(5, DialogueTxt.Instance.townIan3Dialogue, "TownIan3", 0);
+                            SettingSituationCaseDialogue(5, DialogueTxt.Instance.townIan3Dialogue, "TownIan3", 0, true);
                         }
                         // 랜덤 두번쨰 대사 출력
                         else if (_ranDialogueNum == 1)
                         {
                             _placeUISprite = placeUISprite[9];
                             
-                            SettingSituationCaseDialogue(6, DialogueTxt.Instance.townIan4Dialogue, "TownIan4", 0);
+                            SettingSituationCaseDialogue(6, DialogueTxt.Instance.townIan4Dialogue, "TownIan4", 0, true);
                         }
                     }
                     // 노아
@@ -467,12 +557,12 @@ public class DailyRoutine : MonoBehaviour
                         // 랜덤 첫번째 대사 출력
                         if (_ranDialogueNum == 0)
                         {
-                            SettingSituationCaseDialogue(9, DialogueTxt.Instance.townNoa3Dialogue, "TownNoa3", 0);
+                            SettingSituationCaseDialogue(9, DialogueTxt.Instance.townNoa3Dialogue, "TownNoa3", 0, true);
                         }
                         // 랜덤 두번쨰 대사 출력
                         else if (_ranDialogueNum == 1)
                         {
-                            SettingSituationCaseDialogue(6, DialogueTxt.Instance.townNoa4Dialogue, "TownNoa4", 0);
+                            SettingSituationCaseDialogue(6, DialogueTxt.Instance.townNoa4Dialogue, "TownNoa4", 0, true);
                         }
                     }
                     // 아스틴 
@@ -483,12 +573,12 @@ public class DailyRoutine : MonoBehaviour
                         {
                             _placeUISprite = placeUISprite[14];
                             
-                            SettingSituationCaseDialogue(11, DialogueTxt.Instance.townAustin2Dialogue, "TownAustin2", 0);
+                            SettingSituationCaseDialogue(11, DialogueTxt.Instance.townAustin2Dialogue, "TownAustin2", 0, true);
                         }
                         // 랜덤 두번쨰 대사 출력
                         else if (_ranDialogueNum == 1)
                         {
-                            SettingSituationCaseDialogue(13, DialogueTxt.Instance.townAustin4Dialogue, "TownAustin4", 0);
+                            SettingSituationCaseDialogue(13, DialogueTxt.Instance.townAustin4Dialogue, "TownAustin4", 0, true);
                         }
                     }
                 }
@@ -502,19 +592,19 @@ public class DailyRoutine : MonoBehaviour
                     // 이안 
                     if (_whoCharacterNum == 0)
                     {
-                        SettingSituationCaseDialogue(27, DialogueTxt.Instance.beachIan1Dialogue, "BeachIan1", 0);
+                        SettingSituationCaseDialogue(27, DialogueTxt.Instance.beachIan1Dialogue, "BeachIan1", 0, true);
                     }
                     // 노아
                     else if (_whoCharacterNum == 1)
                     {
                         _placeUISprite = placeUISprite[17];
                         
-                        SettingSituationCaseDialogue(6, DialogueTxt.Instance.beachNoa1Dialogue, "BeachNoa1", 0);
+                        SettingSituationCaseDialogue(6, DialogueTxt.Instance.beachNoa1Dialogue, "BeachNoa1", 0, true);
                     }
                     // 아스틴 
                     else if (_whoCharacterNum == 2)
                     {
-                        SettingSituationCaseDialogue(29, DialogueTxt.Instance.beachAustin1Dialogue, "BeachAustin1", 0);
+                        SettingSituationCaseDialogue(29, DialogueTxt.Instance.beachAustin1Dialogue, "BeachAustin1", 0, true);
                     }
                 }
                 else
@@ -524,21 +614,21 @@ public class DailyRoutine : MonoBehaviour
                     {
                         _placeUISprite = placeUISprite[16];
                         
-                        SettingSituationCaseDialogue(28, DialogueTxt.Instance.beachIan2Dialogue, "BeachIan2", 0);
+                        SettingSituationCaseDialogue(28, DialogueTxt.Instance.beachIan2Dialogue, "BeachIan2", 0, true);
                     }
                     // 노아
                     else if (_whoCharacterNum == 1)
                     {
                         _placeUISprite = placeUISprite[19];
                         
-                        SettingSituationCaseDialogue(28, DialogueTxt.Instance.beachNoa2Dialogue, "BeachNoa2", 0);
+                        SettingSituationCaseDialogue(28, DialogueTxt.Instance.beachNoa2Dialogue, "BeachNoa2", 0, true);
                     }
                     // 아스틴
                     else if (_whoCharacterNum == 2)
                     {
                         _placeUISprite = placeUISprite[19];
                         
-                        SettingSituationCaseDialogue(30, DialogueTxt.Instance.beachAustin2Dialogue, "BeachAustin2", 0);
+                        SettingSituationCaseDialogue(30, DialogueTxt.Instance.beachAustin2Dialogue, "BeachAustin2", 0, true);
                     }
                 }
                 break;
@@ -551,7 +641,7 @@ public class DailyRoutine : MonoBehaviour
                     // 이안 
                     if (_whoCharacterNum == 0)
                     {
-                        SettingSituationCaseDialogue(17, DialogueTxt.Instance.restaurantIan1Dialogue, "RestaurantIan1", 0);
+                        SettingSituationCaseDialogue(17, DialogueTxt.Instance.restaurantIan1Dialogue, "RestaurantIan1", 0, true);
                     }
                     // 노아
                     else if (_whoCharacterNum == 1)
@@ -561,18 +651,18 @@ public class DailyRoutine : MonoBehaviour
                         // 랜덤 첫번째 대사 출력
                         if (_ranDialogueNum == 0)
                         {
-                            SettingSituationCaseDialogue(18, DialogueTxt.Instance.restaurantNoa1Dialogue, "RestaurantNoa1", 0);
+                            SettingSituationCaseDialogue(18, DialogueTxt.Instance.restaurantNoa1Dialogue, "RestaurantNoa1", 0, true);
                         }
                         // 랜덤 두번쨰 대사 출력
                         else if (_ranDialogueNum == 1)
                         {
-                            SettingSituationCaseDialogue(5, DialogueTxt.Instance.restaurantNoa2Dialogue, "RestaurantNoa2", 0);
+                            SettingSituationCaseDialogue(5, DialogueTxt.Instance.restaurantNoa2Dialogue, "RestaurantNoa2", 0, true);
                         }
                     }
                     // 아스틴 
                     else if (_whoCharacterNum == 2)
                     {
-                        SettingSituationCaseDialogue(5, DialogueTxt.Instance.restaurantAustin1Dialogue, "RestaurantAustin1", 0);
+                        SettingSituationCaseDialogue(5, DialogueTxt.Instance.restaurantAustin1Dialogue, "RestaurantAustin1", 0, true);
                     }
                 }
                 // 호감도 높을 경우
@@ -581,23 +671,23 @@ public class DailyRoutine : MonoBehaviour
                     // 이안 
                     if (_whoCharacterNum == 0)
                     {
-                        SettingSituationCaseDialogue(16, DialogueTxt.Instance.restaurantIan2Dialogue, "RestaurantIan2", 0);
+                        SettingSituationCaseDialogue(16, DialogueTxt.Instance.restaurantIan2Dialogue, "RestaurantIan2", 0, true);
                     }
                     // 노아
                     else if (_whoCharacterNum == 1)
                     {
-                        SettingSituationCaseDialogue(6, DialogueTxt.Instance.restaurantNoa3Dialogue, "RestaurantNoa3", 0);
+                        SettingSituationCaseDialogue(6, DialogueTxt.Instance.restaurantNoa3Dialogue, "RestaurantNoa3", 0, true);
                     }
                     // 아스틴 
                     else if (_whoCharacterNum == 2)
                     {
                         _placeUISprite = placeUISprite[4];
                         
-                        SettingSituationCaseDialogue(19, DialogueTxt.Instance.restaurantAustin2Dialogue, "RestaurantAustin2", 0);
+                        SettingSituationCaseDialogue(19, DialogueTxt.Instance.restaurantAustin2Dialogue, "RestaurantAustin2", 0, true);
                     }
                 }
                 break;
-            # endregion
+            # endregion 
             #region 미술관
             case 7:
                 // 호감도 낮음 경우
@@ -606,19 +696,19 @@ public class DailyRoutine : MonoBehaviour
                     // 이안 
                     if (_whoCharacterNum == 0)
                     {
-                        SettingSituationCaseDialogue(31, DialogueTxt.Instance.galleryIan1Dialogue, "GalleryIan1", 0);
+                        SettingSituationCaseDialogue(31, DialogueTxt.Instance.galleryIan1Dialogue, "GalleryIan1", 0, true);
                     }
                     // 노아
                     else if (_whoCharacterNum == 1)
                     {
-                        SettingSituationCaseDialogue(35, DialogueTxt.Instance.galleryNoa1Dialogue, "GalleryNoa1", 0);
+                        SettingSituationCaseDialogue(35, DialogueTxt.Instance.galleryNoa1Dialogue, "GalleryNoa1", 0, true);
                     }
                     // 아스틴 
                     else if (_whoCharacterNum == 2)
                     {
                         _placeUISprite = placeUISprite[20];
                       
-                        SettingSituationCaseDialogue(32, DialogueTxt.Instance.galleryAustin1Dialogue, "GalleryAustin1", 0);
+                        SettingSituationCaseDialogue(32, DialogueTxt.Instance.galleryAustin1Dialogue, "GalleryAustin1", 0, true);
                     }
                 }
                 else
@@ -626,17 +716,17 @@ public class DailyRoutine : MonoBehaviour
                     // 이안 
                     if (_whoCharacterNum == 0)
                     {
-                        SettingSituationCaseDialogue(31, DialogueTxt.Instance.galleryIan1Dialogue, "GalleryIan1", 0);
+                        SettingSituationCaseDialogue(31, DialogueTxt.Instance.galleryIan1Dialogue, "GalleryIan1", 0, true);
                     }
                     // 노아
                     else if (_whoCharacterNum == 1)
                     {
-                        SettingSituationCaseDialogue(33, DialogueTxt.Instance.galleryNoa2Dialogue, "GalleryNoa2", 1);
+                        SettingSituationCaseDialogue(33, DialogueTxt.Instance.galleryNoa2Dialogue, "GalleryNoa2", 1, true);
                     }
                     // 아스틴
                     else if (_whoCharacterNum == 2)
                     {
-                        SettingSituationCaseDialogue(34, DialogueTxt.Instance.galleryAustin2Dialogue, "GalleryAustin2", 0);
+                        SettingSituationCaseDialogue(34, DialogueTxt.Instance.galleryAustin2Dialogue, "GalleryAustin2", 0, true);
                     }
                 }
                 break;
@@ -647,6 +737,7 @@ public class DailyRoutine : MonoBehaviour
     private IEnumerator FadePlaceCoroutine()
     {
         fadeImage.gameObject.SetActive(true);
+        fadeImage.transform.localPosition = new Vector3(540, 0, 0);
         
         _time = 0f;
         
@@ -680,7 +771,7 @@ public class DailyRoutine : MonoBehaviour
 
             yield return null;
         }
-        
+
         SettingPlaceBgmSound();
         
         fadeImage.gameObject.SetActive(false);
@@ -1239,5 +1330,85 @@ public class DailyRoutine : MonoBehaviour
         
         DialogueManager.Instance.count = 0;
         DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.galleryAustin1SelectDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void HomeIan1Talk()
+    {
+        _situationCaseName = "HomeIan1Talk";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.homeIan1TalkDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void HomeIan1Curiosity()
+    {
+        _situationCaseName = "HomeIan1Curiosity";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.homeIan1CuriosityDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void HomeNoa1Cooperation()
+    {
+        _situationCaseName = "HomeNoa1Cooperation";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.homeNoa1CooperationDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void HomeNoa1Force()
+    {
+        _situationCaseName = "HomeNoa1Force";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.homeNoa1ForceDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void HomeAustin1PrayerTalk()
+    {
+        _situationCaseName = "HomeAustin1PrayerTalk";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.homeAustin1PrayerTalkDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void HomeAustin1NoPrayerTalk()
+    {
+        _situationCaseName = "HomeAustin1NoPrayerTalk";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.homeAustin1NoPrayerTalkDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void HomeAustin2ThrowStone()
+    {
+        _situationCaseName = "HomeAustin2ThrowStone";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 0;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.homeAustin2ThrowStoneDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
+    }
+    
+    public void HomeAustin2CallAustin()
+    {
+        _situationCaseName = "HomeAustin2CallAustin";
+        
+        placeTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.homeAustin2CallAustinDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
     }
 }

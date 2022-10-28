@@ -269,6 +269,8 @@ public class ChoiceManager : MonoBehaviour
                 isAddIanHeart = true;
                 DailyRoutine.Instance.BeachAustin2OpenEye();
                 break;
+            #endregion
+            #region 미술관
             // 노아 화낸다
             case 66:
                 isAddIanHeart = true;
@@ -288,6 +290,52 @@ public class ChoiceManager : MonoBehaviour
             case 70:
                 isAddIanHeart = false;
                 DailyRoutine.Instance.GalleryAustin1Enjoy();
+                break;
+            #endregion
+            #region 공작가
+            // 이안 대화하기 위해서
+            case 72:
+                isAddIanHeart = true;
+                DailyRoutine.Instance.HomeIan1Talk();
+                break;
+            // 이안 공작저가 궁금해서
+            case 73:
+                isAddIanHeart = false;
+                DailyRoutine.Instance.HomeIan1Curiosity();
+                break;
+            #endregion
+            #region 후작가
+            // 노아 협력을 요청드립니다
+            case 75:
+                isAddIanHeart = true;
+                DailyRoutine.Instance.HomeNoa1Cooperation();
+                break;
+            // 노아 힘이 되어드리고 싶습니다
+            case 76:
+                isAddIanHeart = false;
+                DailyRoutine.Instance.HomeNoa1Force();
+                break;
+            #endregion
+            #region 신전
+            // 아스틴 기도 내용을 말한다
+            case 78:
+                isAddIanHeart = false;
+                DailyRoutine.Instance.HomeAustin1PrayerTalk();
+                break;
+            // 아스틴 기도 내용을 말하지 않는다
+            case 79:
+                isAddIanHeart = true;
+                DailyRoutine.Instance.HomeAustin1NoPrayerTalk();
+                break;
+            // 아스틴 남성에게 돈을 던진다
+            case 81:
+                isAddIanHeart = true;
+                DailyRoutine.Instance.HomeAustin2ThrowStone();
+                break;
+            // 아스틴 아스틴을 불러온다
+            case 82:
+                isAddIanHeart = false;
+                DailyRoutine.Instance.HomeAustin2CallAustin();
                 break;
             #endregion
         }

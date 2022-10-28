@@ -126,7 +126,23 @@ public class DialogueTxt : MonoBehaviour
     public Dialogue galleryAustin1EnjoyDialogue;
     public Dialogue galleryAustin1SelectDialogue;
     public Dialogue galleryAustin2Dialogue;
-
+    public Dialogue homeIan1Dialogue;
+    public Dialogue homeIan1TalkDialogue;
+    public Dialogue homeIan1CuriosityDialogue;
+    public Dialogue homeIan2Dialogue;
+    public Dialogue homeNoa1Dialogue;
+    public Dialogue homeNoa1NextDialogue;
+    public Dialogue homeNoa1CooperationDialogue;
+    public Dialogue homeNoa1ForceDialogue;
+    public Dialogue homeNoa2Dialogue;
+    public Dialogue homeAustin1Dialogue;
+    public Dialogue homeAustin1PrayerTalkDialogue;
+    public Dialogue homeAustin1NoPrayerTalkDialogue;
+    public Dialogue homeAustin2Dialogue;
+    public Dialogue homeAustin2ThrowStoneDialogue;
+    public Dialogue homeAustin2CallAustinDialogue;
+    public Dialogue homeAustin3Dialogue;
+    
     private void Awake()
     {
         Instance = this;

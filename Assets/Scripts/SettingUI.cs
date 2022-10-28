@@ -27,6 +27,11 @@ public class SettingUI : MonoBehaviour
         sfxLoopSound.Play();
     }
 
+    public void StopBgmAudioSource()
+    {
+        bgmAudioSource.Stop();
+    }
+
     public void StopSfxLoopSound()
     {
         sfxLoopSound.Stop();

@@ -57,6 +57,10 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private AudioClip catAudio;
     [SerializeField] private AudioClip littleBirdAudio;
     [SerializeField] private AudioClip wave2Audio;
+    [SerializeField] private AudioClip footSteps;
+    [SerializeField] private AudioClip peopleAudio;
+    [SerializeField] private AudioClip coinAudio;
+    [SerializeField] private AudioClip square3Audio;
     
     public AudioSource typeSound;
 
@@ -379,14 +383,14 @@ public class DialogueManager : MonoBehaviour
                 break;
             case "TownNoa1Select":
                 SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
-                StartCoroutine(FadeRightTown(4, 7, DialogueTxt.Instance.townNoa1SelectNextDialogue, "TownNoa1SelectNext", 1));
+                StartCoroutine(FadeRightTown(4, 7, DialogueTxt.Instance.townNoa1SelectNextDialogue, "TownNoa1SelectNext", 1, true));
                 break;
             case "TownNoa1SelectNext":
                 CheckIsAddNoaHeart();
                 break;
             case "TownNoa2":
                 SettingUI.Instance.SettingSfxSound(doorAudio);
-                StartCoroutine(FadeRightTown(12, 8, DialogueTxt.Instance.townNoa2NextDialogue, "TownNoa2Next", 1));
+                StartCoroutine(FadeRightTown(12, 8, DialogueTxt.Instance.townNoa2NextDialogue, "TownNoa2Next", 1, true));
                 break;
             case "TownNoa2Next":
                 StartCoroutine(FadeInfo(2));
@@ -429,11 +433,11 @@ public class DialogueManager : MonoBehaviour
                 break;
             case "TownAustin4":
                 SettingUI.Instance.SettingSfxSound(shopBellAudio);
-                StartCoroutine(FadeRightTown(12, 14, DialogueTxt.Instance.townAustin4NextDialogue, "TownAustin4Next", 0));
+                StartCoroutine(FadeRightTown(12, 14, DialogueTxt.Instance.townAustin4NextDialogue, "TownAustin4Next", 0, true));
                 break;
             case "TownAustin4Next":
                 SettingUI.Instance.SettingSfxSound(shopBellAudio);
-                StartCoroutine(FadeRightTown(4, 13, DialogueTxt.Instance.townAustin4OutStoreDialogue, "TownAustin4OutStore", 0));
+                StartCoroutine(FadeRightTown(4, 99, DialogueTxt.Instance.townAustin4OutStoreDialogue, "TownAustin4OutStore", 0, false));
                 break;
             case "TownAustin4OutStore":
                 StartCoroutine(FadeInfo(3));
@@ -473,7 +477,7 @@ public class DialogueManager : MonoBehaviour
                 break;
             case "RestaurantNoa3":
                 SettingUI.Instance.SettingSfxSound(doorAudio);
-                StartCoroutine(FadeRightTown(14, 7, DialogueTxt.Instance.restaurantNoa3NextDialogue, "RestaurantNoa3Next", 0));
+                StartCoroutine(FadeRightTown(14, 7, DialogueTxt.Instance.restaurantNoa3NextDialogue, "RestaurantNoa3Next", 0, true));
                 break;
             case "RestaurantNoa3Next":
                 StartCoroutine(FadeInfo(2));
@@ -483,7 +487,7 @@ public class DialogueManager : MonoBehaviour
                 break;
             case "RestaurantAustin2":
                 SettingUI.Instance.SettingSfxSound(doorAudio);
-                StartCoroutine(FadeRightTown(6, 16, DialogueTxt.Instance.restaurantAustin2NextDialogue, "RestaurantAustin2Next", 0));
+                StartCoroutine(FadeRightTown(6, 16, DialogueTxt.Instance.restaurantAustin2NextDialogue, "RestaurantAustin2Next", 0, true));
                 break;
             case "RestaurantAustin2Next":
                 choiceTxt.text = "[ " + DialogueTxt.Instance.restaurantAustin2NextDialogue.sentences[11] + " ]";
@@ -702,6 +706,66 @@ public class DialogueManager : MonoBehaviour
                 CheckIsAddAustinHeart();
                 break;
             case "GalleryAustin2":
+                StartCoroutine(FadeInfo(3));
+                break;
+            case "HomeIan1":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.homeIan1Dialogue.sentences[4] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowTwoChoice(24);
+                break;
+            case "HomeIan1Talk":
+                CheckIsAddIanHeart();
+                break;
+            case "HomeIan1Curiosity":
+                CheckIsAddIanHeart();
+                break;
+            case "HomeIan2":
+                StartCoroutine(FadeInfo(1));
+                break;
+            case "HomeNoa1":
+                StartCoroutine(FadeRightTown(21, 99, DialogueTxt.Instance.homeNoa1NextDialogue, "HomeNoa1Next", 0, false));
+                break;
+            case "HomeNoa1Next":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.homeNoa1NextDialogue.sentences[3] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowTwoChoice(25);
+                break;
+            case "HomeNoa1Cooperation":
+                CheckIsAddNoaHeart();
+                break;
+            case "HomeNoa1Force":
+                CheckIsAddNoaHeart();
+                break;
+            case "HomeNoa2":
+                StartCoroutine(FadeInfo(2));
+                break;
+            case "HomeAustin1":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.homeAustin1Dialogue.sentences[8] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowTwoChoice(26);
+                break;
+            case "HomeAustin1PrayerTalk":
+                CheckIsAddAustinHeart();
+                break;
+            case "HomeAustin1NoPrayerTalk":
+                CheckIsAddAustinHeart();
+                break;
+            case "HomeAustin2":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.homeAustin2Dialogue.sentences[8] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowTwoChoice(27);
+                break;
+            case "HomeAustin2ThrowStone":
+                CheckIsAddAustinHeart();
+                break;
+            case "HomeAustin2CallAustin":
+                CheckIsAddAustinHeart();
+                break;
+            case "HomeAustin3":
                 StartCoroutine(FadeInfo(3));
                 break;
         }
@@ -1001,6 +1065,22 @@ public class DialogueManager : MonoBehaviour
                                 ChangeWindowImage();
                             }
                             break;
+                        case "HomeIan1Talk":
+                            _isPlayAnim = true;
+                            
+                            if (count == 8)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
                     }
                    
                     if (_isPlayAnim.Equals(false))
@@ -1157,6 +1237,22 @@ public class DialogueManager : MonoBehaviour
                         if (_listCharters[count].name.Contains("Man5").Equals(true))
                         {
                             charterName.text = "신관";
+                        }
+                        break;
+                    case "HomeAustin2":
+                        if (_listCharters[count].name.Contains("Man2").Equals(true))
+                        {
+                            charterName.text = "귀족 남자";
+                        }
+                        else if (_listCharters[count].name.Contains("Child2").Equals(true))
+                        {
+                            charterName.text = "아이";
+                        }
+                        break;
+                    case "HomeAustin2ThrowStone":
+                        if (_listCharters[count].name.Contains("Child2").Equals(true))
+                        {
+                            charterName.text = "아이";
                         }
                         break;
                 }
@@ -1531,6 +1627,10 @@ public class DialogueManager : MonoBehaviour
                             {
                                 case 16:
                                     Handheld.Vibrate();
+                                    SettingUI.Instance.SettingSfxLoopSound(wave2Audio);
+                                    break;
+                                case 18:
+                                    SettingUI.Instance.StopSfxLoopSound();
                                     break;
                             }
                             break;
@@ -1555,6 +1655,72 @@ public class DialogueManager : MonoBehaviour
                             {
                                 case 10:
                                     charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "HomeIan1Talk":
+                            switch (count)
+                            {
+                                case 8:
+                                    charterName.text = "";
+                                    break;
+                                case 11:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "HomeNoa1Next":
+                            switch (count)
+                            {
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(footSteps);
+                                    break;
+                            }
+                            break;
+                        case "HomeNoa1Force":
+                            switch (count)
+                            {
+                                case 5:
+                                    SettingUI.Instance.StopBgmAudioSource();
+                                    break;
+                            }
+                            break;
+                        case "HomeAustin1":
+                            switch (count)
+                            {
+                                case 3:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "HomeAustin2":
+                            switch (count)
+                            {
+                                case 2:
+                                    charterName.text = "";
+                                    break;
+                                case 3:
+                                    Handheld.Vibrate();
+                                    break;
+                                case 4:
+                                    SettingUI.Instance.StopSfxLoopSound();
+                                    break;
+                            }
+                            break;
+                        case "HomeAustin2ThrowStone":
+                            switch (count)
+                            {
+                                case 4:
+                                    SettingUI.Instance.SettingBgmSound(square3Audio);
+                                    break;
+                            }
+                            break;
+                        case "HomeAustin2CallAustin":
+                            switch (count)
+                            {
+                                case 1:
+                                    SettingUI.Instance.SettingBgmSound(square3Audio);
+                                    Handheld.Vibrate();
                                     break;
                             }
                             break;
@@ -1759,6 +1925,26 @@ public class DialogueManager : MonoBehaviour
                                 yield return _yieldCharterChangeDelay;
                                 charterImage.sprite = _listCharters[count];
                                 break;
+                            case "HomeIan1Talk":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "HomeIan1Curiosity":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "HomeNoa1Cooperation":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "HomeAustin1PrayerTalk":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "HomeAustin1NoPrayerTalk":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
                         }
                     }
                     else
@@ -1785,6 +1971,13 @@ public class DialogueManager : MonoBehaviour
                     break;
                 case "BeachIan1":
                     SettingUI.Instance.SettingSfxLoopSound(wave2Audio);
+                    break;
+                case "HomeAustin2":
+                    SettingUI.Instance.SettingSfxLoopSound(peopleAudio);
+                    break;
+                case "HomeAustin2ThrowStone":
+                    Handheld.Vibrate();
+                    SettingUI.Instance.SettingSfxSound(coinAudio);
                     break;
             }
         }
@@ -1977,7 +2170,7 @@ public class DialogueManager : MonoBehaviour
         yield return null;
     }
     
-    private IEnumerator FadeRightTown(int placeNum, int placeBgmNum, Dialogue dialogue, string situationCaseName, int countNum)
+    private IEnumerator FadeRightTown(int placeNum, int placeBgmNum, Dialogue dialogue, string situationCaseName, int countNum, bool changeAudio)
     {
         fadeImage.gameObject.SetActive(true);
         fadeImage.transform.localPosition = new Vector3(540, 0, 0);
@@ -2001,7 +2194,7 @@ public class DialogueManager : MonoBehaviour
 
         DailyRoutine.Instance.SettingPlaceImage(placeNum);
         DailyRoutine.Instance.SettingSituationCaseDialogue(placeBgmNum, dialogue,
-            situationCaseName, countNum);
+            situationCaseName, countNum, changeAudio);
 
         while (fadeImage.rectTransform.localPosition.x > -1550f)
         {
@@ -2018,8 +2211,12 @@ public class DialogueManager : MonoBehaviour
 
             yield return null;
         }
+
+        if (changeAudio.Equals(true))
+        {
+            DailyRoutine.Instance.SettingPlaceBgmSound();
+        }
         
-        DailyRoutine.Instance.SettingPlaceBgmSound();
         // SettingUI.Instance.SettingBgmSound(DailyRoutine.Instance.placeBgmClips[7]);
         DailyRoutine.Instance.SettingPlaceDialogue();
         
@@ -2029,9 +2226,20 @@ public class DialogueManager : MonoBehaviour
 
         // ShowTutorial(0);
         
+        // while (alpha.a > 0)
+        // {
+        //     _time += Time.deltaTime / _currentFadeTime;
+        //     
+        //     alpha.a = Mathf.Lerp(0, 1, _time);
+        //     
+        //     fadeImage.color = alpha;
+        //     
+        //     yield return null;
+        // }
+        
         yield return null;
     }
-    
+
     private IEnumerator FadeInfo(int num)
     {
         SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
@@ -2139,6 +2347,7 @@ public class DialogueManager : MonoBehaviour
             lobbyUIGo.SetActive(true);
             infoImage.gameObject.SetActive(false);
             infoImage.color = new Color(1, 1, 1, 0);
+            fadeImage.color = new Color(1, 1, 1, 0);
 
             yield return null;
         }
