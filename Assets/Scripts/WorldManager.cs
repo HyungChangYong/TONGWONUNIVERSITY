@@ -75,7 +75,7 @@ public class WorldManager : MonoBehaviour
         worldNextBtnGo.SetActive(true);
         worldTxtBoxLineGo.SetActive(true);
         
-        DialogueTxt.Instance.placeSelectDialogue.sentences[0] = homeName[selectPlaceNum] + "으(로) 이동하시겠습니까?";
+        DialogueTxt.Instance.placeSelectDialogue.sentences[0] = homeName[selectPlaceNum] + "(으)로 이동하시겠습니까?";
         
         DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.placeSelectDialogue, _situationCaseName, worldConversation, worldCharterName, worldCharterImage, worldWindow, worldCharterAnimator, worldTxtBtnAnimator, worldTxtBtnImageGo, worldTxtBtnImage);
     }

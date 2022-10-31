@@ -9,19 +9,29 @@ public class ChoiceManager : MonoBehaviour
     public static ChoiceManager Instance;
     
     [SerializeField] private AudioClip clickAudio;
-    
+
+    [SerializeField] private GameObject guideBackImageGo;
     [SerializeField] private GameObject choiceObjectUI;
     [SerializeField] private GameObject[] choiceCountGo;
+    [SerializeField] private GameObject[] choiceBackImageGo;
+    [SerializeField] private GameObject[] choiceSixBackImageGo;
     
     [SerializeField] private string[] choiceTxtInfo;
 
     [SerializeField] private TextMeshProUGUI[] choiceTxt;
+    [SerializeField] private TextMeshProUGUI[] choiceTxtFive;
+    [SerializeField] private TextMeshProUGUI[] choiceTxtSix;
     
     [SerializeField] private int[] choiceTxtNums;
+    [SerializeField] private int[] choiceTxtFiveNums;
+    [SerializeField] private int[] choiceTxtSixNums;
     
     public int choiceNum;
     
     public bool isAddIanHeart;
+
+    private bool _isFiveChoice;
+    private bool _isSixChoice;
 
     private void Awake()
     {
@@ -31,9 +41,50 @@ public class ChoiceManager : MonoBehaviour
     public void SelectChoice(int num)
     {
         SettingUI.Instance.SettingSfxSound(clickAudio);
+
+        if (_isFiveChoice.Equals(false) && _isSixChoice.Equals(false))
+        {
+            choiceNum = choiceTxtNums[num];
+
+            CallSituation();
+        }
+        else if (_isFiveChoice.Equals(true))
+        {
+            choiceNum = choiceTxtFiveNums[num];
+
+            if (num == 4)
+            {
+                if (LobbyManager.Instance.nowHeart[0] >= 12)
+                {
+                    LobbyManager.Instance.nowHeart[0] -= 12;
+                    
+                    CallSituation();
+                }
+                else
+                {
+                    guideBackImageGo.SetActive(true);
+                }
+            }
+            else
+            {
+                CallSituation();
+            }
+        }
+        else if (_isSixChoice.Equals(true))
+        {
+            choiceNum = choiceTxtSixNums[num];
+        }
+    }
+
+    public void HideGuideBackImageGo()
+    {
+        SettingUI.Instance.SettingSfxSound(clickAudio);
         
-        choiceNum = choiceTxtNums[num];
-        
+        guideBackImageGo.SetActive(false);
+    }
+
+    private void CallSituation()
+    {
         choiceObjectUI.SetActive(false);
 
         switch (choiceNum)
@@ -338,14 +389,44 @@ public class ChoiceManager : MonoBehaviour
                 DailyRoutine.Instance.HomeAustin2CallAustin();
                 break;
             #endregion
+            // 이벤트1 예절
+            case 84:
+                LobbyManager.Instance.Event1Manner();
+                break;
+            // 이벤트 춤
+            case 85:
+                LobbyManager.Instance.Event1Dance();
+                break;
+            // 이벤트 다도
+            case 86:
+                LobbyManager.Instance.Event1TeaCeremony();
+                break;
+            // 이벤트 화술
+            case 87:
+                LobbyManager.Instance.Event1SpeakArt();
+                break;
+            // 이벤트 검술
+            case 88:
+                LobbyManager.Instance.Event1SwardArt();
+                break;
+            // 이벤트 호충
+            case 90:
+                break;
         }
     }
 
     public void ShowTwoChoice(int num)
     {
         choiceObjectUI.SetActive(true);
+        
+        _isFiveChoice = false;
+        _isSixChoice = false;
+        
+        for (int i = 0; i < choiceCountGo.Length; i++)
+        {
+            choiceCountGo[i].SetActive(false);
+        }
         choiceCountGo[0].SetActive(true);
-        choiceCountGo[1].SetActive(false);
         
         choiceTxtNums[0] = num * 3;
         choiceTxtNums[1] = num * 3 + 1;
@@ -357,7 +438,14 @@ public class ChoiceManager : MonoBehaviour
     public void ShowThreeChoice(int num)
     {
         choiceObjectUI.SetActive(true);
-        choiceCountGo[0].SetActive(false);
+        
+        _isFiveChoice = false;
+        _isSixChoice = false;
+
+        for (int i = 0; i < choiceCountGo.Length; i++)
+        {
+            choiceCountGo[i].SetActive(false);
+        }
         choiceCountGo[1].SetActive(true);
         
         choiceTxtNums[2] = num * 3;
@@ -367,5 +455,81 @@ public class ChoiceManager : MonoBehaviour
         choiceTxt[2].text = choiceTxtInfo[num * 3];
         choiceTxt[3].text = choiceTxtInfo[num * 3 + 1];
         choiceTxt[4].text = choiceTxtInfo[num * 3 + 2];
+    }
+
+    public void ShowFiveChoice(int num)
+    {
+        choiceObjectUI.SetActive(true);
+        
+        _isFiveChoice = true;
+        
+        for (int i = 0; i < choiceCountGo.Length; i++)
+        {
+            choiceCountGo[i].SetActive(false);
+        }
+        choiceCountGo[2].SetActive(true);
+        
+        choiceBackImageGo[0].SetActive(true);
+        choiceBackImageGo[1].SetActive(false);
+
+        for (int i = 0; i < choiceTxtFiveNums.Length; i++)
+        {
+            choiceTxtFiveNums[i] = num * 3 + i; 
+            choiceTxtFive[i].text = choiceTxtInfo[num * 3 + i];
+        }
+    }
+    
+    public void ShowSixChoice(int num)
+    {
+        choiceObjectUI.SetActive(true);
+        
+        _isSixChoice = true;
+        
+        for (int i = 0; i < choiceCountGo.Length; i++)
+        {
+            choiceCountGo[i].SetActive(false);
+        }
+        choiceCountGo[3].SetActive(true);
+        
+        choiceSixBackImageGo[0].SetActive(true);
+        choiceSixBackImageGo[1].SetActive(false);
+        
+        for (int i = 0; i < choiceTxtSixNums.Length; i++)
+        {
+            choiceTxtSixNums[i] = num * 3 + i; 
+            choiceTxtSix[i].text = choiceTxtInfo[num * 3 + i];
+        }
+    }
+
+    public void ClickNextBtn()
+    {
+        SettingUI.Instance.SettingSfxSound(clickAudio);
+
+        if (_isFiveChoice.Equals(true))
+        {
+            choiceBackImageGo[1].SetActive(true);
+            choiceBackImageGo[0].SetActive(false);
+        }
+        else if (_isSixChoice.Equals(true))
+        {
+            choiceSixBackImageGo[1].SetActive(true);
+            choiceSixBackImageGo[0].SetActive(false);
+        }
+    }
+
+    public void ClickBackBtn()
+    {
+        SettingUI.Instance.SettingSfxSound(clickAudio);
+
+        if (_isFiveChoice.Equals(true))
+        {
+            choiceBackImageGo[0].SetActive(true);
+            choiceBackImageGo[1].SetActive(false);
+        }
+        else if (_isSixChoice.Equals(true))
+        {
+            choiceSixBackImageGo[0].SetActive(true);
+            choiceSixBackImageGo[1].SetActive(false);
+        }
     }
 }

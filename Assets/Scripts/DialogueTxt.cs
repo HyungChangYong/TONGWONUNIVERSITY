@@ -142,7 +142,15 @@ public class DialogueTxt : MonoBehaviour
     public Dialogue homeAustin2ThrowStoneDialogue;
     public Dialogue homeAustin2CallAustinDialogue;
     public Dialogue homeAustin3Dialogue;
-    
+    public Dialogue event1Dialogue;
+    public Dialogue event1MannerDialogue;
+    public Dialogue event1DanceDialogue;
+    public Dialogue event1TeaCeremonyDialogue;
+    public Dialogue event1SpeakArtDialogue;
+    public Dialogue event1SwardArtDialogue;
+    public Dialogue event2Dialogue;
+    public Dialogue event2NextDialogue; 
+
     private void Awake()
     {
         Instance = this;

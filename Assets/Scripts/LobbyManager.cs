@@ -16,13 +16,15 @@ public class LobbyManager : MonoBehaviour
     // public string date;
 
     [SerializeField] private Sprite windowBasic;
-    [SerializeField] private Sprite playerBasic;
+    [SerializeField] private Sprite[] playerBasic;
     [SerializeField] private Sprite[] dateSprite;
     [SerializeField] private Sprite[] showBuyPopUpUISprite;
+    [SerializeField] private Sprite[] lobbyBackSprite;
     
     [SerializeField] private Image dateImage;
     [SerializeField] private Image showBuyPopUpImage;
-    
+    [SerializeField] private Image lobbyBackImage;
+
     [SerializeField] private RectTransform profileSizeUpPlayerInfoTxt;
     [SerializeField] private RectTransform profileBasePlayerInfoTxt;
 
@@ -117,6 +119,11 @@ public class LobbyManager : MonoBehaviour
         SettingCoin();
     }
 
+    public void SettingBackImage(int placeNum)
+    {
+        lobbyBackImage.sprite = lobbyBackSprite[placeNum];
+    }
+
     public void SettingCoin()
     {
         if (coin > 1000000)
@@ -208,7 +215,7 @@ public class LobbyManager : MonoBehaviour
         }
     }
     
-    public void ResetLobby()
+    public void ResetLobby(int num)
     {
         lobbyTxtBoxLineGo.SetActive(false);
         lobbyNextBtnGo.SetActive(false);
@@ -216,7 +223,7 @@ public class LobbyManager : MonoBehaviour
         lobbyCharterName.text = "집사";
         lobbyWindow.sprite = windowBasic;
 
-        lobbyCharterImage.sprite = playerBasic;
+        lobbyCharterImage.sprite = playerBasic[num];
     }
 
     public void Cultivation()
@@ -228,7 +235,6 @@ public class LobbyManager : MonoBehaviour
             lobbyTxtBoxLineGo.SetActive(true);
         
             DialogueManager.Instance.count = 1;
-        
             DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.cultivationDialogue, "Cultivation", lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
         }
     }
@@ -499,6 +505,103 @@ public class LobbyManager : MonoBehaviour
 
             DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.usePotionDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
         }
+    }
+    
+    public void Event1()
+    {
+        _situationCaseName = "Event1";
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+        lobbyNextBtnGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event1Dialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void Event1Manner()
+    {
+        _situationCaseName = "Event1Manner";
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event1MannerDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void Event1Dance()
+    {
+        _situationCaseName = "Event1Dance";
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event1DanceDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void Event1TeaCeremony()
+    {
+        _situationCaseName = "Event1TeaCeremony";
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event1TeaCeremonyDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void Event1SpeakArt()
+    {
+        _situationCaseName = "Event1SpeakArt";
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event1SpeakArtDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void Event1SwardArt()
+    {
+        _situationCaseName = "Event1SwardArt";
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event1SwardArtDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void Event2()
+    {
+        _situationCaseName = "Event2";
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+        lobbyNextBtnGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 0;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event2Dialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+
+    public void Event2Next()
+    {
+        _situationCaseName = "Event2Next";
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+
+        DialogueManager.Instance.count = 0;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event2NextDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+
+    public void SettingBaseBackImage(Dialogue dialogue)
+    {
+        if (dialogue.charterImages[0].name.Contains("Girl").Equals(true))
+        {
+            lobbyCharterName.text = PlayerPrefs.GetString("PlayerName");
+        }
+        else
+        {
+            lobbyCharterName.text = "";
+        }
+        
+        lobbyCharterImage.sprite = dialogue.charterImages[0];
+        lobbyWindow.sprite = dialogue.dialogueWindows[0];
     }
 
     public void UseChoco(int num)

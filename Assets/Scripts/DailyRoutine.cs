@@ -22,7 +22,7 @@ public class DailyRoutine : MonoBehaviour
     [SerializeField] private GameObject worldUIGo;
     [SerializeField] private GameObject placeUIGo;
     
-    [SerializeField] private bool[] isFirst;
+    public bool[] isFirst;
 
     // 0 이안 첫만남, 1 노아 첫만남, 2 아스틴 첫만남, 3 아무도 없음, 4 타운 이안 호감도 낮음 1
     public AudioClip[] placeBgmClips;

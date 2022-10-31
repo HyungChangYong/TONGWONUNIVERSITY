@@ -40,7 +40,44 @@ public class FadeIn : MonoBehaviour
 
         if (PlayerPrefs.HasKey("Tutorial"))
         {
+            if (PlayerPrefs.HasKey("IanFirst"))
+            {
+                DailyRoutine.Instance.isFirst[0] = true;
+            }
+            
+            if (PlayerPrefs.HasKey("NoaFirst"))
+            {
+                DailyRoutine.Instance.isFirst[1] = true;
+            }
+            
+            if (PlayerPrefs.HasKey("AustinFirst"))
+            {
+                DailyRoutine.Instance.isFirst[2] = true;
+            }
+            
+            if (PlayerPrefs.HasKey("IanShowHeart"))
+            {
+                LobbyManager.Instance.isShowHeart[1] = true;
+            }
+
+            if (PlayerPrefs.HasKey("NoaShowHeart"))
+            {
+                LobbyManager.Instance.isShowHeart[2] = true;
+            }
+            
+            if (PlayerPrefs.HasKey("AustinShowHeart"))
+            {
+                LobbyManager.Instance.isShowHeart[3] = true;
+            }
+
+            LobbyManager.Instance.nowHeart[0] = PlayerPrefs.GetFloat("PlayerHeart");
+            LobbyManager.Instance.nowHeart[1] = PlayerPrefs.GetFloat("IanHeart");
+            LobbyManager.Instance.nowHeart[2] = PlayerPrefs.GetFloat("NoaHeart");
+            LobbyManager.Instance.nowHeart[3] = PlayerPrefs.GetFloat("AustinHeart");
+            
             LobbyManager.Instance.date = PlayerPrefs.GetInt("Date");
+            LobbyManager.Instance.coin = PlayerPrefs.GetInt("Coin");
+            LobbyManager.Instance.SettingCoin();
             LobbyManager.Instance.SettingDate();
             // 날짜 값 불러오기
             StartCoroutine(FadeLobby());

@@ -11,7 +11,7 @@ using Random = System.Random;
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance;
-    
+
     [SerializeField] private GameObject openingUIGo;
     [SerializeField] private GameObject tutorialUIGo;
     [SerializeField] private GameObject lobbyUIGo;
@@ -26,11 +26,14 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Transform tutorialSettingUIParent;
     [SerializeField] private Transform settingUIParentTr;
 
+    [SerializeField] private Image whiteFadeImage;
     [SerializeField] private Image fadeImage;
     [SerializeField] private Image dataImage;
     [SerializeField] private Image infoImage;
+    [SerializeField] private Image reputationImage;
     [SerializeField] private Image settingImage;
-    
+    [SerializeField] private Image[] fadeBlurImage;
+
     [SerializeField] private Sprite lobbySettingImage;
     // 0 교양 증가, 1 이안 호감도 증가, 2 노아 호감도 증가, 3 아스틴 호감도 증가, 4 변화 없음
     [SerializeField] private Sprite[] infoSprite;
@@ -61,7 +64,11 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private AudioClip peopleAudio;
     [SerializeField] private AudioClip coinAudio;
     [SerializeField] private AudioClip square3Audio;
+    [SerializeField] private AudioClip curtainAudio;
+    [SerializeField] private AudioClip readyAudio;
+    [SerializeField] private AudioClip debut1Audio;
     
+
     public AudioSource typeSound;
 
     private List<string> _listSentences;
@@ -130,7 +137,7 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField] private int[] addNowHeart;
     [SerializeField] private int[] addCoin;
-
+    
     public float m_DoubleClickSecond = 0.25f;
     private bool m_IsOneClick = false;
     private double m_Timer = 0;
@@ -161,8 +168,6 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        // OnDoubleClick();
-
         if (_isTalk.Equals(true) && _clickActivated.Equals(false))
         {
             if (m_IsOneClick && ((Time.time - m_Timer) > m_DoubleClickSecond))
@@ -768,6 +773,36 @@ public class DialogueManager : MonoBehaviour
             case "HomeAustin3":
                 StartCoroutine(FadeInfo(3));
                 break;
+            case "Event1":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.event1Dialogue.sentences[12] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowFiveChoice(28);
+                break;
+            case "Event1Manner":
+                StartCoroutine(FadeInfoEvent(0, 1, 5));
+                break;
+            case "Event1Dance":
+                StartCoroutine(FadeInfoEvent(0, 2, 5));
+                break;
+            case "Event1TeaCeremony":
+                StartCoroutine(FadeInfoEvent(0, 3, 5));
+                break;
+            case "Event1SpeakArt":
+                StartCoroutine(FadeInfoEvent(0, 4, 5));
+                break;
+            case "Event1SwardArt":
+                StartCoroutine(FadeInfoEvent(5, 6, 5));
+                break;
+            case "Event2":
+                StartCoroutine(FadeImage());
+                break;
+            case "Event2Next":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.event2NextDialogue.sentences[28] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowSixChoice(30);
+                break;
         }
     }
 
@@ -805,6 +840,12 @@ public class DialogueManager : MonoBehaviour
         {
             StartCoroutine(FadeInfo(3));
         }
+    }
+
+    private void SettingWhiteBox()
+    {
+        conversation.font = blackOutline;
+        txtBtnImage.sprite = blackNextBtn;
     }
 
     private void ShowSHopUIDelay()
@@ -1081,6 +1122,22 @@ public class DialogueManager : MonoBehaviour
                                 ChangeWindowImage();
                             }
                             break;
+                        case "Event2Next":
+                            _isPlayAnim = true;
+                            
+                            if (count == 16 || count == 17 || count == 24)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
                     }
                    
                     if (_isPlayAnim.Equals(false))
@@ -1253,6 +1310,22 @@ public class DialogueManager : MonoBehaviour
                         if (_listCharters[count].name.Contains("Child2").Equals(true))
                         {
                             charterName.text = "아이";
+                        }
+                        break;
+                    case "Event2":
+                        if (_listCharters[count].name.Contains("Man3").Equals(true))
+                        {
+                            charterName.text = "시종";
+                        }
+                        break;
+                    case "Event2Next":
+                        if (_listCharters[count].name.Contains("Olivia").Equals(true))
+                        {
+                            charterName.text = "올리비아";
+                        }
+                        else if (_listCharters[count].name.Contains("Penelope").Equals(true))
+                        {
+                            charterName.text = "페넬로페";
                         }
                         break;
                 }
@@ -1677,14 +1750,6 @@ public class DialogueManager : MonoBehaviour
                                     break;
                             }
                             break;
-                        case "HomeNoa1Force":
-                            switch (count)
-                            {
-                                case 5:
-                                    SettingUI.Instance.StopBgmAudioSource();
-                                    break;
-                            }
-                            break;
                         case "HomeAustin1":
                             switch (count)
                             {
@@ -1721,6 +1786,28 @@ public class DialogueManager : MonoBehaviour
                                 case 1:
                                     SettingUI.Instance.SettingBgmSound(square3Audio);
                                     Handheld.Vibrate();
+                                    break;
+                            }
+                            break;
+                        case "Event1":
+                            switch (count)
+                            {
+                                case 2:
+                                    SettingUI.Instance.SettingSfxSound(curtainAudio);
+                                    break;
+                            }
+                            break;
+                        case "Event2Next":
+                            switch (count)
+                            {
+                                case 16:
+                                    charterName.text = "";
+                                    break;
+                                case 23:
+                                    charterName.text = "";
+                                    break;
+                                case 28:
+                                    charterName.text = "";
                                     break;
                             }
                             break;
@@ -1945,6 +2032,14 @@ public class DialogueManager : MonoBehaviour
                                 yield return _yieldCharterChangeDelay;
                                 charterImage.sprite = _listCharters[count];
                                 break;
+                            case "Event1":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "Event2":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
                         }
                     }
                     else
@@ -1978,6 +2073,10 @@ public class DialogueManager : MonoBehaviour
                 case "HomeAustin2ThrowStone":
                     Handheld.Vibrate();
                     SettingUI.Instance.SettingSfxSound(coinAudio);
+                    break;
+                case "Event2":
+                    dialogueWindow.sprite = DialogueTxt.Instance.event2Dialogue.dialogueWindows[0];
+                    SettingTxtBox();
                     break;
             }
         }
@@ -2239,10 +2338,97 @@ public class DialogueManager : MonoBehaviour
         
         yield return null;
     }
+    
+    private IEnumerator FadeImage()
+    {
+        for (int i = 0; i < fadeBlurImage.Length; i++)
+        {
+            fadeBlurImage[i].color = new Color(1, 1, 1, 0);
+            
+            fadeBlurImage[i].transform.localPosition = new Vector3(0, 0, 0);
+            
+            fadeBlurImage[i].gameObject.SetActive(true);
+        }
+
+        _time = 0f;
+        
+        Color alpha = fadeBlurImage[0].color;
+        
+        while (alpha.a < 1f)
+        {
+            _time += Time.deltaTime / _currentFadeTime;
+            
+            alpha.a = Mathf.Lerp(0, 1, _time);
+            
+            fadeBlurImage[0].color = alpha;
+            fadeBlurImage[1].color = alpha;
+             
+            yield return null;
+        }
+        _time = 0f;
+        
+        whiteFadeImage.color = new Color(1, 1, 1, 1);
+        whiteFadeImage.gameObject.SetActive(true);
+
+        yield return _yieldAnimDelay;
+        
+        SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+
+        while (fadeBlurImage[0].rectTransform.localPosition.x > -1040f)
+        {
+            _time += Time.deltaTime * 0.1f;
+
+            fadeBlurImage[0].rectTransform.localPosition = 
+                Vector3.Lerp(fadeBlurImage[0].rectTransform.localPosition, new Vector3(-1050, 0, 0), _time);
+            
+            fadeBlurImage[1].rectTransform.localPosition = 
+                Vector3.Lerp(fadeBlurImage[1].rectTransform.localPosition, new Vector3(1050, 0, 0), _time);
+
+            yield return null;
+        }
+
+        // 코루틴 호출
+        StartCoroutine(WhiteFadeImage());
+
+        yield return null;
+    }
+    
+    private IEnumerator WhiteFadeImage()
+    {
+        LobbyManager.Instance.SettingBackImage(1);
+        
+        LobbyManager.Instance.SettingBaseBackImage(DialogueTxt.Instance.event2NextDialogue);
+        
+        _time = 0f;
+        
+        Color alpha = whiteFadeImage.color;
+
+        while (alpha.a > 0)
+        {
+            _time += Time.deltaTime / _currentFadeTime;
+            
+            alpha.a = Mathf.Lerp(1, 0, _time);
+            
+            whiteFadeImage.color = alpha;
+
+            yield return null;
+        }
+
+        SettingUI.Instance.SettingBgmSound(debut1Audio);
+        LobbyManager.Instance.Event2Next();
+        SettingTxtBox();
+        
+        whiteFadeImage.gameObject.SetActive(false);
+
+        yield return null;
+    }
 
     private IEnumerator FadeInfo(int num)
     {
         SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+        
+        infoImage.color = new Color(1, 1, 1, 0);
+        fadeImage.color = new Color(1, 1, 1, 0);
 
         infoImage.sprite = infoSprite[num];
         
@@ -2269,8 +2455,12 @@ public class DialogueManager : MonoBehaviour
         AddDate();
         SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
         StartFadeData();
-        
-        LobbyManager.Instance.ResetLobbyUI();
+
+        // 이벤트 실행
+        if (LobbyManager.Instance.date % 7 != 0)
+        {
+            LobbyManager.Instance.ResetLobbyUI();
+        }
 
         switch (num)
         {
@@ -2290,30 +2480,134 @@ public class DialogueManager : MonoBehaviour
                 break;
         }
 
-        LobbyManager.Instance.ResetLobby();
-        
-        // while (alpha.a > 0)
-        // {
-        //     _time += Time.deltaTime / _currentFadeTime;
-        //     
-        //     alpha.a = Mathf.Lerp(1, 0, _time);
-        //     
-        //     infoImage.color = alpha;
-        //
-        //     lobbyUIGo.SetActive(true);
-        //     
-        //     yield return null;
-        // }
-        
+        // 이벤트 실행
+        if (LobbyManager.Instance.date % 7 == 0)
+        {
+            LobbyManager.Instance.ResetLobby(1);
+        }
+        // 이벤트 실행 아님
+        else
+        {
+            LobbyManager.Instance.ResetLobby(0);
+        }
+
         yield return null;
     }
     
+    private IEnumerator FadeInfoEvent(int reputationNum, int nowHeartNum, int addHeart)
+    {
+        SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+        
+        infoImage.color = new Color(1, 1, 1, 0);
+        reputationImage.color = new Color(1, 1, 1, 0);
+        fadeImage.color = new Color(1, 1, 1, 0);
+
+        infoImage.sprite = infoSprite[reputationNum];
+
+        infoImage.gameObject.SetActive(true);
+        
+        _time = 0f;
+        
+        Color alpha = infoImage.color;
+        
+        while (alpha.a < 1f)
+        {
+            _time += Time.deltaTime / _currentFadeTime;
+            
+            alpha.a = Mathf.Lerp(0, 1, _time);
+            
+            infoImage.color = alpha;
+            
+            yield return null;
+        }
+        _time = 0f;
+        
+        yield return _yieldAnimDelay;
+
+        AddDate();
+        SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+        StartCoroutine(FadeReputation(nowHeartNum, addHeart));
+        
+        LobbyManager.Instance.ResetLobbyUI();
+
+        switch (reputationNum)
+        {
+            case 0:
+                LobbyManager.Instance.nowHeart[0] += 20;
+                break;
+        }
+
+        LobbyManager.Instance.ResetLobby(0);
+
+        yield return null;
+    }
+    
+    private IEnumerator FadeReputation(int nowHeartNum, int addHeart)
+    {
+        reputationImage.sprite = infoSprite[nowHeartNum];
+        
+        reputationImage.gameObject.SetActive(true);
+
+        _time = 0f;
+        
+        Color alpha = reputationImage.color;
+        
+        while (alpha.a < 1f)
+        {
+            _time += Time.deltaTime / _currentFadeTime;
+            
+            alpha.a = Mathf.Lerp(0, 1, _time);
+            
+            reputationImage.color = alpha;
+            
+            yield return null;
+        }
+        _time = 0f;
+        
+        yield return _yieldAnimDelay;
+        
+        SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+        StartFadeData();
+        
+        switch (nowHeartNum)
+        {
+            case 1:
+                LobbyManager.Instance.nowHeart[1] += addHeart;
+                break;
+            case 2:
+                LobbyManager.Instance.nowHeart[2] += addHeart;
+                break;
+            case 3:
+                LobbyManager.Instance.nowHeart[3] += addHeart;
+                break;
+            case 6:
+                LobbyManager.Instance.nowHeart[1] += addHeart;
+                LobbyManager.Instance.nowHeart[2] += addHeart;
+                LobbyManager.Instance.nowHeart[3] += addHeart;
+                break;
+        }
+        
+        SaveData();
+        
+        yield return null;
+    }
     
     private IEnumerator FadeDate(GameObject go)
     {
         dataImage.gameObject.SetActive(true);
         
-        SettingUI.Instance.SettingBgmSound(tutorialBgm);
+        // 이벤트 2실행
+        if (LobbyManager.Instance.date - 14 == 0)
+        {
+            SettingUI.Instance.SettingBgmSound(readyAudio);
+            LobbyManager.Instance.SettingBackImage(0);
+        }
+        else
+        {
+            SettingUI.Instance.SettingBgmSound(tutorialBgm);
+            LobbyManager.Instance.SettingBackImage(0);
+        }
+        
         
         _time = 0f;
         
@@ -2346,13 +2640,22 @@ public class DialogueManager : MonoBehaviour
             
             lobbyUIGo.SetActive(true);
             infoImage.gameObject.SetActive(false);
-            infoImage.color = new Color(1, 1, 1, 0);
-            fadeImage.color = new Color(1, 1, 1, 0);
+            reputationImage.gameObject.SetActive(false);
 
             yield return null;
         }
         
         WorldManager.Instance.ResetTxtBox();
+        
+        // 이벤트 1실행
+        if (LobbyManager.Instance.date - 7 == 0)
+        {
+            LobbyManager.Instance.Event1();
+        }
+        else if (LobbyManager.Instance.date - 14 == 0)
+        {
+            LobbyManager.Instance.Event2();
+        }
 
         dataImage.gameObject.SetActive(false);
         
@@ -2399,11 +2702,62 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    private void SaveData()
+    {
+        // 이안 첫만남 저장
+        if (DailyRoutine.Instance.isFirst[0].Equals(true))
+        {
+            PlayerPrefs.SetInt("IanFirst", 1);
+        }
+        
+        if (DailyRoutine.Instance.isFirst[1].Equals(true))
+        {
+            PlayerPrefs.SetInt("NoaFirst", 1);
+        }
+        
+        if (DailyRoutine.Instance.isFirst[2].Equals(true))
+        {
+            PlayerPrefs.SetInt("AustinFirst", 1);
+        }
+
+        // 이안 평판 확인 저장
+        if (LobbyManager.Instance.isShowHeart[1].Equals(true))
+        {
+            PlayerPrefs.SetInt("IanShowHeart", 1);
+        }
+        
+        if (LobbyManager.Instance.isShowHeart[2].Equals(true))
+        {
+            PlayerPrefs.SetInt("NoaShowHeart", 1);
+        }
+        
+        if (LobbyManager.Instance.isShowHeart[3].Equals(true))
+        {
+            PlayerPrefs.SetInt("AustinShowHeart", 1);
+        }
+        
+        PlayerPrefs.SetFloat("PlayerHeart", LobbyManager.Instance.nowHeart[0]);
+        PlayerPrefs.SetFloat("IanHeart", LobbyManager.Instance.nowHeart[1]);
+        PlayerPrefs.SetFloat("NoaHeart", LobbyManager.Instance.nowHeart[2]);
+        PlayerPrefs.SetFloat("AustinHeart", LobbyManager.Instance.nowHeart[3]);
+        
+        LobbyManager.Instance.isBuy = false;
+        PlayerPrefs.SetInt("Date", LobbyManager.Instance.date);
+        PlayerPrefs.SetInt("Coin", LobbyManager.Instance.coin);
+        PlayerPrefs.Save();
+    }
+
     public void OkName()
     {
+        PlayerPrefs.SetFloat("PlayerHeart", 0);
+        PlayerPrefs.SetFloat("IanHeart", 0);
+        PlayerPrefs.SetFloat("NoaHeart", 0);
+        PlayerPrefs.SetFloat("AustinHeart", 0);
+        
         PlayerPrefs.SetInt("Opening", 1);
         PlayerPrefs.SetString("PlayerName", nameTxt.text);
         PlayerPrefs.SetInt("Date", 1);
+        PlayerPrefs.SetInt("Coin", 0);
         PlayerPrefs.Save();
         
         LobbyManager.Instance.date = PlayerPrefs.GetInt("Date");
