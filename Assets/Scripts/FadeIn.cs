@@ -69,12 +69,21 @@ public class FadeIn : MonoBehaviour
             {
                 LobbyManager.Instance.isShowHeart[3] = true;
             }
+            
+            for (int i = 0; i < LobbyManager.Instance.isAlbum.Length; i++)
+            {
+                if (PlayerPrefs.HasKey(i.ToString()))
+                {
+                    LobbyManager.Instance.ClearAlbum(i);
+                }
+            }
 
             LobbyManager.Instance.nowHeart[0] = PlayerPrefs.GetFloat("PlayerHeart");
             LobbyManager.Instance.nowHeart[1] = PlayerPrefs.GetFloat("IanHeart");
             LobbyManager.Instance.nowHeart[2] = PlayerPrefs.GetFloat("NoaHeart");
             LobbyManager.Instance.nowHeart[3] = PlayerPrefs.GetFloat("AustinHeart");
             
+            ChoiceManager.Instance.event3WhoNum = PlayerPrefs.GetInt("Event3");
             LobbyManager.Instance.date = PlayerPrefs.GetInt("Date");
             LobbyManager.Instance.coin = PlayerPrefs.GetInt("Coin");
             LobbyManager.Instance.SettingCoin();

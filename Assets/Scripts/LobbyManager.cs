@@ -15,6 +15,12 @@ public class LobbyManager : MonoBehaviour
     public int date;
     // public string date;
 
+    [SerializeField] private AudioClip fitAudio;
+    [SerializeField] private AudioClip debut2Audio;
+    [SerializeField] private AudioClip debut3Audio;
+    [SerializeField] private AudioClip hittingAudio;
+    [SerializeField] private AudioClip wineAudio;
+    
     [SerializeField] private Sprite windowBasic;
     [SerializeField] private Sprite[] playerBasic;
     [SerializeField] private Sprite[] dateSprite;
@@ -59,13 +65,13 @@ public class LobbyManager : MonoBehaviour
 
     private string _situationCaseName;
 
-    [SerializeField] private bool[] isAlbum;
+    public bool[] isAlbum;
 
     [SerializeField] private Image[] illustrationImage;
 
     [SerializeField] private Sprite[] illustrationImageSprite;
     
-    [SerializeField] private Sprite[] illustration;
+    public Sprite[] illustration;
     
     [SerializeField] private Image maximImage;
     [SerializeField] private GameObject maximImageGo;
@@ -587,6 +593,121 @@ public class LobbyManager : MonoBehaviour
 
         DialogueManager.Instance.count = 0;
         DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event2NextDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void Event2Ignore()
+    {
+        _situationCaseName = "Event2Ignore";
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+
+        DialogueManager.Instance.count = 0;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event2IgnoreDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void Event2Right()
+    {
+        SettingUI.Instance.SettingBgmSound(fitAudio);
+        
+        _situationCaseName = "Event2Right";
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+    
+        DialogueManager.Instance.count = 0;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event2RightDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void Event2Rebut()
+    {
+        SettingUI.Instance.SettingBgmSound(debut2Audio);
+        
+        _situationCaseName = "Event2Rebut";
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+    
+        DialogueManager.Instance.count = 0;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event2RebutDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void GetAlbum1()
+    {
+        _situationCaseName = "GetAlbum1";
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+    
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.getAlbum1Dialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+
+    public void Event2HitCheek()
+    {
+        SettingUI.Instance.SettingBgmSound(hittingAudio);
+        
+        _situationCaseName = "Event2HitCheek";
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+    
+        DialogueManager.Instance.count = 0;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event2HitCheekDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void GetAlbum2()
+    {
+        _situationCaseName = "GetAlbum2";
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+    
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.getAlbum2Dialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void Event2WineSpray()
+    {
+        SettingUI.Instance.SettingBgmSound(wineAudio);
+        
+        _situationCaseName = "Event2WineSpray";
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+    
+        DialogueManager.Instance.count = 0;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event2WineSprayDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void GetAlbum3()
+    {
+        lobbyCharterName.text = "";
+        lobbyCharterImage.sprite = DialogueTxt.Instance.getAlbum3Dialogue.dialogueWindows[0];
+        lobbyWindow.sprite = DialogueTxt.Instance.getAlbum3Dialogue.dialogueWindows[0];
+        lobbyTxtBtnImage.sprite = DialogueTxt.Instance.getAlbum3Dialogue.dialogueWindows[0];
+        
+        _situationCaseName = "GetAlbum3";
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+    
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.getAlbum3Dialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void Event2Cry()
+    {
+        SettingUI.Instance.SettingBgmSound(debut3Audio);
+        
+        _situationCaseName = "Event2Cry";
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+    
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event2CryDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void Event2Select()
+    {
+        _situationCaseName = "Event2Select";
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+
+        DialogueManager.Instance.count = 0;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event2Select, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
     }
 
     public void SettingBaseBackImage(Dialogue dialogue)

@@ -149,7 +149,17 @@ public class DialogueTxt : MonoBehaviour
     public Dialogue event1SpeakArtDialogue;
     public Dialogue event1SwardArtDialogue;
     public Dialogue event2Dialogue;
-    public Dialogue event2NextDialogue; 
+    public Dialogue event2NextDialogue;
+    public Dialogue event2IgnoreDialogue;
+    public Dialogue event2RightDialogue;
+    public Dialogue event2RebutDialogue;
+    public Dialogue getAlbum1Dialogue;
+    public Dialogue event2HitCheekDialogue;
+    public Dialogue getAlbum2Dialogue;
+    public Dialogue event2WineSprayDialogue;
+    public Dialogue getAlbum3Dialogue;
+    public Dialogue event2CryDialogue;
+    public Dialogue event2Select;
 
     private void Awake()
     {

@@ -3,13 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class ChoiceManager : MonoBehaviour
 {
     public static ChoiceManager Instance;
+
+    [SerializeField] private Image selectCharacterUI;
+
+    [SerializeField] private Sprite[] selectCharacterSprite;
     
     [SerializeField] private AudioClip clickAudio;
 
+    [SerializeField] private GameObject selectCharacterUIGo;
     [SerializeField] private GameObject guideBackImageGo;
     [SerializeField] private GameObject choiceObjectUI;
     [SerializeField] private GameObject[] choiceCountGo;
@@ -33,9 +40,31 @@ public class ChoiceManager : MonoBehaviour
     private bool _isFiveChoice;
     private bool _isSixChoice;
 
+    public int event3WhoNum;
+
+    public bool isSelectEvent3;
+
     private void Awake()
     {
         Instance = this;
+    }
+
+    public void HideSelectCharacterUI()
+    {
+        SettingUI.Instance.SettingSfxSound(clickAudio);
+        
+        event3WhoNum = 0;
+        
+        selectCharacterUIGo.SetActive(false);
+    }
+    
+    public void SelectCharacterUIYes()
+    {
+        SettingUI.Instance.SettingSfxSound(clickAudio);
+        
+        CallSituation();
+
+        isSelectEvent3 = false;
     }
 
     public void SelectChoice(int num)
@@ -46,7 +75,37 @@ public class ChoiceManager : MonoBehaviour
         {
             choiceNum = choiceTxtNums[num];
 
-            CallSituation();
+            if (isSelectEvent3.Equals(false))
+            {
+                CallSituation();
+            }
+            else
+            {
+                if (choiceNum == 96)
+                {
+                    event3WhoNum = 1;
+
+                    selectCharacterUI.sprite = selectCharacterSprite[0];
+                    
+                    selectCharacterUIGo.SetActive(true);
+                }
+                else if (choiceNum == 97)
+                {
+                    event3WhoNum = 2;
+                    
+                    selectCharacterUI.sprite = selectCharacterSprite[1];
+        
+                    selectCharacterUIGo.SetActive(true);
+                }
+                else if (choiceNum == 98)
+                {
+                    event3WhoNum = 3;
+                    
+                    selectCharacterUI.sprite = selectCharacterSprite[2];
+        
+                    selectCharacterUIGo.SetActive(true);
+                }
+            }
         }
         else if (_isFiveChoice.Equals(true))
         {
@@ -73,6 +132,8 @@ public class ChoiceManager : MonoBehaviour
         else if (_isSixChoice.Equals(true))
         {
             choiceNum = choiceTxtSixNums[num];
+            
+            CallSituation();
         }
     }
 
@@ -389,29 +450,66 @@ public class ChoiceManager : MonoBehaviour
                 DailyRoutine.Instance.HomeAustin2CallAustin();
                 break;
             #endregion
+            #region 이벤트1
             // 이벤트1 예절
             case 84:
                 LobbyManager.Instance.Event1Manner();
                 break;
-            // 이벤트 춤
+            // 이벤트1 춤
             case 85:
                 LobbyManager.Instance.Event1Dance();
                 break;
-            // 이벤트 다도
+            // 이벤트1 다도
             case 86:
                 LobbyManager.Instance.Event1TeaCeremony();
                 break;
-            // 이벤트 화술
+            // 이벤트1 화술
             case 87:
                 LobbyManager.Instance.Event1SpeakArt();
                 break;
-            // 이벤트 검술
+            // 이벤트1 검술
             case 88:
                 LobbyManager.Instance.Event1SwardArt();
                 break;
-            // 이벤트 호충
+            #endregion
+            #region 이벤트2
+            // 이벤트2 무시하기
             case 90:
+                LobbyManager.Instance.Event2Ignore();
                 break;
+            // 이벤트2 맞춰주기
+            case 91:
+                LobbyManager.Instance.Event2Right();
+                break;
+            // 이벤트2 반박하기
+            case 92:
+                LobbyManager.Instance.Event2Rebut();
+                break;
+            // 이벤트2 뺨 때리기
+            case 93:
+                LobbyManager.Instance.Event2HitCheek();
+                break;
+            // 이벤트2 와인 뿌리기
+            case 94:
+                LobbyManager.Instance.Event2WineSpray();
+                break;
+            // 이벤트2 울기
+            case 95:
+                LobbyManager.Instance.Event2Cry();
+                break;
+            // 아벤트2 공작 : 이안 칼릭스
+            case 96:
+                DialogueManager.Instance.SettingFadeInfoEvent();
+                break;
+            // 이벤트2 후작 : 노아 셀베스틴
+            case 97:
+                DialogueManager.Instance.SettingFadeInfoEvent();
+                break;
+            // 이벤트2 신관 : 아스틴
+            case 98:
+                DialogueManager.Instance.SettingFadeInfoEvent();
+                break;
+            #endregion
         }
     }
 

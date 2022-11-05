@@ -26,6 +26,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Transform tutorialSettingUIParent;
     [SerializeField] private Transform settingUIParentTr;
 
+    [SerializeField] private Image getMaximImage;
     [SerializeField] private Image whiteFadeImage;
     [SerializeField] private Image fadeImage;
     [SerializeField] private Image dataImage;
@@ -67,7 +68,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private AudioClip curtainAudio;
     [SerializeField] private AudioClip readyAudio;
     [SerializeField] private AudioClip debut1Audio;
-    
+    [SerializeField] private AudioClip cheekAudio;
 
     public AudioSource typeSound;
 
@@ -151,6 +152,10 @@ public class DialogueManager : MonoBehaviour
     public GameObject shopUI;
 
     [SerializeField] private GameObject placeUIGo;
+
+    private string _event2Case;
+
+    private string _situationCase;
     
     private void Awake()
     {
@@ -251,6 +256,8 @@ public class DialogueManager : MonoBehaviour
         _listCharters.Clear();
         _listDialogueWindows.Clear();
         _isTalk = false;
+
+        _situationCase = situationCase;
         
         // 대화 종료
         switch (situationCase)
@@ -780,19 +787,19 @@ public class DialogueManager : MonoBehaviour
                 ChoiceManager.Instance.ShowFiveChoice(28);
                 break;
             case "Event1Manner":
-                StartCoroutine(FadeInfoEvent(0, 1, 5));
+                StartCoroutine(FadeInfoEvent(0, 20, 1, 5));
                 break;
             case "Event1Dance":
-                StartCoroutine(FadeInfoEvent(0, 2, 5));
+                StartCoroutine(FadeInfoEvent(0, 20, 2, 5));
                 break;
             case "Event1TeaCeremony":
-                StartCoroutine(FadeInfoEvent(0, 3, 5));
+                StartCoroutine(FadeInfoEvent(0, 20, 3, 5));
                 break;
             case "Event1SpeakArt":
-                StartCoroutine(FadeInfoEvent(0, 4, 5));
+                StartCoroutine(FadeInfoEvent(0, 20, 4, 5));
                 break;
             case "Event1SwardArt":
-                StartCoroutine(FadeInfoEvent(5, 6, 5));
+                StartCoroutine(FadeInfoEvent(5, 0, 6, 5));
                 break;
             case "Event2":
                 StartCoroutine(FadeImage());
@@ -803,7 +810,108 @@ public class DialogueManager : MonoBehaviour
                 
                 ChoiceManager.Instance.ShowSixChoice(30);
                 break;
+            case "Event2Ignore":
+                SettingEventCase("Event2Ignore");
+                break;
+            case "Event2Right":
+                SettingEventCase("Event2Right");
+                break;
+            case "Event2Rebut":
+                GetMaximAlbum(0);
+                break;
+            case "GetAlbum1":
+                SettingEventCase("Event2Rebut");
+                break;
+            case "Event2HitCheek":
+                GetMaximAlbum(1);
+                break;
+            case "GetAlbum2":
+                SettingEventCase("Event2HitCheek");
+                break;
+            case "Event2WineSpray":
+                charterAnimator.SetBool("IsAlpha", true);
+                Invoke("DelayGetMaximAlbum2", 1);
+                break;
+            case "GetAlbum3":
+                SettingEventCase("Event2WineSpray");
+                break;
+            case "Event2Cry":
+                SettingEventCase("Event2Cry");
+                break;
+            case "Event2Select":
+                ChoiceManager.Instance.isSelectEvent3 = true;
+                
+                choiceTxt.text = "[ " + DialogueTxt.Instance.event2Select.sentences[14] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowThreeChoice(32);
+                break;
         }
+    }
+
+    public void SettingFadeInfoEvent()
+    {
+        switch (_event2Case)
+        {
+            case "Event2Ignore":
+                StartCoroutine(FadeInfoEvent(0, 8, 4, 0));
+                break;
+            case "Event2Right":
+                StartCoroutine(FadeInfoEvent(5, 6, 7, 5));
+                break;
+            case "Event2Rebut":
+                StartCoroutine(FadeInfoEvent(5, 6, 1, 10));
+                break;
+            case "Event2HitCheek":
+                StartCoroutine(FadeInfoEvent(5, 6, 2, 10));
+                break;
+            case "Event2WineSpray":
+                StartCoroutine(FadeInfoEvent(5, 6, 3, 10));
+                break;
+            case "Event2Cry":
+                StartCoroutine(FadeInfoEvent(0, 8, 6, 10));
+                break;
+        }
+    }
+
+    private void DelayGetMaximAlbum2()
+    {
+        GetMaximAlbum(2);
+    }
+
+    private void GetMaximAlbum(int num)
+    {
+        getMaximImage.sprite = LobbyManager.Instance.illustration[num];
+        
+        getMaximImage.gameObject.SetActive(true);
+        LobbyManager.Instance.ClearAlbum(num);
+    }
+
+    public void HideGetMaximAlbum()
+    {
+        SettingUI.Instance.SettingSfxSound(clickAudio);
+        
+        getMaximImage.gameObject.SetActive(false);
+        
+        switch (_situationCase)
+        {
+            case "Event2Rebut":
+                LobbyManager.Instance.GetAlbum1();
+                break;
+            case "Event2HitCheek":
+                LobbyManager.Instance.GetAlbum2();
+                break;
+            case "Event2WineSpray":
+                LobbyManager.Instance.GetAlbum3();
+                break;
+        }
+    }
+
+    private void SettingEventCase(string event2Case)
+    {
+        _event2Case = event2Case;
+        SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+        StartCoroutine(FadeImageAlpha());
     }
 
     private void CheckIsAddIanHeart()
@@ -840,12 +948,6 @@ public class DialogueManager : MonoBehaviour
         {
             StartCoroutine(FadeInfo(3));
         }
-    }
-
-    private void SettingWhiteBox()
-    {
-        conversation.font = blackOutline;
-        txtBtnImage.sprite = blackNextBtn;
     }
 
     private void ShowSHopUIDelay()
@@ -1138,6 +1240,86 @@ public class DialogueManager : MonoBehaviour
                                 ChangeWindowImage();
                             }
                             break;
+                        case "Event2Ignore":
+                            _isPlayAnim = true;
+                            
+                            if (count == 1)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "Event2Right":
+                            _isPlayAnim = true;
+                            
+                            if (count == 1)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "Event2Rebut":
+                            _isPlayAnim = true;
+                            
+                            if (count == 1 || count == 15)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "Event2WineSpray":
+                            _isPlayAnim = true;
+                            
+                            if (count == 1)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "GetAlbum3":
+                            _isPlayAnim = true;
+                            
+                            if (count == 14)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
                     }
                    
                     if (_isPlayAnim.Equals(false))
@@ -1165,6 +1347,14 @@ public class DialogueManager : MonoBehaviour
                                     charterAnimator.runtimeAnimatorController = charterController1;
                                     break;
                                 case 27:
+                                    charterAnimator.runtimeAnimatorController = charterController1;
+                                    break;
+                            } 
+                            break;
+                        case "Event2WineSpray":
+                            switch (count)
+                            {
+                                case 18:
                                     charterAnimator.runtimeAnimatorController = charterController1;
                                     break;
                             }
@@ -1324,6 +1514,52 @@ public class DialogueManager : MonoBehaviour
                             charterName.text = "올리비아";
                         }
                         else if (_listCharters[count].name.Contains("Penelope").Equals(true))
+                        {
+                            charterName.text = "페넬로페";
+                        }
+                        break;
+                    case "Event2Ignore":
+                        if (_listCharters[count].name.Contains("Olivia").Equals(true))
+                        {
+                            charterName.text = "올리비아";
+                        }
+                        else if (_listCharters[count].name.Contains("Penelope").Equals(true))
+                        {
+                            charterName.text = "페넬로페";
+                        }
+                        break;
+                    case "Event2Right":
+                        if (_listCharters[count].name.Contains("Penelope").Equals(true))
+                        {
+                            charterName.text = "페넬로페";
+                        }
+                        break;
+                    case "Event2Rebut":
+                        if (_listCharters[count].name.Contains("Penelope").Equals(true))
+                        {
+                            charterName.text = "페넬로페";
+                        }
+                        break;
+                    case "Event2HitCheek":
+                        if (_listCharters[count].name.Contains("Penelope").Equals(true))
+                        {
+                            charterName.text = "페넬로페";
+                        }
+                        break;
+                    case "Event2WineSpray":
+                        if (_listCharters[count].name.Contains("Penelope").Equals(true))
+                        {
+                            charterName.text = "페넬로페";
+                        }
+                        break;
+                    case "GetAlbum3":
+                        if (_listCharters[count].name.Contains("Olivia").Equals(true))
+                        {
+                            charterName.text = "올리비아";
+                        }
+                        break;
+                    case "Event2Cry":
+                        if (_listCharters[count].name.Contains("Penelope").Equals(true))
                         {
                             charterName.text = "페넬로페";
                         }
@@ -1811,6 +2047,52 @@ public class DialogueManager : MonoBehaviour
                                     break;
                             }
                             break;
+                        case "Event2Select":
+                            switch (count)
+                            {
+                                case 14:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "Event2Rebut":
+                            switch (count)
+                            {
+                                case 5:
+                                    charterName.text = "";
+                                    break;
+                                case 15:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "Event2HitCheek":
+                            switch (count)
+                            {
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(cheekAudio);
+                                    break;
+                            }
+                            break;
+                        case "Event2WineSpray":
+                            switch (count)
+                            {
+                                case 12:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "GetAlbum3":
+                            switch (count)
+                            {
+                                case 13:
+                                    charterName.text = "";
+                                    break;
+                                case 17:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
                     }
 
                 if (_listDialogueWindows[count].name.Contains("Think_Box").Equals(true))
@@ -2040,6 +2322,18 @@ public class DialogueManager : MonoBehaviour
                                 yield return _yieldCharterChangeDelay;
                                 charterImage.sprite = _listCharters[count];
                                 break;
+                            case "Event2WineSpray":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "Event2Select":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "Event2Cry":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
                         }
                     }
                     else
@@ -2222,6 +2516,51 @@ public class DialogueManager : MonoBehaviour
         }
     }
     
+    private IEnumerator FadeImageAlpha()
+    {
+        fadeImage.color = new Color(1, 1, 1, 0);
+        
+        fadeImage.gameObject.SetActive(true);
+  
+        _time = 0f;
+        
+        Color alpha = fadeImage.color;
+        
+        while (alpha.a < 1f)
+        {
+            _time += Time.deltaTime / _currentFadeTime;
+            
+            alpha.a = Mathf.Lerp(0, 1, _time);
+            
+            fadeImage.color = alpha;
+            
+            yield return null;
+        }
+        _time = 0f;
+        
+        LobbyManager.Instance.SettingBackImage(2);
+        yield return _yieldViewDelay;
+        
+        while (alpha.a > 0)
+        {
+            _time += Time.deltaTime / _currentFadeTime;
+            
+            alpha.a = Mathf.Lerp(1, 0, _time);
+            
+            fadeImage.color = alpha;
+            
+            yield return null;
+        }
+        
+        SettingUI.Instance.SettingBgmSound(tutorialBgm);
+        LobbyManager.Instance.Event2Select();
+        
+        //
+        fadeImage.gameObject.SetActive(false);
+
+        yield return null;
+    }
+
     private IEnumerator FadeRightFlow()
     {
         fadeImage.gameObject.SetActive(true);
@@ -2494,7 +2833,7 @@ public class DialogueManager : MonoBehaviour
         yield return null;
     }
     
-    private IEnumerator FadeInfoEvent(int reputationNum, int nowHeartNum, int addHeart)
+    private IEnumerator FadeInfoEvent(int reputationNum, int plusPlayerHeart, int nowHeartNum, int addHeart)
     {
         SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
         
@@ -2533,13 +2872,27 @@ public class DialogueManager : MonoBehaviour
         switch (reputationNum)
         {
             case 0:
-                LobbyManager.Instance.nowHeart[0] += 20;
+                LobbyManager.Instance.nowHeart[0] += plusPlayerHeart;
+                break;
+            case 5:
+                CheckNowHeartZero(0, plusPlayerHeart);
                 break;
         }
-
+        
+        
         LobbyManager.Instance.ResetLobby(0);
 
         yield return null;
+    }
+
+    private void CheckNowHeartZero(int nowHeartNum, int minusNUm)
+    {
+        LobbyManager.Instance.nowHeart[nowHeartNum] -= minusNUm;
+
+        if (LobbyManager.Instance.nowHeart[nowHeartNum] < 0)
+        {
+            LobbyManager.Instance.nowHeart[nowHeartNum] = 0;
+        }
     }
     
     private IEnumerator FadeReputation(int nowHeartNum, int addHeart)
@@ -2584,6 +2937,11 @@ public class DialogueManager : MonoBehaviour
                 LobbyManager.Instance.nowHeart[1] += addHeart;
                 LobbyManager.Instance.nowHeart[2] += addHeart;
                 LobbyManager.Instance.nowHeart[3] += addHeart;
+                break;
+            case 7:
+                CheckNowHeartZero(1, addHeart);
+                CheckNowHeartZero(2, addHeart);
+                CheckNowHeartZero(3, addHeart);
                 break;
         }
         
@@ -2735,6 +3093,15 @@ public class DialogueManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("AustinShowHeart", 1);
         }
+
+        for (int i = 0; i < LobbyManager.Instance.isAlbum.Length; i++)
+        {
+            if (LobbyManager.Instance.isAlbum[i].Equals(true))
+            {
+                // 0 ~ 18;
+                PlayerPrefs.SetInt(i.ToString(), 1);
+            }
+        }
         
         PlayerPrefs.SetFloat("PlayerHeart", LobbyManager.Instance.nowHeart[0]);
         PlayerPrefs.SetFloat("IanHeart", LobbyManager.Instance.nowHeart[1]);
@@ -2744,6 +3111,7 @@ public class DialogueManager : MonoBehaviour
         LobbyManager.Instance.isBuy = false;
         PlayerPrefs.SetInt("Date", LobbyManager.Instance.date);
         PlayerPrefs.SetInt("Coin", LobbyManager.Instance.coin);
+        PlayerPrefs.SetInt("Event3", ChoiceManager.Instance.event3WhoNum);
         PlayerPrefs.Save();
     }
 

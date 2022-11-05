@@ -840,6 +840,7 @@ public class DailyRoutine : MonoBehaviour
         
         placeTxtBoxLineGo.SetActive(true);
         
+        DialogueManager.Instance.count = 0;
         DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.townIan3IgnoreDialogue, _situationCaseName, placeConversation, placeCharterName, placeCharterImage, placeWindow, placeCharterAnimator, placeTxtBtnAnimator, placeTxtBtnImageGo, placeTxtBtnImage);
     }
     
