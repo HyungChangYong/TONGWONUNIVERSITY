@@ -160,7 +160,31 @@ public class DialogueTxt : MonoBehaviour
     public Dialogue getAlbum3Dialogue;
     public Dialogue event2CryDialogue;
     public Dialogue event2Select;
-
+    public Dialogue event3IanDialogue;
+    public Dialogue event3IanNextDialogue;
+    public Dialogue getAlbum4Dialogue;
+    public Dialogue getAlbum4NextDialogue;
+    public Dialogue even3IanDrinkDialogue;
+    public Dialogue even3IanWaitDialogue;
+    public Dialogue even3IanWaitNextDialogue;
+    public Dialogue event3NoaDialogue;
+    public Dialogue event3NoaNextDialogue;
+    public Dialogue event3NoaStayDialogue;
+    public Dialogue event3NoaStayNextDialogue;
+    public Dialogue event3NoaAvoidDialogue;
+    public Dialogue event3NoaAvoidNextDialogue;
+    public Dialogue event3NoaSelectDialogue;
+    public Dialogue getAlbum5Dialogue;
+    public Dialogue event3AustinDialogue;
+    public Dialogue event3AustinNextDialogue;
+    public Dialogue event3AustinPartyDialogue;
+    public Dialogue event3AustinPartyNextDialogue;
+    public Dialogue event3AustinBelieveDialogue;
+    public Dialogue event3AustinWindDialogue;
+    public Dialogue event3AustinSelectDialogue;
+    public Dialogue getAlbum6Dialogue;
+    public Dialogue event3NextDialogue;
+    
     private void Awake()
     {
         Instance = this;

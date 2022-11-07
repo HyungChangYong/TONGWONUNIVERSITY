@@ -14,7 +14,14 @@ public class LobbyManager : MonoBehaviour
     public int coin;
     public int date;
     // public string date;
+    
+    private AudioClip _placeBgm;
+    [SerializeField] private AudioClip[] placeBgmClips;
+    private Dialogue _dialogue;
 
+
+    [SerializeField] private AudioClip tutorialAudio;
+    [SerializeField] private AudioClip party3Audio;
     [SerializeField] private AudioClip fitAudio;
     [SerializeField] private AudioClip debut2Audio;
     [SerializeField] private AudioClip debut3Audio;
@@ -129,6 +136,49 @@ public class LobbyManager : MonoBehaviour
     {
         lobbyBackImage.sprite = lobbyBackSprite[placeNum];
     }
+    
+    public void SettingLobbyBgmSound()
+    {
+        SettingUI.Instance.SettingBgmSound(_placeBgm);
+    }
+    
+    public void SettingLobbyDialogue()
+    {
+        DialogueManager.Instance.ShowDialogue(_dialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void SettingSituationCaseDialogue(int placeBgmNum, Dialogue dialogue, string situationCaseName, int countNum, bool changeAudio)
+    {
+        if (changeAudio.Equals(true))
+        {
+            // 전용 bgm
+            _placeBgm = placeBgmClips[placeBgmNum];
+        }
+
+        _dialogue = dialogue;
+                        
+        // 상황
+        _situationCaseName = situationCaseName;
+                        
+        // 대화를 시작할 인덱스
+        DialogueManager.Instance.count = countNum;
+        
+        if (dialogue.charterImages[0].name.Contains("Girl").Equals(true))
+        {
+            lobbyCharterName.text = PlayerPrefs.GetString("PlayerName");
+        }
+        else if (dialogue.charterImages[0].name.Contains("Valet").Equals(true))
+        {
+            lobbyCharterName.text = "집사";
+        }
+        else
+        {
+            lobbyCharterName.text = "";
+        }
+        
+        lobbyCharterImage.sprite = dialogue.charterImages[0];
+        lobbyWindow.sprite = dialogue.dialogueWindows[0];
+    }
 
     public void SettingCoin()
     {
@@ -153,7 +203,22 @@ public class LobbyManager : MonoBehaviour
     {
         SettingUI.Instance.SettingSfxSound(clickAudio);
 
-        if (date % 6 == 0)
+        if (date - 27 == 0)
+        {
+            isSaturday = true;
+            SaturdayValetCall();
+        }
+        else if (date - 20 == 0)
+        {
+            isSaturday = true;
+            SaturdayValetCall();
+        }
+        else if (date - 13 == 0)
+        {
+            isSaturday = true;
+            SaturdayValetCall();
+        }
+        else if (date - 6 == 0)
         {
             isSaturday = true;
             SaturdayValetCall();
@@ -628,16 +693,6 @@ public class LobbyManager : MonoBehaviour
         DialogueManager.Instance.count = 0;
         DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event2RebutDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
     }
-    
-    public void GetAlbum1()
-    {
-        _situationCaseName = "GetAlbum1";
-        
-        lobbyTxtBoxLineGo.SetActive(true);
-    
-        DialogueManager.Instance.count = 1;
-        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.getAlbum1Dialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
-    }
 
     public void Event2HitCheek()
     {
@@ -650,17 +705,7 @@ public class LobbyManager : MonoBehaviour
         DialogueManager.Instance.count = 0;
         DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event2HitCheekDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
     }
-    
-    public void GetAlbum2()
-    {
-        _situationCaseName = "GetAlbum2";
-        
-        lobbyTxtBoxLineGo.SetActive(true);
-    
-        DialogueManager.Instance.count = 1;
-        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.getAlbum2Dialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
-    }
-    
+
     public void Event2WineSpray()
     {
         SettingUI.Instance.SettingBgmSound(wineAudio);
@@ -672,22 +717,7 @@ public class LobbyManager : MonoBehaviour
         DialogueManager.Instance.count = 0;
         DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event2WineSprayDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
     }
-    
-    public void GetAlbum3()
-    {
-        lobbyCharterName.text = "";
-        lobbyCharterImage.sprite = DialogueTxt.Instance.getAlbum3Dialogue.dialogueWindows[0];
-        lobbyWindow.sprite = DialogueTxt.Instance.getAlbum3Dialogue.dialogueWindows[0];
-        lobbyTxtBtnImage.sprite = DialogueTxt.Instance.getAlbum3Dialogue.dialogueWindows[0];
-        
-        _situationCaseName = "GetAlbum3";
-        
-        lobbyTxtBoxLineGo.SetActive(true);
-    
-        DialogueManager.Instance.count = 1;
-        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.getAlbum3Dialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
-    }
-    
+
     public void Event2Cry()
     {
         SettingUI.Instance.SettingBgmSound(debut3Audio);
@@ -737,5 +767,154 @@ public class LobbyManager : MonoBehaviour
         }
 
         ValetCall();
+    }
+    
+    public void Event3Ian()
+    {
+        _situationCaseName = "Event3Ian";
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+        lobbyNextBtnGo.SetActive(true);
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event3IanDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void Even3IanDrink()
+    {
+        SettingUI.Instance.SettingBgmSound(party3Audio);
+        
+        _situationCaseName = "Even3IanDrink";
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.even3IanDrinkDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void Even3IanWait()
+    {
+        _situationCaseName = "Even3IanWait";
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.even3IanWaitDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+
+    public void Event3Noa()
+    {
+        _situationCaseName = "Event3Noa";
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+        lobbyNextBtnGo.SetActive(true);
+
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event3NoaDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void Event3NoaStay()
+    {
+        _situationCaseName = "Event3NoaStay";
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+
+        DialogueManager.Instance.count = 0;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event3NoaStayDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void Event3NoaAvoid()
+    {
+        _situationCaseName = "Event3NoaAvoid";
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+
+        DialogueManager.Instance.count = 0;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event3NoaAvoidDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void Event3NoaSelect()
+    {
+        _situationCaseName = "Event3NoaSelect";
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event3NoaSelectDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void Event3Austin()
+    {
+        _situationCaseName = "Event3Austin";
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+        lobbyNextBtnGo.SetActive(true);
+
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event3AustinDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void Event3AustinBelieve()
+    {
+        _situationCaseName = "Event3AustinBelieve";
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event3AustinBelieveDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+
+    public void Event3AustinWind()
+    {
+        _situationCaseName = "Event3AustinWind";
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event3AustinWindDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void Event3AustinSelect()
+    {
+        _situationCaseName = "Event3AustinSelect";
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+
+        DialogueManager.Instance.count = 0;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event3AustinSelectDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+
+    public void Event3Next()
+    {
+        SettingUI.Instance.SettingBgmSound(tutorialAudio);
+        
+        _situationCaseName = "Event3Next";
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+
+        DialogueManager.Instance.count = 0;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event3NextDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+
+    public void GetAlbum(Dialogue dialogue, string situationCaseName)
+    {
+        if (dialogue.charterImages[0].name.Contains("Girl").Equals(true))
+        {
+            lobbyCharterName.text = PlayerPrefs.GetString("PlayerName");
+        }
+        else
+        {
+            lobbyCharterName.text = "";
+        }
+        
+        lobbyCharterImage.sprite = dialogue.charterImages[0];
+        lobbyWindow.sprite = dialogue.dialogueWindows[0];
+        
+        _situationCaseName = situationCaseName;
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+    
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(dialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
     }
 }

@@ -26,6 +26,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Transform tutorialSettingUIParent;
     [SerializeField] private Transform settingUIParentTr;
 
+    [SerializeField] private Image getMaximImageCancelImage;
     [SerializeField] private Image getMaximImage;
     [SerializeField] private Image whiteFadeImage;
     [SerializeField] private Image fadeImage;
@@ -69,6 +70,14 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private AudioClip readyAudio;
     [SerializeField] private AudioClip debut1Audio;
     [SerializeField] private AudioClip cheekAudio;
+    [SerializeField] private AudioClip party1Audio;
+    [SerializeField] private AudioClip fireAudio;
+    [SerializeField] private AudioClip illustrationAudio;
+    [SerializeField] private AudioClip endingGlass;
+    [SerializeField] private AudioClip park1Audio;
+    [SerializeField] private AudioClip footSteps2;
+    [SerializeField] private AudioClip footSteps3;
+    [SerializeField] private AudioClip sweatTeaAudio;
 
     public AudioSource typeSound;
 
@@ -156,6 +165,8 @@ public class DialogueManager : MonoBehaviour
     private string _event2Case;
 
     private string _situationCase;
+
+    private bool _isCancelIllustration;
     
     private void Awake()
     {
@@ -817,13 +828,13 @@ public class DialogueManager : MonoBehaviour
                 SettingEventCase("Event2Right");
                 break;
             case "Event2Rebut":
-                GetMaximAlbum(0);
+                StartCoroutine(GetMaximAlbum(0));
                 break;
             case "GetAlbum1":
                 SettingEventCase("Event2Rebut");
                 break;
             case "Event2HitCheek":
-                GetMaximAlbum(1);
+                StartCoroutine(GetMaximAlbum(1));
                 break;
             case "GetAlbum2":
                 SettingEventCase("Event2HitCheek");
@@ -845,6 +856,109 @@ public class DialogueManager : MonoBehaviour
                 dialogueWindow.gameObject.SetActive(false);
                 
                 ChoiceManager.Instance.ShowThreeChoice(32);
+                break;
+            case "Event3Ian":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeRightHome(3, 0, DialogueTxt.Instance.event3IanNextDialogue, "Event3IanNext", 0, true));
+                break;
+            case "Event3IanNext":
+                charterAnimator.SetBool("IsAlpha", true);
+                Invoke("DelayGetMaximAlbum3", 1);
+                break;
+            case "GetAlbum4":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeRightHome(1, 1, DialogueTxt.Instance.getAlbum4NextDialogue, "GetAlbum4Next", 0, true));
+                break;
+            case "GetAlbum4Next":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.getAlbum4NextDialogue.sentences[63] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowTwoChoice(33);
+                break;
+            case "Even3IanDrink":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeDream(4));
+                break;
+            case "Even3IanWait":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeRightHome(2, 0, DialogueTxt.Instance.even3IanWaitNextDialogue, "Even3IanWaitNext", 0, false));
+                break;
+            case "Even3IanWaitNext":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeDream(4));
+                break;
+            case "Event3Noa":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeRightHome(1, 1, DialogueTxt.Instance.event3NoaNextDialogue, "Event3NoaNext", 1, true));
+                break;
+            case "Event3NoaNext":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.event3NoaNextDialogue.sentences[47] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowTwoChoice(34);
+                break;
+            case "Event3NoaStay":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeRightHome(5, 2, DialogueTxt.Instance.event3NoaStayNextDialogue, "Event3NoaStayNext", 1, true));
+                break;
+            case "Event3NoaStayNext":
+                LobbyManager.Instance.Event3NoaSelect();
+                break;
+            case "Event3NoaAvoid":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeRightHome(5, 2, DialogueTxt.Instance.event3NoaAvoidNextDialogue, "Event3NoaAvoidNext", 0, true));
+                break;
+            case "Event3NoaAvoidNext":
+                LobbyManager.Instance.Event3NoaSelect();
+                break;
+            case "Event3NoaSelect":
+                charterAnimator.SetBool("IsAlpha", true);
+                Invoke("DelayGetMaximAlbum4", 1);
+                break;
+            case "GetAlbum5":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeDream(4));
+                break;
+            case "Event3Austin":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeRightHome(3, 0, DialogueTxt.Instance.event3AustinNextDialogue, "Event3AustinNext", 1, false));
+                break;
+            case "Event3AustinNext":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeRightHome(1, 1, DialogueTxt.Instance.event3AustinPartyDialogue, "Event3AustinParty", 0, true));
+                break;
+            case "Event3AustinParty":
+                SettingUI.Instance.SettingSfxSound(footSteps2);
+                StartCoroutine(FadeRightHome(5, 3, DialogueTxt.Instance.event3AustinPartyNextDialogue, "Event3AustinPartyNext", 1, true));
+                break;
+            case "Event3AustinPartyNext":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.event3AustinPartyNextDialogue.sentences[26] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowTwoChoice(35);
+                break;
+            case "Event3AustinBelieve":
+                LobbyManager.Instance.Event3AustinSelect();
+                break;
+            case "Event3AustinWind":
+                LobbyManager.Instance.Event3AustinSelect();
+                break;
+            case "Event3AustinSelect":
+                charterAnimator.runtimeAnimatorController = charterController;
+                charterAnimator.SetBool("IsAlpha", true);
+                Invoke("DelayGetMaximAlbum5", 1);
+                break;
+            case "GetAlbum6":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeDream(4));
+                break;
+            case "Event3Next":
+                ChoiceManager.Instance.isSelectEvent3 = true;
+                
+                choiceTxt.text = "[ " + DialogueTxt.Instance.event3NextDialogue.sentences[3] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowThreeChoice(36);
                 break;
         }
     }
@@ -874,36 +988,129 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private void DelayGetMaximAlbum2()
+    public void SettingEvent3Next()
     {
-        GetMaximAlbum(2);
+        switch (ChoiceManager.Instance.event3WhoNum)
+        {
+            case 1:
+                if (ChoiceManager.Instance.isAddIanHeart.Equals(true))
+                {
+                    StartCoroutine(FadeInfoEvent(8, 0, 1, 15));
+                }
+                else
+                {
+                    StartCoroutine(FadeInfoEvent(8, 0, 9, 10));
+                }
+                break;
+            case 2:
+                if (ChoiceManager.Instance.isAddIanHeart.Equals(true))
+                {
+                    StartCoroutine(FadeInfoEvent(8, 0, 2, 15));
+                }
+                else
+                {
+                    StartCoroutine(FadeInfoEvent(8, 0, 10, 10));
+                }
+                break;
+            case 3:
+                if (ChoiceManager.Instance.isAddIanHeart.Equals(true))
+                {
+                    StartCoroutine(FadeInfoEvent(8, 0, 3, 15));
+                }
+                else
+                {
+                    StartCoroutine(FadeInfoEvent(8, 0, 11, 10));
+                }
+                break;
+        }
     }
 
-    private void GetMaximAlbum(int num)
+
+    private void DelayGetMaximAlbum2()
     {
+        StartCoroutine(GetMaximAlbum(2));
+    }
+    
+    private void DelayGetMaximAlbum3()
+    {
+        StartCoroutine(GetMaximAlbum(3));
+    }
+    
+    private void DelayGetMaximAlbum4()
+    {
+        StartCoroutine(GetMaximAlbum(4));
+    }
+    
+    private void DelayGetMaximAlbum5()
+    {
+        StartCoroutine(GetMaximAlbum(5));
+    }
+
+    private IEnumerator GetMaximAlbum(int num)
+    {
+        getMaximImage.color = new Color(1, 1, 1, 0);
+        getMaximImageCancelImage.color = new Color(1, 1, 1, 0);
+        
+        _isCancelIllustration = true;
+        
+        SettingUI.Instance.SettingSfxSound(illustrationAudio);
+        
         getMaximImage.sprite = LobbyManager.Instance.illustration[num];
         
         getMaximImage.gameObject.SetActive(true);
         LobbyManager.Instance.ClearAlbum(num);
+
+        _time = 0f;
+        
+        Color alpha = getMaximImage.color;
+        
+        while (alpha.a < 1f)
+        {
+            _time += Time.deltaTime / _currentFadeTime;
+            
+            alpha.a = Mathf.Lerp(0, 1, _time);
+            
+            getMaximImage.color = alpha;
+            getMaximImageCancelImage.color = alpha;
+            
+            yield return null;
+        }
+        _time = 0f;
+        
+        yield return _yieldAnimDelay;
+
+        _isCancelIllustration = false;
     }
 
     public void HideGetMaximAlbum()
     {
-        SettingUI.Instance.SettingSfxSound(clickAudio);
-        
-        getMaximImage.gameObject.SetActive(false);
-        
-        switch (_situationCase)
+        if (_isCancelIllustration.Equals(false))
         {
-            case "Event2Rebut":
-                LobbyManager.Instance.GetAlbum1();
-                break;
-            case "Event2HitCheek":
-                LobbyManager.Instance.GetAlbum2();
-                break;
-            case "Event2WineSpray":
-                LobbyManager.Instance.GetAlbum3();
-                break;
+            SettingUI.Instance.SettingSfxSound(clickAudio);
+        
+            getMaximImage.gameObject.SetActive(false);
+        
+            switch (_situationCase)
+            {
+                case "Event2Rebut":
+                    LobbyManager.Instance.GetAlbum(DialogueTxt.Instance.getAlbum1Dialogue, "GetAlbum1");
+                    break;
+                case "Event2HitCheek":
+                    LobbyManager.Instance.GetAlbum(DialogueTxt.Instance.getAlbum2Dialogue, "GetAlbum2");
+                    break;
+                case "Event2WineSpray":
+                    LobbyManager.Instance.GetAlbum(DialogueTxt.Instance.getAlbum3Dialogue, "GetAlbum3");
+                    break;
+                case "Event3IanNext":
+                    LobbyManager.Instance.GetAlbum(DialogueTxt.Instance.getAlbum4Dialogue, "GetAlbum4");
+                    break;
+                case "Event3NoaSelect":
+                    LobbyManager.Instance.GetAlbum(DialogueTxt.Instance.getAlbum5Dialogue, "GetAlbum5");
+                    break;
+                case "Event3AustinSelect":
+                    LobbyManager.Instance.GetAlbum(DialogueTxt.Instance.getAlbum6Dialogue, "GetAlbum6");
+                    break;
+            }
         }
     }
 
@@ -1320,6 +1527,102 @@ public class DialogueManager : MonoBehaviour
                                 ChangeWindowImage();
                             }
                             break;
+                        case "Event3Ian":
+                            _isPlayAnim = true;
+                            
+                            if (count == 8)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "GetAlbum4":
+                            _isPlayAnim = true;
+                            
+                            if (count == 3 || count == 4)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "GetAlbum4Next":
+                            _isPlayAnim = true;
+                            
+                            if (count == 19 || count == 21 || count == 38 || count == 63)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "Even3IanWaitNext":
+                            _isPlayAnim = true;
+                            
+                            if (count == 3)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "Event3NoaNext":
+                            _isPlayAnim = true;
+                            
+                            if (count == 43)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "Event3NoaStayNext":
+                            _isPlayAnim = true;
+                            
+                            if (count == 2)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
                     }
                    
                     if (_isPlayAnim.Equals(false))
@@ -1562,6 +1865,71 @@ public class DialogueManager : MonoBehaviour
                         if (_listCharters[count].name.Contains("Penelope").Equals(true))
                         {
                             charterName.text = "페넬로페";
+                        }
+                        break;
+                    case "GetAlbum4Next":
+                        switch (_listCharters[count].name)
+                        {
+                            case "Man3":
+                                charterName.text = "시종";
+                                break;
+                            case "Olivia":
+                                charterName.text = "올리비아";
+                                break;
+                            case "Logan":
+                                charterName.text = "로건";
+                                break;
+                            case "Woman1":
+                                charterName.text = "유디트";
+                                break;
+                        }
+                        break;
+                    case "Even3IanDrink":
+                        if (_listCharters[count].name.Contains("Olivia").Equals(true))
+                        {
+                            charterName.text = "올리비아";
+                        }
+                        break;
+                    case "Even3IanWait":
+                        if (_listCharters[count].name.Contains("Logan").Equals(true))
+                        {
+                            charterName.text = "로건";
+                        }
+                        break;
+                    case "Event3NoaNext":
+                        switch (_listCharters[count].name)
+                        {
+                            case "Man3":
+                                charterName.text = "시종";
+                                break;
+                            case "Olivia":
+                                charterName.text = "올리비아";
+                                break;
+                            case "Logan":
+                                charterName.text = "로건";
+                                break;
+                        }
+                        break;
+                    case "Event3NoaStay":
+                        if (_listCharters[count].name.Contains("Olivia").Equals(true))
+                        {
+                            charterName.text = "올리비아";
+                        }
+                        break;
+                    case "Event3NoaAvoid":
+                        if (_listCharters[count].name.Contains("Olivia").Equals(true))
+                        {
+                            charterName.text = "올리비아";
+                        }
+                        else if (_listCharters[count].name.Contains("Logan").Equals(true))
+                        {
+                            charterName.text = "로건";
+                        }
+                        break;
+                    case "Event3AustinParty":
+                        if (_listCharters[count].name.Contains("Man3").Equals(true))
+                        {
+                            charterName.text = "시종";
                         }
                         break;
                 }
@@ -2093,6 +2461,142 @@ public class DialogueManager : MonoBehaviour
                                     break;
                             }
                             break;
+                        case "Event3Ian":
+                            switch (count)
+                            {
+                                case 8:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "GetAlbum4":
+                            switch (count)
+                            {
+                                case 3:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "GetAlbum4Next":
+                            switch (count)
+                            {
+                                case 4:
+                                    charterName.text = "";
+                                    break;
+                                case 19:
+                                    charterName.text = "";
+                                    break;
+                                case 26:
+                                    charterName.text = "";
+                                    break;
+                                case 38:
+                                    charterName.text = "";
+                                    break;
+                                case 48:
+                                    charterName.text = "???";
+                                    break;
+                                case 51:
+                                    charterName.text = "???";
+                                    break;
+                                case 53:
+                                    charterName.text = "???";
+                                    break;
+                                case 55:
+                                    charterName.text = "";
+                                    break;
+                                case 63:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "Even3IanDrink":
+                            switch (count)
+                            {
+                                case 2:
+                                    charterName.text = "";
+                                    SettingUI.Instance.SettingSfxSound(endingGlass);
+                                    Handheld.Vibrate();
+                                    break;
+                            }
+                            break;
+                        case "Even3IanWaitNext":
+                            switch (count)
+                            {
+                                case 1:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "Event3Noa":
+                            switch (count)
+                            {
+                                case 5:
+                                    Handheld.Vibrate();
+                                    break;
+                            }
+                            break;
+                        case "Event3NoaNext":
+                            switch (count)
+                            {
+                                case 27:
+                                    charterName.text = "";
+                                    break;
+                                case 37:
+                                    charterName.text = "";
+                                    break;
+                                case 41:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "Event3NoaStay":
+                            switch (count)
+                            {
+                                case 5:
+                                    SettingUI.Instance.SettingSfxSound(footSteps2);
+                                    break;
+                            }
+                            break;
+                        case "Event3NoaStayNext":
+                            switch (count)
+                            {
+                                case 2:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "Event3NoaAvoid":
+                            switch (count)
+                            {
+                                case 6:
+                                    SettingUI.Instance.SettingSfxSound(footSteps3);
+                                    break;
+                            }
+                            break;
+                        case "Event3AustinPartyNext":
+                            switch (count)
+                            {
+                                case 19:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "Event3AustinSelect":
+                            switch (count)
+                            {
+                                case 5:
+                                    Handheld.Vibrate();
+                                    break;
+                            }
+                            break;
+                        case "GetAlbum6":
+                            switch (count)
+                            {
+                                case 3:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
                     }
 
                 if (_listDialogueWindows[count].name.Contains("Think_Box").Equals(true))
@@ -2334,6 +2838,54 @@ public class DialogueManager : MonoBehaviour
                                 yield return _yieldCharterChangeDelay;
                                 charterImage.sprite = _listCharters[count];
                                 break;
+                            case "Event3Ian":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "Event3IanNext":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "GetAlbum4Next":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "Even3IanWait":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "Event3Noa":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "GetAlbum5":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "Event3AustinNext":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "Event3AustinPartyNext":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "Event3AustinBelieve":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "Event3AustinWind":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "Event3AustinSelect":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "GetAlbum6":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
                         }
                     }
                     else
@@ -2355,6 +2907,9 @@ public class DialogueManager : MonoBehaviour
 
             switch (situationCase)
             {
+                case "TownAustin2":
+                    SettingUI.Instance.SettingSfxSound(fireAudio);
+                    break;
                 case "ParkAustin2":
                     SettingUI.Instance.SettingSfxSound(littleBirdAudio);
                     break;
@@ -2804,18 +3359,18 @@ public class DialogueManager : MonoBehaviour
         switch (num)
         {
             case 0:
-                LobbyManager.Instance.nowHeart[0] += addNowHeart[_randomCultivation];
+                CheckNowHeart100(0, addNowHeart[_randomCultivation]);
                 LobbyManager.Instance.coin += addCoin[_randomCultivation];
                 LobbyManager.Instance.SettingCoin();
                 break;
             case 1:
-                LobbyManager.Instance.nowHeart[1] += 5;
+                CheckNowHeart100(1, 5);
                 break;
             case 2:
-                LobbyManager.Instance.nowHeart[2] += 5;
+                CheckNowHeart100(2, 5);
                 break;
             case 3:
-                LobbyManager.Instance.nowHeart[3] += 5;
+                CheckNowHeart100(3, 5);
                 break;
         }
 
@@ -2872,7 +3427,7 @@ public class DialogueManager : MonoBehaviour
         switch (reputationNum)
         {
             case 0:
-                LobbyManager.Instance.nowHeart[0] += plusPlayerHeart;
+                CheckNowHeart100(0, plusPlayerHeart);
                 break;
             case 5:
                 CheckNowHeartZero(0, plusPlayerHeart);
@@ -2892,6 +3447,16 @@ public class DialogueManager : MonoBehaviour
         if (LobbyManager.Instance.nowHeart[nowHeartNum] < 0)
         {
             LobbyManager.Instance.nowHeart[nowHeartNum] = 0;
+        }
+    }
+    
+    private void CheckNowHeart100(int nowHeartNum, int minusNUm)
+    {
+        LobbyManager.Instance.nowHeart[nowHeartNum] += minusNUm;
+
+        if (LobbyManager.Instance.nowHeart[nowHeartNum] > 100)
+        {
+            LobbyManager.Instance.nowHeart[nowHeartNum] = 100;
         }
     }
     
@@ -2925,22 +3490,31 @@ public class DialogueManager : MonoBehaviour
         switch (nowHeartNum)
         {
             case 1:
-                LobbyManager.Instance.nowHeart[1] += addHeart;
+                CheckNowHeart100(1, addHeart);
                 break;
             case 2:
-                LobbyManager.Instance.nowHeart[2] += addHeart;
+                CheckNowHeart100(2, addHeart);
                 break;
             case 3:
-                LobbyManager.Instance.nowHeart[3] += addHeart;
+                CheckNowHeart100(3, addHeart);
                 break;
             case 6:
-                LobbyManager.Instance.nowHeart[1] += addHeart;
-                LobbyManager.Instance.nowHeart[2] += addHeart;
-                LobbyManager.Instance.nowHeart[3] += addHeart;
+                CheckNowHeart100(1, addHeart);
+                CheckNowHeart100(2, addHeart);
+                CheckNowHeart100(3, addHeart);
                 break;
             case 7:
                 CheckNowHeartZero(1, addHeart);
                 CheckNowHeartZero(2, addHeart);
+                CheckNowHeartZero(3, addHeart);
+                break;
+            case 9:
+                CheckNowHeartZero(1, addHeart);
+                break;
+            case 10:
+                CheckNowHeartZero(2, addHeart);
+                break;
+            case 11:
                 CheckNowHeartZero(3, addHeart);
                 break;
         }
@@ -2953,9 +3527,30 @@ public class DialogueManager : MonoBehaviour
     private IEnumerator FadeDate(GameObject go)
     {
         dataImage.gameObject.SetActive(true);
-        
+
+        if (LobbyManager.Instance.date - 21 == 0)
+        {
+            switch (ChoiceManager.Instance.event3WhoNum)
+            {
+                // 이안 
+                case 1:
+                    SettingUI.Instance.SettingBgmSound(party1Audio);
+                    LobbyManager.Instance.SettingBackImage(0);
+                    break;
+                // 노아
+                case 2:
+                    SettingUI.Instance.SettingBgmSound(park1Audio);
+                    LobbyManager.Instance.SettingBackImage(0);
+                    break;
+                // 아스틴
+                case 3:
+                    SettingUI.Instance.SettingBgmSound(sweatTeaAudio);
+                    LobbyManager.Instance.SettingBackImage(0);
+                    break;
+            }
+        }
         // 이벤트 2실행
-        if (LobbyManager.Instance.date - 14 == 0)
+        else if (LobbyManager.Instance.date - 14 == 0)
         {
             SettingUI.Instance.SettingBgmSound(readyAudio);
             LobbyManager.Instance.SettingBackImage(0);
@@ -2965,7 +3560,6 @@ public class DialogueManager : MonoBehaviour
             SettingUI.Instance.SettingBgmSound(tutorialBgm);
             LobbyManager.Instance.SettingBackImage(0);
         }
-        
         
         _time = 0f;
         
@@ -3013,6 +3607,27 @@ public class DialogueManager : MonoBehaviour
         else if (LobbyManager.Instance.date - 14 == 0)
         {
             LobbyManager.Instance.Event2();
+        }
+        else if (LobbyManager.Instance.date - 21 == 0)
+        {
+            switch (ChoiceManager.Instance.event3WhoNum)
+            {
+                // 이안 
+                case 1:
+                    // 이벤트 호출
+                    LobbyManager.Instance.Event3Ian();
+                    break;
+                // 노아
+                case 2:
+                    // 이벤트 호출
+                    LobbyManager.Instance.Event3Noa();
+                    break;
+                // 아스틴 
+                case 3:
+                    // 이벤트 호출
+                    LobbyManager.Instance.Event3Austin();
+                    break;
+            }
         }
 
         dataImage.gameObject.SetActive(false);
@@ -3112,6 +3727,7 @@ public class DialogueManager : MonoBehaviour
         PlayerPrefs.SetInt("Date", LobbyManager.Instance.date);
         PlayerPrefs.SetInt("Coin", LobbyManager.Instance.coin);
         PlayerPrefs.SetInt("Event3", ChoiceManager.Instance.event3WhoNum);
+        PlayerPrefs.SetInt("Event4", ChoiceManager.Instance.event4WhoNum);
         PlayerPrefs.Save();
     }
 
@@ -3156,4 +3772,99 @@ public class DialogueManager : MonoBehaviour
         
         SettingUI.Instance.SettingSfxSound(clickAudio);
     }
+    
+    private IEnumerator FadeRightHome(int placeNum, int placeBgmNum, Dialogue dialogue, string situationCaseName, int countNum, bool changeAudio)
+    {
+        fadeImage.gameObject.SetActive(true);
+        fadeImage.transform.localPosition = new Vector3(540, 0, 0);
+        fadeImage.color = new Color(1, 1, 1, 0);
+        
+        _time = 0f;
+        
+        Color alpha = fadeImage.color;
+        
+        while (alpha.a < 1f)
+        {
+            _time += Time.deltaTime / _currentFadeTime;
+            
+            alpha.a = Mathf.Lerp(0, 1, _time);
+            
+            fadeImage.color = alpha;
+            
+            yield return null;
+        }
+        _time = 0f;
+        
+        yield return _yieldViewDelay;
+
+        LobbyManager.Instance.SettingBackImage(placeNum);
+        LobbyManager.Instance.SettingSituationCaseDialogue(placeBgmNum, dialogue, situationCaseName, countNum, changeAudio);
+
+        while (fadeImage.rectTransform.localPosition.x > -1550f)
+        {
+            _time += Time.deltaTime * 0.1f;
+
+            fadeImage.rectTransform.localPosition = 
+                Vector3.Lerp(fadeImage.rectTransform.localPosition, _fadeImageMovePos, _time);
+
+            yield return null;
+        }
+
+        if (changeAudio.Equals(true))
+        {
+            LobbyManager.Instance.SettingLobbyBgmSound();
+        }
+        
+        LobbyManager.Instance.SettingLobbyDialogue();
+
+        fadeImage.gameObject.SetActive(false);
+
+        yield return null;
+    }
+    
+    private IEnumerator FadeDream(int placeNum)
+    {
+        fadeImage.gameObject.SetActive(true);
+        fadeImage.transform.localPosition = new Vector3(540, 0, 0);
+        fadeImage.color = new Color(1, 1, 1, 0);
+
+        _time = 0f;
+        
+        Color alpha = fadeImage.color;
+        
+        while (alpha.a < 1f)
+        {
+            _time += Time.deltaTime / _currentFadeTime;
+            
+            alpha.a = Mathf.Lerp(0, 1, _time);
+            
+            fadeImage.color = alpha;
+            
+            yield return null;
+        }
+        _time = 0f;
+       
+        LobbyManager.Instance.SettingBackImage(placeNum);
+        
+        yield return _yieldViewDelay;
+        
+        while (alpha.a > 0)
+        {
+            _time += Time.deltaTime / _currentFadeTime;
+            
+            alpha.a = Mathf.Lerp(1, 0, _time);
+            
+            fadeImage.color = alpha;
+            
+            yield return null;
+        }
+        
+        LobbyManager.Instance.Event3Next();
+
+        fadeImage.gameObject.SetActive(false);
+
+        yield return null;
+    }
 }
+
+

@@ -41,6 +41,7 @@ public class ChoiceManager : MonoBehaviour
     private bool _isSixChoice;
 
     public int event3WhoNum;
+    public int event4WhoNum;
 
     public bool isSelectEvent3;
 
@@ -52,15 +53,15 @@ public class ChoiceManager : MonoBehaviour
     public void HideSelectCharacterUI()
     {
         SettingUI.Instance.SettingSfxSound(clickAudio);
-        
-        event3WhoNum = 0;
-        
+
         selectCharacterUIGo.SetActive(false);
     }
-    
+
     public void SelectCharacterUIYes()
     {
         SettingUI.Instance.SettingSfxSound(clickAudio);
+        
+        selectCharacterUIGo.SetActive(false);
         
         CallSituation();
 
@@ -81,29 +82,38 @@ public class ChoiceManager : MonoBehaviour
             }
             else
             {
-                if (choiceNum == 96)
+                switch (choiceNum)
                 {
-                    event3WhoNum = 1;
-
-                    selectCharacterUI.sprite = selectCharacterSprite[0];
-                    
-                    selectCharacterUIGo.SetActive(true);
-                }
-                else if (choiceNum == 97)
-                {
-                    event3WhoNum = 2;
-                    
-                    selectCharacterUI.sprite = selectCharacterSprite[1];
-        
-                    selectCharacterUIGo.SetActive(true);
-                }
-                else if (choiceNum == 98)
-                {
-                    event3WhoNum = 3;
-                    
-                    selectCharacterUI.sprite = selectCharacterSprite[2];
-        
-                    selectCharacterUIGo.SetActive(true);
+                    case 96:
+                        event3WhoNum = 1;
+                        selectCharacterUI.sprite = selectCharacterSprite[0];
+                        selectCharacterUIGo.SetActive(true);
+                        break;
+                    case 97:
+                        event3WhoNum = 2;
+                        selectCharacterUI.sprite = selectCharacterSprite[1];
+                        selectCharacterUIGo.SetActive(true);
+                        break;
+                    case 98:
+                        event3WhoNum = 3;
+                        selectCharacterUI.sprite = selectCharacterSprite[2];
+                        selectCharacterUIGo.SetActive(true);
+                        break;
+                    case 108:
+                        event4WhoNum = 1;
+                        selectCharacterUI.sprite = selectCharacterSprite[3];
+                        selectCharacterUIGo.SetActive(true);
+                        break;
+                    case 109:
+                        event4WhoNum = 2;
+                        selectCharacterUI.sprite = selectCharacterSprite[4];
+                        selectCharacterUIGo.SetActive(true);
+                        break;
+                    case 110:
+                        event4WhoNum = 3;
+                        selectCharacterUI.sprite = selectCharacterSprite[5];
+                        selectCharacterUIGo.SetActive(true);
+                        break;
                 }
             }
         }
@@ -147,6 +157,7 @@ public class ChoiceManager : MonoBehaviour
     private void CallSituation()
     {
         choiceObjectUI.SetActive(false);
+        
 
         switch (choiceNum)
         {
@@ -508,6 +519,50 @@ public class ChoiceManager : MonoBehaviour
             // 이벤트2 신관 : 아스틴
             case 98:
                 DialogueManager.Instance.SettingFadeInfoEvent();
+                break;
+            #endregion
+            #region 이벤트3
+            // 이벤트3 우선 한 모금 마시며 공작을 기다린다
+            case 99:
+                isAddIanHeart = false;
+                LobbyManager.Instance.Even3IanDrink();
+                break;
+            // 이벤트3 예법은 뒤로 한 채 잠깐 기다린다
+            case 100:
+                isAddIanHeart = true;
+                LobbyManager.Instance.Even3IanWait();
+                break;
+            // 이벤트3 가만히 있는다
+            case 102:
+                isAddIanHeart = true;
+                LobbyManager.Instance.Event3NoaStay();
+                break;
+            // 이벤트3 몸을 피한다
+            case 103:
+                isAddIanHeart = false;
+                LobbyManager.Instance.Event3NoaAvoid();
+                break;
+            // 이벤트3 본인을 더 믿어 보는 건 어떨까요
+            case 105:
+                isAddIanHeart = true;
+                LobbyManager.Instance.Event3AustinBelieve();
+                break;
+            // 이벤트3 잠깐 지나가는 바람일 거라 생각해요
+            case 106:
+                isAddIanHeart = false;
+                LobbyManager.Instance.Event3AustinWind();
+                break;
+            // 이벤트3 꽃
+            case 108:
+                DialogueManager.Instance.SettingEvent3Next();
+                break;
+            // 이벤트3 고양이 
+            case 109:
+                DialogueManager.Instance.SettingEvent3Next();
+                break;
+            // 이벤트3 새
+            case 110:
+                DialogueManager.Instance.SettingEvent3Next();
                 break;
             #endregion
         }

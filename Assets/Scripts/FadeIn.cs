@@ -83,6 +83,7 @@ public class FadeIn : MonoBehaviour
             LobbyManager.Instance.nowHeart[2] = PlayerPrefs.GetFloat("NoaHeart");
             LobbyManager.Instance.nowHeart[3] = PlayerPrefs.GetFloat("AustinHeart");
             
+            ChoiceManager.Instance.event4WhoNum = PlayerPrefs.GetInt("Event4");
             ChoiceManager.Instance.event3WhoNum = PlayerPrefs.GetInt("Event3");
             LobbyManager.Instance.date = PlayerPrefs.GetInt("Date");
             LobbyManager.Instance.coin = PlayerPrefs.GetInt("Coin");
