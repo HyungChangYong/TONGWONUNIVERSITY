@@ -78,7 +78,9 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private AudioClip footSteps2;
     [SerializeField] private AudioClip footSteps3;
     [SerializeField] private AudioClip sweatTeaAudio;
-
+    [SerializeField] private AudioClip magicAudio;
+    [SerializeField] private AudioClip ianAudio;
+    
     public AudioSource typeSound;
 
     private List<string> _listSentences;
@@ -155,6 +157,8 @@ public class DialogueManager : MonoBehaviour
     private bool _isOpeningSkip;
 
     private int _randomCultivation;
+
+    private int event4WhoNum;
 
     private bool _isBuyDialogueEnd;
 
@@ -959,6 +963,10 @@ public class DialogueManager : MonoBehaviour
                 dialogueWindow.gameObject.SetActive(false);
                 
                 ChoiceManager.Instance.ShowThreeChoice(36);
+                break;
+            case "Event4Ian":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeRightHome(6, 0, DialogueTxt.Instance.event4IanNextDialogue, "Event4IanNext", 0, false));
                 break;
         }
     }
@@ -2453,6 +2461,9 @@ public class DialogueManager : MonoBehaviour
                         case "GetAlbum3":
                             switch (count)
                             {
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(magicAudio);
+                                    break;
                                 case 13:
                                     charterName.text = "";
                                     break;
@@ -2568,6 +2579,9 @@ public class DialogueManager : MonoBehaviour
                         case "Event3NoaAvoid":
                             switch (count)
                             {
+                                case 1:
+                                    Handheld.Vibrate();
+                                    break;
                                 case 6:
                                     SettingUI.Instance.SettingSfxSound(footSteps3);
                                     break;
@@ -2592,7 +2606,29 @@ public class DialogueManager : MonoBehaviour
                         case "GetAlbum6":
                             switch (count)
                             {
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(magicAudio);
+                                    break;
                                 case 3:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "Event4Ian":
+                            switch (count)
+                            {
+                                case 2:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "Event4IanNext":
+                            switch (count)
+                            {
+                                case 6:
+                                    charterName.text = "";
+                                    break;
+                                case 12:
                                     charterName.text = "";
                                     break;
                             }
@@ -3528,7 +3564,55 @@ public class DialogueManager : MonoBehaviour
     {
         dataImage.gameObject.SetActive(true);
 
-        if (LobbyManager.Instance.date - 21 == 0)
+        if (LobbyManager.Instance.date - 28 == 0)
+        {
+            switch (ChoiceManager.Instance.event4WhoNum)
+            {
+                // 꽃
+                case 1:
+                    if (LobbyManager.Instance.nowHeart[1] >= 35)
+                    {
+                        // 이벤트4 이안 실행
+                        SettingUI.Instance.SettingBgmSound(ianAudio);
+                        LobbyManager.Instance.SettingBackImage(2);
+                        event4WhoNum = 1;
+                    }
+                    else
+                    {
+                        if (LobbyManager.Instance.nowHeart[2] == LobbyManager.Instance.nowHeart[3])
+                        {
+                            int r = UnityEngine.Random.Range(0, 2);
+
+                            if (r == 0)
+                            {
+                                // 이벤트4 노아 실행
+                                event4WhoNum = 2;
+                            }
+                            else if (r == 1)
+                            {
+                                // 이벤트4 아스틴 실행
+                                event4WhoNum = 3;
+                            }
+                        }
+                        else
+                        {
+                            if (LobbyManager.Instance.nowHeart[2] > LobbyManager.Instance.nowHeart[3])
+                            {
+                                // 이벤트4 노아 실행
+                                event4WhoNum = 2;
+                            }
+                            else
+                            {
+                                Debug.Log("이벤트4 아스틴 실행");
+                                event4WhoNum = 3;
+                            }
+                        }
+                    }
+                    break; 
+                
+            }
+        } 
+        else if (LobbyManager.Instance.date - 21 == 0)
         {
             switch (ChoiceManager.Instance.event3WhoNum)
             {
@@ -3555,6 +3639,7 @@ public class DialogueManager : MonoBehaviour
             SettingUI.Instance.SettingBgmSound(readyAudio);
             LobbyManager.Instance.SettingBackImage(0);
         }
+        // 이벤트 1실행
         else
         {
             SettingUI.Instance.SettingBgmSound(tutorialBgm);
@@ -3604,10 +3689,12 @@ public class DialogueManager : MonoBehaviour
         {
             LobbyManager.Instance.Event1();
         }
+        // 이벤트 2실행
         else if (LobbyManager.Instance.date - 14 == 0)
         {
             LobbyManager.Instance.Event2();
         }
+        // 이벤트 3실행
         else if (LobbyManager.Instance.date - 21 == 0)
         {
             switch (ChoiceManager.Instance.event3WhoNum)
@@ -3626,6 +3713,16 @@ public class DialogueManager : MonoBehaviour
                 case 3:
                     // 이벤트 호출
                     LobbyManager.Instance.Event3Austin();
+                    break;
+            }
+        }
+        // 이벤트 4실행
+        else if (LobbyManager.Instance.date - 28 == 0)
+        {
+            switch (event4WhoNum)
+            {
+                case 1:
+                    LobbyManager.Instance.Event4Ian();
                     break;
             }
         }

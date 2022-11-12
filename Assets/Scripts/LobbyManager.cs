@@ -27,6 +27,7 @@ public class LobbyManager : MonoBehaviour
     [SerializeField] private AudioClip debut3Audio;
     [SerializeField] private AudioClip hittingAudio;
     [SerializeField] private AudioClip wineAudio;
+    [SerializeField] private AudioClip dreamAudio;
     
     [SerializeField] private Sprite windowBasic;
     [SerializeField] private Sprite[] playerBasic;
@@ -886,7 +887,7 @@ public class LobbyManager : MonoBehaviour
 
     public void Event3Next()
     {
-        SettingUI.Instance.SettingBgmSound(tutorialAudio);
+        SettingUI.Instance.SettingBgmSound(dreamAudio);
         
         _situationCaseName = "Event3Next";
         
@@ -916,5 +917,18 @@ public class LobbyManager : MonoBehaviour
     
         DialogueManager.Instance.count = 1;
         DialogueManager.Instance.ShowDialogue(dialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+
+    public void Event4Ian()
+    {
+        _situationCaseName = "Event4Ian";
+        SettingBaseBackImage(DialogueTxt.Instance.event4IanDialogue);
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+        lobbyNextBtnGo.SetActive(true);
+
+        DialogueManager.Instance.count = 0;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event4IanDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+        
     }
 }

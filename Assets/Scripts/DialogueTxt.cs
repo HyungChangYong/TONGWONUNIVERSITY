@@ -184,6 +184,8 @@ public class DialogueTxt : MonoBehaviour
     public Dialogue event3AustinSelectDialogue;
     public Dialogue getAlbum6Dialogue;
     public Dialogue event3NextDialogue;
+    public Dialogue event4IanDialogue;
+    public Dialogue event4IanNextDialogue;
     
     private void Awake()
     {
