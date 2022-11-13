@@ -80,7 +80,12 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private AudioClip sweatTeaAudio;
     [SerializeField] private AudioClip magicAudio;
     [SerializeField] private AudioClip ianAudio;
-    
+    [SerializeField] private AudioClip heartBeat3Audio;
+    [SerializeField] private AudioClip noaAudio;
+    [SerializeField] private AudioClip cureAudio;
+    [SerializeField] private AudioClip austinAudio;
+    [SerializeField] private AudioClip summerNightBugAudio;
+ 
     public AudioSource typeSound;
 
     private List<string> _listSentences;
@@ -968,6 +973,73 @@ public class DialogueManager : MonoBehaviour
                 SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
                 StartCoroutine(FadeRightHome(6, 0, DialogueTxt.Instance.event4IanNextDialogue, "Event4IanNext", 0, false));
                 break;
+            case "Event4IanNext":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.event4IanNextDialogue.sentences[43] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowTwoChoice(37);
+                break;
+            case "Event4IanFrankly":
+                LobbyManager.Instance.Event4IanSelect();
+                break;
+            case "Event4IanBright":
+                LobbyManager.Instance.Event4IanSelect();
+                break;
+            case "Event4IanSelect":
+                charterAnimator.runtimeAnimatorController = charterController;
+                charterAnimator.SetBool("IsAlpha", true);
+                Invoke("DelayGetMaximAlbum6", 1);
+                break;
+            case "GetAlbum7":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeRightHome(7, 0, DialogueTxt.Instance.getAlbum7NextDialogue, "GetAlbum7Next", 0, false));
+                break;
+            case "GetAlbum7Next":
+                Debug.Log("이안 이벤트4 대화 종료");
+                break;
+            case "Event4Noa":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.event4NoaDialogue.sentences[143] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowTwoChoice(38);
+                break;
+            case "Event4NoaOkay":
+                charterAnimator.runtimeAnimatorController = charterController;
+                charterAnimator.SetBool("IsAlpha", true);
+                Invoke("DelayGetMaximAlbum7", 1);
+                break;
+            case "GetAlbum8":
+                LobbyManager.Instance.Event4NoaSelect();
+                break;
+            case "Event4NoaGood":
+                LobbyManager.Instance.Event4NoaSelect();
+                break;
+            case "Event4NoaSelect":
+                Debug.Log("노아 이벤트4 대화 종료");
+                break;
+            case "Event4Austin":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeRightHome(8, 0, DialogueTxt.Instance.event4AustinNextDialogue, "Event4AustinNext", 1, false));
+                break;
+            case "Event4AustinNext":
+                // 이부분 8로 교체
+                StartCoroutine(GetMaximAlbum(0));
+                break;
+            case "GetAlbum9":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.getAlbum9Dialogue.sentences[35] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowTwoChoice(39);
+                break;
+            case "Event4AustinJoke":
+                LobbyManager.Instance.Event4AustinSelect();
+                break;
+            case "Event4AustinThink":
+                LobbyManager.Instance.Event4AustinSelect();
+                break;
+            case "Event4AustinSelect":
+                Debug.Log("아스틴 이벤트4 대화 종료");
+                break;
         }
     }
 
@@ -1053,6 +1125,16 @@ public class DialogueManager : MonoBehaviour
     {
         StartCoroutine(GetMaximAlbum(5));
     }
+    
+    private void DelayGetMaximAlbum6()
+    {
+        StartCoroutine(GetMaximAlbum(6));
+    }
+    
+    private void DelayGetMaximAlbum7()
+    {
+        StartCoroutine(GetMaximAlbum(7));
+    }
 
     private IEnumerator GetMaximAlbum(int num)
     {
@@ -1117,6 +1199,15 @@ public class DialogueManager : MonoBehaviour
                     break;
                 case "Event3AustinSelect":
                     LobbyManager.Instance.GetAlbum(DialogueTxt.Instance.getAlbum6Dialogue, "GetAlbum6");
+                    break;
+                case "Event4IanSelect":
+                    LobbyManager.Instance.GetAlbum(DialogueTxt.Instance.getAlbum7Dialogue, "GetAlbum7");
+                    break;
+                case "Event4NoaOkay":
+                    LobbyManager.Instance.GetAlbum(DialogueTxt.Instance.getAlbum8Dialogue, "GetAlbum8");
+                    break;
+                case "Event4AustinNext":
+                    LobbyManager.Instance.GetAlbum(DialogueTxt.Instance.getAlbum9Dialogue, "GetAlbum9");
                     break;
             }
         }
@@ -1616,6 +1707,150 @@ public class DialogueManager : MonoBehaviour
                             }
                             break;
                         case "Event3NoaStayNext":
+                            _isPlayAnim = true;
+                            
+                            if (count == 2)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "Event4IanSelect":
+                            _isPlayAnim = true;
+                            
+                            if (count == 65 || count == 70 || count == 71)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "GetAlbum7":
+                            _isPlayAnim = true;
+                            
+                            if (count == 8)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "Event4Noa":
+                            _isPlayAnim = true;
+                            
+                            if (count == 23 || count == 31 || count == 36 || count == 95 || count == 105)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "Event4NoaOkay":
+                            _isPlayAnim = true;
+                            
+                            if (count == 3)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "Event4NoaSelect":
+                            _isPlayAnim = true;
+                            
+                            if (count == 17)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "Event4NoaGood":
+                            _isPlayAnim = true;
+                            
+                            if (count == 3)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "Event4AustinNext":
+                            _isPlayAnim = true;
+                            
+                            if (count == 9)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "Event4AustinJoke":
+                            _isPlayAnim = true;
+                            
+                            if (count == 2)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "Event4AustinThink":
                             _isPlayAnim = true;
                             
                             if (count == 2)
@@ -2631,6 +2866,173 @@ public class DialogueManager : MonoBehaviour
                                 case 12:
                                     charterName.text = "";
                                     break;
+                                case 17:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        
+                        case "Event4IanSelect":
+                            switch (count)
+                            {
+                                case 10:
+                                    charterName.text = "";
+                                    break;
+                                case 25:
+                                    charterName.text = "";
+                                    break;
+                                case 59:
+                                    charterName.text = "";
+                                    break;
+                                case 65:
+                                    charterName.text = "";
+                                    break;
+                                case 69:
+                                    charterName.text = "";
+                                    break;
+                                case 71:
+                                    charterName.text = "";
+                                    break;
+                                case 75:
+                                    charterName.text = "";
+                                    break;
+                                case 77:
+                                    SettingUI.Instance.SettingSfxSound(heartBeat3Audio);
+                                    break;
+                                case 89:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "GetAlbum7":
+                            switch (count)
+                            {
+                                case 7:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "Event4Noa":
+                            switch (count)
+                            {
+                                case 5:
+                                    charterName.text = "";
+                                    break;
+                                case 9:
+                                    charterName.text = "";
+                                    break;
+                                case 12:
+                                    SettingUI.Instance.SettingSfxSound(curtainAudio);
+                                    break;
+                                case 16:
+                                    SettingUI.Instance.SettingSfxSound(doorAudio);
+                                    break;
+                                case 23:
+                                    charterName.text = "";
+                                    break;
+                                case 30:
+                                    charterName.text = "";
+                                    break;
+                                case 33:
+                                    Handheld.Vibrate();
+                                    break;
+                                case 35:
+                                    charterName.text = "";
+                                    break;
+                                case 46:
+                                    charterName.text = "";
+                                    break;
+                                case 68:
+                                    charterName.text = "";
+                                    break;
+                                case 73:
+                                    charterName.text = "";
+                                    break;
+                                case 94:
+                                    charterName.text = "";
+                                    break;
+                                case 104:
+                                    charterName.text = "";
+                                    break;
+                                case 141:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "Event4NoaOkay":
+                            switch (count)
+                            {
+                                case 1:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "Event4NoaSelect":
+                            switch (count)
+                            {
+                                case 16:
+                                    charterName.text = "";
+                                    break;
+                                case 18:
+                                    SettingUI.Instance.SettingSfxSound(cureAudio);
+                                    break;
+                            }
+                            break;
+                        case "Event4NoaGood":
+                            switch (count)
+                            {
+                                case 1:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "Event4Austin":
+                            switch (count)
+                            {
+                                case 4:
+                                    SettingUI.Instance.SettingSfxSound(littleBirdAudio);
+                                    break;
+                                case 5:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "Event4AustinNext":
+                            switch (count)
+                            {
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(summerNightBugAudio);
+                                    break;
+                                case 2:
+                                    charterName.text = "";
+                                    break;
+                                case 9:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "Event4AustinJoke":
+                            switch (count)
+                            {
+                                case 1:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "Event4AustinSelect":
+                            switch (count)
+                            {
+                                case 4:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "Event4AustinThink":
+                            switch (count)
+                            {
+                                case 2:
+                                    charterName.text = "";
+                                    break;
                             }
                             break;
                     }
@@ -2919,6 +3321,42 @@ public class DialogueManager : MonoBehaviour
                                 charterImage.sprite = _listCharters[count];
                                 break;
                             case "GetAlbum6":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "Event4IanNext":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "Event4IanSelect":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "Event4IanBright":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "GetAlbum7":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "Event4Noa":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "Event4AustinNext":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "GetAlbum9":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "Event4AustinThink":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "Event4AustinSelect":
                                 yield return _yieldCharterChangeDelay;
                                 charterImage.sprite = _listCharters[count];
                                 break;
@@ -3586,11 +4024,15 @@ public class DialogueManager : MonoBehaviour
                             if (r == 0)
                             {
                                 // 이벤트4 노아 실행
+                                SettingUI.Instance.SettingBgmSound(noaAudio);
+                                LobbyManager.Instance.SettingBackImage(2);
                                 event4WhoNum = 2;
                             }
                             else if (r == 1)
                             {
                                 // 이벤트4 아스틴 실행
+                                SettingUI.Instance.SettingBgmSound(austinAudio);
+                                LobbyManager.Instance.SettingBackImage(2);
                                 event4WhoNum = 3;
                             }
                         }
@@ -3599,17 +4041,116 @@ public class DialogueManager : MonoBehaviour
                             if (LobbyManager.Instance.nowHeart[2] > LobbyManager.Instance.nowHeart[3])
                             {
                                 // 이벤트4 노아 실행
+                                SettingUI.Instance.SettingBgmSound(noaAudio);
+                                LobbyManager.Instance.SettingBackImage(2);
                                 event4WhoNum = 2;
                             }
                             else
                             {
-                                Debug.Log("이벤트4 아스틴 실행");
+                                // 이벤트4 아스틴 실행
+                                SettingUI.Instance.SettingBgmSound(austinAudio);
+                                LobbyManager.Instance.SettingBackImage(2);
                                 event4WhoNum = 3;
                             }
                         }
                     }
                     break; 
-                
+                case 2:
+                    if (LobbyManager.Instance.nowHeart[2] >= 35)
+                    {
+                        // 이벤트4 노아 실행
+                        SettingUI.Instance.SettingBgmSound(noaAudio);
+                        LobbyManager.Instance.SettingBackImage(2);
+                        event4WhoNum = 2;
+                    }
+                    else
+                    {
+                        if (LobbyManager.Instance.nowHeart[1] == LobbyManager.Instance.nowHeart[3])
+                        {
+                            int r = UnityEngine.Random.Range(0, 2);
+
+                            if (r == 0)
+                            {
+                                // 이벤트4 이안 실행
+                                SettingUI.Instance.SettingBgmSound(ianAudio);
+                                LobbyManager.Instance.SettingBackImage(2);
+                                event4WhoNum = 1;
+                            }
+                            else if (r == 1)
+                            {
+                                // 이벤트4 아스틴 실행
+                                SettingUI.Instance.SettingBgmSound(austinAudio);
+                                LobbyManager.Instance.SettingBackImage(2);
+                                event4WhoNum = 3;
+                            }
+                        }
+                        else
+                        {
+                            if (LobbyManager.Instance.nowHeart[1] > LobbyManager.Instance.nowHeart[3])
+                            {
+                                // 이벤트4 이안 실행
+                                SettingUI.Instance.SettingBgmSound(ianAudio);
+                                LobbyManager.Instance.SettingBackImage(2);
+                                event4WhoNum = 1;
+                            }
+                            else
+                            {
+                                // 이벤트4 아스틴 실행
+                                SettingUI.Instance.SettingBgmSound(austinAudio);
+                                LobbyManager.Instance.SettingBackImage(2);
+                                event4WhoNum = 3;
+                            }
+                        }
+                    }
+                    break;
+                case 3:
+                    if (LobbyManager.Instance.nowHeart[3] >= 35)
+                    {
+                        // 이벤트4 아스틴 실행
+                        SettingUI.Instance.SettingBgmSound(austinAudio);
+                        LobbyManager.Instance.SettingBackImage(2);
+                        event4WhoNum = 3;
+                    }
+                    else
+                    {
+                        if (LobbyManager.Instance.nowHeart[1] == LobbyManager.Instance.nowHeart[2])
+                        {
+                            int r = UnityEngine.Random.Range(0, 2);
+
+                            if (r == 0)
+                            {
+                                // 이벤트4 이안 실행
+                                SettingUI.Instance.SettingBgmSound(ianAudio);
+                                LobbyManager.Instance.SettingBackImage(2);
+                                event4WhoNum = 1;
+                            }
+                            else if (r == 1)
+                            {
+                                // 이벤트4 노아 실행
+                                SettingUI.Instance.SettingBgmSound(noaAudio);
+                                LobbyManager.Instance.SettingBackImage(2);
+                                event4WhoNum = 2;
+                            }
+                        }
+                        else
+                        {
+                            if (LobbyManager.Instance.nowHeart[1] > LobbyManager.Instance.nowHeart[2])
+                            {
+                                // 이벤트4 이안 실행
+                                SettingUI.Instance.SettingBgmSound(ianAudio);
+                                LobbyManager.Instance.SettingBackImage(2);
+                                event4WhoNum = 1;
+                            }
+                            else
+                            {
+                                // 이벤트4 노아 실행
+                                SettingUI.Instance.SettingBgmSound(noaAudio);
+                                LobbyManager.Instance.SettingBackImage(2);
+                                event4WhoNum = 2;
+                            }
+                        }
+                    }
+                    break;
             }
         } 
         else if (LobbyManager.Instance.date - 21 == 0)
@@ -3723,6 +4264,12 @@ public class DialogueManager : MonoBehaviour
             {
                 case 1:
                     LobbyManager.Instance.Event4Ian();
+                    break;
+                case 2:
+                    LobbyManager.Instance.Event4Noa();
+                    break;
+                case 3:
+                    LobbyManager.Instance.Event4Austin();
                     break;
             }
         }

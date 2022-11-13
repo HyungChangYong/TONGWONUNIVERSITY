@@ -565,6 +565,38 @@ public class ChoiceManager : MonoBehaviour
                 DialogueManager.Instance.SettingEvent3Next();
                 break;
             #endregion
+            #region 이벤트4
+            // 이벤트4 솔직히 털어놓는다
+            case 111:
+                isAddIanHeart = true;
+                LobbyManager.Instance.Event4IanFrankly();
+                break;
+            // 이벤트4 애써 밝은 척 말한다
+            case 112:
+                isAddIanHeart = false;
+                LobbyManager.Instance.Event4IanBright();
+                break;
+            // 이벤트4 괜찮다
+            case 114:
+                isAddIanHeart = true;
+                LobbyManager.Instance.Event4NoaOkay();
+                break;
+            // 이벤트4 잘했다
+            case 115:
+                isAddIanHeart = false;
+                LobbyManager.Instance.Event4NoaGood();
+                break;
+            // 이벤트4 농담을 던진다
+            case 117:
+                isAddIanHeart = true;
+                LobbyManager.Instance.Event4AustinJoke();
+                break;
+            // 이벤트4 생각해본다
+            case 118:
+                isAddIanHeart = false;
+                LobbyManager.Instance.Event4AustinThink();
+                break;
+            #endregion
         }
     }
 

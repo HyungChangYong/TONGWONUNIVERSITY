@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class DialogueTxt : MonoBehaviour
 {
@@ -186,6 +187,22 @@ public class DialogueTxt : MonoBehaviour
     public Dialogue event3NextDialogue;
     public Dialogue event4IanDialogue;
     public Dialogue event4IanNextDialogue;
+    public Dialogue event4IanFranklyDialogue;
+    public Dialogue event4IanBrightDialogue;
+    public Dialogue event4IanSelectDialogue;
+    public Dialogue getAlbum7Dialogue;
+    public Dialogue getAlbum7NextDialogue;
+    public Dialogue event4NoaDialogue;
+    public Dialogue event4NoaOkayDialogue;
+    public Dialogue getAlbum8Dialogue;
+    public Dialogue event4NoaGoodDialogue;
+    public Dialogue event4NoaSelectDialogue;
+    public Dialogue event4AustinDialogue;
+    public Dialogue event4AustinNextDialogue;
+    public Dialogue getAlbum9Dialogue;
+    public Dialogue event4AustinJokeDialogue;
+    public Dialogue event4AustinThinkDialogue;
+    public Dialogue event4AustinSelectDialogue;
     
     private void Awake()
     {
