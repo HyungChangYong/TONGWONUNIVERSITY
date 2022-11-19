@@ -7,10 +7,15 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = System.Random;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance;
+    [TextArea(1, 3)]
+    [SerializeField] private String endingTxt;
+    [SerializeField] private TextMeshProUGUI endingTxts;
+    [SerializeField] private GameObject endingTxtGo;
 
     [SerializeField] private GameObject openingUIGo;
     [SerializeField] private GameObject tutorialUIGo;
@@ -21,11 +26,13 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject nextBtnImageGo;
     [SerializeField] private GameObject nameSelectUIGo;
     [SerializeField] private GameObject iconDescriptionGo;
-
+    [SerializeField] private GameObject choiceEndingUIGo;
+ 
     [SerializeField] private Transform settingUIParent;
     [SerializeField] private Transform tutorialSettingUIParent;
     [SerializeField] private Transform settingUIParentTr;
 
+    [SerializeField] private Image endingCharacterBackImage;
     [SerializeField] private Image getMaximImageCancelImage;
     [SerializeField] private Image getMaximImage;
     [SerializeField] private Image whiteFadeImage;
@@ -35,6 +42,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Image reputationImage;
     [SerializeField] private Image settingImage;
     [SerializeField] private Image[] fadeBlurImage;
+    [SerializeField] private Image[] endingCharacterImage;
 
     [SerializeField] private Sprite lobbySettingImage;
     // 0 교양 증가, 1 이안 호감도 증가, 2 노아 호감도 증가, 3 아스틴 호감도 증가, 4 변화 없음
@@ -85,6 +93,19 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private AudioClip cureAudio;
     [SerializeField] private AudioClip austinAudio;
     [SerializeField] private AudioClip summerNightBugAudio;
+    [SerializeField] private AudioClip ian1Audio;
+    [SerializeField] private AudioClip ian2Audio;
+    [SerializeField] private AudioClip ian3Audio;
+    [SerializeField] private AudioClip noa1Audio;
+    [SerializeField] private AudioClip nockAudio;
+    [SerializeField] private AudioClip noa2Audio;
+    [SerializeField] private AudioClip noa3Audio;
+    [SerializeField] private AudioClip austin1Audio;
+    [SerializeField] private AudioClip austin2Audio;
+    [SerializeField] private AudioClip austin3Audio;
+    [SerializeField] private AudioClip valetAudio;
+
+    [SerializeField] private bool[] isActiveEndingCharacter;
  
     public AudioSource typeSound;
 
@@ -164,6 +185,7 @@ public class DialogueManager : MonoBehaviour
     private int _randomCultivation;
 
     private int event4WhoNum;
+    public int endingWhoNum;
 
     private bool _isBuyDialogueEnd;
 
@@ -176,7 +198,128 @@ public class DialogueManager : MonoBehaviour
     private string _situationCase;
 
     private bool _isCancelIllustration;
-    
+    private bool _isChoiceEndingCharacter;
+    private bool _isSelectEndingCharacter;
+
+    private int _endongNum;
+
+    public void ClickEndingCharacter(int num)
+    {
+        if (_isChoiceEndingCharacter.Equals(false))
+        {
+            if (isActiveEndingCharacter[num].Equals(false))
+            {
+                endingCharacterImage[num].color = new Color(0.5f, 0.5f, 0.5f);
+        
+                switch (num)
+                {
+                    case 0:
+                        endingCharacterImage[num].rectTransform.sizeDelta = new Vector2(1120, 752);
+                        break;
+                    case 1:
+                        endingCharacterImage[num].rectTransform.sizeDelta = new Vector2(1116, 861);
+                        break;
+                    case 2:
+                        endingCharacterImage[num].rectTransform.sizeDelta = new Vector2(1145, 783);
+                        break;
+                }
+            }
+            else
+            {
+                endingCharacterImage[num].color = new Color(42f / 255f, 42f / 255f, 42f / 255f);
+            }
+        }
+    }
+
+    public void ClickUpEndingCharacter(int num)
+    {
+        if (_isChoiceEndingCharacter.Equals(false))
+        {
+            SettingUI.Instance.SettingSfxSound(clickAudio);
+            endingWhoNum = 1 + num;
+
+            if (isActiveEndingCharacter[num].Equals(false))
+            {
+                endingCharacterImage[num].color = new Color(1f, 1f, 1f);
+
+                switch (num)
+                {
+                    case 0:
+                        endingCharacterImage[num].rectTransform.sizeDelta = new Vector2(1080, 727);
+                        endingCharacterImage[1].color = new Color(85f / 255f, 85f / 255f, 85f / 255f);
+                        endingCharacterImage[2].color = new Color(85f / 255f, 85f / 255f, 85f / 255f);
+                        isActiveEndingCharacter[1] = true;
+                        isActiveEndingCharacter[2] = true;
+                        break;
+                    case 1:
+                        endingCharacterImage[num].rectTransform.sizeDelta = new Vector2(1080, 833);
+                        endingCharacterImage[0].color = new Color(85f / 255f, 85f / 255f, 85f / 255f);
+                        endingCharacterImage[2].color = new Color(85f / 255f, 85f / 255f, 85f / 255f);
+                        isActiveEndingCharacter[0] = true;
+                        isActiveEndingCharacter[2] = true;
+                        break;
+                    case 2:
+                        endingCharacterImage[num].rectTransform.sizeDelta = new Vector2(1080, 739);
+                        endingCharacterImage[0].color = new Color(85f / 255f, 85f / 255f, 85f / 255f);
+                        endingCharacterImage[1].color = new Color(85f / 255f, 85f / 255f, 85f / 255f);
+                        isActiveEndingCharacter[0] = true;
+                        isActiveEndingCharacter[1] = true;
+                        break;
+                }
+                
+                if (_isSelectEndingCharacter.Equals(false))
+                {
+                    _isSelectEndingCharacter = true;
+                }
+                else
+                {
+                    switch (event4WhoNum)
+                    {
+                        case 1:
+                            if (ChoiceManager.Instance.isAddIanHeart.Equals(true))
+                            {
+                                StartCoroutine(FadeInfoEvent(8, 0, 1, 15));
+                            }
+                            else
+                            {
+                                StartCoroutine(FadeInfoEvent(8, 0, 9, 10));
+                            }
+                            break;
+                        case 2:
+                            if (ChoiceManager.Instance.isAddIanHeart.Equals(true))
+                            {
+                                StartCoroutine(FadeInfoEvent(8, 0, 2, 15));
+                            }
+                            else
+                            {
+                                StartCoroutine(FadeInfoEvent(8, 0, 10, 10));
+                            }
+                            break;
+                        case 3:
+                            if (ChoiceManager.Instance.isAddIanHeart.Equals(true))
+                            {
+                                StartCoroutine(FadeInfoEvent(8, 0, 3, 15));
+                            }
+                            else
+                            {
+                                StartCoroutine(FadeInfoEvent(8, 0, 11, 10));
+                            }
+                            break;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < endingCharacterImage.Length; i++)
+                {
+                    endingCharacterImage[i].color = new Color(1f, 1f, 1f);
+                    isActiveEndingCharacter[i] = false;
+                    _isSelectEndingCharacter = false;
+                }
+            }
+        }
+    }
+
     private void Awake()
     {
         Instance = this;
@@ -837,13 +980,15 @@ public class DialogueManager : MonoBehaviour
                 SettingEventCase("Event2Right");
                 break;
             case "Event2Rebut":
-                StartCoroutine(GetMaximAlbum(0));
+                SettingRotationMaxim(1080, 1920, 0);
+                StartCoroutine(GetMaximAlbum(0, false));
                 break;
             case "GetAlbum1":
                 SettingEventCase("Event2Rebut");
                 break;
             case "Event2HitCheek":
-                StartCoroutine(GetMaximAlbum(1));
+                SettingRotationMaxim(1080, 1920, 0);
+                StartCoroutine(GetMaximAlbum(1, false));
                 break;
             case "GetAlbum2":
                 SettingEventCase("Event2HitCheek");
@@ -995,7 +1140,22 @@ public class DialogueManager : MonoBehaviour
                 StartCoroutine(FadeRightHome(7, 0, DialogueTxt.Instance.getAlbum7NextDialogue, "GetAlbum7Next", 0, false));
                 break;
             case "GetAlbum7Next":
-                Debug.Log("이안 이벤트4 대화 종료");
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                if (LobbyManager.Instance.nowHeart[0] >= 54)
+                {
+                    StartCoroutine(FadeRightHome(9, 4, DialogueTxt.Instance.event4DreamDialogue, "Event4Dream", 0, true));
+                }
+                else
+                {
+                    if (ChoiceManager.Instance.isAddIanHeart.Equals(true))
+                    {
+                        StartCoroutine(FadeInfoEvent(8, 0, 1, 15));
+                    }
+                    else
+                    {
+                        StartCoroutine(FadeInfoEvent(8, 0, 9, 10));
+                    }
+                }
                 break;
             case "Event4Noa":
                 choiceTxt.text = "[ " + DialogueTxt.Instance.event4NoaDialogue.sentences[143] + " ]";
@@ -1015,15 +1175,30 @@ public class DialogueManager : MonoBehaviour
                 LobbyManager.Instance.Event4NoaSelect();
                 break;
             case "Event4NoaSelect":
-                Debug.Log("노아 이벤트4 대화 종료");
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                if (LobbyManager.Instance.nowHeart[0] >= 54)
+                {
+                    StartCoroutine(FadeRightHome(9, 4, DialogueTxt.Instance.event4DreamDialogue, "Event4Dream", 0, true));
+                }
+                else
+                {
+                    if (ChoiceManager.Instance.isAddIanHeart.Equals(true))
+                    {
+                        StartCoroutine(FadeInfoEvent(8, 0, 2, 15));
+                    }
+                    else
+                    {
+                        StartCoroutine(FadeInfoEvent(8, 0, 10, 10));
+                    }
+                }
                 break;
             case "Event4Austin":
                 SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
                 StartCoroutine(FadeRightHome(8, 0, DialogueTxt.Instance.event4AustinNextDialogue, "Event4AustinNext", 1, false));
                 break;
             case "Event4AustinNext":
-                // 이부분 8로 교체
-                StartCoroutine(GetMaximAlbum(0));
+                SettingRotationMaxim(1080, 1920, 0);
+                StartCoroutine(GetMaximAlbum(8, false));
                 break;
             case "GetAlbum9":
                 choiceTxt.text = "[ " + DialogueTxt.Instance.getAlbum9Dialogue.sentences[35] + " ]";
@@ -1038,7 +1213,171 @@ public class DialogueManager : MonoBehaviour
                 LobbyManager.Instance.Event4AustinSelect();
                 break;
             case "Event4AustinSelect":
-                Debug.Log("아스틴 이벤트4 대화 종료");
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                if (LobbyManager.Instance.nowHeart[0] >= 54)
+                {
+                    StartCoroutine(FadeRightHome(9, 4, DialogueTxt.Instance.event4DreamDialogue, "Event4Dream", 0, true));
+                }
+                else
+                {
+                    if (ChoiceManager.Instance.isAddIanHeart.Equals(true))
+                    {
+                        StartCoroutine(FadeInfoEvent(8, 0, 3, 15));
+                    }
+                    else
+                    {
+                        StartCoroutine(FadeInfoEvent(8, 0, 11, 10));
+                    }
+                }
+                break;
+            case "Event4Dream":
+                charterAnimator.runtimeAnimatorController = charterController;
+                charterAnimator.SetBool("IsAlpha", true);
+                Invoke("DelayChoiceEndingCharacter", 1);
+                break;
+            case "HappyEndingIan":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeRightHome(11, 0, DialogueTxt.Instance.happyEndingIanNextDialogue, "HappyEndingIanNext", 1, false));
+                break;
+            case "HappyEndingIanNext":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeRightHome(12, 0, DialogueTxt.Instance.happyEndingIanNextNextDialogue, "HappyEndingIanNextNext", 1, false));
+                break;
+            case "HappyEndingIanNextNext":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.happyEndingIanNextNextDialogue.sentences[98] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowOneChoice(40);
+                break;
+            case "GetAlbum10Dialogue":
+                Debug.Log("데이 1부터 리셋");
+                break;
+            case "HappySadEndingIan":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeRightHome(13, 0, DialogueTxt.Instance.happySadEndingIanNextDialogue, "HappySadEndingIanNext", 1, false));
+                break;
+            case "HappySadEndingIanNext":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeRightHome(14, 0, DialogueTxt.Instance.happySadEndingIanNextNextDialogue, "HappySadEndingIanNextNext", 1, false));
+                break;
+            case "HappySadEndingIanNextNext":
+                charterAnimator.runtimeAnimatorController = charterController;
+                charterAnimator.SetBool("IsAlpha", true);
+                Invoke("DelayGetMaximAlbum12", 1);
+                break;
+            case "GetAlbum13Dialogue":
+                Debug.Log("데이 1부터 리셋");
+                break;
+            case "HappyEndingNoa":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeRightHome(13, 0, DialogueTxt.Instance.happyEndingNoaNextDialogue, "HappyEndingNoaNext", 1, false));
+                break;
+            case "HappyEndingNoaNext":
+                charterAnimator.runtimeAnimatorController = charterController;
+                charterAnimator.SetBool("IsAlpha", true);
+                Invoke("DelayGetMaximAlbum10", 1);
+                break;
+            case "GetAlbum11":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeRightHome(15, 0, DialogueTxt.Instance.getAlbum11NextDialogue, "GetAlbum11Next", 1, false));
+                break;
+            case "GetAlbum11Next":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeRightHome(0, 0, DialogueTxt.Instance.getAlbum11NextNextDialogue, "GetAlbum11NextNext", 1, false));
+                break;
+            case "GetAlbum11NextNext":
+                Debug.Log("데이 1부터 리셋");
+                break;
+            case "HappySadEndingNoa":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeRightHome(13, 0, DialogueTxt.Instance.happySadEndingNoaNextDialogue, "HappySadEndingNoaNext", 1, false));
+                break;
+            case "HappySadEndingNoaNext":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeRightHome(1, 0, DialogueTxt.Instance.happySadEndingNoaNextNextDialogue, "HappySadEndingNoaNextNext", 1, false));
+                break;
+            case "HappySadEndingNoaNextNext":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.happySadEndingNoaNextNextDialogue.sentences[5] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowOneChoice(41);
+                break;
+            case "GetAlbum14":
+                Debug.Log("데이 1부터 리셋");
+                break;
+            case "HappyEndingAustin":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeRightHome(15, 0, DialogueTxt.Instance.happyEndingAustinNextDialogue, "HappyEndingAustinNext", 1, false));
+                break;
+            case "HappyEndingAustinNext":
+                choiceTxt.text = "[ " + DialogueTxt.Instance.happyEndingAustinNextDialogue.sentences[42] + " ]";
+                dialogueWindow.gameObject.SetActive(false);
+                
+                ChoiceManager.Instance.ShowOneChoice(42);
+                break;
+            case "GetAlbum12":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeRightHome(0, 0, DialogueTxt.Instance.getAlbum12NextDialogue, "GetAlbum12Next", 1, false));
+                break;
+            case "GetAlbum12Next":
+                Debug.Log("데이 1부터 리셋");
+                break;
+            case "HappySadEndingAustin":
+                charterAnimator.runtimeAnimatorController = charterController;
+                charterAnimator.SetBool("IsAlpha", true);
+                Invoke("DelayGetMaximAlbum14", 1);
+                break;
+            case "GetAlbum15":
+                Debug.Log("데이 1부터 리셋");
+                break;
+            case "NormalEndingIan":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeRightHome(13, 0, DialogueTxt.Instance.normalEndingIanNextDialogue, "NormalEndingIanNext", 1, false));
+                break;
+            case "NormalEndingIanNext":
+                DelayGetMaximAlbum15();
+                break;
+            case "GetAlbum16":
+                Debug.Log("데이 1부터 리셋");
+                break;
+            case "NormalEndingNoa":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeRightHome(13, 0, DialogueTxt.Instance.normalEndingNoaNextDialogue, "NormalEndingNoaNext", 1, false));
+                break;
+            case "NormalEndingNoaNext":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeRightHome(3, 0, DialogueTxt.Instance.normalEndingNoaNextNextDialogue, "NormalEndingNoaNextNext", 1, false));
+                break;
+            case "NormalEndingNoaNextNext":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeRightHome(18, 0, DialogueTxt.Instance.normalEndingNoaNextNextNextDialogue, "NormalEndingNoaNextNextNext", 1, false));
+                break;
+            case "NormalEndingNoaNextNextNext":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                SettingUI.Instance.StopBgmAudioSource();
+                StartCoroutine(FadeRightHome(16, 0, DialogueTxt.Instance.normalEndingNoaNextNextNextNextDialogue, "NormalEndingNoaNextNextNextNext", 1, false));
+                break;
+            case "NormalEndingNoaNextNextNextNext":
+                DelayGetMaximAlbum16();
+                break;
+            case "GetAlbum17":
+                Debug.Log("데이 1부터 리셋");
+                break;
+            case "NormalEndingAustinDialogue":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeRightHome(0, 0, DialogueTxt.Instance.normalEndingAustinNextDialogue, "NormalEndingAustinNext", 1, false));
+                break;
+            case "NormalEndingAustinNext":
+                SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
+                StartCoroutine(FadeRightHome(15, 0, DialogueTxt.Instance.normalEndingAustinNextNextDialogue, "NormalEndingAustinNextNext", 1, false));
+                break;
+            case "NormalEndingAustinNextNext":
+                DelayGetMaximAlbum17();
+                // Debug.Log("데이 1부터 리셋");
+                break;
+            case "BadEnding":
+                DelayGetMaximAlbum18();
+                // Debug.Log("데이 1부터 리셋");
                 break;
         }
     }
@@ -1105,45 +1444,177 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    private void DelayChoiceEndingCharacter()
+    {
+        StartCoroutine(ChoiceEndingCharacter());
+    }
+
+    private IEnumerator ChoiceEndingCharacter()
+    {
+        endingCharacterImage[0].color = new Color(1, 1, 1, 0);
+        endingCharacterImage[1].color = new Color(1, 1, 1, 0);
+        endingCharacterImage[2].color = new Color(1, 1, 1, 0);
+        endingCharacterBackImage.color = new Color(1, 1, 1, 0);
+        
+        _isChoiceEndingCharacter = true;
+        
+        SettingUI.Instance.SettingSfxSound(illustrationAudio);
+
+        choiceEndingUIGo.SetActive(true);
+
+        _time = 0f;
+        
+        Color alpha = endingCharacterImage[0].color;
+        
+        while (alpha.a < 1f)
+        {
+            _time += Time.deltaTime / _currentFadeTime;
+            
+            alpha.a = Mathf.Lerp(0, 1, _time);
+            
+            endingCharacterImage[0].color = alpha;
+            endingCharacterImage[1].color = alpha;
+            endingCharacterImage[2].color = alpha;
+            endingCharacterBackImage.color = alpha;
+            
+            yield return null;
+        }
+        _time = 0f;
+        
+        yield return _yieldAnimDelay;
+
+        _isChoiceEndingCharacter = false;
+    }
+    
+    
 
     private void DelayGetMaximAlbum2()
     {
-        StartCoroutine(GetMaximAlbum(2));
+        SettingRotationMaxim(1080, 1920, 0);
+        StartCoroutine(GetMaximAlbum(2, false));
     }
     
     private void DelayGetMaximAlbum3()
     {
-        StartCoroutine(GetMaximAlbum(3));
+        SettingRotationMaxim(1080, 1920, 0);
+        StartCoroutine(GetMaximAlbum(3, false));
     }
     
     private void DelayGetMaximAlbum4()
     {
-        StartCoroutine(GetMaximAlbum(4));
+        SettingRotationMaxim(1080, 1920, 0);
+        StartCoroutine(GetMaximAlbum(4, false));
     }
     
     private void DelayGetMaximAlbum5()
     {
-        StartCoroutine(GetMaximAlbum(5));
+        SettingRotationMaxim(1080, 1920, 0);
+        StartCoroutine(GetMaximAlbum(5, false));
     }
     
     private void DelayGetMaximAlbum6()
     {
-        StartCoroutine(GetMaximAlbum(6));
+        SettingRotationMaxim(1080, 1920, 0);
+        StartCoroutine(GetMaximAlbum(6, false));
     }
     
     private void DelayGetMaximAlbum7()
     {
-        StartCoroutine(GetMaximAlbum(7));
+        SettingRotationMaxim(1080, 1920, 0);
+        StartCoroutine(GetMaximAlbum(7, false));
+    }
+    
+    public void DelayGetMaximAlbum9()
+    {
+        SettingRotationMaxim(1920, 1080, -90);
+        StartCoroutine(GetMaximAlbum(9, false));
+    }
+    
+    public void DelayGetMaximAlbum10()
+    {
+        SettingRotationMaxim(1080, 1920, 0);
+        StartCoroutine(GetMaximAlbum(10, false));
+    }
+    
+    public void DelayGetMaximAlbum11()
+    {
+        SettingRotationMaxim(1080, 1920, 0);
+        StartCoroutine(GetMaximAlbum(11, false));
+    }
+    
+    public void DelayGetMaximAlbum12()
+    {
+        SettingRotationMaxim(1080, 1920, 0);
+        StartCoroutine(GetMaximAlbum(12, false));
+    }
+    
+    public void DelayGetMaximAlbum13()
+    {
+        SettingRotationMaxim(1080, 1920, 0);
+        StartCoroutine(GetMaximAlbum(13, true));
+    }
+    
+    public void DelayGetMaximAlbum14()
+    {
+        SettingRotationMaxim(1080, 1920, 0);
+        StartCoroutine(GetMaximAlbum(14, false));
+    }
+    
+    public void DelayGetMaximAlbum15()
+    {
+        SettingRotationMaxim(1080, 1920, 0);
+        StartCoroutine(GetMaximAlbum(15, false));
+    }
+    
+    public void DelayGetMaximAlbum16()
+    {
+        SettingRotationMaxim(1080, 1920, 0);
+        StartCoroutine(GetMaximAlbum(16, false));
+    }
+    
+    public void DelayGetMaximAlbum17()
+    {
+        SettingRotationMaxim(1080, 1920, 0);
+        StartCoroutine(GetMaximAlbum(17, false));
+    }
+    
+    public void DelayGetMaximAlbum18()
+    {
+        SettingRotationMaxim(1080, 1920, 0);
+        StartCoroutine(GetMaximAlbum(18, false));
     }
 
-    private IEnumerator GetMaximAlbum(int num)
+    public void SettingRotationMaxim(int sizeX, int sizeY, int rotZ)
+    {
+        if (rotZ == -90)
+        {
+            getMaximImageCancelImage.rectTransform.localPosition = new Vector3(-885, 465, 0);
+        }
+        else
+        {
+            getMaximImageCancelImage.rectTransform.localPosition = new Vector3(465, 885, 0);
+        }
+     
+        getMaximImage.rectTransform.sizeDelta = new Vector2(sizeX, sizeY);
+        getMaximImage.rectTransform.localRotation = Quaternion.Euler(new Vector3(0, 0, rotZ));
+    }
+
+    private IEnumerator GetMaximAlbum(int num, bool doorSound)
     {
         getMaximImage.color = new Color(1, 1, 1, 0);
         getMaximImageCancelImage.color = new Color(1, 1, 1, 0);
         
         _isCancelIllustration = true;
+
+        if (doorSound.Equals(true))
+        {
+            SettingUI.Instance.SettingSfxSound(doorAudio);
+        }
+        else
+        {
+            SettingUI.Instance.SettingSfxSound(illustrationAudio);
+        }
         
-        SettingUI.Instance.SettingSfxSound(illustrationAudio);
         
         getMaximImage.sprite = LobbyManager.Instance.illustration[num];
         
@@ -1208,6 +1679,37 @@ public class DialogueManager : MonoBehaviour
                     break;
                 case "Event4AustinNext":
                     LobbyManager.Instance.GetAlbum(DialogueTxt.Instance.getAlbum9Dialogue, "GetAlbum9");
+                    break;
+                case "HappyEndingIanNextNext":
+                    LobbyManager.Instance.GetAlbum(DialogueTxt.Instance.getAlbum10Dialogue, "GetAlbum10");
+                    break;
+                case "HappySadEndingIanNextNext":
+                    LobbyManager.Instance.GetAlbum(DialogueTxt.Instance.getAlbum13Dialogue, "GetAlbum13");
+                    break;
+                case "HappyEndingNoaNext":
+                    LobbyManager.Instance.GetAlbum(DialogueTxt.Instance.getAlbum11Dialogue, "GetAlbum11");
+                    break;
+                case "HappySadEndingNoaNextNext":
+                    LobbyManager.Instance.SettingBackImage(16);
+                    LobbyManager.Instance.GetAlbum(DialogueTxt.Instance.getAlbum14Dialogue, "GetAlbum14");
+                    break;
+                case "HappyEndingAustinNext":
+                    LobbyManager.Instance.GetAlbum(DialogueTxt.Instance.getAlbum12Dialogue, "GetAlbum12");
+                    break;
+                case "HappySadEndingAustin":
+                    LobbyManager.Instance.GetAlbum(DialogueTxt.Instance.getAlbum15Dialogue, "GetAlbum15");
+                    break;
+                case "NormalEndingIanNext":
+                    LobbyManager.Instance.GetAlbum(DialogueTxt.Instance.getAlbum16Dialogue, "GetAlbum16");
+                    break;
+                case "NormalEndingNoaNextNextNextNext":
+                    LobbyManager.Instance.GetAlbum(DialogueTxt.Instance.getAlbum17Dialogue, "GetAlbum17");
+                    break;
+                case "NormalEndingAustinNextNext":
+                    Debug.Log("데이 1부터 리셋");
+                    break;
+                case "BadEnding":
+                    StartCoroutine(FadeEnding());
                     break;
             }
         }
@@ -1834,6 +2336,22 @@ public class DialogueManager : MonoBehaviour
                                 ChangeWindowImage();
                             }
                             break;
+                        case "GetAlbum9":
+                            _isPlayAnim = true;
+
+                            if (count == 31)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
                         case "Event4AustinJoke":
                             _isPlayAnim = true;
                             
@@ -1854,6 +2372,102 @@ public class DialogueManager : MonoBehaviour
                             _isPlayAnim = true;
                             
                             if (count == 2)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "HappyEndingIan":
+                            _isPlayAnim = true;
+                            
+                            if (count == 6 || count == 7)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "HappyEndingIanNextNext":
+                            _isPlayAnim = true;
+                            
+                            if (count == 16 || count == 17)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "HappyEndingNoa":
+                            _isPlayAnim = true;
+                            
+                            if (count == 8)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "HappyEndingNoaNext":
+                            _isPlayAnim = true;
+                            
+                            if (count == 35)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "HappySadEndingNoaNext":
+                            _isPlayAnim = true;
+                            
+                            if (count == 12)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "HappyEndingAustin":
+                            _isPlayAnim = true;
+                            
+                            if (count == 7 || count == 8)
                             {
                                 yield return _yieldCharterChangeDelay;
                                 dialogueWindow.sprite = _listDialogueWindows[count];
@@ -2173,6 +2787,18 @@ public class DialogueManager : MonoBehaviour
                         if (_listCharters[count].name.Contains("Man3").Equals(true))
                         {
                             charterName.text = "시종";
+                        }
+                        break;
+                    case "HappySadEndingNoaNextNext":
+                        if (_listCharters[count].name.Contains("Man3").Equals(true))
+                        {
+                            charterName.text = "시종";
+                        }
+                        break;
+                    case "HappySadEndingAustin":
+                        if (_listCharters[count].name.Contains("Child2").Equals(true))
+                        {
+                            charterName.text = "어린아이";
                         }
                         break;
                 }
@@ -3011,6 +3637,14 @@ public class DialogueManager : MonoBehaviour
                                     break;
                             }
                             break;
+                        case "GetAlbum9":
+                            switch (count)
+                            {
+                                case 31:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
                         case "Event4AustinJoke":
                             switch (count)
                             {
@@ -3031,6 +3665,158 @@ public class DialogueManager : MonoBehaviour
                             switch (count)
                             {
                                 case 2:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "Event4Dream":
+                            switch (count)
+                            {
+                                case 5:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "HappyEndingIan":
+                            switch (count)
+                            {
+                                case 6:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "HappyEndingIanNext":
+                            switch (count)
+                            {
+                                case 22:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "HappyEndingIanNextNext":
+                            switch (count)
+                            {
+                                case 6:
+                                    charterName.text = "";
+                                    break;
+                                case 16:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "HappySadEndingIan":
+                            switch (count)
+                            {
+                                case 21:
+                                    SettingUI.Instance.SettingSfxSound(dropAudio);
+                                    break;
+                            }
+                            break;
+                        case "HappyEndingNoa":
+                            switch (count)
+                            {
+                                case 7:
+                                    charterName.text = "";
+                                    break;
+                                case 9:
+                                    SettingUI.Instance.SettingSfxSound(doorAudio);
+                                    break;
+                                case 10:
+                                    SettingUI.Instance.SettingSfxSound(footSteps);
+                                    break;
+                            }
+                            break;
+                        case "HappyEndingNoaNext":
+                            switch (count)
+                            {
+                                case 3:
+                                    SettingUI.Instance.SettingSfxSound(nockAudio);
+                                    break;
+                                case 35:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "GetAlbum11":
+                            switch (count)
+                            {
+                                case 29:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "HappySadEndingNoaNext":
+                            switch (count)
+                            {
+                                case 7:
+                                    charterName.text = "";
+                                    break;
+                                case 11:
+                                    charterName.text = "";
+                                    break;
+                                case 22:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "HappyEndingAustin":
+                            switch (count)
+                            {
+                                case 7:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "HappyEndingAustinNext":
+                            switch (count)
+                            {
+                                case 8:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "HappySadEndingAustin":
+                            switch (count)
+                            {
+                                case 11:
+                                    Handheld.Vibrate();
+                                    break;
+                            }
+                            break;
+                        case "NormalEndingNoa":
+                            switch (count)
+                            {
+                                case 12:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "NormalEndingNoaNextNext":
+                            switch (count)
+                            {
+                                case 10:
+                                    charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "NormalEndingNoaNextNextNextNext":
+                            switch (count)
+                            {
+                                case 1:
+                                    Handheld.Vibrate();
+                                    break;
+                            }
+                            break;
+                        case "NormalEndingAustinDialogue":
+                            switch (count)
+                            {
+                                case 21:
+                                    charterName.text = "";
+                                    break;
+                                case 23:
+                                    charterName.text = "";
+                                    break;
+                                case 54:
                                     charterName.text = "";
                                     break;
                             }
@@ -3149,6 +3935,10 @@ public class DialogueManager : MonoBehaviour
                                 charterImage.sprite = _listCharters[count];
                                 break;
                             case "TownAustin4Next":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "TownAustin4OutStore":
                                 yield return _yieldCharterChangeDelay;
                                 charterImage.sprite = _listCharters[count];
                                 break;
@@ -3360,6 +4150,66 @@ public class DialogueManager : MonoBehaviour
                                 yield return _yieldCharterChangeDelay;
                                 charterImage.sprite = _listCharters[count];
                                 break;
+                            case "HappyEndingIanNextNext":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "HappySadEndingIan":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "HappyEndingNoaNext":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "GetAlbum11Next":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "HappySadEndingNoa":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "HappySadEndingNoaNext":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "GetAlbum14":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "HappyEndingAustinNext":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "GetAlbum12":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "HappySadEndingAustin":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "NormalEndingIan":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "NormalEndingIanNext":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "NormalEndingNoaNext":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "NormalEndingAustinDialogue":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
+                            case "NormalEndingAustinNext":
+                                yield return _yieldCharterChangeDelay;
+                                charterImage.sprite = _listCharters[count];
+                                break;
                         }
                     }
                     else
@@ -3547,6 +4397,7 @@ public class DialogueManager : MonoBehaviour
     
     private IEnumerator FadeImageAlpha()
     {
+        fadeImage.transform.localPosition = new Vector3(540, 0, 0);
         fadeImage.color = new Color(1, 1, 1, 0);
         
         fadeImage.gameObject.SetActive(true);
@@ -3824,12 +4675,12 @@ public class DialogueManager : MonoBehaviour
         SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
         StartFadeData();
 
-        // 이벤트 실행
+        // 이벤트 아님
         if (LobbyManager.Instance.date % 7 != 0)
         {
             LobbyManager.Instance.ResetLobbyUI();
         }
-
+        
         switch (num)
         {
             case 0:
@@ -3895,9 +4746,12 @@ public class DialogueManager : MonoBehaviour
         AddDate();
         SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
         StartCoroutine(FadeReputation(nowHeartNum, addHeart));
-        
-        LobbyManager.Instance.ResetLobbyUI();
 
+        if (LobbyManager.Instance.date - 29 != 0)
+        {
+            LobbyManager.Instance.ResetLobbyUI();
+        }
+        
         switch (reputationNum)
         {
             case 0:
@@ -3908,10 +4762,166 @@ public class DialogueManager : MonoBehaviour
                 break;
         }
         
-        
         LobbyManager.Instance.ResetLobby(0);
 
         yield return null;
+    }
+
+    public void SettingEnding()
+    {
+        choiceEndingUIGo.SetActive(false);
+        
+        switch (endingWhoNum)
+        {
+            // 평판 54보다 작음
+            case 0:
+                // 랜덤 실행
+                if (LobbyManager.Instance.nowHeart[1] >= 45 || LobbyManager.Instance.nowHeart[2] >= 45 ||
+                    LobbyManager.Instance.nowHeart[3] >= 45)
+                {
+                    if (LobbyManager.Instance.nowHeart[1] > LobbyManager.Instance.nowHeart[2])
+                    {
+                        if (LobbyManager.Instance.nowHeart[1] > LobbyManager.Instance.nowHeart[3])
+                        {
+                            LobbyManager.Instance.SettingBackImage(0);
+                            _endongNum = 3;
+                        }
+                        else if (LobbyManager.Instance.nowHeart[1] == LobbyManager.Instance.nowHeart[3])
+                        {
+                            int ran = UnityEngine.Random.Range(0, 2);
+
+                            if (ran == 0)
+                            {
+                                LobbyManager.Instance.SettingBackImage(0);
+                                _endongNum = 3;
+                            }
+                            else if (ran == 1)
+                            {
+                                LobbyManager.Instance.SettingBackImage(19);
+                                _endongNum = 9;
+                            }
+                        }
+                        else if (LobbyManager.Instance.nowHeart[1] < LobbyManager.Instance.nowHeart[3])
+                        {
+                            LobbyManager.Instance.SettingBackImage(19);
+                            _endongNum = 9;
+                        }
+                    }
+                    else if (LobbyManager.Instance.nowHeart[1] < LobbyManager.Instance.nowHeart[2])
+                    {
+                        if (LobbyManager.Instance.nowHeart[2] > LobbyManager.Instance.nowHeart[3])
+                        {
+                            LobbyManager.Instance.SettingBackImage(0);
+                            _endongNum = 6;
+                        }
+                        else if (LobbyManager.Instance.nowHeart[2] == LobbyManager.Instance.nowHeart[3])
+                        {
+                            int ran = UnityEngine.Random.Range(0, 2);
+
+                            if (ran == 0)
+                            {
+                                LobbyManager.Instance.SettingBackImage(0);
+                                _endongNum = 6;
+                            }
+                            else if (ran == 1)
+                            {
+                                LobbyManager.Instance.SettingBackImage(19);
+                                _endongNum = 9;
+                            }
+                        }
+                        else if (LobbyManager.Instance.nowHeart[2] < LobbyManager.Instance.nowHeart[3])
+                        {
+                            LobbyManager.Instance.SettingBackImage(19);
+                            _endongNum = 9;
+                        }
+                    }
+                    else if (LobbyManager.Instance.nowHeart[1] == LobbyManager.Instance.nowHeart[2])
+                    {
+                        if (LobbyManager.Instance.nowHeart[2] == LobbyManager.Instance.nowHeart[3])
+                        {
+                            int ran = UnityEngine.Random.Range(0, 3);
+
+                            if (ran == 0)
+                            {
+                                LobbyManager.Instance.SettingBackImage(0);
+                                _endongNum = 3;
+                            }
+                            else if (ran == 1)
+                            {
+                                LobbyManager.Instance.SettingBackImage(0);
+                                _endongNum = 6;
+                            }
+                            else if (ran == 2)
+                            {
+                                LobbyManager.Instance.SettingBackImage(19);
+                                _endongNum = 9;
+                            }
+                        }
+                        else if (LobbyManager.Instance.nowHeart[2] < LobbyManager.Instance.nowHeart[3])
+                        {
+                            LobbyManager.Instance.SettingBackImage(19);
+                            _endongNum = 9;
+                        }
+                        else if (LobbyManager.Instance.nowHeart[2] > LobbyManager.Instance.nowHeart[3])
+                        {
+                            int ran = UnityEngine.Random.Range(0, 2);
+
+                            if (ran == 0)
+                            {
+                                LobbyManager.Instance.SettingBackImage(0);
+                                _endongNum = 3;
+                            }
+                            else if (ran == 1)
+                            {
+                                LobbyManager.Instance.SettingBackImage(0);
+                                _endongNum = 6;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    LobbyManager.Instance.SettingBackImage(0);
+                    _endongNum = 10;
+                }
+                break;
+            case 1:
+                if (LobbyManager.Instance.nowHeart[1] >= 45)
+                {
+                    LobbyManager.Instance.SettingBackImage(10);
+                    _endongNum = 1;
+                }
+                else
+                {
+                    LobbyManager.Instance.SettingBackImage(0);
+                    _endongNum = 2;
+                }
+                break;
+            case 2:
+                if (LobbyManager.Instance.nowHeart[2] >= 45)
+                {
+                    LobbyManager.Instance.SettingBackImage(0);
+                    _endongNum = 4;
+                }
+                else
+                {
+                    LobbyManager.Instance.SettingBackImage(0);
+                    _endongNum = 5;
+                }
+                break;
+            case 3:
+                if (LobbyManager.Instance.nowHeart[3] >= 45)
+                {
+                    LobbyManager.Instance.SettingBackImage(0);
+                    _endongNum = 7;
+                }
+                else
+                {
+                    LobbyManager.Instance.SettingBackImage(17);
+                    _endongNum = 8;
+                }
+                break;
+        }
     }
 
     private void CheckNowHeartZero(int nowHeartNum, int minusNUm)
@@ -3995,6 +5005,12 @@ public class DialogueManager : MonoBehaviour
         
         SaveData();
         
+        
+        if (LobbyManager.Instance.date - 29 == 0)
+        {
+            SettingEnding();
+        }
+        
         yield return null;
     }
     
@@ -4002,7 +5018,68 @@ public class DialogueManager : MonoBehaviour
     {
         dataImage.gameObject.SetActive(true);
 
-        if (LobbyManager.Instance.date - 28 == 0)
+        if (LobbyManager.Instance.date - 29 == 0)
+        {
+            SettingEnding();
+            
+            switch (_endongNum)
+            {
+                case 1:
+                    LobbyManager.Instance.ResetLobby(1);
+                    // LobbyManager.Instance.ShowLobbyTxtBoxLineGo();
+                    SettingUI.Instance.SettingBgmSound(ian1Audio);
+                    LobbyManager.Instance.SettingBaseBackImage(DialogueTxt.Instance.happyEndingIanDialogue);
+                    break;
+                case 2:
+                    LobbyManager.Instance.ResetLobby(1);
+                    SettingUI.Instance.SettingBgmSound(ian2Audio);
+                    LobbyManager.Instance.SettingBaseBackImage(DialogueTxt.Instance.happySadEndingIanDialogue);
+                    break;
+                case 3:
+                    LobbyManager.Instance.ResetLobby(1);
+                    SettingUI.Instance.SettingBgmSound(ian3Audio);
+                    LobbyManager.Instance.SettingBaseBackImage(DialogueTxt.Instance.normalEndingIanDialogue);
+                    break;
+                case 4:
+                    LobbyManager.Instance.ResetLobby(1);
+                    SettingUI.Instance.SettingBgmSound(noa1Audio);
+                    LobbyManager.Instance.SettingBaseBackImage(DialogueTxt.Instance.happyEndingNoaDialogue);
+                    break;
+                case 5:
+                    LobbyManager.Instance.ResetLobby(1);
+                    SettingUI.Instance.SettingBgmSound(noa2Audio);
+                    LobbyManager.Instance.SettingBaseBackImage(DialogueTxt.Instance.happySadEndingNoaDialogue);
+                    break;
+                case 6:
+                    LobbyManager.Instance.ResetLobby(1);
+                    SettingUI.Instance.SettingBgmSound(noa3Audio);
+                    LobbyManager.Instance.SettingBaseBackImage(DialogueTxt.Instance.normalEndingNoaDialogue);
+                    break;
+                case 7:
+                    LobbyManager.Instance.ResetLobby(1);
+                    SettingUI.Instance.SettingBgmSound(austin1Audio);
+                    LobbyManager.Instance.SettingBaseBackImage(DialogueTxt.Instance.happyEndingAustinDialogue);
+                    break;
+                case 8:
+                    LobbyManager.Instance.ResetLobby(1);
+                    SettingUI.Instance.SettingBgmSound(austin2Audio);
+                    LobbyManager.Instance.SettingBaseBackImage(DialogueTxt.Instance.happySadEndingAustinDialogue);
+                    break;
+                case 9:
+                    LobbyManager.Instance.ResetLobby(1);
+                    SettingUI.Instance.SettingBgmSound(austin3Audio);
+                    LobbyManager.Instance.SettingBaseBackImage(DialogueTxt.Instance.normalEndingAustinDialogue);
+                    break;
+                case 10:
+                    LobbyManager.Instance.ResetLobby(1);
+                    SettingUI.Instance.SettingBgmSound(valetAudio);
+                    LobbyManager.Instance.SettingBaseBackImage(DialogueTxt.Instance.badEndingDialogue);
+                    break;
+            }
+            
+            LobbyManager.Instance.HideLobbyUI();
+        }
+        else if (LobbyManager.Instance.date - 28 == 0)
         {
             switch (ChoiceManager.Instance.event4WhoNum)
             {
@@ -4273,6 +5350,43 @@ public class DialogueManager : MonoBehaviour
                     break;
             }
         }
+        else if (LobbyManager.Instance.date - 29 == 0)
+        {
+            switch (_endongNum)
+            {
+                case 1:
+                    LobbyManager.Instance.HappyEndingIan();
+                    break;
+                case 2:
+                    LobbyManager.Instance.HappySadEndingIan();
+                    break;
+                case 3:
+                    LobbyManager.Instance.NormalEndingIan();
+                    break;
+                case 4:
+                    LobbyManager.Instance.HappyEndingNoa();
+                    break;
+                case 5:
+                    LobbyManager.Instance.HappySadEndingNoa();
+                    break;
+                case 6:
+                    LobbyManager.Instance.NormalEndingNoa();
+                    break;
+                case 7:
+                    LobbyManager.Instance.HappyEndingAustin();
+                    break;
+                case 8:
+                    LobbyManager.Instance.HappySadEndingAustin();
+                    break;
+                case 9:
+                    LobbyManager.Instance.NormalEndingAustinDialogue();
+                    break;
+                case 10:
+                    LobbyManager.Instance.BadEnding();
+                    break;
+            }
+            
+        }
 
         dataImage.gameObject.SetActive(false);
         
@@ -4372,6 +5486,7 @@ public class DialogueManager : MonoBehaviour
         PlayerPrefs.SetInt("Coin", LobbyManager.Instance.coin);
         PlayerPrefs.SetInt("Event3", ChoiceManager.Instance.event3WhoNum);
         PlayerPrefs.SetInt("Event4", ChoiceManager.Instance.event4WhoNum);
+        PlayerPrefs.SetInt("Ending", endingWhoNum);
         PlayerPrefs.Save();
     }
 
@@ -4509,6 +5624,74 @@ public class DialogueManager : MonoBehaviour
 
         yield return null;
     }
-}
+    
+    private IEnumerator FadeEnding()
+    {
+        fadeImage.gameObject.SetActive(true);
+        fadeImage.transform.localPosition = new Vector3(540, 0, 0);
+        fadeImage.color = new Color(1, 1, 1, 0);
+        endingTxtGo.SetActive(true);
 
+        _time = 0f;
+        
+        Color alpha = fadeImage.color;
+        
+        while (alpha.a < 1f)
+        {
+            _time += Time.deltaTime / _currentFadeTime;
+            
+            alpha.a = Mathf.Lerp(0, 1, _time);
+            
+            fadeImage.color = alpha;
+            
+            yield return null;
+        }
+        _time = 0f;
+
+        PlayerPrefs.DeleteKey("IanFirst");
+        PlayerPrefs.DeleteKey("NoaFirst");
+        PlayerPrefs.DeleteKey("AustinFirst");
+        PlayerPrefs.DeleteKey("IanShowHeart");
+        PlayerPrefs.DeleteKey("NoaShowHeart");
+        PlayerPrefs.DeleteKey("AustinShowHeart");
+        PlayerPrefs.SetFloat("PlayerHeart", 0);
+        PlayerPrefs.SetFloat("IanHeart", 0);
+        PlayerPrefs.SetFloat("NoaHeart", 0);
+        PlayerPrefs.SetFloat("AustinHeart", 0);
+        
+        for (int i = 0; i < LobbyManager.Instance.isAlbum.Length; i++)
+        {
+            if (LobbyManager.Instance.isAlbum[i].Equals(true))
+            {
+                // 0 ~ 18;
+                PlayerPrefs.SetInt(i.ToString(), 1);
+            }
+        }
+        
+        LobbyManager.Instance.isBuy = false;
+        PlayerPrefs.SetInt("Date", 1);
+        PlayerPrefs.SetInt("Coin", 0);
+        PlayerPrefs.SetInt("Event3", 0);
+        PlayerPrefs.SetInt("Event4", 0);
+        PlayerPrefs.SetInt("Ending", 0);
+        PlayerPrefs.Save();
+        
+        for (int i = 0; i < endingTxt.Length; i++)
+        {
+            endingTxts.text += endingTxt[i];
+
+            if (i % 7 == 1)
+            {
+                typeSound.Play();
+            }
+            
+            yield return new WaitForSeconds(textDelay);
+        }
+        
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("MainScene");
+
+        yield return null;
+    }
+}
 

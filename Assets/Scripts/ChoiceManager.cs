@@ -597,7 +597,40 @@ public class ChoiceManager : MonoBehaviour
                 LobbyManager.Instance.Event4AustinThink();
                 break;
             #endregion
+            #region 엔딩
+            // 엔딩 눈을 감는다
+            case 120:
+                DialogueManager.Instance.DelayGetMaximAlbum9();
+                break;
+            // 엔딩 문을 연다  
+            case 123:
+                DialogueManager.Instance.DelayGetMaximAlbum13();
+                break;
+            // 고개를 끄덕인다
+            case 126:
+                DialogueManager.Instance.DelayGetMaximAlbum11();
+                break;
+            #endregion
+            
         }
+    }
+    
+    public void ShowOneChoice(int num)
+    {
+        choiceObjectUI.SetActive(true);
+        
+        _isFiveChoice = false;
+        _isSixChoice = false;
+        
+        for (int i = 0; i < choiceCountGo.Length; i++)
+        {
+            choiceCountGo[i].SetActive(false);
+        }
+        choiceCountGo[4].SetActive(true);
+        
+        choiceTxtNums[0] = num * 3;
+
+        choiceTxt[5].text = choiceTxtInfo[num * 3];
     }
 
     public void ShowTwoChoice(int num)

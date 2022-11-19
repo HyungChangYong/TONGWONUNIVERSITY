@@ -203,7 +203,44 @@ public class DialogueTxt : MonoBehaviour
     public Dialogue event4AustinJokeDialogue;
     public Dialogue event4AustinThinkDialogue;
     public Dialogue event4AustinSelectDialogue;
-    
+    public Dialogue event4DreamDialogue;
+    public Dialogue happyEndingIanDialogue;
+    public Dialogue happyEndingIanNextDialogue;
+    public Dialogue happyEndingIanNextNextDialogue;
+    public Dialogue getAlbum10Dialogue;
+    public Dialogue happySadEndingIanDialogue;
+    public Dialogue happySadEndingIanNextDialogue;
+    public Dialogue happySadEndingIanNextNextDialogue;
+    public Dialogue getAlbum13Dialogue;
+    public Dialogue happyEndingNoaDialogue;
+    public Dialogue happyEndingNoaNextDialogue;
+    public Dialogue getAlbum11Dialogue;
+    public Dialogue getAlbum11NextDialogue;
+    public Dialogue getAlbum11NextNextDialogue;
+    public Dialogue happySadEndingNoaDialogue;
+    public Dialogue happySadEndingNoaNextDialogue;
+    public Dialogue happySadEndingNoaNextNextDialogue;
+    public Dialogue getAlbum14Dialogue;
+    public Dialogue happyEndingAustinDialogue;
+    public Dialogue happyEndingAustinNextDialogue;
+    public Dialogue getAlbum12Dialogue;
+    public Dialogue getAlbum12NextDialogue;
+    public Dialogue happySadEndingAustinDialogue;
+    public Dialogue getAlbum15Dialogue;
+    public Dialogue normalEndingIanDialogue;
+    public Dialogue normalEndingIanNextDialogue;
+    public Dialogue getAlbum16Dialogue;
+    public Dialogue normalEndingNoaDialogue;
+    public Dialogue normalEndingNoaNextDialogue;
+    public Dialogue normalEndingNoaNextNextDialogue;
+    public Dialogue normalEndingNoaNextNextNextDialogue;
+    public Dialogue normalEndingNoaNextNextNextNextDialogue;
+    public Dialogue getAlbum17Dialogue;
+    public Dialogue normalEndingAustinDialogue;
+    public Dialogue normalEndingAustinNextDialogue;
+    public Dialogue normalEndingAustinNextNextDialogue;
+    public Dialogue badEndingDialogue;
+
     private void Awake()
     {
         Instance = this;

@@ -239,6 +239,14 @@ public class LobbyManager : MonoBehaviour
         }
     }
 
+    public void HideLobbyUI()
+    {
+        for (int i = 0; i < lobbyUI.Length; i++)
+        {
+            lobbyUI[i].SetActive(false);
+        }
+    }
+
     public void SaturdayValetCall()
     {
         if (_isValetCall.Equals(false))
@@ -1035,7 +1043,6 @@ public class LobbyManager : MonoBehaviour
         DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event4AustinThinkDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
     }
     
-    
     public void Event4AustinSelect()
     {
         _situationCaseName = "Event4AustinSelect";
@@ -1044,5 +1051,130 @@ public class LobbyManager : MonoBehaviour
 
         DialogueManager.Instance.count = 1;
         DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event4AustinSelectDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void HappyEndingIan()
+    {
+        _situationCaseName = "HappyEndingIan";
+        SettingBaseBackImage(DialogueTxt.Instance.happyEndingIanDialogue);
+
+        lobbyTxtBoxLineGo.SetActive(true);
+        lobbyNextBtnGo.SetActive(true);
+
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.happyEndingIanDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void HappySadEndingIan()
+    {
+        _situationCaseName = "HappySadEndingIan";
+        SettingBaseBackImage(DialogueTxt.Instance.happySadEndingIanDialogue);
+
+        lobbyTxtBoxLineGo.SetActive(true);
+        lobbyNextBtnGo.SetActive(true);
+
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.happySadEndingIanDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void HappyEndingNoa()
+    {
+        _situationCaseName = "HappyEndingNoa";
+        SettingBaseBackImage(DialogueTxt.Instance.happyEndingNoaDialogue);
+
+        lobbyTxtBoxLineGo.SetActive(true);
+        lobbyNextBtnGo.SetActive(true);
+
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.happyEndingNoaDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void HappySadEndingNoa()
+    {
+        _situationCaseName = "HappySadEndingNoa";
+        SettingBaseBackImage(DialogueTxt.Instance.happySadEndingNoaDialogue);
+
+        lobbyTxtBoxLineGo.SetActive(true);
+        lobbyNextBtnGo.SetActive(true);
+
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.happySadEndingNoaDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void HappyEndingAustin()
+    {
+        _situationCaseName = "HappyEndingAustin";
+        SettingBaseBackImage(DialogueTxt.Instance.happyEndingAustinDialogue);
+
+        lobbyTxtBoxLineGo.SetActive(true);
+        lobbyNextBtnGo.SetActive(true);
+
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.happyEndingAustinDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void HappySadEndingAustin()
+    {
+        _situationCaseName = "HappySadEndingAustin";
+        SettingBaseBackImage(DialogueTxt.Instance.happySadEndingAustinDialogue);
+
+        lobbyTxtBoxLineGo.SetActive(true);
+        lobbyNextBtnGo.SetActive(true);
+
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.happySadEndingAustinDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void NormalEndingIan()
+    {
+        _situationCaseName = "NormalEndingIan";
+        SettingBaseBackImage(DialogueTxt.Instance.normalEndingIanDialogue);
+
+        lobbyTxtBoxLineGo.SetActive(true);
+        lobbyNextBtnGo.SetActive(true);
+
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.normalEndingIanDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void NormalEndingNoa()
+    {
+        _situationCaseName = "NormalEndingNoa";
+        SettingBaseBackImage(DialogueTxt.Instance.normalEndingNoaDialogue);
+
+        lobbyTxtBoxLineGo.SetActive(true);
+        lobbyNextBtnGo.SetActive(true);
+
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.normalEndingNoaDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void NormalEndingAustinDialogue()
+    {
+        _situationCaseName = "NormalEndingAustinDialogue";
+        SettingBaseBackImage(DialogueTxt.Instance.normalEndingAustinDialogue);
+
+        lobbyTxtBoxLineGo.SetActive(true);
+        lobbyNextBtnGo.SetActive(true);
+
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.normalEndingAustinDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void BadEnding()
+    {
+        _situationCaseName = "BadEnding";
+        SettingBaseBackImage(DialogueTxt.Instance.badEndingDialogue);
+
+        lobbyTxtBoxLineGo.SetActive(true);
+        lobbyNextBtnGo.SetActive(true);
+
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.badEndingDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+
+    public void ShowLobbyTxtBoxLineGo()
+    {
+        lobbyTxtBoxLineGo.SetActive(true);
     }
 }

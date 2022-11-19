@@ -78,11 +78,16 @@ public class FadeIn : MonoBehaviour
                 }
             }
 
-            LobbyManager.Instance.nowHeart[0] = PlayerPrefs.GetFloat("PlayerHeart");
-            LobbyManager.Instance.nowHeart[1] = PlayerPrefs.GetFloat("IanHeart");
-            LobbyManager.Instance.nowHeart[2] = PlayerPrefs.GetFloat("NoaHeart");
-            LobbyManager.Instance.nowHeart[3] = PlayerPrefs.GetFloat("AustinHeart");
-            
+            // LobbyManager.Instance.nowHeart[0] = PlayerPrefs.GetFloat("PlayerHeart");
+            // 주석 처리
+            // LobbyManager.Instance.nowHeart[1] = PlayerPrefs.GetFloat("IanHeart");
+            // 주석 처리
+            // LobbyManager.Instance.nowHeart[2] = PlayerPrefs.GetFloat("NoaHeart");
+            // 주석 처리
+            // LobbyManager.Instance.nowHeart[3] = PlayerPrefs.GetFloat("AustinHeart");
+
+            // 주석 처리
+            // DialogueManager.Instance.endingWhoNum = PlayerPrefs.GetInt("Ending");
             ChoiceManager.Instance.event4WhoNum = PlayerPrefs.GetInt("Event4");
             ChoiceManager.Instance.event3WhoNum = PlayerPrefs.GetInt("Event3");
             LobbyManager.Instance.date = PlayerPrefs.GetInt("Date");
