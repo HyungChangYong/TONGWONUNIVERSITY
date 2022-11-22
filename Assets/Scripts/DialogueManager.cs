@@ -354,7 +354,7 @@ public class DialogueManager : MonoBehaviour
                 {
                     m_IsOneClick = false;
                     //아래에 더블클릭에서 처리하고싶은 이벤트 작성
-                    textDelay = 0.001f;
+                    textDelay = 0.0005f;
                 }
             }
         }
@@ -1158,7 +1158,7 @@ public class DialogueManager : MonoBehaviour
                 }
                 break;
             case "Event4Noa":
-                choiceTxt.text = "[ " + DialogueTxt.Instance.event4NoaDialogue.sentences[143] + " ]";
+                choiceTxt.text = "[ " + DialogueTxt.Instance.event4NoaDialogue.sentences[144] + " ]";
                 dialogueWindow.gameObject.SetActive(false);
                 
                 ChoiceManager.Instance.ShowTwoChoice(38);
@@ -1250,7 +1250,7 @@ public class DialogueManager : MonoBehaviour
                 ChoiceManager.Instance.ShowOneChoice(40);
                 break;
             case "GetAlbum10Dialogue":
-                Debug.Log("데이 1부터 리셋");
+                StartCoroutine(FadeEnding());
                 break;
             case "HappySadEndingIan":
                 SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
@@ -1266,7 +1266,7 @@ public class DialogueManager : MonoBehaviour
                 Invoke("DelayGetMaximAlbum12", 1);
                 break;
             case "GetAlbum13Dialogue":
-                Debug.Log("데이 1부터 리셋");
+                StartCoroutine(FadeEnding());
                 break;
             case "HappyEndingNoa":
                 SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
@@ -1286,7 +1286,7 @@ public class DialogueManager : MonoBehaviour
                 StartCoroutine(FadeRightHome(0, 0, DialogueTxt.Instance.getAlbum11NextNextDialogue, "GetAlbum11NextNext", 1, false));
                 break;
             case "GetAlbum11NextNext":
-                Debug.Log("데이 1부터 리셋");
+                StartCoroutine(FadeEnding());
                 break;
             case "HappySadEndingNoa":
                 SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
@@ -1303,7 +1303,7 @@ public class DialogueManager : MonoBehaviour
                 ChoiceManager.Instance.ShowOneChoice(41);
                 break;
             case "GetAlbum14":
-                Debug.Log("데이 1부터 리셋");
+                StartCoroutine(FadeEnding());
                 break;
             case "HappyEndingAustin":
                 SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
@@ -1320,7 +1320,7 @@ public class DialogueManager : MonoBehaviour
                 StartCoroutine(FadeRightHome(0, 0, DialogueTxt.Instance.getAlbum12NextDialogue, "GetAlbum12Next", 1, false));
                 break;
             case "GetAlbum12Next":
-                Debug.Log("데이 1부터 리셋");
+                StartCoroutine(FadeEnding());
                 break;
             case "HappySadEndingAustin":
                 charterAnimator.runtimeAnimatorController = charterController;
@@ -1328,7 +1328,7 @@ public class DialogueManager : MonoBehaviour
                 Invoke("DelayGetMaximAlbum14", 1);
                 break;
             case "GetAlbum15":
-                Debug.Log("데이 1부터 리셋");
+                StartCoroutine(FadeEnding());
                 break;
             case "NormalEndingIan":
                 SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
@@ -1338,7 +1338,7 @@ public class DialogueManager : MonoBehaviour
                 DelayGetMaximAlbum15();
                 break;
             case "GetAlbum16":
-                Debug.Log("데이 1부터 리셋");
+                StartCoroutine(FadeEnding());
                 break;
             case "NormalEndingNoa":
                 SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
@@ -1361,7 +1361,7 @@ public class DialogueManager : MonoBehaviour
                 DelayGetMaximAlbum16();
                 break;
             case "GetAlbum17":
-                Debug.Log("데이 1부터 리셋");
+                StartCoroutine(FadeEnding());
                 break;
             case "NormalEndingAustinDialogue":
                 SettingUI.Instance.SettingSfxSound(sceneChangeAudio);
@@ -1706,7 +1706,7 @@ public class DialogueManager : MonoBehaviour
                     LobbyManager.Instance.GetAlbum(DialogueTxt.Instance.getAlbum17Dialogue, "GetAlbum17");
                     break;
                 case "NormalEndingAustinNextNext":
-                    Debug.Log("데이 1부터 리셋");
+                    StartCoroutine(FadeEnding());
                     break;
                 case "BadEnding":
                     StartCoroutine(FadeEnding());
@@ -3478,7 +3478,7 @@ public class DialogueManager : MonoBehaviour
                         case "Event4Ian":
                             switch (count)
                             {
-                                case 2:
+                                case 3:
                                     charterName.text = "";
                                     break;
                             }
@@ -3541,46 +3541,46 @@ public class DialogueManager : MonoBehaviour
                         case "Event4Noa":
                             switch (count)
                             {
-                                case 5:
+                                case 6:
                                     charterName.text = "";
                                     break;
-                                case 9:
+                                case 10:
                                     charterName.text = "";
                                     break;
-                                case 12:
+                                case 13:
                                     SettingUI.Instance.SettingSfxSound(curtainAudio);
                                     break;
-                                case 16:
+                                case 17:
                                     SettingUI.Instance.SettingSfxSound(doorAudio);
                                     break;
-                                case 23:
+                                case 24:
                                     charterName.text = "";
                                     break;
-                                case 30:
+                                case 31:
                                     charterName.text = "";
                                     break;
-                                case 33:
+                                case 34:
                                     Handheld.Vibrate();
                                     break;
-                                case 35:
+                                case 36:
                                     charterName.text = "";
                                     break;
-                                case 46:
+                                case 47:
                                     charterName.text = "";
                                     break;
-                                case 68:
+                                case 69:
                                     charterName.text = "";
                                     break;
-                                case 73:
+                                case 74:
                                     charterName.text = "";
                                     break;
-                                case 94:
+                                case 95:
                                     charterName.text = "";
                                     break;
-                                case 104:
+                                case 105:
                                     charterName.text = "";
                                     break;
-                                case 141:
+                                case 142:
                                     charterName.text = "";
                                     break;
                             }
@@ -3615,10 +3615,10 @@ public class DialogueManager : MonoBehaviour
                         case "Event4Austin":
                             switch (count)
                             {
-                                case 4:
+                                case 5:
                                     SettingUI.Instance.SettingSfxSound(littleBirdAudio);
                                     break;
-                                case 5:
+                                case 6:
                                     charterName.text = "";
                                     break;
                             }
@@ -5688,7 +5688,7 @@ public class DialogueManager : MonoBehaviour
             yield return new WaitForSeconds(textDelay);
         }
         
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
         SceneManager.LoadScene("MainScene");
 
         yield return null;

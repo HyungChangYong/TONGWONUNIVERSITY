@@ -29,6 +29,8 @@ public class StartImage : MonoBehaviour
 
     void Start()
     {
+        Application.targetFrameRate = 60;
+        
         Time.timeScale = 1;
         
         SettingUI.Instance.SettingBgmSound(startAudio);

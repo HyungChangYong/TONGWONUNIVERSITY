@@ -935,7 +935,7 @@ public class LobbyManager : MonoBehaviour
         lobbyTxtBoxLineGo.SetActive(true);
         lobbyNextBtnGo.SetActive(true);
 
-        DialogueManager.Instance.count = 0;
+        DialogueManager.Instance.count = 1;
         DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event4IanDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
     }
     
@@ -977,7 +977,7 @@ public class LobbyManager : MonoBehaviour
         lobbyTxtBoxLineGo.SetActive(true);
         lobbyNextBtnGo.SetActive(true);
 
-        DialogueManager.Instance.count = 0;
+        DialogueManager.Instance.count = 1;
         DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event4NoaDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
     }
     
@@ -1019,7 +1019,7 @@ public class LobbyManager : MonoBehaviour
         lobbyTxtBoxLineGo.SetActive(true);
         lobbyNextBtnGo.SetActive(true);
 
-        DialogueManager.Instance.count = 0;
+        DialogueManager.Instance.count = 1;
         DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.event4AustinDialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
     }
     
