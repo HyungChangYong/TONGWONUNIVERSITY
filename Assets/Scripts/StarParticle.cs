@@ -31,10 +31,10 @@ public class StarParticle : MonoBehaviour
     void Update()
     {
         transform.Translate(_direction * moveSpeed);
-        transform.localScale = Vector2.Lerp(transform.localScale, Vector2.zero, Time.deltaTime * sizeSpeed);
+        transform.localScale = Vector2.Lerp(transform.localScale, Vector2.zero, Time.unscaledDeltaTime * sizeSpeed);
 
         Color color = shinImage.color;
-        color.a = Mathf.Lerp(shinImage.color.a, 0, Time.deltaTime * colorSpeed);
+        color.a = Mathf.Lerp(shinImage.color.a, 0, Time.unscaledDeltaTime * colorSpeed);
         shinImage.color = color;
 
         if (shinImage.color.a <= 0.01f)

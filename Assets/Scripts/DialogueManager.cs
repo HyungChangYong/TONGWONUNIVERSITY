@@ -104,6 +104,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private AudioClip austin2Audio;
     [SerializeField] private AudioClip austin3Audio;
     [SerializeField] private AudioClip valetAudio;
+    [SerializeField] private AudioClip arrowUIAudio;
 
     [SerializeField] private bool[] isActiveEndingCharacter;
  
@@ -1249,7 +1250,7 @@ public class DialogueManager : MonoBehaviour
                 
                 ChoiceManager.Instance.ShowOneChoice(40);
                 break;
-            case "GetAlbum10Dialogue":
+            case "GetAlbum10":
                 StartCoroutine(FadeEnding());
                 break;
             case "HappySadEndingIan":
@@ -1265,7 +1266,7 @@ public class DialogueManager : MonoBehaviour
                 charterAnimator.SetBool("IsAlpha", true);
                 Invoke("DelayGetMaximAlbum12", 1);
                 break;
-            case "GetAlbum13Dialogue":
+            case "GetAlbum13":
                 StartCoroutine(FadeEnding());
                 break;
             case "HappyEndingNoa":
@@ -4318,6 +4319,9 @@ public class DialogueManager : MonoBehaviour
 
                 yield return null;
             }
+            
+            // 오디오 호출
+            SettingUI.Instance.SettingSfxSound(arrowUIAudio);
             
             while (alpha.a < 1f)
             {

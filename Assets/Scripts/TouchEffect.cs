@@ -51,22 +51,44 @@ public class TouchEffect : MonoBehaviour
         go.transform.localPosition = _screenPoint;
         go.transform.localScale = new Vector3(1, 1, 1);
     }
+    
+    private void ParticleSystemCreat()
+    {
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(targetRectTr, Input.mousePosition, cam,
+            out _screenPoint);
+        // Debug.Log(_screenPoint);
+        // Vector3 pos = new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, 100);
+        //
+        // // pos.z = -926;
+        // menuUITr.transform.localPosition = _screenPoint;
+        // GameObject go = Instantiate(prefab, _screenPoint, Quaternion.identity);
+        particleSystem.transform.SetParent(targetRectTr);
+        particleSystem.transform.localPosition = new Vector3(_screenPoint.x, _screenPoint.y, 0);
+        particleSystem.transform.localScale = new Vector3(100, 100, 100);
+        particleSystem.Play();
+    }
 
 
     [SerializeField] private RectTransform targetRectTr;
     [SerializeField] private Camera cam;
     [SerializeField] private RectTransform menuUITr;
+    [SerializeField] private ParticleSystem particleSystem;
 
     private Vector2 _screenPoint;
 
     private void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            ParticleSystemCreat();
+        }
+        
         if (Input.GetMouseButton(0) && _spawnsTime >= defaultTime)
         {
             Creat();
             _spawnsTime = 0;
         }
-        
-        _spawnsTime += Time.unscaledTime;
+        // Debug.Log(Time.unscaledDeltaTime);
+        _spawnsTime += Time.unscaledDeltaTime;
     }
 }

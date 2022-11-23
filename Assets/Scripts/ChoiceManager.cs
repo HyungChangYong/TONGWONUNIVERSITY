@@ -15,6 +15,7 @@ public class ChoiceManager : MonoBehaviour
     [SerializeField] private Sprite[] selectCharacterSprite;
     
     [SerializeField] private AudioClip clickAudio;
+    [SerializeField] private AudioClip select2Audio;
 
     [SerializeField] private GameObject selectCharacterUIGo;
     [SerializeField] private GameObject guideBackImageGo;
@@ -70,7 +71,7 @@ public class ChoiceManager : MonoBehaviour
 
     public void SelectChoice(int num)
     {
-        SettingUI.Instance.SettingSfxSound(clickAudio);
+        SettingUI.Instance.SettingSfxSound(select2Audio);
 
         if (_isFiveChoice.Equals(false) && _isSixChoice.Equals(false))
         {
