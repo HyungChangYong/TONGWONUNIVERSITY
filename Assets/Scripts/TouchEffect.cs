@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
+using UnityEngine.EventSystems; 
 
 public class TouchEffect : MonoBehaviour
 {
@@ -64,7 +65,7 @@ public class TouchEffect : MonoBehaviour
         // GameObject go = Instantiate(prefab, _screenPoint, Quaternion.identity);
         particleSystem.transform.SetParent(targetRectTr);
         particleSystem.transform.localPosition = new Vector3(_screenPoint.x, _screenPoint.y, 0);
-        particleSystem.transform.localScale = new Vector3(100, 100, 100);
+        // particleSystem.transform.localScale = new Vector3(100, 100, 100);
         particleSystem.Play();
     }
 
@@ -80,13 +81,23 @@ public class TouchEffect : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            ParticleSystemCreat();
+            //마우스 포인터가 UI위에 있지않으면
+            if (EventSystem.current
+                .IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+            {
+                ParticleSystemCreat();
+            }
         }
         
         if (Input.GetMouseButton(0) && _spawnsTime >= defaultTime)
         {
-            Creat();
-            _spawnsTime = 0;
+            //마우스 포인터가 UI위에 있지않으면
+            if(EventSystem.current
+               .IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+            {
+                Creat();
+                _spawnsTime = 0;
+            }
         }
         // Debug.Log(Time.unscaledDeltaTime);
         _spawnsTime += Time.unscaledDeltaTime;
