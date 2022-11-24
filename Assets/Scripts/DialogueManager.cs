@@ -105,6 +105,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private AudioClip austin3Audio;
     [SerializeField] private AudioClip valetAudio;
     [SerializeField] private AudioClip arrowUIAudio;
+    [SerializeField] private AudioClip questionAudio;
 
     [SerializeField] private bool[] isActiveEndingCharacter;
  
@@ -4050,6 +4051,10 @@ public class DialogueManager : MonoBehaviour
                             case "Event1":
                                 yield return _yieldCharterChangeDelay;
                                 charterImage.sprite = _listCharters[count];
+                                if (count == 6)
+                                {
+                                    SettingUI.Instance.SettingSfxSound(questionAudio);
+                                }
                                 break;
                             case "Event2":
                                 yield return _yieldCharterChangeDelay;

@@ -32849,6 +32849,10 @@ PrefabInstance:
       value: 0.95686275
       objectReference: {fileID: 0}
     - target: {fileID: 198229092939843746, guid: 7c4c08aad141c40b287601e3c1f386a6, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.ctime1
+      value: 46453
+      objectReference: {fileID: 0}
+    - target: {fileID: 198229092939843746, guid: 7c4c08aad141c40b287601e3c1f386a6, type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key0.b
       value: 1
       objectReference: {fileID: 0}
@@ -32859,6 +32863,18 @@ PrefabInstance:
     - target: {fileID: 198229092939843746, guid: 7c4c08aad141c40b287601e3c1f386a6, type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key0.r
       value: 0.972549
+      objectReference: {fileID: 0}
+    - target: {fileID: 198229092939843746, guid: 7c4c08aad141c40b287601e3c1f386a6, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198229092939843746, guid: 7c4c08aad141c40b287601e3c1f386a6, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198229092939843746, guid: 7c4c08aad141c40b287601e3c1f386a6, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.m_NumColorKeys
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 199159540222748410, guid: 7c4c08aad141c40b287601e3c1f386a6, type: 3}
       propertyPath: m_Materials.Array.size
@@ -41309,6 +41325,7 @@ MonoBehaviour:
   austin3Audio: {fileID: 8300000, guid: 9e23df8bbe06617479e588d52a9593cc, type: 3}
   valetAudio: {fileID: 8300000, guid: acc225dbd441b1a469ed5964eadc5a9e, type: 3}
   arrowUIAudio: {fileID: 8300000, guid: f40bddbc553ae8b40a02d0733e9dad60, type: 3}
+  questionAudio: {fileID: 8300000, guid: 127916ac750d4ab428959f4804643d8a, type: 3}
   isActiveEndingCharacter: 000000
   typeSound: {fileID: 1340684492}
   count: 0
