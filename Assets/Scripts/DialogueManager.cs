@@ -106,6 +106,19 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private AudioClip valetAudio;
     [SerializeField] private AudioClip arrowUIAudio;
     [SerializeField] private AudioClip questionAudio;
+    [SerializeField] private AudioClip hitAudio;
+    [SerializeField] private AudioClip sparkleAudio;
+    [SerializeField] private AudioClip sparkle0Audio;
+    [SerializeField] private AudioClip sparkle2Audio;
+    [SerializeField] private AudioClip sparkle5Audio;
+    [SerializeField] private AudioClip find1Audio;
+    [SerializeField] private AudioClip find2Audio;
+    [SerializeField] private AudioClip steps2Audio;
+    [SerializeField] private AudioClip steps3Audio;
+    [SerializeField] private AudioClip know1Audio;
+    [SerializeField] private AudioClip wonder1Audio;
+    [SerializeField] private AudioClip sharpnessAudio;
+    
 
     [SerializeField] private bool[] isActiveEndingCharacter;
  
@@ -436,6 +449,7 @@ public class DialogueManager : MonoBehaviour
                 PlayerPrefs.SetInt("Tutorial", 1);
                 PlayerPrefs.Save();
                 StartFadeData();
+                AddDate();
                 break;
             case "ValetCall":
                 choiceTxt.text = "[ " + DialogueTxt.Instance.valetCallDialogue.sentences[1] + " ]";
@@ -2870,21 +2884,28 @@ public class DialogueManager : MonoBehaviour
                             {
                                 case 4:
                                     Handheld.Vibrate();
+                                    SettingUI.Instance.SettingSfxSound(hitAudio);
                                     break;
                                 case 5:
                                     charterName.text = "";
                                     break;
                                 case 8:
                                     charterName.text = "";
+                                    SettingUI.Instance.SettingSfxSound(questionAudio);
                                     break;
                                 case 12:
                                     charterName.text = "???";
+                                    SettingUI.Instance.SettingSfxSound(sparkleAudio);
                                     break;
                                 case 13:
                                     charterName.text = "";
+                                    SettingUI.Instance.SettingSfxSound(sparkle5Audio);
                                     break;
                                 case 21:
                                     charterName.text = "???";
+                                    break;
+                                case 23:
+                                    SettingUI.Instance.SettingSfxSound(questionAudio);
                                     break;
                                 case 25:
                                     charterName.text = "???";
@@ -2894,6 +2915,7 @@ public class DialogueManager : MonoBehaviour
                                     break;
                                 case 35:
                                     charterName.text = "";
+                                    SettingUI.Instance.SettingSfxSound(find1Audio);
                                     break;
                                 case 38:
                                     charterName.text = "";
@@ -2907,26 +2929,43 @@ public class DialogueManager : MonoBehaviour
                                     charterName.text = "";
                                     break;
                                 case 4:
+                                    SettingUI.Instance.SettingSfxSound(sparkle0Audio);
                                     charterName.text = "???";
                                     break;
                                 case 7:
                                     charterName.text = "";
                                     break;
                                 case 9:
+                                    SettingUI.Instance.SettingSfxSound(sparkleAudio);
                                     charterName.text = "???";
                                     break;
                                 case 10:
+                                    SettingUI.Instance.SettingSfxSound(wonder1Audio);
                                     charterName.text = "";
+                                    break;
+                                case 14:
+                                    SettingUI.Instance.SettingSfxSound(sparkle2Audio);
+                                    break;
+                                case 18:
+                                    SettingUI.Instance.SettingSfxSound(find2Audio);
                                     break;
                                 case 21:
                                     charterName.text = "";
                                     SettingUI.Instance.SettingSfxSound(surpriseAudio);
                                     break;
                                 case 23:
+                                    SettingUI.Instance.SettingSfxSound(sharpnessAudio);
+                                    charterName.text = "";
+                                    break;
+                                case 31:
+                                    SettingUI.Instance.SettingSfxSound(find1Audio);
                                     charterName.text = "";
                                     break;
                                 case 35:
                                     charterName.text = "";
+                                    break;
+                                case 41:
+                                    SettingUI.Instance.SettingSfxSound(steps2Audio);
                                     break;
                             }
                             break;
@@ -2936,17 +2975,30 @@ public class DialogueManager : MonoBehaviour
                                 case 1:
                                     SettingUI.Instance.SettingSfxSound(dropAudio);
                                     break;
+                                case 2:
+                                    SettingUI.Instance.SettingSfxSound(sparkle0Audio);
+                                    break;
                                 case 5:
                                     charterName.text = "";
                                     break;
+                                case 7:
+                                    SettingUI.Instance.SettingSfxSound(steps3Audio);
+                                    break;
                                 case 17:
                                     charterName.text = "";
+                                    break;
+                                case 22:
+                                    SettingUI.Instance.SettingSfxSound(sparkle2Audio);
+                                    break;
+                                case 24:
+                                    SettingUI.Instance.SettingSfxSound(steps2Audio);
                                     break;
                                 case 25:
                                     charterName.text = "";
                                     break;
                                 case 28:
                                     charterName.text = "";
+                                    SettingUI.Instance.SettingSfxSound(know1Audio);
                                     break;
                                 case 30:
                                     charterName.text = "";
@@ -3310,6 +3362,7 @@ public class DialogueManager : MonoBehaviour
                             {
                                 case 1:
                                     SettingUI.Instance.SettingSfxSound(cheekAudio);
+                                    Handheld.Vibrate();
                                     break;
                             }
                             break;
@@ -3905,6 +3958,7 @@ public class DialogueManager : MonoBehaviour
                                 }
                                 else
                                 {
+                                    SettingUI.Instance.SettingSfxSound(sparkle2Audio);
                                     charterName.text = "이안 칼릭스";
                                 }
                                 break;

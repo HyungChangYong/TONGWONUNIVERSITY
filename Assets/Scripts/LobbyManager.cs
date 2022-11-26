@@ -28,6 +28,7 @@ public class LobbyManager : MonoBehaviour
     [SerializeField] private AudioClip hittingAudio;
     [SerializeField] private AudioClip wineAudio;
     [SerializeField] private AudioClip dreamAudio;
+    [SerializeField] private AudioClip selectAudio;
     
     [SerializeField] private Sprite windowBasic;
     [SerializeField] private Sprite[] playerBasic;
@@ -80,7 +81,8 @@ public class LobbyManager : MonoBehaviour
     [SerializeField] private Sprite[] illustrationImageSprite;
     
     public Sprite[] illustration;
-    
+
+    [SerializeField] private Image maximCancelImage;
     [SerializeField] private Image maximImage;
     [SerializeField] private GameObject maximImageGo;
 
@@ -115,6 +117,11 @@ public class LobbyManager : MonoBehaviour
     private int _whatItem;
 
     public bool isSaturday;
+
+    private bool _isCancelIll;
+    
+    private float _time;
+    private float _currentFadeTime = 1f;
 
     public void SettingDate()
     {
@@ -528,18 +535,52 @@ public class LobbyManager : MonoBehaviour
     {
         if (isAlbum[num].Equals(true))
         {
-            SettingUI.Instance.SettingSfxSound(clickAudio);
+            SettingUI.Instance.SettingSfxSound(selectAudio);
             
             maximImage.sprite = illustration[num];
-            maximImageGo.SetActive(true);
+            StartCoroutine(ShowMaximAlbumCoroutine());
         }
+    }
+
+    private IEnumerator ShowMaximAlbumCoroutine()
+    {
+        maximImage.color = new Color(1, 1, 1, 0);
+        maximCancelImage.color = new Color(1, 1, 1, 0);
+        
+        _isCancelIll = true;
+
+        maximImage.gameObject.SetActive(true);
+
+        _time = 0f;
+        
+        Color alpha = maximImage.color;
+        
+        while (alpha.a < 1f)
+        {
+            _time += Time.deltaTime / _currentFadeTime;
+            
+            alpha.a = Mathf.Lerp(0, 1, _time);
+            
+            maximImage.color = alpha;
+            maximCancelImage.color = alpha;
+            
+            yield return null;
+        }
+        _time = 0f;
+        
+        yield return new WaitForSeconds(1);
+
+        _isCancelIll = false;
     }
 
     public void HideMaximAlbum()
     {
-        SettingUI.Instance.SettingSfxSound(clickAudio);
+        if (_isCancelIll.Equals(false))
+        {
+            SettingUI.Instance.SettingSfxSound(clickAudio);
         
-        maximImageGo.SetActive(false);
+            maximImageGo.SetActive(false);
+        }
     }
 
     public void NextLobbyBtn()
