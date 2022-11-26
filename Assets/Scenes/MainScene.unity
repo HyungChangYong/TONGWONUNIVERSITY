@@ -1221,7 +1221,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 638813169}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &77305306
 MonoBehaviour:
@@ -11534,6 +11534,133 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &466545077
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 466545078}
+  - component: {fileID: 466545079}
+  m_Layer: 0
+  m_Name: SfxManger2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &466545078
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466545077}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 638813169}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &466545079
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466545077}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &468820938
 GameObject:
   m_ObjectHideFlags: 0
@@ -11925,7 +12052,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 638813169}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &480006996
 MonoBehaviour:
@@ -12972,6 +13099,8 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
   townIan1Dialogue:
     sentences:
+    - "\uBE48 \uD14D\uC2A4\uD2B8 \uBC15\uC2A4 2\uBC88\uC9F8 \uD14D\uC2A4\uD2B8 \uBD80\uD130
+      \uC2DC\uC791"
     - "\uC624\uB79C\uB9CC\uC5D0 \uBC88\uD654\uAC00\uB85C \uB098\uC640 \uB4E4\uB72C
       \uAE30\uBD84\uC73C\uB85C \uC0C1\uC810\uB4E4 \uC55E\uC5D0 \uB193\uC778 \uC0C1\uD488\uB4E4\uC744
       \uAD6C\uACBD\uD558\uAE30 \uC2DC\uC791\uD588\uB2E4."
@@ -13000,6 +13129,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
@@ -13008,8 +13138,9 @@ MonoBehaviour:
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     dialogueWindows:
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
-    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
     - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
@@ -13356,7 +13487,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     dialogueWindows:
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
-    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
   townIan4Dialogue:
     sentences:
@@ -13491,7 +13622,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: aaa0e8e94714f214c80635c168231477, type: 3}
     dialogueWindows:
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
-    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
     - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
@@ -13536,13 +13667,14 @@ MonoBehaviour:
       \uBA38\uB9AC\uB97C \uAD74\uB9AC\uACE0 \uC788\uB294\uB370,"
     - "\uB4A4\uC5D0 \uC11C \uC788\uB358 \uB0A8\uC790\uAC00 \uB369\uCE58\uC5D0\uAC8C
       \uB2E4\uAC00\uAC00 \uBB50\uB77C\uACE0 \uB9D0\uC744 \uC804\uD558\uACE4 \uB9C8\uC800
-      \uB0B4 \uC190\uBAA9\uC744 \uC7A1\uACE0 \uACE8\uBAA9\uAE38\uC744 \uBC97\uC5B4\uB0AC\uB2E4."
+      \uB0B4 \uC190\uBAA9\uC744 \uC7A1\uACE0 \uBE60\uB974\uAC8C \uACE8\uBAA9\uAE38\uC744
+      \uBC97\uC5B4\uB0AC\uB2E4."
     charterImages:
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     dialogueWindows:
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
-    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
   townNoa1SelectNextDialogue:
     sentences:
     - "\uBE48 \uD14D\uC2A4\uD2B8 \uBC15\uC2A4 2\uBC88\uC9F8 \uD14D\uC2A4\uD2B8 \uBD80\uD130
@@ -14253,8 +14385,8 @@ MonoBehaviour:
     - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
     - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
-    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
-    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
     - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
@@ -14348,7 +14480,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     dialogueWindows:
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
-    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
     - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
     - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
     - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
@@ -14717,6 +14849,8 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
   restaurantNoa1Dialogue:
     sentences:
+    - "\uBE48 \uD14D\uC2A4\uD2B8 \uBC15\uC2A4 2\uBC88\uC9F8 \uD14D\uC2A4\uD2B8 \uBD80\uD130
+      \uC2DC\uC791"
     - "\uB808\uC2A4\uD1A0\uB791\uC5D0 \uB4E4\uC5B4\uC11C\uC790, \uC800\uB141 \uC2DC\uAC04\uC774\uB77C
       \uADF8\uB7F0\uC9C0 \uC0AC\uB78C\uB4E4\uB85C \uBD81\uC801\uAC70\uB838\uB2E4.
       \uB2E4\uD589\uD788 \uD55C \uC790\uB9AC\uAC00 \uB0A8\uC544 \uC7AC\uBE68\uB9AC
@@ -14760,6 +14894,7 @@ MonoBehaviour:
     charterImages:
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
     - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
     - {fileID: 21300000, guid: 2a3a9f1f822dbc8409fe1d180a0ffce1, type: 3}
@@ -14782,6 +14917,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 2a3a9f1f822dbc8409fe1d180a0ffce1, type: 3}
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     dialogueWindows:
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
     - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
@@ -14800,7 +14936,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
     - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
     - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
-    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
     - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
     - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
     - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
@@ -15102,7 +15238,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     dialogueWindows:
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
-    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
     - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
     - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
     - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
@@ -15381,7 +15517,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
     - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
-    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
   parkIan1NightSkyDialogue:
     sentences:
     - "\uBE48 \uD14D\uC2A4\uD2B8 \uBC15\uC2A4 2\uBC88\uC9F8 \uD14D\uC2A4\uD2B8 \uBD80\uD130
@@ -15495,6 +15631,8 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
   parkIan3Dialogue:
     sentences:
+    - "\uBE48 \uD14D\uC2A4\uD2B8 \uBC15\uC2A4 2\uBC88\uC9F8 \uD14D\uC2A4\uD2B8 \uBD80\uD130
+      \uC2DC\uC791"
     - "\uC694\uC998 \uBD80\uCA4D \uB098\uBE60\uC9C4 \uCCB4\uB825\uC744 \uAE30\uB974\uAE30
       \uC704\uD574 \uACF5\uC6D0\uC5D0 \uB098\uC640 \uBE60\uB974\uAC8C \uAC77\uACE0
       \uC788\uB358 \uC911\uC774\uC5C8\uB2E4."
@@ -15531,6 +15669,7 @@ MonoBehaviour:
     charterImages:
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     - {fileID: 21300000, guid: 4d404696709bb124ab63e2130ff4eeb1, type: 3}
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     - {fileID: 21300000, guid: fbea562520c398e408f8859bfe1cfc5b, type: 3}
@@ -15545,6 +15684,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     - {fileID: 21300000, guid: 72259771501f59546a3f9b26ce5fee54, type: 3}
     dialogueWindows:
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
     - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
@@ -15938,7 +16078,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: dac892ec0be6811438185671e723d412, type: 3}
     dialogueWindows:
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
-    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
     - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
     - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
     - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
@@ -16030,6 +16170,8 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
   parkNoa2Dialogue:
     sentences:
+    - "\uBE48 \uD14D\uC2A4\uD2B8 \uBC15\uC2A4 2\uBC88\uC9F8 \uD14D\uC2A4\uD2B8 \uBD80\uD130
+      \uC2DC\uC791"
     - "\uBC14\uB78C\uC5D0 \uD754\uB4E4\uB9AC\uBA70 \uBD80\uB52A\uD788\uB294 \uB098\uBB34\uB4E4\uC758
       \uC18C\uB9AC\uAC00 \uC2DC\uC6D0\uD558\uAC8C \uC6B8\uB824 \uD37C\uC9C4\uB2E4."
     - "\uB4A4\uC5D0\uC11C \uB204\uAD70\uAC00 \uAC78\uC5B4\uC624\uB294 \uC18C\uB9AC\uAC00
@@ -16069,6 +16211,7 @@ MonoBehaviour:
     charterImages:
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     - {fileID: 21300000, guid: 2aa8997c3e4b96548961b8d8f8670ad2, type: 3}
     - {fileID: 21300000, guid: c6464c622f5b8ab43bcacca9f6b7f9d6, type: 3}
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
@@ -16088,6 +16231,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     dialogueWindows:
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
     - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
@@ -16097,7 +16241,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
     - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
-    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
     - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
     - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
     - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
@@ -16678,6 +16822,8 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
   beachNoa1Dialogue:
     sentences:
+    - "\uBE48 \uD14D\uC2A4\uD2B8 \uBC15\uC2A4 2\uBC88\uC9F8 \uD14D\uC2A4\uD2B8 \uBD80\uD130
+      \uC2DC\uC791"
     - "\uB9C8\uB978\uD558\uB298\uC5D0 \uAD6C\uB984\uC774 \uB07C\uAE30 \uC2DC\uC791\uD558\uB354\uB2C8
       \uC774\uB0B4 \uAC15\uD55C \uBC14\uB78C\uC774 \uBD88\uC5B4\uC628\uB2E4."
     - "\uC870\uAE08 \uB0AE\uC544\uC9C4 \uC628\uB3C4\uC640 \uD568\uAED8 \uBA38\uB9AC\uCE74\uB77D\uC774
@@ -16718,6 +16864,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
     - {fileID: 21300000, guid: dac892ec0be6811438185671e723d412, type: 3}
     - {fileID: 21300000, guid: f7020962f1a5c52478d5784f62559064, type: 3}
@@ -16736,9 +16883,10 @@ MonoBehaviour:
     - {fileID: 21300000, guid: dac892ec0be6811438185671e723d412, type: 3}
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     dialogueWindows:
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
-    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
     - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
     - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
     - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
@@ -16945,7 +17093,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     dialogueWindows:
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
-    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
     - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
     - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
@@ -17201,7 +17349,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
     - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
     - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
-    - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
+    - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
     - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
     - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
@@ -17389,6 +17537,8 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
   galleryAustin1Dialogue:
     sentences:
+    - "\uBE48 \uD14D\uC2A4\uD2B8 \uBC15\uC2A4 2\uBC88\uC9F8 \uD14D\uC2A4\uD2B8 \uBD80\uD130
+      \uC2DC\uC791"
     - "\uBBF8\uC220\uAD00\uC5D0 \uB4E4\uC5B4\uC11C\uB824 \uACC4\uB2E8\uC744 \uC62C\uB77C\uAC00\uB294
       \uC911, \uB204\uAD70\uAC00 \uB85C\uBE0C\uC790\uB77D\uC744 \uD384\uB7ED\uC774\uBA70
       \uC55E\uC5D0\uC11C \uC18C\uB9AC\uCE58\uB294 \uAC83\uC774 \uB4E4\uB824\uC654\uB2E4."
@@ -17413,6 +17563,7 @@ MonoBehaviour:
     - "...\uC5B4?"
     charterImages:
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     - {fileID: 21300000, guid: 0406df995fc80ec44833e08c17255079, type: 3}
     - {fileID: 21300000, guid: 0406df995fc80ec44833e08c17255079, type: 3}
     - {fileID: 21300000, guid: 13c44329e46ff2943a1bd3e0c2037297, type: 3}
@@ -17424,6 +17575,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     - {fileID: 21300000, guid: 13c44329e46ff2943a1bd3e0c2037297, type: 3}
     dialogueWindows:
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
     - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
     - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
@@ -17473,6 +17625,8 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
   galleryAustin1SelectDialogue:
     sentences:
+    - "\uBE48 \uD14D\uC2A4\uD2B8 \uBC15\uC2A4 2\uBC88\uC9F8 \uD14D\uC2A4\uD2B8 \uBD80\uD130
+      \uC2DC\uC791"
     - "\uADF8\uC81C\uC57C \uADF8\uB294 \uC595\uC740 \uD55C\uC228\uC744 \uB0B4\uC26C\uB354\uB2C8
       \uD488\uC5D0\uC11C \uB098\uB97C \uB193\uC544\uC8FC\uC5C8\uB2E4."
     - "...\uC815\uB9D0 \uC8C4\uC1A1\uD569\uB2C8\uB2E4, [\uD50C\uB808\uC774\uC5B4]
@@ -17494,6 +17648,7 @@ MonoBehaviour:
       \uC9D1\uC73C\uB85C \uB3CC\uC544\uAC14\uB2E4."
     charterImages:
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     - {fileID: 21300000, guid: a8f05ec79414c764eb458960d7ab8977, type: 3}
     - {fileID: 21300000, guid: fbea562520c398e408f8859bfe1cfc5b, type: 3}
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
@@ -17506,6 +17661,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: a3cb3384f1f24204da97254c30e3d006, type: 3}
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     dialogueWindows:
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
     - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
     - {fileID: 21300000, guid: 96f00c6c8bdd3aa4895f17ea4d4cf7a8, type: 3}
@@ -17903,6 +18059,8 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
   homeNoa1Dialogue:
     sentences:
+    - "\uBE48 \uD14D\uC2A4\uD2B8 \uBC15\uC2A4 2\uBC88\uC9F8 \uD14D\uC2A4\uD2B8 \uBD80\uD130
+      \uC2DC\uC791"
     - "\uD6C4\uC791\uAC00\uC5D0 \uB4E4\uC5B4\uC11C\uC790 \uD654\uB824\uD55C \uC678\uAD00\uC774
       \uB208\uC5D0 \uB4E4\uC5B4\uC654\uB2E4."
     - "\uC7A0\uC2DC \uC815\uC6D0\uC744 \uAD6C\uACBD\uD558\uACE0 \uC788\uB294 \uC0AC\uC774
@@ -17911,7 +18069,9 @@ MonoBehaviour:
     charterImages:
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     dialogueWindows:
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
   homeNoa1NextDialogue:
@@ -18083,6 +18243,8 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
   homeAustin1Dialogue:
     sentences:
+    - "\uBE48 \uD14D\uC2A4\uD2B8 \uBC15\uC2A4 2\uBC88\uC9F8 \uD14D\uC2A4\uD2B8 \uBD80\uD130
+      \uC2DC\uC791"
     - "\uC2E0\uC804\uC5D0 \uB4E4\uC5B4\uC11C\uC790 \uB9CE\uC740 \uC778\uD30C\uAC00
       \uBD90\uBCD0\uB2E4."
     - "\uD2B9\uBCC4\uD55C \uD589\uC0AC\uAC00 \uC788\uB294 \uAC83\uB3C4 \uC544\uB2C8\uC5C8\uAE30\uC5D0
@@ -18111,6 +18273,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
+    - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     - {fileID: 21300000, guid: c84e7f3d2c4a04e418a360d36b861ade, type: 3}
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
@@ -18118,12 +18281,13 @@ MonoBehaviour:
     - {fileID: 21300000, guid: c525f725caf012b4f9bc122c93acaf2d, type: 3}
     - {fileID: 21300000, guid: e17b5deebc782e64c948fe861eb0adca, type: 3}
     dialogueWindows:
-    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
     - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
-    - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
+    - {fileID: 21300000, guid: 5c31f584d60c0dd4da9417c31270afaa, type: 3}
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
     - {fileID: 21300000, guid: 4021b53de8a292140b5424a40aaa781e, type: 3}
     - {fileID: 21300000, guid: beeae1d6f35ee0a498ab04bfbce6c5d7, type: 3}
@@ -20561,8 +20725,8 @@ MonoBehaviour:
     - "\uB2F9\uC7A5 \uC219\uC2DD\uC744 \uD574\uACB0\uD560 \uACF3\uB3C4 \uC5C6\uB294
       \uC81C\uAC8C, \uC8FC\uC704\uC5D0 \uB0A8\uC740 \uAC74 \uC544\uBB34\uAC83\uB3C4
       \uC5C6\uC5C8\uC73C\uB2C8\uAE4C\uC694."
-    - "\uADF8\uB54C\uB294 \uBC30\uB97C \uACEA\uC9C0 \uC54A\uC544\uB3C4 \uB41C\uB2E4\uB294
-      \uAC83\uB9CC\uC73C\uB85C\uB3C4 \uB9CC\uC871\uD588\uC5C8\uB294\uB370\u2026"
+    - "\uADF8\uB54C\uB294 \uBC30\uB97C \uACEF\uC9C0 \uC54A\uC544\uB3C4 \uB41C\uB2E4\uB294
+      \uAC83\uB9CC\uC73C\uB85C\uB3C4 \uB9CC\uC871\uD588\uC5C8\uB294\uB370..."
     - "\uC0AC\uB78C\uC774 \uCC38 \uAC04\uC0AC\uD558\uAC8C\uB3C4 \uC9C0\uAE08\uC740
       \uC5EC\uB7EC \uAC00\uC9C0 \uC0DD\uAC01\uC774 \uB4DC\uB124\uC694\u2026"
     charterImages:
@@ -29125,6 +29289,7 @@ Transform:
   m_Children:
   - {fileID: 1571799459}
   - {fileID: 1034691808}
+  - {fileID: 466545078}
   - {fileID: 1465747112}
   - {fileID: 1183404326}
   - {fileID: 680144400}
@@ -29963,7 +30128,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 638813169}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &680144401
 MonoBehaviour:
@@ -38695,7 +38860,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 638813169}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1187480242 stripped
 RectTransform:
@@ -41009,7 +41174,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 638813169}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1340684490
 MonoBehaviour:
@@ -41134,14 +41299,50 @@ MonoBehaviour:
   sparkleAudio: {fileID: 8300000, guid: 4150aefa0a8cd4546a4180083ff9330f, type: 3}
   sparkle0Audio: {fileID: 8300000, guid: 95d3ad086fe6e85499140f351cb8bd48, type: 3}
   sparkle2Audio: {fileID: 8300000, guid: 557fe6681c9f20a4d92c15cea2616bb1, type: 3}
+  sparkle3Audio: {fileID: 8300000, guid: 743abfb9f9184b040bbd592b2134210b, type: 3}
   sparkle5Audio: {fileID: 8300000, guid: 8a45d55b99049d949ab4e02f6010ae41, type: 3}
   find1Audio: {fileID: 8300000, guid: 005efaf0934b51548b4b688a096c9d69, type: 3}
   find2Audio: {fileID: 8300000, guid: e9b768defc9d4c149bbc6d77e0f6067d, type: 3}
+  find3Audio: {fileID: 8300000, guid: e42a7fc005c9e5f4787a6571f0245def, type: 3}
+  stepsAudio: {fileID: 8300000, guid: ae4e7fcd0bf45494a80a404b4421b33a, type: 3}
   steps2Audio: {fileID: 8300000, guid: 9004455266e89a442aa1820c380a4542, type: 3}
   steps3Audio: {fileID: 8300000, guid: 6dbfa87c95e113f4e8a47f0a03c56ec2, type: 3}
+  steps4Audio: {fileID: 8300000, guid: 75640503688d6d54a9126f0058da2044, type: 3}
   know1Audio: {fileID: 8300000, guid: 3848e664459b37e4bbf622b2893d7ddc, type: 3}
   wonder1Audio: {fileID: 8300000, guid: 57170d20cd7170d47abd4326da8bd369, type: 3}
+  wonder2Audio: {fileID: 8300000, guid: 148d547b425efbb478a35eaede5aa669, type: 3}
+  wonder3Audio: {fileID: 8300000, guid: 0bd199c86c721cc4a99d4c2ca590a39d, type: 3}
   sharpnessAudio: {fileID: 8300000, guid: 6be0042530528d14a9927679c0f4acc4, type: 3}
+  embarrassmentAudio: {fileID: 8300000, guid: 376698de99cbc55499a6fc061ca0706b, type: 3}
+  pongAudio: {fileID: 8300000, guid: 27071d1eb686b394f8b513616a44d23b, type: 3}
+  personAudio: {fileID: 8300000, guid: fcc27e9c14990124fa7f824174b5b62f, type: 3}
+  chair1Audio: {fileID: 8300000, guid: 86d3b8df7f2c4e44d84f99326592366a, type: 3}
+  ppyong1Audio: {fileID: 8300000, guid: 6d766e06de7d0de4e876ae84d5c82c37, type: 3}
+  ppyong2Audio: {fileID: 8300000, guid: 72b51928ed4d71540b4c7740ba1cb903, type: 3}
+  ppyong4Audio: {fileID: 8300000, guid: 1d41308cbb38c25469944b512bbff2cd, type: 3}
+  breath3Audio: {fileID: 8300000, guid: df9167609cc000e49948db1db99edfe3, type: 3}
+  sharpeyesAudio: {fileID: 8300000, guid: 1482b9ad4152d124d9b43cbdbae0bf00, type: 3}
+  HatefeelingAudio: {fileID: 8300000, guid: 13e411b31a97d5d4ebe5ddc9f872842a, type: 3}
+  sigh2Audio: {fileID: 8300000, guid: dde4553aef971f548972d10b30b9fac5, type: 3}
+  ExclamationAudio: {fileID: 8300000, guid: 222a75573b4da81419cc178f89bd8b7f, type: 3}
+  Exclamation2Audio: {fileID: 8300000, guid: 11179162fe6780d4388c385d69afe050, type: 3}
+  Exclamation3Audio: {fileID: 8300000, guid: b84716d1db3f2c84cbdebf80454ad392, type: 3}
+  snapAudio: {fileID: 8300000, guid: fa1dc64bee7ac0b43b6b97ff47acf99c, type: 3}
+  Horse_Run2Audio: {fileID: 8300000, guid: 0b32c47bcc151aa4e901aa40b1cd11e2, type: 3}
+  storm2Audio: {fileID: 8300000, guid: d1816d5f209f68444abe82961f8705c4, type: 3}
+  rockAudio: {fileID: 8300000, guid: cbd81215edfdaee4ca726611df068210, type: 3}
+  fire2Audio: {fileID: 8300000, guid: 8437a6bfb48071546a7c9b612403d3ce, type: 3}
+  anxiousfeelingAudio: {fileID: 8300000, guid: e2cbc195573ba8440a92e672d3f13050, type: 3}
+  absurdAudio: {fileID: 8300000, guid: f8fd1420b342adf4fba299aa8efb8fce, type: 3}
+  TringAudio: {fileID: 8300000, guid: 74084e8d877c6f04aa35bc69285ea6d8, type: 3}
+  dressAudio: {fileID: 8300000, guid: 743616cdcbf696242bc6a5e9c01a041f, type: 3}
+  treeAudio: {fileID: 8300000, guid: 44427cf7140b2834cba36e2bb9fe46e1, type: 3}
+  shockAudio: {fileID: 8300000, guid: 6e7b67740d3e801488761513081a9eea, type: 3}
+  windAudio: {fileID: 8300000, guid: 01476512dea43b345a2de7f4f2f3ed31, type: 3}
+  waterAudio: {fileID: 8300000, guid: 2e0880963217b20439946c1878caddee, type: 3}
+  sweatAudio: {fileID: 8300000, guid: 7b0dd13215db4ae468ae488837fbb9d8, type: 3}
+  PatchingAudio: {fileID: 8300000, guid: 673eb9b6160123544bc045f9266c40b9, type: 3}
+  selectAudio: {fileID: 8300000, guid: 210511d02eda38b45a377f824af0f9a2, type: 3}
   isActiveEndingCharacter: 000000
   typeSound: {fileID: 1340684492}
   count: 0
@@ -43009,7 +43210,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 638813169}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1465747113
 AudioSource:
@@ -44830,6 +45031,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollbar: {fileID: 2014639206}
   sfxSound: {fileID: 1034691807}
+  sfxSound1: {fileID: 466545079}
   sfxLoopSound: {fileID: 1465747113}
   bgmAudioSource: {fileID: 1571799458}
 --- !u!1 &1578607176

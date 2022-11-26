@@ -110,16 +110,52 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private AudioClip sparkleAudio;
     [SerializeField] private AudioClip sparkle0Audio;
     [SerializeField] private AudioClip sparkle2Audio;
+    [SerializeField] private AudioClip sparkle3Audio;
     [SerializeField] private AudioClip sparkle5Audio;
     [SerializeField] private AudioClip find1Audio;
     [SerializeField] private AudioClip find2Audio;
+    [SerializeField] private AudioClip find3Audio;
+    [SerializeField] private AudioClip stepsAudio;
     [SerializeField] private AudioClip steps2Audio;
     [SerializeField] private AudioClip steps3Audio;
+    [SerializeField] private AudioClip steps4Audio;
     [SerializeField] private AudioClip know1Audio;
     [SerializeField] private AudioClip wonder1Audio;
+    [SerializeField] private AudioClip wonder2Audio;
+    [SerializeField] private AudioClip wonder3Audio;
     [SerializeField] private AudioClip sharpnessAudio;
+    [SerializeField] private AudioClip embarrassmentAudio;
+    [SerializeField] private AudioClip pongAudio;
+    [SerializeField] private AudioClip personAudio;
+    [SerializeField] private AudioClip chair1Audio;
+    [SerializeField] private AudioClip ppyong1Audio;
+    [SerializeField] private AudioClip ppyong2Audio;
+    [SerializeField] private AudioClip ppyong4Audio;
+    [SerializeField] private AudioClip breath3Audio;
+    [SerializeField] private AudioClip sharpeyesAudio;
+    [SerializeField] private AudioClip HatefeelingAudio;
+    [SerializeField] private AudioClip sigh2Audio;
+    [SerializeField] private AudioClip ExclamationAudio;
+    [SerializeField] private AudioClip Exclamation2Audio;
+    [SerializeField] private AudioClip Exclamation3Audio;
+    [SerializeField] private AudioClip snapAudio;
+    [SerializeField] private AudioClip Horse_Run2Audio;
+    [SerializeField] private AudioClip storm2Audio;
+    [SerializeField] private AudioClip rockAudio;
+    [SerializeField] private AudioClip fire2Audio;
+    [SerializeField] private AudioClip anxiousfeelingAudio;
+    [SerializeField] private AudioClip absurdAudio;
+    [SerializeField] private AudioClip TringAudio;
+    [SerializeField] private AudioClip dressAudio;
+    [SerializeField] private AudioClip treeAudio;
+    [SerializeField] private AudioClip shockAudio;
+    [SerializeField] private AudioClip windAudio;
+    [SerializeField] private AudioClip waterAudio;
+    [SerializeField] private AudioClip sweatAudio;
+    [SerializeField] private AudioClip PatchingAudio;
+    [SerializeField] private AudioClip selectAudio;
     
-
+    
     [SerializeField] private bool[] isActiveEndingCharacter;
  
     public AudioSource typeSound;
@@ -246,11 +282,12 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    private bool _isClickAudio;
     public void ClickUpEndingCharacter(int num)
     {
+        _isClickAudio = false;
         if (_isChoiceEndingCharacter.Equals(false))
         {
-            SettingUI.Instance.SettingSfxSound(clickAudio);
             endingWhoNum = 1 + num;
 
             if (isActiveEndingCharacter[num].Equals(false))
@@ -288,6 +325,7 @@ public class DialogueManager : MonoBehaviour
                 }
                 else
                 {
+                    _isClickAudio = true;
                     switch (event4WhoNum)
                     {
                         case 1:
@@ -332,6 +370,15 @@ public class DialogueManager : MonoBehaviour
                     _isSelectEndingCharacter = false;
                 }
             }
+        }
+
+        if (_isClickAudio.Equals(true))
+        {
+            SettingUI.Instance.SettingSfx1Sound(selectAudio);
+        }
+        else
+        {
+            SettingUI.Instance.SettingSfx1Sound(clickAudio);
         }
     }
 
@@ -449,7 +496,7 @@ public class DialogueManager : MonoBehaviour
                 PlayerPrefs.SetInt("Tutorial", 1);
                 PlayerPrefs.Save();
                 StartFadeData();
-                AddDate();
+                LobbyManager.Instance.SettingDate();
                 break;
             case "ValetCall":
                 choiceTxt.text = "[ " + DialogueTxt.Instance.valetCallDialogue.sentences[1] + " ]";
@@ -846,6 +893,7 @@ public class DialogueManager : MonoBehaviour
                 StartCoroutine(FadeInfo(3));
                 break;
             case "BeachAustin2":
+                SettingUI.Instance.StopSfxLoopSound();
                 choiceTxt.text = "[ " + DialogueTxt.Instance.beachAustin2Dialogue.sentences[25] + " ]";
                 dialogueWindow.gameObject.SetActive(false);
                 
@@ -1936,6 +1984,23 @@ public class DialogueManager : MonoBehaviour
                                 ChangeWindowImage();
                             }
                             break;
+                        case "RestaurantNoa1":
+                            _isPlayAnim = true;
+                            
+                            if (count == 19)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                                SettingUI.Instance.SettingSfxSound(Exclamation3Audio);
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
                         case "RestaurantNoa2":
                             _isPlayAnim = true;
                             
@@ -2024,6 +2089,23 @@ public class DialogueManager : MonoBehaviour
                                 yield return _yieldCharterChangeDelay;
                                 dialogueWindow.sprite = _listDialogueWindows[count];
                                 charterImage.sprite = _listCharters[count];
+                            }
+                            else
+                            {
+                                charterAnimator.SetBool("IsAlpha", true);
+                                yield return _yieldCharterChangeDelay;
+                                ChangeWindowImage();
+                            }
+                            break;
+                        case "GalleryIan1":
+                            _isPlayAnim = true;
+                            
+                            if (count == 3)
+                            {
+                                yield return _yieldCharterChangeDelay;
+                                dialogueWindow.sprite = _listDialogueWindows[count];
+                                charterImage.sprite = _listCharters[count];
+                                SettingUI.Instance.SettingSfxSound(questionAudio);
                             }
                             else
                             {
@@ -3005,11 +3087,47 @@ public class DialogueManager : MonoBehaviour
                                     break;
                             }   
                             break;
+                        case "TownIan1":
+                            switch (count)
+                            {
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(personAudio);
+                                    break;
+                                case 3:
+                                    SettingUI.Instance.SettingSfxSound(sparkle2Audio);
+                                    break;
+                                case 9:
+                                    SettingUI.Instance.SettingSfxSound(steps2Audio);
+                                    break;
+                            }   
+                            break;
                         case "TownIan2":
                             switch (count)
                             {
                                 case 2:
                                     charterName.text = "";
+                                    break;
+                                case 4:
+                                    SettingUI.Instance.SettingSfxSound(sparkle0Audio);
+                                    break;
+                                case 5:
+                                    SettingUI.Instance.SettingSfxSound(Exclamation2Audio);
+                                    break;
+                            }   
+                            break;
+                        case "TownIan2Fun":
+                            switch (count)
+                            {
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(sparkle3Audio);
+                                    break;
+                            }   
+                            break;
+                        case "TownIan2Tiresome":
+                            switch (count)
+                            {
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(find1Audio);
                                     break;
                             }   
                             break;
@@ -3018,6 +3136,16 @@ public class DialogueManager : MonoBehaviour
                             {
                                 case 5:
                                     charterName.text = "";
+                                    SettingUI.Instance.SettingSfxSound(Exclamation3Audio);
+                                    break;
+                                case 8:
+                                    SettingUI.Instance.SettingSfxSound(wonder2Audio);
+                                    break;
+                                case 10:
+                                    SettingUI.Instance.SettingSfxSound(sigh2Audio);
+                                    break;
+                                case 22:
+                                    SettingUI.Instance.SettingSfxSound(snapAudio);
                                     break;
                             }   
                             break;
@@ -3027,6 +3155,14 @@ public class DialogueManager : MonoBehaviour
                                 case 5:
                                     SettingUI.Instance.SettingSfxSound(breakAudio);
                                     Handheld.Vibrate();
+                                    break;
+                            }   
+                            break;
+                        case "TownIan3Ignore":
+                            switch (count)
+                            {
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(Horse_Run2Audio);
                                     break;
                             }   
                             break;
@@ -3051,16 +3187,52 @@ public class DialogueManager : MonoBehaviour
                         case "TownNoa1":
                             switch (count)
                             {
+                                case 1:
+                                    charterName.text = "";
+                                    break;
+                                case 2:
+                                    SettingUI.Instance.SettingSfxSound(HatefeelingAudio);
+                                    break;
                                 case 11:
-                                    SettingUI.Instance.SettingBgmSound(dangerousAudio);
+                                    SettingUI.Instance.SettingSfxSound(dangerousAudio);
                                     break;
                             }   
+                            break;
+                        case "TownNoa1Mistake":
+                            switch (count)
+                            {
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(anxiousfeelingAudio);
+                                    break;
+                            }
+                            break;
+                        case "TownNoa1Select":
+                            switch (count)
+                            {
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(steps3Audio);
+                                    break;
+                            }
                             break;
                         case "TownNoa2":
                             switch (count)
                             {
                                 case 2:
                                     charterName.text = "";
+                                    break;
+                            }   
+                            break;
+                        case "TownNoa2Next":
+                            switch (count)
+                            {
+                                case 7:
+                                    SettingUI.Instance.SettingSfxSound(find2Audio);
+                                    break;
+                                case 15:
+                                    SettingUI.Instance.SettingSfxSound(wonder3Audio);
+                                    break;
+                                case 25:
+                                    SettingUI.Instance.SettingSfxSound(absurdAudio);
                                     break;
                             }   
                             break;
@@ -3075,6 +3247,23 @@ public class DialogueManager : MonoBehaviour
                                     break;
                             }   
                             break;
+                        case "TownAustin1":
+                            switch (count)
+                            {
+                                case 4:
+                                    SettingUI.Instance.SettingSfxSound(questionAudio);
+                                    break;
+                                case 12:
+                                    SettingUI.Instance.SettingSfxSound(storm2Audio);
+                                    break;
+                                case 19:
+                                    SettingUI.Instance.SettingSfxSound(sparkle3Audio);
+                                    break;
+                                case 21:
+                                    SettingUI.Instance.SettingSfxSound(find2Audio);
+                                    break;
+                            }   
+                            break;
                         case "TownAustin2":
                             switch (count)
                             {
@@ -3083,6 +3272,31 @@ public class DialogueManager : MonoBehaviour
                                     break;
                                 case 7:
                                     SettingUI.Instance.SettingSfxSound(wristAudio);
+                                    break;
+                            }
+                            break;
+                        case "TownAustin2FireFestival":
+                            switch (count)
+                            {
+                                case 5:
+                                    SettingUI.Instance.SettingSfxSound(steps2Audio);
+                                    break;
+                                case 6:
+                                    SettingUI.Instance.SettingSfxSound(fire2Audio);
+                                    break;
+                            }
+                            break;
+                        case "TownAustin3":
+                            switch (count)
+                            {
+                                case 4:
+                                    SettingUI.Instance.SettingSfxSound(Exclamation2Audio);
+                                    break;
+                                case 8:
+                                    SettingUI.Instance.SettingSfxSound(rockAudio);
+                                    break;
+                                case 10: 
+                                    SettingUI.Instance.SettingSfxSound(sparkle2Audio);
                                     break;
                             }
                             break;
@@ -3102,6 +3316,25 @@ public class DialogueManager : MonoBehaviour
                                     break;
                             }   
                             break;
+                        case "RestaurantIan1":
+                            switch (count)
+                            {
+                                case 6:
+                                    SettingUI.Instance.SettingSfxSound(find2Audio);
+                                    break;
+                                case 7:
+                                    SettingUI.Instance.SettingSfxSound(find1Audio);
+                                    break;
+                            }   
+                            break;
+                        case "RestaurantIan1QuestionEat":
+                            switch (count)
+                            {
+                                case 2:
+                                    SettingUI.Instance.SettingSfxSound(sparkle0Audio);
+                                    break;
+                            }   
+                            break;
                         case "RestaurantIan2":
                             switch (count)
                             {
@@ -3113,7 +3346,16 @@ public class DialogueManager : MonoBehaviour
                         case "RestaurantNoa1":
                             switch (count)
                             {
-                                case 9:
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(personAudio);
+                                    break;
+                                case 5:
+                                    SettingUI.Instance.SettingSfxSound(dressAudio);
+                                    break;
+                                case 7:
+                                    SettingUI.Instance.SettingSfxSound(find1Audio);
+                                    break;
+                                case 10:
                                     charterName.text = "";
                                     break;
                             }   
@@ -3123,6 +3365,25 @@ public class DialogueManager : MonoBehaviour
                             {
                                 case 1:
                                     charterName.text = "";
+                                    break;
+                                case 3:
+                                    SettingUI.Instance.SettingSfxSound(sparkle2Audio);
+                                    break;
+                            }   
+                            break;
+                        case "RestaurantNoa2Good":
+                            switch (count)
+                            {
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(TringAudio);
+                                    break;
+                            }   
+                            break;
+                        case "RestaurantNoa2Perfect":
+                            switch (count)
+                            {
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(ExclamationAudio);
                                     break;
                             }   
                             break;
@@ -3137,9 +3398,61 @@ public class DialogueManager : MonoBehaviour
                                     break;
                             }   
                             break;
+                        case "RestaurantAustin1":
+                            switch (count)
+                            {
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(find1Audio);
+                                    break;
+                                case 12:
+                                    SettingUI.Instance.SettingSfxSound(questionAudio);
+                                    break;
+                            }   
+                            break;
+                        case "ParkIan1":
+                            switch (count)
+                            {
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(questionAudio);
+                                    break;
+                                case 9:
+                                    SettingUI.Instance.SettingSfxSound(wonder3Audio);
+                                    break;
+                            }
+                            break;
+                        case "ParkIan1Plants":
+                            switch (count)
+                            {
+                                case 7:
+                                    SettingUI.Instance.SettingSfxSound(steps2Audio);
+                                    break;
+                            }
+                            break;
+                        case "ParkIan1NightSky":
+                            switch (count)
+                            {
+                                case 4:
+                                    SettingUI.Instance.SettingSfxSound(Exclamation2Audio);
+                                    break;
+                            }
+                            break;
+                        case "ParkIan2":
+                            switch (count)
+                            {
+                                case 8:
+                                    SettingUI.Instance.SettingSfxSound(Exclamation2Audio);
+                                    break;
+                                case 17:
+                                    SettingUI.Instance.SettingSfxSound(sparkleAudio);
+                                    break;
+                            }
+                            break;
                         case "ParkIan3":
                             switch (count)
                             {
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(footSteps2);
+                                    break;
                                 case 3:
                                     SettingUI.Instance.SettingSfxSound(horseAudio);
                                     break;
@@ -3164,6 +3477,36 @@ public class DialogueManager : MonoBehaviour
                                     break;
                             }   
                             break;
+                        case "ParkNoa1":
+                            switch (count)
+                            {
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(catAudio);
+                                    break;
+                                case 3:
+                                    SettingUI.Instance.SettingSfxSound(sparkle2Audio);
+                                    break;
+                                case 12:
+                                    SettingUI.Instance.SettingSfxSound(wonder2Audio);
+                                    break;
+                            }   
+                            break;
+                        case "ParkNoa1Dog":
+                            switch (count)
+                            {
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(find3Audio);
+                                    break;
+                            }   
+                            break;
+                        case "ParkNoa1Bird":
+                            switch (count)
+                            {
+                                case 4:
+                                    SettingUI.Instance.SettingSfxSound(questionAudio);
+                                    break;
+                            }   
+                            break;
                         case "ParkNoa1Select":
                             switch (count)
                             {
@@ -3175,19 +3518,56 @@ public class DialogueManager : MonoBehaviour
                         case "ParkNoa2":
                             switch (count)
                             {
-                                case 6:
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(treeAudio);
+                                    break;
+                                case 4:
+                                    SettingUI.Instance.SettingSfxSound(questionAudio);
+                                    break;
+                                case 7:
                                     Handheld.Vibrate();
                                     break;
-                                case 15:
+                                case 10:
+                                    SettingUI.Instance.SettingSfxSound(steps4Audio);
+                                    break;
+                                case 14:
+                                    SettingUI.Instance.SettingSfxSound(shockAudio);
+                                    break;
+                                case 16:
                                     charterName.text = "";
+                                    break;
+                            }   
+                            break;
+                        case "ParkAustin1":
+                            switch (count)
+                            {
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(questionAudio);
+                                    break;
+                                case 6:
+                                    SettingUI.Instance.SettingSfxSound(find2Audio);
+                                    break;
+                            }   
+                            break;
+                        case "ParkAustin2":
+                            switch (count)
+                            {
+                                case 2:
+                                    SettingUI.Instance.SettingSfxSound(wonder1Audio);
                                     break;
                             }   
                             break;
                         case "ParkAustin2Chasing":
                             switch (count)
                             {
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(Exclamation3Audio);
+                                    break;
                                 case 7:
                                     charterName.text = "";
+                                    break;
+                                case 10:
+                                    SettingUI.Instance.SettingSfxSound(questionAudio);
                                     break;
                             }   
                             break;
@@ -3197,21 +3577,45 @@ public class DialogueManager : MonoBehaviour
                                 case 2:
                                     SettingUI.Instance.StopSfxLoopSound();
                                     break;
+                                case 4:
+                                    SettingUI.Instance.SettingSfxSound(sparkle5Audio);
+                                    break;
                                 case 13:
                                     charterName.text = "";
+                                    SettingUI.Instance.SettingSfxSound(wonder3Audio);
+                                    break;
+                            }
+                            break;
+                        case "BeachIan2":
+                            switch (count)
+                            {
+                                case 2:
+                                    SettingUI.Instance.SettingSfxLoopSound(wave2Audio);
+                                    break;
+                                case 4:
+                                    SettingUI.Instance.StopSfxLoopSound();
                                     break;
                             }
                             break;
                         case "BeachNoa1":
                             switch (count)
                             {
-                               case 11:
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(windAudio);
+                                    break;
+                                case 3:
+                                    SettingUI.Instance.SettingSfxSound(waterAudio);
+                                    break;
+                                case 12:
                                    DailyRoutine.Instance.SettingPlaceImage(18);
                                    SettingUI.Instance.SettingSfxLoopSound(rainAudio);
                                    break;
-                               case 13:
+                               case 14:
                                    SettingUI.Instance.StopSfxLoopSound();
                                    break;
+                                case 15:
+                                    SettingUI.Instance.SettingSfxSound(embarrassmentAudio);
+                                    break;
                             }
                             break;
                         case "BeachNoa2Select":
@@ -3225,12 +3629,27 @@ public class DialogueManager : MonoBehaviour
                         case "BeachAustin1":
                             switch (count)
                             {
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(wave2Audio);
+                                    break;
+                                case 3:
+                                    SettingUI.Instance.SettingSfxSound(know1Audio);
+                                    break;
+                                case 15:
+                                    SettingUI.Instance.SettingSfxSound(TringAudio);
+                                    break;
                                 case 16:
                                     Handheld.Vibrate();
                                     SettingUI.Instance.SettingSfxLoopSound(wave2Audio);
                                     break;
                                 case 18:
                                     SettingUI.Instance.StopSfxLoopSound();
+                                    break;
+                                case 20:
+                                    SettingUI.Instance.SettingSfxSound(know1Audio);
+                                    break;
+                                case 26:
+                                    SettingUI.Instance.SettingSfxSound(Exclamation3Audio);
                                     break;
                             }
                             break;
@@ -3240,32 +3659,112 @@ public class DialogueManager : MonoBehaviour
                                 case 19:
                                     charterName.text = "";
                                     break;
+                                case 23:
+                                    SettingUI.Instance.SettingSfxLoopSound(wave2Audio);
+                                    break;
+                            }
+                            break;
+                        case "BeachAustin2Select":
+                            switch (count)
+                            {
+                                case 3:
+                                    SettingUI.Instance.SettingSfxSound(ppyong4Audio);
+                                    break;
+                            }
+                            break;
+                        case "GalleryIan1":
+                            switch (count)
+                            {
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(find1Audio);
+                                    break;
+                                case 14:
+                                    SettingUI.Instance.SettingSfxSound(sweatAudio);
+                                    break;
+                            }
+                            break;
+                        case "GalleryNoa1":
+                            switch (count)
+                            {
+                                case 2:
+                                    SettingUI.Instance.SettingSfxSound(sparkle0Audio);
+                                    break;
+                                case 9:
+                                    SettingUI.Instance.SettingSfxSound(wonder3Audio);
+                                    break;
                             }
                             break;
                         case "GalleryAustin1":
                             switch (count)
                             {
-                                case 7:
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(stepsAudio);
+                                    break;
+                                case 4:
+                                    SettingUI.Instance.SettingSfxSound(PatchingAudio);
+                                    break;
+                                case 8:
                                     charterName.text = "";
+                                    break;
+                                case 11:
+                                    SettingUI.Instance.SettingSfxSound(sparkle0Audio);
                                     break;
                             }
                             break;
                         case "GalleryAustin1Select":
                             switch (count)
                             {
-                                case 10:
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(dressAudio);
+                                    break;
+                                case 9:
+                                    SettingUI.Instance.SettingSfxSound(steps3Audio);
+                                    break;
+                                case 11:
                                     charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "HomeIan1":
+                            switch (count)
+                            {
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(find1Audio);
                                     break;
                             }
                             break;
                         case "HomeIan1Talk":
                             switch (count)
                             {
+                                case 2:
+                                    SettingUI.Instance.SettingSfxSound(ExclamationAudio);
+                                    break;
                                 case 8:
+                                    SettingUI.Instance.SettingSfxSound(embarrassmentAudio);
                                     charterName.text = "";
                                     break;
                                 case 11:
                                     charterName.text = "";
+                                    break;
+                            }
+                            break;
+                        case "HomeIan1Curiosity":
+                            switch (count)
+                            {
+                                case 3:
+                                    SettingUI.Instance.SettingSfxSound(pongAudio);
+                                    charterName.text = "";
+                                    break;
+                                case 9:
+                                    SettingUI.Instance.SettingSfxSound(steps2Audio);
+                                    break;
+                            }
+                            break;
+                        case "HomeNoa1":
+                            switch (count)
+                            {
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(ppyong2Audio);
                                     break;
                             }
                             break;
@@ -3277,11 +3776,61 @@ public class DialogueManager : MonoBehaviour
                                     break;
                             }
                             break;
+                        case "HomeNoa1Cooperation":
+                            switch (count)
+                            {
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(sharpeyesAudio);
+                                    break;
+                                case 3:
+                                    SettingUI.Instance.SettingSfxSound(HatefeelingAudio);
+                                    break;
+                            }
+                            break;
+                        case "HomeNoa1Force":
+                            switch (count)
+                            {
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(sharpeyesAudio);
+                                    break;
+                                case 7:
+                                    SettingUI.Instance.SettingSfxSound(HatefeelingAudio);
+                                    break;
+                                case 9:
+                                    SettingUI.Instance.SettingSfxSound(sigh2Audio);
+                                    break;
+                            }
+                            break;
                         case "HomeAustin1":
                             switch (count)
                             {
+                                case 1:
+                                    SettingUI.Instance.SettingSfxSound(personAudio);
+                                    break;
                                 case 3:
+                                    SettingUI.Instance.SettingSfxSound(chair1Audio);
+                                    break;
+                                case 4:
                                     charterName.text = "";
+                                    break;
+                                case 7:
+                                    SettingUI.Instance.SettingSfxSound(ppyong1Audio);
+                                    break;
+                            }
+                            break;
+                        case "HomeAustin1PrayerTalk":
+                            switch (count)
+                            {
+                                case 4:
+                                    SettingUI.Instance.SettingSfxSound(steps2Audio);
+                                    break;
+                            }
+                            break;
+                        case "HomeAustin1NoPrayerTalk":
+                            switch (count)
+                            {
+                                case 4:
+                                    SettingUI.Instance.SettingSfxSound(steps2Audio);
                                     break;
                             }
                             break;
@@ -3305,14 +3854,25 @@ public class DialogueManager : MonoBehaviour
                                 case 4:
                                     SettingUI.Instance.SettingBgmSound(square3Audio);
                                     break;
+                                case 10:
+                                    SettingUI.Instance.SettingSfxSound(steps2Audio);
+                                    break;
                             }
                             break;
                         case "HomeAustin2CallAustin":
                             switch (count)
                             {
                                 case 1:
-                                    SettingUI.Instance.SettingBgmSound(square3Audio);
                                     Handheld.Vibrate();
+                                    break;
+                                case 6:
+                                    SettingUI.Instance.SettingSfxSound(breath3Audio);
+                                    break;
+                                case 8:
+                                    SettingUI.Instance.SettingSfxSound(questionAudio);
+                                    break;
+                                case 11:
+                                    SettingUI.Instance.SettingSfxSound(embarrassmentAudio);
                                     break;
                             }
                             break;
@@ -3977,6 +4537,10 @@ public class DialogueManager : MonoBehaviour
                             case "TownIan2Select":
                                 yield return _yieldCharterChangeDelay;
                                 charterImage.sprite = _listCharters[count];
+                                if (count == 17)
+                                {
+                                    SettingUI.Instance.SettingSfxSound(questionAudio);
+                                }
                                 break;
                             case "TownIan4":
                                 yield return _yieldCharterChangeDelay;
@@ -4009,6 +4573,10 @@ public class DialogueManager : MonoBehaviour
                             case "RestaurantAustin1":
                                 yield return _yieldCharterChangeDelay;
                                 charterImage.sprite = _listCharters[count];
+                                if (count == 4)
+                                {
+                                    SettingUI.Instance.SettingSfxSound(TringAudio);
+                                }
                                 break;
                             case "ParkIan1":
                                 yield return _yieldCharterChangeDelay;

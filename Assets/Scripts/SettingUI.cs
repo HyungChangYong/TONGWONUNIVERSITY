@@ -12,6 +12,7 @@ public class SettingUI : MonoBehaviour
     [SerializeField] private Scrollbar scrollbar;
     
     [SerializeField] private AudioSource sfxSound;
+    [SerializeField] private AudioSource sfxSound1;
     [SerializeField] private AudioSource sfxLoopSound;
     [SerializeField] private AudioSource bgmAudioSource;
 
@@ -36,12 +37,20 @@ public class SettingUI : MonoBehaviour
     {
         sfxLoopSound.Stop();
     }
+    
 
     public void SettingSfxSound(AudioClip audioClip)
     {
         sfxSound.clip = audioClip;
         
         sfxSound.Play();
+    }
+    
+    public void SettingSfx1Sound(AudioClip audioClip)
+    {
+        sfxSound1.clip = audioClip;
+        
+        sfxSound1.Play();
     }
     
     public void SettingBgmSound(AudioClip audioClip)
@@ -54,6 +63,8 @@ public class SettingUI : MonoBehaviour
     void Update()
     {
         sfxSound.volume = scrollbar.value;
+        
+        sfxSound1.volume = scrollbar.value;
         
         bgmAudioSource.volume = scrollbar.value;
         

@@ -71,7 +71,7 @@ public class ChoiceManager : MonoBehaviour
 
     public void SelectChoice(int num)
     {
-        SettingUI.Instance.SettingSfxSound(select2Audio);
+        // SettingUI.Instance.SettingSfxSound(clickAudio);
 
         if (_isFiveChoice.Equals(false) && _isSixChoice.Equals(false))
         {
@@ -83,6 +83,7 @@ public class ChoiceManager : MonoBehaviour
             }
             else
             {
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 switch (choiceNum)
                 {
                     case 96:
@@ -132,6 +133,7 @@ public class ChoiceManager : MonoBehaviour
                 }
                 else
                 {
+                    SettingUI.Instance.SettingSfxSound(clickAudio);
                     guideBackImageGo.SetActive(true);
                 }
             }
@@ -164,96 +166,117 @@ public class ChoiceManager : MonoBehaviour
         {
             // 외출하기
             case 0:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 LobbyManager.Instance.GoingOut();
                 break;
             // 교양 쌓기
             case 1:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 LobbyManager.Instance.Cultivation();
                 break;
             // 행상인 부르기
             case 2:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 LobbyManager.Instance.CallPeddler();
                 break;
             // 물약 구매 후 이안 칼릭스
             case 3:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 LobbyManager.Instance.UsePotion(1);
                 break;
             // 물약 구매 후 노아 셀베스틴
             case 4:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 LobbyManager.Instance.UsePotion(2);
                 break;
             // 물약 구매 후 아스틴
             case 5:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 LobbyManager.Instance.UsePotion(3);
                 break;
             // 초코 구매 후 이안 칼릭스
             case 6:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 LobbyManager.Instance.UseChoco(1);
                 break;
             // 초코 구매 후 노아 셀베스틴
             case 7:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 LobbyManager.Instance.UseChoco(2);
                 break;
             // 초코 구매 후 아스틴
             case 8:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 LobbyManager.Instance.UseChoco(3);
                 break;
             // 이동한다 선택
             case 9:
+                SettingUI.Instance.SettingSfx1Sound(select2Audio);
                 DailyRoutine.Instance.StartFadePlace(WorldManager.Instance.selectPlaceNum);
                 break;
             // 다시 선택한다 선택
             case 10:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 WorldManager.Instance.ResetTxtBox();
                 break;
             # region 타운
             // 이안 즐겁다 선택
             case 12:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = false;
                 DailyRoutine.Instance.TownIan2Fun();
                 break;
             // 이안 귀찮다 선택
             case 13:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = true;
                 DailyRoutine.Instance.TownIan2Tiresome();
                 break;
             // 이안 아는 척한다
             case 15:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = true;
                 DailyRoutine.Instance.TownIan3Hi();
                 break;
             // 이안 모르는 척한다
             case 16:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = false;
                 DailyRoutine.Instance.TownIan3Ignore();
                 break;
             // 노아 실수로 왔다고 한다
             case 18:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = false;
                 DailyRoutine.Instance.TownNoa1Mistake();
                 break;
             // 노아 가만히 있는다
             case 19:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = true;
                 DailyRoutine.Instance.TownNoa1Stand();
                 break;
             // 노아 위로하기
             case 21:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = false;
                 DailyRoutine.Instance.TownNoa4Cheer();
                 break;
             // 노아 질문하기
             case 22:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = true;
                 DailyRoutine.Instance.TownNoa4Question();
                 break;
             // 아스틴 불꽃놀이 보러 가기
             case 24:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = false;
                 DailyRoutine.Instance.TownAustin2FireFestival();
                 break;
             // 아스틴 다른 곳 둘러보기
             case 25:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = true;
                 DailyRoutine.Instance.TownAustin2Around();
                 break;
@@ -261,31 +284,37 @@ public class ChoiceManager : MonoBehaviour
             #region 레스토랑
             // 이안 레몬 셔벗 잘 드시나봐요?
             case 27:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = false;
                 DailyRoutine.Instance.RestaurantIan1EatWell();
                 break;
             // 이안 그거 레몬 셔벗 아닌가요?
             case 28:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = true;
                 DailyRoutine.Instance.RestaurantIan1QuestionEat();
                 break;
             // 노아 생각보다 괜찮아요!
             case 30:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = true;
                 DailyRoutine.Instance.RestaurantNoa2Good();
                 break;
             // 노아 제 입맛에 딱 맞아요!
             case 31:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = false;
                 DailyRoutine.Instance.RestaurantNoa2Perfect();
                 break;
             // 아스틴 따라한다
             case 33:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = true;
                 DailyRoutine.Instance.RestaurantAustin2Copy();
                 break;
             // 아스틴 기다린다
             case 34:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = false;
                 DailyRoutine.Instance.RestaurantAustin2Wait();
                 break;
@@ -293,71 +322,85 @@ public class ChoiceManager : MonoBehaviour
             #region 공원
             // 이안 식물은 마음이 편해져요
             case 36:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = true;
                 DailyRoutine.Instance.ParkIan1Plants();
                 break;
             // 이안 식물도 좋지만 예쁜 밤하늘도 좋아해요
             case 37:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = false;
                 DailyRoutine.Instance.ParkIan1NightSky();
                 break;
             // 이안 운동을 하고 있었어요
             case 39:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = false;
                 DailyRoutine.Instance.ParkIan3Exercise();
                 break;
             // 이안 산책을 하고 있었어요
             case 40:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = true;
                 DailyRoutine.Instance.ParkIan3Walk();
                 break;
             // 이안 꽃을 보러 간다
             case 42:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = true;
                 DailyRoutine.Instance.ParkIan5LookFlower();
                 break;
             // 이안 공원에서 쉰다
             case 43:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = false;
                 DailyRoutine.Instance.ParkIan5Rest();
                 break;   
             // 노아 강아지
             case 45:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = false;
                 DailyRoutine.Instance.ParkNoa1Dog();
                 break;   
             // 노아 새
             case 46:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = true;
                 DailyRoutine.Instance.ParkNoa1Bird();
                 break;
             // 노아 궁금한 사람
             case 48:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = false;
                 DailyRoutine.Instance.ParkNoa3CuriosityPeople();
                 break;
             // 노아 바보 같은 사람
             case 49:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = true;
                 DailyRoutine.Instance.ParkNoa3StupidPeople();
                 break;
             // 아스틴 같이 찾는다
             case 51:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = true;
                 DailyRoutine.Instance.ParkAustin2TogetherFind();
                 break;
             // 아스틴 어미새를 쫓는다
             case 52:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = false;
                 DailyRoutine.Instance.ParkAustin2Chasing();
                 break;
             // 아스틴 친구라고 한다
             case 54:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = false;
                 DailyRoutine.Instance.ParkAustin3Friend();
                 break;
             // 아스틴 대답하지 않는다
             case 55:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = true;
                 DailyRoutine.Instance.ParkAustin3Stay();
                 break;
@@ -365,31 +408,37 @@ public class ChoiceManager : MonoBehaviour
             #region 해변
             // 이안 별을 보러 이동한다
             case 57:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = true;
                 DailyRoutine.Instance.BeachIan2LookStar();
                 break;
             // 이안 별이 잘 보이는 장소로 안내한다
             case 58:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = false;
                 DailyRoutine.Instance.BeachIan2GuideStar();
                 break;
             // 노아 내일부터 보낸다고 한다
             case 60:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = false;
                 DailyRoutine.Instance.BeachNoa2TomorrowSend();
                 break;
             // 노아 생각날 때 보낸다고 한다
             case 61:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = true;
                 DailyRoutine.Instance.BeachNoa2ThinkSend();
                 break;
             // 아스틴 자는 척한다
             case 63:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = false;
                 DailyRoutine.Instance.BeachAustin2Sleep();
                 break;
             // 아스틴 눈을 뜬다
             case 64:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = true;
                 DailyRoutine.Instance.BeachAustin2OpenEye();
                 break;
@@ -397,21 +446,25 @@ public class ChoiceManager : MonoBehaviour
             #region 미술관
             // 노아 화낸다
             case 66:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = true;
                 DailyRoutine.Instance.GalleryNoa2Anger();
                 break;
             // 노아 봐준다
             case 67:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = false;
                 DailyRoutine.Instance.GalleryNoa2Ignore();
                 break;
             // 아스틴 슬쩍 빠져나온다
             case 69:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = true;
                 DailyRoutine.Instance.GalleryAustin1ComingOut();
                 break;
             // 아스틴 놓아줄 때까지 즐긴다
             case 70:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = false;
                 DailyRoutine.Instance.GalleryAustin1Enjoy();
                 break;
@@ -419,11 +472,13 @@ public class ChoiceManager : MonoBehaviour
             #region 공작가
             // 이안 대화하기 위해서
             case 72:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = true;
                 DailyRoutine.Instance.HomeIan1Talk();
                 break;
             // 이안 공작저가 궁금해서
             case 73:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = false;
                 DailyRoutine.Instance.HomeIan1Curiosity();
                 break;
@@ -431,11 +486,13 @@ public class ChoiceManager : MonoBehaviour
             #region 후작가
             // 노아 협력을 요청드립니다
             case 75:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = true;
                 DailyRoutine.Instance.HomeNoa1Cooperation();
                 break;
             // 노아 힘이 되어드리고 싶습니다
             case 76:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = false;
                 DailyRoutine.Instance.HomeNoa1Force();
                 break;
@@ -443,21 +500,25 @@ public class ChoiceManager : MonoBehaviour
             #region 신전
             // 아스틴 기도 내용을 말한다
             case 78:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = false;
                 DailyRoutine.Instance.HomeAustin1PrayerTalk();
                 break;
             // 아스틴 기도 내용을 말하지 않는다
             case 79:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = true;
                 DailyRoutine.Instance.HomeAustin1NoPrayerTalk();
                 break;
             // 아스틴 남성에게 돈을 던진다
             case 81:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = true;
                 DailyRoutine.Instance.HomeAustin2ThrowStone();
                 break;
             // 아스틴 아스틴을 불러온다
             case 82:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = false;
                 DailyRoutine.Instance.HomeAustin2CallAustin();
                 break;
@@ -465,135 +526,164 @@ public class ChoiceManager : MonoBehaviour
             #region 이벤트1
             // 이벤트1 예절
             case 84:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 LobbyManager.Instance.Event1Manner();
                 break;
             // 이벤트1 춤
             case 85:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 LobbyManager.Instance.Event1Dance();
                 break;
             // 이벤트1 다도
             case 86:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 LobbyManager.Instance.Event1TeaCeremony();
                 break;
             // 이벤트1 화술
             case 87:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 LobbyManager.Instance.Event1SpeakArt();
                 break;
             // 이벤트1 검술
             case 88:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 LobbyManager.Instance.Event1SwardArt();
                 break;
             #endregion
             #region 이벤트2
             // 이벤트2 무시하기
             case 90:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 LobbyManager.Instance.Event2Ignore();
                 break;
             // 이벤트2 맞춰주기
             case 91:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 LobbyManager.Instance.Event2Right();
                 break;
             // 이벤트2 반박하기
             case 92:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 LobbyManager.Instance.Event2Rebut();
                 break;
             // 이벤트2 뺨 때리기
             case 93:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 LobbyManager.Instance.Event2HitCheek();
                 break;
             // 이벤트2 와인 뿌리기
             case 94:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 LobbyManager.Instance.Event2WineSpray();
                 break;
             // 이벤트2 울기
             case 95:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 LobbyManager.Instance.Event2Cry();
                 break;
             // 아벤트2 공작 : 이안 칼릭스
             case 96:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 DialogueManager.Instance.SettingFadeInfoEvent();
                 break;
             // 이벤트2 후작 : 노아 셀베스틴
             case 97:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 DialogueManager.Instance.SettingFadeInfoEvent();
                 break;
             // 이벤트2 신관 : 아스틴
             case 98:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 DialogueManager.Instance.SettingFadeInfoEvent();
                 break;
             #endregion
             #region 이벤트3
             // 이벤트3 우선 한 모금 마시며 공작을 기다린다
             case 99:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = false;
                 LobbyManager.Instance.Even3IanDrink();
                 break;
             // 이벤트3 예법은 뒤로 한 채 잠깐 기다린다
             case 100:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = true;
                 LobbyManager.Instance.Even3IanWait();
                 break;
             // 이벤트3 가만히 있는다
             case 102:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = true;
                 LobbyManager.Instance.Event3NoaStay();
                 break;
             // 이벤트3 몸을 피한다
             case 103:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = false;
                 LobbyManager.Instance.Event3NoaAvoid();
                 break;
             // 이벤트3 본인을 더 믿어 보는 건 어떨까요
             case 105:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = true;
                 LobbyManager.Instance.Event3AustinBelieve();
                 break;
             // 이벤트3 잠깐 지나가는 바람일 거라 생각해요
             case 106:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = false;
                 LobbyManager.Instance.Event3AustinWind();
                 break;
             // 이벤트3 꽃
             case 108:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 DialogueManager.Instance.SettingEvent3Next();
                 break;
             // 이벤트3 고양이 
             case 109:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 DialogueManager.Instance.SettingEvent3Next();
                 break;
             // 이벤트3 새
             case 110:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 DialogueManager.Instance.SettingEvent3Next();
                 break;
             #endregion
             #region 이벤트4
             // 이벤트4 솔직히 털어놓는다
             case 111:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = true;
                 LobbyManager.Instance.Event4IanFrankly();
                 break;
             // 이벤트4 애써 밝은 척 말한다
             case 112:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = false;
                 LobbyManager.Instance.Event4IanBright();
                 break;
             // 이벤트4 괜찮다
             case 114:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = true;
                 LobbyManager.Instance.Event4NoaOkay();
                 break;
             // 이벤트4 잘했다
             case 115:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = false;
                 LobbyManager.Instance.Event4NoaGood();
                 break;
             // 이벤트4 농담을 던진다
             case 117:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = true;
                 LobbyManager.Instance.Event4AustinJoke();
                 break;
             // 이벤트4 생각해본다
             case 118:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 isAddIanHeart = false;
                 LobbyManager.Instance.Event4AustinThink();
                 break;
@@ -601,14 +691,17 @@ public class ChoiceManager : MonoBehaviour
             #region 엔딩
             // 엔딩 눈을 감는다
             case 120:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 DialogueManager.Instance.DelayGetMaximAlbum9();
                 break;
             // 엔딩 문을 연다  
             case 123:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 DialogueManager.Instance.DelayGetMaximAlbum13();
                 break;
             // 고개를 끄덕인다
             case 126:
+                SettingUI.Instance.SettingSfxSound(clickAudio);
                 DialogueManager.Instance.DelayGetMaximAlbum11();
                 break;
             #endregion
