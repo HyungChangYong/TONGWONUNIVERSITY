@@ -41394,6 +41394,7 @@ MonoBehaviour:
   endingWhoNum: 0
   shopUI: {fileID: 802551322}
   placeUIGo: {fileID: 1432502987}
+  endingImage: {fileID: 21300000, guid: 6c1d8755b048d084fb200e2441e73c6f, type: 3}
 --- !u!82 &1340684492
 AudioSource:
   m_ObjectHideFlags: 0
@@ -49743,7 +49744,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  isShowHeart: 01010101
+  isShowHeart: 01000000
   lockImageSizeUp:
   - {fileID: 896905181}
   - {fileID: 157988760}

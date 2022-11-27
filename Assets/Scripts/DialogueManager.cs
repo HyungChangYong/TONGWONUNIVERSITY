@@ -3041,7 +3041,6 @@ public class DialogueManager : MonoBehaviour
                                     break;
                                 case 31:
                                     SettingUI.Instance.SettingSfxSound(find1Audio);
-                                    charterName.text = "";
                                     break;
                                 case 35:
                                     charterName.text = "";
@@ -3194,7 +3193,7 @@ public class DialogueManager : MonoBehaviour
                                     SettingUI.Instance.SettingSfxSound(HatefeelingAudio);
                                     break;
                                 case 11:
-                                    SettingUI.Instance.SettingSfxSound(dangerousAudio);
+                                    SettingUI.Instance.SettingBgmSound(dangerousAudio);
                                     break;
                             }   
                             break;
@@ -6255,9 +6254,11 @@ public class DialogueManager : MonoBehaviour
 
         yield return null;
     }
-    
+
+    [SerializeField] private Sprite endingImage;
     private IEnumerator FadeEnding()
     {
+        fadeImage.sprite = endingImage;
         fadeImage.gameObject.SetActive(true);
         fadeImage.transform.localPosition = new Vector3(540, 0, 0);
         fadeImage.color = new Color(1, 1, 1, 0);
