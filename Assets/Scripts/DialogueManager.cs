@@ -2965,7 +2965,7 @@ public class DialogueManager : MonoBehaviour
                             switch (count)
                             {
                                 case 4:
-                                    Handheld.Vibrate();
+                                    // Handheld.Vibrate();
                                     SettingUI.Instance.SettingSfxSound(hitAudio);
                                     break;
                                 case 5:
@@ -3153,7 +3153,7 @@ public class DialogueManager : MonoBehaviour
                             {
                                 case 5:
                                     SettingUI.Instance.SettingSfxSound(breakAudio);
-                                    Handheld.Vibrate();
+                                    // .Vibrate();
                                     break;
                             }   
                             break;
@@ -3524,7 +3524,7 @@ public class DialogueManager : MonoBehaviour
                                     SettingUI.Instance.SettingSfxSound(questionAudio);
                                     break;
                                 case 7:
-                                    Handheld.Vibrate();
+                                    // Handheld.Vibrate();
                                     break;
                                 case 10:
                                     SettingUI.Instance.SettingSfxSound(steps4Audio);
@@ -3638,7 +3638,7 @@ public class DialogueManager : MonoBehaviour
                                     SettingUI.Instance.SettingSfxSound(TringAudio);
                                     break;
                                 case 16:
-                                    Handheld.Vibrate();
+                                    // Handheld.Vibrate();
                                     SettingUI.Instance.SettingSfxLoopSound(wave2Audio);
                                     break;
                                 case 18:
@@ -3840,7 +3840,7 @@ public class DialogueManager : MonoBehaviour
                                     charterName.text = "";
                                     break;
                                 case 3:
-                                    Handheld.Vibrate();
+                                    // Handheld.Vibrate();
                                     break;
                                 case 4:
                                     SettingUI.Instance.StopSfxLoopSound();
@@ -3862,7 +3862,7 @@ public class DialogueManager : MonoBehaviour
                             switch (count)
                             {
                                 case 1:
-                                    Handheld.Vibrate();
+                                    // Handheld.Vibrate();
                                     break;
                                 case 6:
                                     SettingUI.Instance.SettingSfxSound(breath3Audio);
@@ -3921,7 +3921,7 @@ public class DialogueManager : MonoBehaviour
                             {
                                 case 1:
                                     SettingUI.Instance.SettingSfxSound(cheekAudio);
-                                    Handheld.Vibrate();
+                                    // Handheld.Vibrate();
                                     break;
                             }
                             break;
@@ -4001,7 +4001,7 @@ public class DialogueManager : MonoBehaviour
                                 case 2:
                                     charterName.text = "";
                                     SettingUI.Instance.SettingSfxSound(endingGlass);
-                                    Handheld.Vibrate();
+                                    // Handheld.Vibrate();
                                     break;
                             }
                             break;
@@ -4017,7 +4017,7 @@ public class DialogueManager : MonoBehaviour
                             switch (count)
                             {
                                 case 5:
-                                    Handheld.Vibrate();
+                                    // Handheld.Vibrate();
                                     break;
                             }
                             break;
@@ -4055,7 +4055,7 @@ public class DialogueManager : MonoBehaviour
                             switch (count)
                             {
                                 case 1:
-                                    Handheld.Vibrate();
+                                    // Handheld.Vibrate();
                                     break;
                                 case 6:
                                     SettingUI.Instance.SettingSfxSound(footSteps3);
@@ -4074,7 +4074,7 @@ public class DialogueManager : MonoBehaviour
                             switch (count)
                             {
                                 case 5:
-                                    Handheld.Vibrate();
+                                    // Handheld.Vibrate();
                                     break;
                             }
                             break;
@@ -4174,7 +4174,7 @@ public class DialogueManager : MonoBehaviour
                                     charterName.text = "";
                                     break;
                                 case 34:
-                                    Handheld.Vibrate();
+                                    // Handheld.Vibrate();
                                     break;
                                 case 36:
                                     charterName.text = "";
@@ -4393,7 +4393,7 @@ public class DialogueManager : MonoBehaviour
                             switch (count)
                             {
                                 case 11:
-                                    Handheld.Vibrate();
+                                    // Handheld.Vibrate();
                                     break;
                             }
                             break;
@@ -4417,7 +4417,7 @@ public class DialogueManager : MonoBehaviour
                             switch (count)
                             {
                                 case 1:
-                                    Handheld.Vibrate();
+                                    // Handheld.Vibrate();
                                     break;
                             }
                             break;
@@ -4871,7 +4871,7 @@ public class DialogueManager : MonoBehaviour
                     SettingUI.Instance.SettingSfxLoopSound(peopleAudio);
                     break;
                 case "HomeAustin2ThrowStone":
-                    Handheld.Vibrate();
+                    // Handheld.Vibrate();
                     SettingUI.Instance.SettingSfxSound(coinAudio);
                     break;
                 case "Event2":
