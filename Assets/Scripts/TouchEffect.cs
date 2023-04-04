@@ -81,30 +81,30 @@ public class TouchEffect : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if(EventSystem.current.IsPointerOverGameObject())
-            {  
-                ParticleSystemCreat();
-            }
-            //마우스 포인터가 UI위에 있지않으면
-            // if (EventSystem.current
-            //     .IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+            // if(EventSystem.current.IsPointerOverGameObject())
+            // {  
+            //     
+            // }
+            // 마우스 포인터가 UI위에 있지않으면
+             if (EventSystem.current
+                 .IsPointerOverGameObject(Input.GetTouch(0).fingerId))
             {
-                
+                ParticleSystemCreat();
             }
         }
         
         if (Input.GetMouseButton(0) && _spawnsTime >= defaultTime)
         {
-            if(EventSystem.current.IsPointerOverGameObject())
-            {  
+            // if(EventSystem.current.IsPointerOverGameObject())
+            // {  
+            //     
+            // }
+            //마우스 포인터가 UI위에 있지않으면
+            if(EventSystem.current
+               .IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+            {
                 Creat();
                 _spawnsTime = 0;
-            }
-            //마우스 포인터가 UI위에 있지않으면
-            // if(EventSystem.current
-            //    .IsPointerOverGameObject(Input.GetTouch(0).fingerId))
-            {
-                
             }
         }
         // Debug.Log(Time.unscaledDeltaTime);

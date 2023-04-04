@@ -16,7 +16,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private String endingTxt;
     [SerializeField] private TextMeshProUGUI endingTxts;
     [SerializeField] private GameObject endingTxtGo;
-
+    
     [SerializeField] private GameObject openingUIGo;
     [SerializeField] private GameObject tutorialUIGo;
     [SerializeField] private GameObject lobbyUIGo;
@@ -27,6 +27,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject nameSelectUIGo;
     [SerializeField] private GameObject iconDescriptionGo;
     [SerializeField] private GameObject choiceEndingUIGo;
+    [SerializeField] private GameObject soldImageGo;
  
     [SerializeField] private Transform settingUIParent;
     [SerializeField] private Transform tutorialSettingUIParent;
@@ -471,6 +472,16 @@ public class DialogueManager : MonoBehaviour
         }
 
         StartCoroutine(StartDialogueCoroutine(situationCase));
+    }
+
+    public void ResetDialogue()
+    {
+        count = 0;
+        conversation.text = "";
+        _listSentences.Clear();
+        _listCharters.Clear();
+        _listDialogueWindows.Clear();
+        _isTalk = false;
     }
     
     private void ExitDialogue(string situationCase)
@@ -1825,6 +1836,13 @@ public class DialogueManager : MonoBehaviour
     private void ShowSHopUIDelay()
     {
         dialogueWindow.gameObject.SetActive(false);
+
+        if (LobbyManager.Instance.isShowHeart[1].Equals(true) && LobbyManager.Instance.isShowHeart[2].Equals(true) &&
+            LobbyManager.Instance.isShowHeart[3].Equals(true))
+        {
+            soldImageGo.SetActive(true);
+        }
+        
         shopUI.SetActive(true);
         LobbyManager.Instance.lobbyNextBtnGo.SetActive(false);
     }
@@ -3752,7 +3770,6 @@ public class DialogueManager : MonoBehaviour
                             {
                                 case 3:
                                     SettingUI.Instance.SettingSfxSound(pongAudio);
-                                    charterName.text = "";
                                     break;
                                 case 9:
                                     SettingUI.Instance.SettingSfxSound(steps2Audio);

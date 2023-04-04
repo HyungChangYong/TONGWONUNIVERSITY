@@ -240,6 +240,7 @@ public class DialogueTxt : MonoBehaviour
     public Dialogue normalEndingAustinNextDialogue;
     public Dialogue normalEndingAustinNextNextDialogue;
     public Dialogue badEndingDialogue;
+    public Dialogue backDialogue;
 
     private void Awake()
     {

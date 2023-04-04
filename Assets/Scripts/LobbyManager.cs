@@ -291,7 +291,7 @@ public class LobbyManager : MonoBehaviour
             }
             
             lobbyTxtBoxLineGo.SetActive(true);
-            lobbyNextBtnGo.SetActive(true);
+            Invoke("A", 1.5f);
             
             // 다른 거 호출 하는 방싟으로 변경
             DialogueManager.Instance.count = 1;
@@ -299,7 +299,13 @@ public class LobbyManager : MonoBehaviour
             DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.valetCallDialogue, "ValetCall", lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
 
             _isValetCall = true;
+            ChoiceManager.Instance.isActiveOkUI = false;
         }
+    }
+
+    private void A()
+    {
+        lobbyNextBtnGo.SetActive(true);
     }
     
     public void ResetLobby(int num)
@@ -315,14 +321,41 @@ public class LobbyManager : MonoBehaviour
 
     public void Cultivation()
     {
-        // if (lobbyCharterAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
+        _situationCaseName = "Cultivation";
+        
+        lobbyTxtBoxLineGo.SetActive(true);
+
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.cultivationDialogue, "Cultivation", lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+    }
+    
+    public void Back()
+    {
+        SettingUI.Instance.SettingSfxSound(clickAudio);
+        
+        _situationCaseName = "Back";
+        
+        _isValetCall = false;
+        lobbyTxtBoxLineGo.SetActive(false);
+        lobbyNextBtnGo.SetActive(false);
+        
+        
+        DialogueManager.Instance.count = 1;
+        DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.backDialogue, "Back", lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+
+        Invoke("DelayResetDialogue", 1.5f);
+        
+    }
+
+    private void DelayResetDialogue()
+    {
+        DialogueManager.Instance.ResetDialogue();
+        
+        lobbyTxtBtnImageGo.SetActive(false);
+
+        for (int i = 0; i < lobbyUI.Length; i++)
         {
-            _situationCaseName = "Cultivation";
-        
-            lobbyTxtBoxLineGo.SetActive(true);
-        
-            DialogueManager.Instance.count = 1;
-            DialogueManager.Instance.ShowDialogue(DialogueTxt.Instance.cultivationDialogue, "Cultivation", lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
+            lobbyUI[i].SetActive(true);
         }
     }
 
@@ -426,7 +459,7 @@ public class LobbyManager : MonoBehaviour
         lobbyTxtBoxLineGo.SetActive(true);
         lobbyNextBtnGo.SetActive(true);
         showBuyPopUpUIGo.SetActive(false);
-            
+
         DialogueManager.Instance.count = 1;
             
         DialogueManager.Instance.ShowDialogue(dialogue, _situationCaseName, lobbyConversation, lobbyCharterName, lobbyCharterImage, lobbyWindow, lobbyCharterAnimator, lobbyTxtBtnAnimator, lobbyTxtBtnImageGo, lobbyTxtBtnImage);
@@ -538,6 +571,20 @@ public class LobbyManager : MonoBehaviour
             SettingUI.Instance.SettingSfxSound(selectAudio);
             
             maximImage.sprite = illustration[num];
+
+            if (num == 9)
+            {
+                maximCancelImage.rectTransform.localPosition = new Vector3(-885, 465, 0);
+                maximImage.rectTransform.sizeDelta = new Vector2(1920, 1080);
+                maximImage.rectTransform.rotation = Quaternion.Euler(0, 0, -90);
+            }
+            else
+            {
+                maximCancelImage.rectTransform.localPosition = new Vector3(465, 885, 0);
+                maximImage.rectTransform.sizeDelta = new Vector2(1080, 1920);
+                maximImage.rectTransform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            
             StartCoroutine(ShowMaximAlbumCoroutine());
         }
     }

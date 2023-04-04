@@ -11,12 +11,15 @@ public class ChoiceManager : MonoBehaviour
     public static ChoiceManager Instance;
 
     [SerializeField] private Image selectCharacterUI;
+    [SerializeField] private Image activeOkUI;
 
     [SerializeField] private Sprite[] selectCharacterSprite;
     
     [SerializeField] private AudioClip clickAudio;
     [SerializeField] private AudioClip select2Audio;
 
+    [SerializeField] private GameObject bakUI;
+    [SerializeField] private GameObject activeOkUIGo;
     [SerializeField] private GameObject selectCharacterUIGo;
     [SerializeField] private GameObject guideBackImageGo;
     [SerializeField] private GameObject choiceObjectUI;
@@ -45,6 +48,7 @@ public class ChoiceManager : MonoBehaviour
     public int event4WhoNum;
 
     public bool isSelectEvent3;
+    public bool isActiveOkUI;
 
     private void Awake()
     {
@@ -69,6 +73,43 @@ public class ChoiceManager : MonoBehaviour
         isSelectEvent3 = false;
     }
 
+    public void ShowActiveOkUI()
+    {
+        activeOkUIGo.SetActive(true);
+
+        switch (choiceNum)
+        {
+            // 외출하기
+            case 0:
+                activeOkUI.sprite = selectCharacterSprite[6];
+                break;
+            // 교양 쌓기
+            case 1:
+                activeOkUI.sprite = selectCharacterSprite[7];
+                break;
+            // 행상인 부르기
+            case 2:
+                activeOkUI.sprite = selectCharacterSprite[8];
+                break;
+        }
+    }
+
+    public void HideActiveOkUI()
+    {
+        SettingUI.Instance.SettingSfxSound(clickAudio);
+        
+        activeOkUIGo.SetActive(false);
+    }
+
+    public void SelectShowActiveOkUI()
+    {
+        CallSituation();
+
+        activeOkUIGo.SetActive(false);
+        
+        isActiveOkUI = true;
+    }
+
     public void SelectChoice(int num)
     {
         // SettingUI.Instance.SettingSfxSound(clickAudio);
@@ -76,12 +117,18 @@ public class ChoiceManager : MonoBehaviour
         if (_isFiveChoice.Equals(false) && _isSixChoice.Equals(false))
         {
             choiceNum = choiceTxtNums[num];
+            
+            if (isActiveOkUI.Equals(false))
+            {
+                SettingUI.Instance.SettingSfxSound(clickAudio);
 
-            if (isSelectEvent3.Equals(false))
+                ShowActiveOkUI();
+            }
+            else if (isSelectEvent3.Equals(false) && isActiveOkUI.Equals(true))
             {
                 CallSituation();
             }
-            else
+            else if (isSelectEvent3.Equals(true))
             {
                 SettingUI.Instance.SettingSfxSound(clickAudio);
                 switch (choiceNum)
@@ -161,7 +208,6 @@ public class ChoiceManager : MonoBehaviour
     {
         choiceObjectUI.SetActive(false);
         
-
         switch (choiceNum)
         {
             // 외출하기
@@ -711,6 +757,8 @@ public class ChoiceManager : MonoBehaviour
     
     public void ShowOneChoice(int num)
     {
+        bakUI.SetActive(false);
+        
         choiceObjectUI.SetActive(true);
         
         _isFiveChoice = false;
@@ -731,6 +779,8 @@ public class ChoiceManager : MonoBehaviour
     {
         choiceObjectUI.SetActive(true);
         
+        bakUI.SetActive(false);
+        
         _isFiveChoice = false;
         _isSixChoice = false;
         
@@ -747,10 +797,27 @@ public class ChoiceManager : MonoBehaviour
         choiceTxt[1].text = choiceTxtInfo[num * 3 + 1];
     }
 
+    public void BackClick()
+    {
+        choiceObjectUI.SetActive(false);
+        
+        LobbyManager.Instance.Back();
+    }
+
+    public void HideChoiceObjectUI()
+    {
+        choiceObjectUI.SetActive(false);
+    }
     public void ShowThreeChoice(int num)
     {
         choiceObjectUI.SetActive(true);
         
+        bakUI.SetActive(false);
+
+        if (num == 0)
+        {
+            bakUI.SetActive(true);
+        }
         _isFiveChoice = false;
         _isSixChoice = false;
 
@@ -771,6 +838,8 @@ public class ChoiceManager : MonoBehaviour
 
     public void ShowFiveChoice(int num)
     {
+        
+        bakUI.SetActive(false);
         choiceObjectUI.SetActive(true);
         
         _isFiveChoice = true;
@@ -793,6 +862,8 @@ public class ChoiceManager : MonoBehaviour
     
     public void ShowSixChoice(int num)
     {
+        bakUI.SetActive(false);
+        
         choiceObjectUI.SetActive(true);
         
         _isSixChoice = true;
